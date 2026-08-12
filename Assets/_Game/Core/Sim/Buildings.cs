@@ -137,6 +137,21 @@ namespace Starsoil.Core
         private const int BigBuildTicks = 450;
         private const int SmallStorageStacks = 24;
 
+        // Machine power draws (docs/plan/03 数值锚点; moves into generated data at M3).
+        private const float ElectrolyzerKw = 40f;
+        private const float AirChargingKw = 5f;
+        private const float MinerKw = 20f;
+        private const float IceMinerKw = 15f;
+        private const float CrusherKw = 15f;
+        private const float FurnaceKw = 35f;
+        private const float RollMillKw = 20f;
+        private const float PressKw = 20f;
+        private const float AssemblerKw = 25f;
+        private const float PurifierKw = 10f;
+        private const float GreenhouseKw = 8f;
+        private const float ForageKw = 5f;
+        private const float ChargingPostKw = 10f;
+
         private static Ingredient Need(string itemId, int count) => new Ingredient { ItemId = itemId, Count = count };
 
         public static readonly BuildingDef TestBlock =
@@ -214,7 +229,7 @@ namespace Starsoil.Core
 
         public static readonly BuildingDef Electrolyzer =
             new BuildingDef(ElectrolyzerId, 2, 2, BuildingKind.Electrolyzer,
-                powerKw: 40f, priority: PowerPriority.LifeSupport,
+                powerKw: ElectrolyzerKw, priority: PowerPriority.LifeSupport,
                 buildCost: new[] { Need(ItemIds.CopperLump, 2), Need(ItemIds.IronLump, 2), Need(ItemIds.CrudeGlass, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "oxygen_network");
 
@@ -228,49 +243,49 @@ namespace Starsoil.Core
 
         public static readonly BuildingDef Miner =
             new BuildingDef(MinerId, 2, 2, BuildingKind.Miner, isMachine: true,
-                powerKw: 20f, extracts: new[] { ItemIds.IronOre, ItemIds.CopperOre, ItemIds.QuartzSand, ItemIds.SaltOre, ItemIds.Carbon },
+                powerKw: MinerKw, extracts: new[] { ItemIds.IronOre, ItemIds.CopperOre, ItemIds.QuartzSand, ItemIds.SaltOre, ItemIds.Carbon },
                 buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CopperLump, 1), Need(ItemIds.CrudeTool, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "powered_extraction");
 
         public static readonly BuildingDef IceMiner =
             new BuildingDef(IceMinerId, 2, 2, BuildingKind.IceMiner, isMachine: true,
-                powerKw: 15f, priority: PowerPriority.LifeSupport, extracts: new[] { ItemIds.Ice },
+                powerKw: IceMinerKw, priority: PowerPriority.LifeSupport, extracts: new[] { ItemIds.Ice },
                 buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CrudeTool, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "powered_extraction");
 
         public static readonly BuildingDef Crusher =
             new BuildingDef(CrusherId, 2, 1, BuildingKind.Crusher, isStation: true, isMachine: true,
-                powerKw: 15f,
+                powerKw: CrusherKw,
                 buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CrudeTool, 1) },
                 buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
 
         public static readonly BuildingDef Furnace =
             new BuildingDef(FurnaceId, 2, 2, BuildingKind.Furnace, isStation: true, isMachine: true,
-                powerKw: 35f,
+                powerKw: FurnaceKw,
                 buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CarbonPowder, 2) },
                 buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
 
         public static readonly BuildingDef RollMill =
             new BuildingDef(RollMillId, 2, 1, BuildingKind.RollMill, isStation: true, isMachine: true,
-                powerKw: 20f,
+                powerKw: RollMillKw,
                 buildCost: new[] { Need(ItemIds.IronLump, 3) },
                 buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
 
         public static readonly BuildingDef Press =
             new BuildingDef(PressId, 2, 1, BuildingKind.Press, isStation: true, isMachine: true,
-                powerKw: 20f,
+                powerKw: PressKw,
                 buildCost: new[] { Need(ItemIds.IronLump, 3) },
                 buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
 
         public static readonly BuildingDef Assembler =
             new BuildingDef(AssemblerId, 2, 2, BuildingKind.Assembler, isStation: true, isMachine: true,
-                powerKw: 25f,
+                powerKw: AssemblerKw,
                 buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CopperLump, 2), Need(ItemIds.CrudeTool, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "powered_assembly");
 
         public static readonly BuildingDef WaterPurifier =
             new BuildingDef(WaterPurifierId, 1, 2, BuildingKind.WaterPurifier, isStation: true, isMachine: true,
-                powerKw: 10f, priority: PowerPriority.LifeSupport,
+                powerKw: PurifierKw, priority: PowerPriority.LifeSupport,
                 buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CrudeGlass, 1) },
                 buildWorkTicks: NormalBuildTicks, techNode: "life_support_1");
 
@@ -293,7 +308,7 @@ namespace Starsoil.Core
 
         public static readonly BuildingDef ChargingPost =
             new BuildingDef(ChargingPostId, 1, 1, BuildingKind.ChargingPost,
-                powerKw: 10f, priority: PowerPriority.Logistics,
+                powerKw: ChargingPostKw, priority: PowerPriority.Logistics,
                 buildCost: new[] { Need(ItemIds.CopperLump, 2), Need(ItemIds.IronLump, 1) },
                 buildWorkTicks: QuickBuildTicks, techNode: "hauler_bots");
 
