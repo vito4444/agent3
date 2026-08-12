@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- CI gate 1.5: type-checks every Unity-side script (Presentation/UI/Data/Bootstrap/
+       EditorTools) against the stub assemblies in tools/UnityStubs, so compile-level
+       breakage is caught without a Unity install. Unity's own compile (gate 2, needs
+       UNITY_LICENSE) stays authoritative for engine semantics. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>Starsoil.UnityCompileCheck</AssemblyName>
+    <RootNamespace>Starsoil</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <WarningLevel>0</WarningLevel>
+    <NoWarn>CS0649;CS0067;CS0414;CS0660;CS0661</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../UnityStubs/**/*.cs" />
+    <Compile Include="../../Assets/_Game/Core/**/*.cs" />
+    <Compile Include="../../Assets/_Game/Data/**/*.cs" />
+    <Compile Include="../../Assets/_Game/Presentation/**/*.cs" />
+    <Compile Include="../../Assets/_Game/UI/**/*.cs" />
+    <Compile Include="../../Assets/_Game/Bootstrap/**/*.cs" />
+    <Compile Include="../../Assets/_Game/EditorTools/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
