@@ -12,7 +12,9 @@ namespace Starsoil.Core
         Craft,
         Mine,
         Crank,
-        Bury
+        Bury,
+        Repair,
+        Research
     }
 
     public sealed class WorkTask
@@ -48,6 +50,7 @@ namespace Starsoil.Core
         public const int PriorityHaulBlueprint = 70;
         public const int PriorityHaulStation = 65;
         public const int PriorityCraft = 60;
+        public const int PriorityRepair = 58;
         public const int PriorityBury = 50;
         /// <summary>Mining an item some station/blueprint is currently starving for.</summary>
         public const int PriorityMineDemand = 55;
@@ -83,11 +86,207 @@ namespace Starsoil.Core
         {
             GenerateBlueprintTasks(world);
             GenerateStationTasks(world);
+            GenerateElectrolyzerTasks(world);
+            GenerateResearchTasks(world);
             GenerateMineTasks(world);
             GenerateCrankTasks(world);
             GenerateBuryTasks(world);
+            GenerateRepairTasks(world);
+            GenerateOutputHaulTasks(world);
             GenerateStorageTasks(world);
             Dispatch(world);
+        }
+
+        /// <summary>Electrolyzers keep a water buffer stocked (they are not craft stations,
+        /// so the order-driven generator does not feed them).</summary>
+        private void GenerateElectrolyzerTasks(World world)
+        {
+            foreach (var building in SortedValues(world.Buildings.All))
+            {
+                if (!BuildingDefs.TryGet(building.DefId, out var def) ||
+                    def.Kind != BuildingKind.Electrolyzer || !building.WantsPower)
+                {
+                    continue;
+                }
+                int missing = Balance.ElectrolyzerWaterBuffer - building.Stock.Get(ItemIds.Water) -
+                              building.Inbound.Get(ItemIds.Water);
+                while (missing > 0)
+                {
+                    int chunk = Math.Min(missing, CarryCapacity);
+                    if (!TryReserveSource(world, ItemIds.Water, chunk, PriorityHaulStation,
+                            out int pileId, out int buildingId, out int reserved, excludeBuildingId: building.Id))
+                    {
+                        break;
+                    }
+                    building.Inbound.Add(ItemIds.Water, reserved);
+                    AddTask(new WorkTask
+                    {
+                        Type = TaskType.HaulToStation,
+                        Priority = PriorityHaulStation,
+                        TargetX = building.X,
+                        TargetY = building.Y,
+                        StationId = building.Id,
+                        ItemId = ItemIds.Water,
+                        Count = reserved,
+                        SourcePileId = pileId,
+                        SourceBuildingId = buildingId
+                    });
+                    missing -= reserved;
+                }
+            }
+        }
+
+        /// <summary>Research target set → haul the owed data cores to the bench and queue
+        /// bench work (M2-T11).</summary>
+        private void GenerateResearchTasks(World world)
+        {
+            if (world.Tech.ResearchTarget.Length == 0)
+            {
+                return;
+            }
+            var bench = world.Buildings.FindFirstOfKind(BuildingKind.ResearchBench);
+            if (bench == null)
+            {
+                return;
+            }
+            string neededCore = world.Tech.NextNeededCore();
+            if (neededCore == null)
+            {
+                return;
+            }
+            int missing = world.Tech.RemainingCost(neededCore) - bench.Stock.Get(neededCore) - bench.Inbound.Get(neededCore);
+            while (missing > 0)
+            {
+                int chunk = Math.Min(missing, CarryCapacity);
+                if (!TryReserveSource(world, neededCore, chunk, PriorityHaulStation,
+                        out int pileId, out int buildingId, out int reserved, excludeBuildingId: bench.Id))
+                {
+                    break;
+                }
+                bench.Inbound.Add(neededCore, reserved);
+                AddTask(new WorkTask
+                {
+                    Type = TaskType.HaulToStation,
+                    Priority = PriorityHaulStation,
+                    TargetX = bench.X,
+                    TargetY = bench.Y,
+                    StationId = bench.Id,
+                    ItemId = neededCore,
+                    Count = reserved,
+                    SourcePileId = pileId,
+                    SourceBuildingId = buildingId
+                });
+                missing -= reserved;
+            }
+            if (bench.Stock.Get(neededCore) > 0 &&
+                !HasTaskFor(t => t.Type == TaskType.Research && t.BuildingId == bench.Id))
+            {
+                AddTask(new WorkTask
+                {
+                    Type = TaskType.Research,
+                    Priority = PriorityCraft,
+                    TargetX = bench.X,
+                    TargetY = bench.Y,
+                    BuildingId = bench.Id
+                });
+            }
+        }
+
+        /// <summary>Machines below the durability threshold get a repair-gel task (M2-T4).</summary>
+        private void GenerateRepairTasks(World world)
+        {
+            foreach (var building in SortedValues(world.Buildings.All))
+            {
+                if (!building.NeedsRepair ||
+                    HasTaskFor(t => t.Type == TaskType.Repair && t.BuildingId == building.Id))
+                {
+                    continue;
+                }
+                if (!TryReserveSource(world, ItemIds.RepairGel, 1, PriorityRepair,
+                        out int pileId, out int sourceBuildingId, out int reserved, excludeBuildingId: building.Id))
+                {
+                    continue;
+                }
+                AddTask(new WorkTask
+                {
+                    Type = TaskType.Repair,
+                    Priority = PriorityRepair,
+                    TargetX = building.X,
+                    TargetY = building.Y,
+                    BuildingId = building.Id,
+                    ItemId = ItemIds.RepairGel,
+                    Count = reserved,
+                    SourcePileId = pileId,
+                    SourceBuildingId = sourceBuildingId
+                });
+            }
+        }
+
+        /// <summary>Hauls finished goods out of station/machine buffers into storage.</summary>
+        private void GenerateOutputHaulTasks(World world)
+        {
+            foreach (var station in SortedValues(world.Buildings.All))
+            {
+                if (!BuildingDefs.TryGet(station.DefId, out var def) ||
+                    (!def.IsStation && !def.IsMachine) || def.StorageCapacity > 0 ||
+                    def.Kind == BuildingKind.ResearchBench)
+                {
+                    continue;
+                }
+                var keepItems = CollectStationInputs(world, station, def);
+                foreach (var entry in station.Stock.SortedEntries())
+                {
+                    if (keepItems.Contains(entry.Key))
+                    {
+                        continue;
+                    }
+                    int available = entry.Value - station.Reserved.Get(entry.Key);
+                    if (available <= 0 ||
+                        HasTaskFor(t => t.Type == TaskType.HaulToStorage &&
+                                        t.SourceBuildingId == station.Id && t.ItemId == entry.Key))
+                    {
+                        continue;
+                    }
+                    var storage = FindStorageWithSpace(world, entry.Key);
+                    if (storage == null)
+                    {
+                        continue;
+                    }
+                    int chunk = Math.Min(available, CarryCapacity);
+                    station.Reserved.Add(entry.Key, chunk);
+                    AddTask(new WorkTask
+                    {
+                        Type = TaskType.HaulToStorage,
+                        Priority = PriorityHaulStorage,
+                        TargetX = storage.X,
+                        TargetY = storage.Y,
+                        BuildingId = storage.Id,
+                        ItemId = entry.Key,
+                        Count = chunk,
+                        SourceBuildingId = station.Id
+                    });
+                }
+            }
+        }
+
+        /// <summary>Items this station's queued orders still consume (they stay in the buffer).</summary>
+        private static HashSet<string> CollectStationInputs(World world, BuildingState station, BuildingDef def)
+        {
+            var keep = new HashSet<string>();
+            if (world.Crafting.OrdersByStation.TryGetValue(station.Id, out var orders))
+            {
+                foreach (var order in orders)
+                {
+                    if (world.Crafting.TryGetRecipe(order.RecipeId, out var recipe))
+                    {
+                        foreach (var input in recipe.Inputs)
+                        {
+                            keep.Add(input.ItemId);
+                        }
+                    }
+                }
+            }
+            return keep;
         }
 
         private void GenerateBlueprintTasks(World world)
@@ -204,10 +403,19 @@ namespace Starsoil.Core
         private void GenerateMineTasks(World world)
         {
             var demanded = CollectDemandedItems(world);
+            var machineCovered = CollectExtractorTargets(world);
             foreach (var node in SortedValues(world.Nodes.All))
             {
                 if (!node.Designated || node.Remaining <= 0)
                 {
+                    continue;
+                }
+                if (machineCovered.Contains(node.Id))
+                {
+                    // A powered extraction machine works this deposit; hand mining stops
+                    // (docs/plan/03 hand-to-machine mapping, M2-T9). It resumes if the
+                    // machine loses power or is toggled off.
+                    RemoveMineTaskFor(world, node.Id);
                     continue;
                 }
                 int priority = demanded.Contains(node.ItemId) ? PriorityMineDemand : PriorityMine;
@@ -235,6 +443,46 @@ namespace Starsoil.Core
                         NodeId = node.Id
                     });
                 }
+            }
+        }
+
+        private static HashSet<int> CollectExtractorTargets(World world)
+        {
+            var covered = new HashSet<int>();
+            foreach (var building in world.Buildings.All.Values)
+            {
+                if (!BuildingDefs.TryGet(building.DefId, out var def) || !def.IsMachine ||
+                    def.Extracts.Count == 0 || !building.WantsPower)
+                {
+                    continue;
+                }
+                if (!world.Networks.IsPowered(world, building))
+                {
+                    continue;
+                }
+                int nodeId = world.Buildings.FindDepositFor(def, building.X, building.Y);
+                if (nodeId != 0)
+                {
+                    covered.Add(nodeId);
+                }
+            }
+            return covered;
+        }
+
+        private void RemoveMineTaskFor(World world, int nodeId)
+        {
+            WorkTask existing = null;
+            foreach (var task in _tasks.Values)
+            {
+                if (task.Type == TaskType.Mine && task.NodeId == nodeId && task.ClaimedBy == 0)
+                {
+                    existing = task;
+                    break;
+                }
+            }
+            if (existing != null)
+            {
+                Remove(world, existing, releaseReservations: false);
             }
         }
 
@@ -370,6 +618,12 @@ namespace Starsoil.Core
             return null;
         }
 
+        private static bool IsBotHaulType(TaskType type)
+        {
+            return type == TaskType.HaulToBlueprint || type == TaskType.HaulToStation ||
+                   type == TaskType.HaulToStorage;
+        }
+
         private void Dispatch(World world)
         {
             var unclaimed = new List<WorkTask>();
@@ -382,37 +636,96 @@ namespace Starsoil.Core
             }
             unclaimed.Sort((a, b) => a.Priority != b.Priority ? b.Priority.CompareTo(a.Priority) : a.Id.CompareTo(b.Id));
 
-            var idle = new List<Colonist>();
+            var idleColonists = new List<Colonist>();
             foreach (var colonist in world.Colonists.AllSorted())
             {
-                if (colonist.Alive && colonist.Activity == ColonistActivity.Idle)
+                if (colonist.Alive && colonist.Activity == ColonistActivity.Idle && !colonist.OnStrike)
                 {
-                    idle.Add(colonist);
+                    idleColonists.Add(colonist);
                 }
             }
+            var idleBots = world.Bots.IdleReady();
+            // While any bot is operational, haul work leaves the human labor pool
+            // (docs/plan/03 hand-to-machine mapping row "人力搬运 → 搬运蛛", M2-T9).
+            bool botsOperational = world.Bots.AnyOperational();
 
             foreach (var task in unclaimed)
             {
-                if (idle.Count == 0)
+                if (IsBotHaulType(task.Type))
                 {
-                    break;
-                }
-                int bestIndex = -1;
-                int bestDistance = int.MaxValue;
-                for (int i = 0; i < idle.Count; i++)
-                {
-                    int distance = Math.Abs(idle[i].X - task.TargetX) + Math.Abs(idle[i].Y - task.TargetY);
-                    if (distance < bestDistance)
+                    if (idleBots.Count > 0)
                     {
-                        bestDistance = distance;
-                        bestIndex = i;
+                        var bot = TakeNearestBot(idleBots, task);
+                        task.ClaimedBy = -bot.Id;
+                        bot.AssignTask(task);
+                        continue;
+                    }
+                    if (botsOperational)
+                    {
+                        continue;
                     }
                 }
-                var worker = idle[bestIndex];
-                idle.RemoveAt(bestIndex);
+                if (idleColonists.Count == 0)
+                {
+                    continue;
+                }
+                var worker = TakeBestColonist(world, idleColonists, task);
+                if (worker == null)
+                {
+                    continue;
+                }
                 task.ClaimedBy = worker.Id;
                 worker.AssignTask(task);
             }
+        }
+
+        private static Bot TakeNearestBot(List<Bot> idleBots, WorkTask task)
+        {
+            int bestIndex = 0;
+            int bestDistance = int.MaxValue;
+            for (int i = 0; i < idleBots.Count; i++)
+            {
+                int distance = Math.Abs(idleBots[i].X - task.TargetX) + Math.Abs(idleBots[i].Y - task.TargetY);
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestIndex = i;
+                }
+            }
+            var bot = idleBots[bestIndex];
+            idleBots.RemoveAt(bestIndex);
+            return bot;
+        }
+
+        /// <summary>Job matrix rules (docs/plan/03): P0 workers never take the task; among
+        /// the eligible, higher matrix priority wins, then distance.</summary>
+        private static Colonist TakeBestColonist(World world, List<Colonist> idle, WorkTask task)
+        {
+            int bestIndex = -1;
+            int bestPriority = JobSystem.Forbidden;
+            int bestDistance = int.MaxValue;
+            for (int i = 0; i < idle.Count; i++)
+            {
+                int jobPriority = world.Jobs.PriorityFor(idle[i].Job, task.Type);
+                if (jobPriority == JobSystem.Forbidden)
+                {
+                    continue;
+                }
+                int distance = Math.Abs(idle[i].X - task.TargetX) + Math.Abs(idle[i].Y - task.TargetY);
+                if (jobPriority > bestPriority || (jobPriority == bestPriority && distance < bestDistance))
+                {
+                    bestPriority = jobPriority;
+                    bestDistance = distance;
+                    bestIndex = i;
+                }
+            }
+            if (bestIndex < 0)
+            {
+                return null;
+            }
+            var worker = idle[bestIndex];
+            idle.RemoveAt(bestIndex);
+            return worker;
         }
 
         public void ReleaseSourceReservation(World world, WorkTask task)

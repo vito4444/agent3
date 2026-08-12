@@ -17,7 +17,25 @@ namespace Starsoil.Core
         public int Rotation;
         public float Durability = Balance.NeedMax;
         public bool StaffedRequested;
+        public bool WantsPower = true;
+        public float ProcessAccum;
+        public float BatteryKwh;
         public List<SavedStack> Stock;
+    }
+
+    public sealed class SavedGasComponent
+    {
+        public int ComponentId;
+        public float Stored;
+    }
+
+    public sealed class SavedBot
+    {
+        public int Id;
+        public int HomeStationId;
+        public int X;
+        public int Y;
+        public float Battery;
     }
 
     public sealed class SavedPile
@@ -66,6 +84,12 @@ namespace Starsoil.Core
         public int CriticalCause;
         public int CriticalTicksLeft;
         public int FaintTicksLeft;
+        public int Job;
+        public float Morale = Balance.MoraleStart;
+        public float MoraleEventOffset;
+        public bool OnStrike;
+        public int FoodVarietyYesterday;
+        public int NightWorkHours;
     }
 
     public sealed class SavedCraftOrder
@@ -114,6 +138,13 @@ namespace Starsoil.Core
         public List<SavedCraftOrder> CraftOrders = new List<SavedCraftOrder>();
         public List<SavedAlert> Alerts = new List<SavedAlert>();
         public List<SavedRngStream> RngStreams = new List<SavedRngStream>();
+        public List<SavedGasComponent> GasComponents = new List<SavedGasComponent>();
+        public List<SavedBot> Bots = new List<SavedBot>();
+        public List<string> TechUnlocked = new List<string>();
+        public string ResearchTarget = string.Empty;
+        public List<SavedStack> ResearchPaid = new List<SavedStack>();
+        public List<SavedStack> JobQuotas = new List<SavedStack>();
+        public List<int> JobMatrix = new List<int>();
 
         public int StartX;
         public int StartY;

@@ -78,7 +78,8 @@ namespace Starsoil.Core
         }
     }
 
-    /// <summary>Player construction: places a blueprint that must be hauled and built.</summary>
+    /// <summary>Player construction: places a blueprint that must be hauled and built.
+    /// Locked tech rejects the placement (M2-T11 gating).</summary>
     public sealed class PlaceBlueprintCommand : ICommand
     {
         public string DefId;
@@ -88,6 +89,11 @@ namespace Starsoil.Core
 
         public void Execute(World world)
         {
+            if (BuildingDefs.TryGet(DefId, out var def) && !world.Tech.IsBuildingUnlocked(def))
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "blueprint:" + PlacementError.Locked });
+                return;
+            }
             int id = world.Blueprints.Place(DefId, X, Y, Rotation, out PlacementError error);
             if (error == PlacementError.None)
             {
@@ -174,6 +180,11 @@ namespace Starsoil.Core
 
         public void Execute(World world)
         {
+            if (!world.Tech.IsRecipeUnlocked(RecipeId))
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "craft_order:locked" });
+                return;
+            }
             if (world.Buildings.TryGet(StationId, out _) && world.Crafting.TryGetRecipe(RecipeId, out _))
             {
                 world.Crafting.AddOrder(StationId, RecipeId, Count, MaintainTarget);
@@ -181,6 +192,56 @@ namespace Starsoil.Core
             else
             {
                 world.Events.Add(new CommandRejectedEvent { Reason = "craft_order:invalid" });
+            }
+        }
+    }
+
+    public sealed class SetResearchTargetCommand : ICommand
+    {
+        public string NodeId;
+
+        public void Execute(World world)
+        {
+            if (world.Tech.CanSelectTarget(NodeId))
+            {
+                world.Tech.ResearchTarget = NodeId;
+                world.Tech.PaidCores = new Inventory();
+            }
+            else
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "research:invalid_target" });
+            }
+        }
+    }
+
+    public sealed class SetJobQuotasCommand : ICommand
+    {
+        public List<KeyValuePair<string, int>> Quotas = new List<KeyValuePair<string, int>>();
+
+        public void Execute(World world)
+        {
+            foreach (var pair in Quotas)
+            {
+                if (System.Enum.TryParse(pair.Key, out JobType job))
+                {
+                    world.Jobs.Quotas[job] = System.Math.Max(0, pair.Value);
+                }
+            }
+            world.Jobs.ReassignJobs(world);
+        }
+    }
+
+    public sealed class SetJobMatrixCommand : ICommand
+    {
+        public string Job;
+        public string Task;
+        public int Priority;
+
+        public void Execute(World world)
+        {
+            if (System.Enum.TryParse(Job, out JobType job) && System.Enum.TryParse(Task, out TaskType task))
+            {
+                world.Jobs.SetMatrix(job, task, Priority);
             }
         }
     }

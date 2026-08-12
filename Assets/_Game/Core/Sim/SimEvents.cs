@@ -71,6 +71,16 @@ namespace Starsoil.Core
         public int Y;
     }
 
+    public sealed class ColonistStrikeEvent : ISimEvent
+    {
+        public int ColonistId;
+    }
+
+    public sealed class ResearchCompletedEvent : ISimEvent
+    {
+        public string NodeId;
+    }
+
     public sealed class AlertRaisedEvent : ISimEvent
     {
         public string AlertId;

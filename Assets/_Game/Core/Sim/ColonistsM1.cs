@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Starsoil.Core
 {
+
     public enum ColonistActivity
     {
         Idle,
@@ -65,6 +66,8 @@ namespace Starsoil.Core
         public int BedBuildingId;
         public int StockTargetX = -1;
         public int StockTargetY = -1;
+        /// <summary>Charging station chosen for the current refill trip (0 = crash pod).</summary>
+        public int RefillBuildingId;
         /// <summary>Per-need retry cooldowns; a failed water search must not block eating.</summary>
         public int WaterSearchCooldown;
         public int FoodSearchCooldown;
@@ -74,12 +77,22 @@ namespace Starsoil.Core
         public int FaintTicksLeft;
         public bool Alive = true;
 
+        // M2: jobs and morale (docs/plan/02+03).
+        public JobType Job = JobType.Operator;
+        public float Morale = Balance.MoraleStart;
+        public float MoraleEventOffset;
+        public int FoodVarietyYesterday;
+        public int NightWorkHours;
+        public bool OnStrike;
+        public readonly HashSet<string> FoodsEatenToday = new HashSet<string>();
+
         public void AssignTask(WorkTask task)
         {
             TaskId = task.Id;
             Activity = ColonistActivity.GoingToTask;
             Phase = task.Type == TaskType.HaulToBlueprint || task.Type == TaskType.HaulToStation ||
-                    task.Type == TaskType.HaulToStorage || task.Type == TaskType.Bury
+                    task.Type == TaskType.HaulToStorage || task.Type == TaskType.Bury ||
+                    task.Type == TaskType.Repair
                 ? HaulPhase.ToSource
                 : HaulPhase.None;
             WorkAccum = 0f;
@@ -178,10 +191,11 @@ namespace Starsoil.Core
             bool sleeping = colonist.Activity == ColonistActivity.Sleeping;
             bool groundSleeping = colonist.Activity == ColonistActivity.GroundSleeping;
 
-            // Oxygen.
+            // Oxygen: connected O2 network first, crash-pod tank as standby (M2-T2).
             if (indoor)
             {
-                if (world.Life.TryDrawTank(Balance.IndoorO2PerTick))
+                int buildingId = world.Buildings.GetBuildingAt(colonist.X, colonist.Y);
+                if (world.Networks.TryDrawO2ForIndoor(world, buildingId, Balance.IndoorO2PerTick))
                 {
                     colonist.O2 = Math.Min(Balance.NeedMax, colonist.O2 + Balance.O2NeedRecoverPerTick);
                 }
@@ -320,6 +334,7 @@ namespace Starsoil.Core
             world.Piles.Drop(ItemIds.Remains, 1, colonist.X, colonist.Y);
             world.Stats.CountDeath(cause);
             world.Alerts.Clear(world, AlertIds.ColonistCritical + colonist.Id);
+            world.Morale.OnColonistDied(world);
             world.Events.Add(new ColonistDiedEvent { ColonistId = colonist.Id, Cause = cause });
         }
 
@@ -372,14 +387,19 @@ namespace Starsoil.Core
                 return;
             }
 
-            // 2: empty-ish bottle outdoors → return to the pod for a refill.
-            if (2 < current && !indoor && colonist.BottleO2 < Balance.BottleRefillThreshold &&
-                world.Life.TankO2 >= Balance.BottleCapacity)
+            // 2: empty-ish bottle outdoors → refill at a charging station or the pod.
+            if (2 < current && !indoor && colonist.BottleO2 < Balance.BottleRefillThreshold)
             {
-                AbandonCurrent(world, colonist);
-                colonist.Activity = ColonistActivity.GoingToRefill;
-                colonist.ClearPath();
-                return;
+                var station = world.Networks.FindChargingStation(world);
+                bool podHasAir = world.Life.TankO2 >= Balance.BottleCapacity;
+                if (station != null || podHasAir)
+                {
+                    AbandonCurrent(world, colonist);
+                    colonist.Activity = ColonistActivity.GoingToRefill;
+                    colonist.RefillBuildingId = station?.Id ?? 0;
+                    colonist.ClearPath();
+                    return;
+                }
             }
 
             // 3: freezing → warm up indoors.
@@ -480,14 +500,7 @@ namespace Starsoil.Core
                     break;
 
                 case ColonistActivity.GoingToRefill:
-                    if (MoveToward(world, colonist, world.PodInteriorX, world.PodInteriorY))
-                    {
-                        world.Life.RefillBottle(colonist);
-                        // Cold colonists stay and warm up; the pod solves both needs.
-                        colonist.Activity = colonist.Temp < Balance.StopWarmingThreshold
-                            ? ColonistActivity.Warming
-                            : ColonistActivity.Idle;
-                    }
+                    TickGoingToRefill(world, colonist);
                     break;
 
                 case ColonistActivity.GoingToWarm:
@@ -559,6 +572,7 @@ namespace Starsoil.Core
                     if (world.TryConsumeItemAt(food, colonist.StockTargetX, colonist.StockTargetY))
                     {
                         consumed = true;
+                        colonist.FoodsEatenToday.Add(food);
                         break;
                     }
                 }
@@ -583,6 +597,44 @@ namespace Starsoil.Core
             colonist.StockTargetX = -1;
             colonist.StockTargetY = -1;
             colonist.Activity = ColonistActivity.Idle;
+        }
+
+        private void TickGoingToRefill(World world, Colonist colonist)
+        {
+            // Charging station route (M2): draw the bottle from the station's O2 network.
+            if (colonist.RefillBuildingId != 0)
+            {
+                if (!world.Buildings.TryGet(colonist.RefillBuildingId, out var station))
+                {
+                    colonist.RefillBuildingId = 0;
+                    return;
+                }
+                if (!MoveToward(world, colonist, station.X, station.Y))
+                {
+                    return;
+                }
+                float wanted = Balance.BottleCapacity - colonist.BottleO2;
+                if (wanted > 0f && world.Networks.TryDrawFromStationNetwork(world, station, wanted))
+                {
+                    colonist.BottleO2 = Balance.BottleCapacity;
+                }
+                else
+                {
+                    world.Life.RefillBottle(colonist);
+                }
+                colonist.RefillBuildingId = 0;
+                colonist.Activity = ColonistActivity.Idle;
+                return;
+            }
+
+            // Pod route (M1 behavior): refill and warm up in one trip.
+            if (MoveToward(world, colonist, world.PodInteriorX, world.PodInteriorY))
+            {
+                world.Life.RefillBottle(colonist);
+                colonist.Activity = colonist.Temp < Balance.StopWarmingThreshold
+                    ? ColonistActivity.Warming
+                    : ColonistActivity.Idle;
+            }
         }
 
         private void TickGoingToBed(World world, Colonist colonist)
@@ -633,6 +685,9 @@ namespace Starsoil.Core
                 case TaskType.Crank:
                     TickCrank(world, colonist, task);
                     break;
+                case TaskType.Research:
+                    TickResearch(world, colonist, task);
+                    break;
                 default:
                     TickHaul(world, colonist, task);
                     break;
@@ -651,7 +706,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
-            colonist.WorkAccum += 1f;
+            colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
             if (colonist.WorkAccum < node.TicksPerUnit)
             {
                 return;
@@ -681,7 +736,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
-            if (world.Blueprints.ApplyBuildWork(bp, 1f, world) != 0)
+            if (world.Blueprints.ApplyBuildWork(bp, MoraleSystem.WorkSpeedFactor(colonist), world) != 0)
             {
                 CompleteTask(world, colonist, task);
             }
@@ -701,7 +756,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
-            colonist.WorkAccum += 1f;
+            colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
             if (colonist.WorkAccum >= CraftingSystem.EffectiveWorkTicks(recipe, station))
             {
                 var order = FindOrder(world, station, task.OrderId);
@@ -747,7 +802,43 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
+            crank.CrankActive = true;
             world.Life.RegisterCrank();
+        }
+
+        private void TickResearch(World world, Colonist colonist, WorkTask task)
+        {
+            if (world.Tech.ResearchTarget.Length == 0 ||
+                !world.Buildings.TryGet(task.BuildingId, out var bench))
+            {
+                CompleteTask(world, colonist, task);
+                return;
+            }
+            string neededCore = world.Tech.NextNeededCore();
+            if (neededCore == null || bench.Stock.Get(neededCore) <= 0)
+            {
+                CompleteTask(world, colonist, task);
+                return;
+            }
+            if (!MoveToward(world, colonist, bench.X, bench.Y))
+            {
+                return;
+            }
+            colonist.Activity = ColonistActivity.WorkingTask;
+            colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
+            if (colonist.WorkAccum < Balance.ResearchTicksPerCore)
+            {
+                return;
+            }
+            colonist.WorkAccum = 0f;
+            if (bench.Stock.TryRemove(neededCore, 1))
+            {
+                world.Tech.PayCore(world, neededCore);
+            }
+            if (world.Tech.ResearchTarget.Length == 0)
+            {
+                CompleteTask(world, colonist, task);
+            }
         }
 
         private void TickHaul(World world, Colonist colonist, WorkTask task)
@@ -823,6 +914,7 @@ namespace Starsoil.Core
                 case TaskType.HaulToStation:
                     return world.Buildings.TryGet(task.StationId, out _);
                 case TaskType.HaulToStorage:
+                case TaskType.Repair:
                     return world.Buildings.TryGet(task.BuildingId, out _);
                 case TaskType.Bury:
                     return true;
@@ -886,6 +978,12 @@ namespace Starsoil.Core
                 case TaskType.Bury:
                     world.Stats.CountBurial();
                     world.Events.Add(new ColonistBuriedEvent { X = task.TargetX, Y = task.TargetY });
+                    break;
+                case TaskType.Repair:
+                    if (world.Buildings.TryGet(task.BuildingId, out var repaired))
+                    {
+                        repaired.Durability = Balance.RepairGelRestore;
+                    }
                     break;
             }
             colonist.CarryingItem = null;
@@ -1058,6 +1156,12 @@ namespace Starsoil.Core
                     CriticalCause = (DeathCause)s.CriticalCause,
                     CriticalTicksLeft = s.CriticalTicksLeft,
                     FaintTicksLeft = s.FaintTicksLeft,
+                    Job = (JobType)s.Job,
+                    Morale = s.Morale,
+                    MoraleEventOffset = s.MoraleEventOffset,
+                    OnStrike = s.OnStrike,
+                    FoodVarietyYesterday = s.FoodVarietyYesterday,
+                    NightWorkHours = s.NightWorkHours,
                     Activity = s.Alive
                         ? (s.FaintTicksLeft > 0 ? ColonistActivity.Fainted : ColonistActivity.Idle)
                         : ColonistActivity.Dead

@@ -55,6 +55,7 @@ namespace Starsoil.Presentation
         {
             _world = world;
             ClearAll(_colonists);
+            ClearAll(_bots);
             ClearAll(_piles);
             ClearAll(_nodes);
             ClearAll(_blueprints);
@@ -67,9 +68,38 @@ namespace Starsoil.Presentation
                 return;
             }
             SyncColonists();
+            SyncBots();
             SyncPiles();
             SyncNodes();
             SyncBlueprints();
+        }
+
+        private readonly Dictionary<int, GameObject> _bots = new Dictionary<int, GameObject>();
+        private Material _botMat;
+
+        private void SyncBots()
+        {
+            if (_botMat == null)
+            {
+                _botMat = Mats.Solid(new Color(0.3f, 0.8f, 0.85f));
+            }
+            foreach (var pair in _world.Bots.All)
+            {
+                var bot = pair.Value;
+                if (!_bots.TryGetValue(pair.Key, out var go))
+                {
+                    go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    go.name = "Bot_" + pair.Key;
+                    go.transform.SetParent(transform, false);
+                    go.transform.localScale = new Vector3(0.8f, 0.5f, 0.8f);
+                    Destroy(go.GetComponent<Collider>());
+                    go.GetComponent<MeshRenderer>().sharedMaterial = _botMat;
+                    _bots.Add(pair.Key, go);
+                }
+                float ground = _world.Terrain.GetHeight(bot.X, bot.Y) * GameConstants.MetersPerTerrainStep;
+                go.transform.position = new Vector3(bot.X + 0.5f, ground + 0.25f, bot.Y + 0.5f);
+            }
+            RemoveStale(_bots, id => _world.Bots.All.ContainsKey(id));
         }
 
         private void SyncColonists()

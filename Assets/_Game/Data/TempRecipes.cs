@@ -22,4 +22,21 @@ namespace Starsoil.Data
             return true;
         }
     }
+
+    /// <summary>Loads the tech tree from data/tech_nodes.csv (M2-T11; M3 moves this into
+    /// the generated-data pipeline).</summary>
+    public static class TechTreeData
+    {
+        public static bool LoadInto(World world)
+        {
+            string path = DataFiles.RepoDataPath("tech_nodes.csv");
+            if (path == null || !File.Exists(path))
+            {
+                Debug.LogError("[TechTreeData] data/tech_nodes.csv not found; tech tree empty.");
+                return false;
+            }
+            world.Tech.LoadNodes(TechSystem.ParseCsv(File.ReadAllLines(path)));
+            return true;
+        }
+    }
 }

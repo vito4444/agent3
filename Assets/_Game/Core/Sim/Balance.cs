@@ -101,6 +101,60 @@ namespace Starsoil.Core
         public const int PileMaxStack = 50;
         public const float DemolishRefundFactor = 0.5f;
 
+        // Power network (docs/plan/03: pylon coverage 12, pylon-to-pylon link 24).
+        public const int PowerPylonCoverRadius = 12;
+        public const int PowerPylonLinkRange = 24;
+        public const int PowerPriorityClassCount = 4;
+        public const float SolarPanelKw = 15f;
+        public const float WindTurbineKw = 10f;
+        public const float WindFluctuation = 0.4f;
+        public const float BatteryCapacityKwh = 300f;
+
+        // Oxygen network (docs/plan/03: gas pylon radius 8; electrolyzer 120 O2/h).
+        public const int GasPylonCoverRadius = 8;
+        public const int GasPylonLinkRange = 16;
+        public const float GasTankCapacity = 960f;
+        public const float ElectrolyzerBufferCapacity = 240f;
+        public const float ElectrolyzerO2PerTick = 120f / GameConstants.TicksPerHour;
+        /// <summary>One water electrolyzes into this much breathable O2.</summary>
+        public const float ElectrolyzerO2PerWater = 60f;
+        /// <summary>Water buffer the logistics system keeps stocked in each electrolyzer.</summary>
+        public const int ElectrolyzerWaterBuffer = 10;
+
+        // Machines (docs/plan/03 generic machine model).
+        public const float MachineLowDurabilityFactor = 0.5f;
+        public const float MachineWearPerWorkHour = 0.5f;
+        public const int ExtractionMachineRadius = 3;
+        public const int ExtractorTicksPerUnit = 75;
+        /// <summary>Extractors idle (and stop drawing power) once their buffer holds this much.</summary>
+        public const int ExtractorOutputBufferCap = 40;
+        public const float RepairGelRestore = 100f;
+
+        // Hauler bots (docs/plan/02: carry 4 stacks; recharge at charging posts).
+        public const int BotCarryCapacity = 40;
+        public const float BotBatteryMax = 100f;
+        public const float BotBatteryDrainPerHourActive = 25f;
+        public const float BotChargePerHour = 200f;
+        public const float BotSeekChargeAt = 20f;
+        public const float BotSpeedFactor = 1.1f;
+
+        // Morale (docs/plan/02 table).
+        public const float MoraleStart = 60f;
+        public const float MoraleFoodVariety2 = 5f;
+        public const float MoraleFoodVariety3 = 10f;
+        public const float MoraleDeathPenalty = -20f;
+        public const float MoraleNightShiftPenalty = -5f;
+        public const float MoraleStormPenalty = -10f;
+        public const float MoraleEventDecayPerDay = 5f;
+        public const float MoraleHighThreshold = 70f;
+        public const float MoraleLowThreshold = 30f;
+        public const float MoraleStrikeThreshold = 20f;
+        public const float MoraleHighSpeedBonus = 1.1f;
+        public const float MoraleLowSpeedMalus = 0.85f;
+
+        // Research (docs/plan/04 data cores; M2 ships the T0-T2 tree subset).
+        public const int ResearchTicksPerCore = 250;
+
         // Needs-driven eating/drinking consume whole items.
         public const float DrinkRestore = NeedMax;
         public const float EatRestore = NeedMax;

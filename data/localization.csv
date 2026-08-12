@@ -25,6 +25,10 @@ item_bandage,绷带,Bandage
 item_oxygen_bottle,备用气瓶,Spare oxygen bottle
 item_algae_seed,藻种,Algae seed
 item_remains,遗体,Remains
+item_repair_gel,维修凝胶,Repair gel
+item_iron_plate,铁板,Iron plate
+item_survey_data_core,勘探数据核,Survey data core
+item_engineering_data_core,工程数据核,Engineering data core
 building_crash_pod,指挥核心(坠毁舱),Command core (crash pod)
 building_workbench,手工台,Workbench
 building_campfire,篝火炉,Campfire
@@ -33,6 +37,27 @@ building_small_storage,小仓库,Small storage
 building_hand_crank,手摇发电机,Hand-crank generator
 building_road,砂石路,Gravel road
 building_test_block,测试方块,Test block
+building_power_pylon,输电塔,Power pylon
+building_solar_panel,太阳板,Solar panel
+building_wind_turbine,风机,Wind turbine
+building_battery,电池组,Battery bank
+building_gas_pylon,气管桩,Gas pylon
+building_gas_tank,气罐,Gas tank
+building_electrolyzer,制氧电解站,Oxygen electrolyzer
+building_air_charging_station,空气充装站,Air charging station
+building_miner,采矿机,Mining rig
+building_ice_miner,采冰机,Ice extractor
+building_crusher,破碎机,Crusher
+building_furnace,熔炉,Electric furnace
+building_roll_mill,铸轧机,Roll mill
+building_press,压制机,Press
+building_assembler,装配机,Assembler
+building_water_purifier,水净化器,Water purifier
+building_greenhouse,温室,Greenhouse
+building_forage_station,蜂巢采集站,Forage station
+building_bot_station,搬运蛛站,Hauler bot station
+building_charging_post,回充桩,Charging post
+building_research_bench,研究台,Research bench
 hud_power,电力,Power
 hud_oxygen,氧气,Oxygen
 hud_water,水,Water
@@ -77,6 +102,17 @@ ui_crank_on,安排摇柄手,Staff the crank
 ui_crank_off,撤下摇柄手,Unstaff the crank
 ui_speed_hint,空格暂停 · F1/F2/F3 变速 · F5/F9 存读档,Space pause · F1/F2/F3 speed · F5/F9 save/load
 ui_skip_tutorial,跳过教学,Skip tutorial
+ui_tech_tree,科技树 (T),Tech tree (T)
+ui_research,研究,Research
+ui_jobs,职业 (J),Jobs (J)
+job_miner,矿工,Miner
+job_hauler,搬运员,Hauler
+job_builder,建造工,Builder
+job_operator,操作员,Operator
+job_farmer,农夫,Farmer
+job_cook,厨师,Cook
+job_medic,医师,Medic
+job_researcher,研究员,Researcher
 settings_autopause,危急警报时自动暂停,Auto-pause on critical alerts
 settings_language,语言,Language
 colonist_name_1,艾达,Ida

@@ -27,6 +27,10 @@ namespace Starsoil.Core
         public const string OxygenBottle = "oxygen_bottle";
         public const string AlgaeSeed = "algae_seed";
         public const string Remains = "remains";
+        public const string RepairGel = "repair_gel";
+        public const string IronPlate = "iron_plate";
+        public const string SurveyDataCore = "survey_data_core";
+        public const string EngineeringDataCore = "engineering_data_core";
 
         /// <summary>Items that satisfy the food need, in preference order.</summary>
         public static readonly string[] Foods = { Ration, PreservedRation };

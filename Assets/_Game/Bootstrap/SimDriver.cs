@@ -40,6 +40,15 @@ namespace Starsoil.Bootstrap
         public World World => _world;
         public GameSettings Settings => _settings;
 
+        private TechPanelController _techPanel;
+        private JobsPanelController _jobsPanel;
+
+        public void RegisterPanels(TechPanelController techPanel, JobsPanelController jobsPanel)
+        {
+            _techPanel = techPanel;
+            _jobsPanel = jobsPanel;
+        }
+
         public void Init(World world, GameSettings settings, CameraRig rig, WorldView view, EntityViews entities,
             TerrainView terrainView, PlacementController placement, DebugHud hud,
             HudController hudUi, CraftPanelController craftPanel, SunController sun)
@@ -76,6 +85,7 @@ namespace Starsoil.Bootstrap
             ulong seed = (ulong)System.DateTime.UtcNow.Ticks;
             var world = new World(seed, GameConstants.DefaultRegionSize);
             TempRecipes.LoadInto(world);
+            TechTreeData.LoadInto(world);
             if (_settings.SkipTutorial)
             {
                 world.Commands.Enqueue(new SetTutorialSkippedCommand { Skipped = true });
@@ -96,6 +106,14 @@ namespace Starsoil.Bootstrap
             _hudUi.SwitchWorld(world);
             _craftPanel.SwitchWorld(world);
             _sun.SwitchWorld(world);
+            if (_techPanel != null)
+            {
+                _techPanel.SwitchWorld(world);
+            }
+            if (_jobsPanel != null)
+            {
+                _jobsPanel.SwitchWorld(world);
+            }
         }
 
         private void Update()
@@ -174,6 +192,7 @@ namespace Starsoil.Bootstrap
                 }
                 var world = SaveSerializer.Restore(SaveSerializer.ReadFile(path));
                 TempRecipes.LoadInto(world);
+                TechTreeData.LoadInto(world);
                 SwitchWorld(world);
                 Debug.Log("[SimDriver] Loaded from " + path + " (tick " + world.Tick + ")");
             }

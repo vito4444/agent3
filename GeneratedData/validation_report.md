@@ -1,6 +1,6 @@
 # RecipeGen validation report
 
-Generated at (UTC): 2026-08-12 15:35:48
+Generated at (UTC): 2026-08-12 16:37:46
 
 ## Counts by family (target table: docs/plan/04)
 
@@ -16,7 +16,7 @@ Generated at (UTC): 2026-08-12 15:35:48
 | H | 0 |
 | total | 0 |
 
-Items: 0 · Verbs: 0 · Forms: 0 · Tech nodes: 0
+Items: 0 · Verbs: 0 · Forms: 0 · Tech nodes: 22
 
 ## Checks
 
@@ -33,7 +33,6 @@ _0/0 recipes reachable_
 _warnings only; whitelist decisions happen in M3 review_
 
 ### 6 unlock coverage (1 tech node per recipe, <=14 per node) — PASS
-_tech_nodes.csv empty (content arrives with M3-T6); recipes present: 0_
 
 ### 7 icon spec parseable — PASS
 

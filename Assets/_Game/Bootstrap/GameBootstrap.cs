@@ -33,6 +33,7 @@ namespace Starsoil.Bootstrap
 
             var world = new World(DefaultWorldSeed, GameConstants.DefaultRegionSize);
             TempRecipes.LoadInto(world);
+            TechTreeData.LoadInto(world);
             if (settings.SkipTutorial)
             {
                 world.Commands.Enqueue(new SetTutorialSkippedCommand { Skipped = true });
@@ -91,10 +92,21 @@ namespace Starsoil.Bootstrap
             craftPanel.Init(world);
             placement.StationClicked += craftPanel.Open;
 
+            var techPanelGo = new GameObject("TechPanel");
+            techPanelGo.transform.SetParent(root.transform, false);
+            var techPanel = techPanelGo.AddComponent<TechPanelController>();
+            techPanel.Init(world);
+
+            var jobsPanelGo = new GameObject("JobsPanel");
+            jobsPanelGo.transform.SetParent(root.transform, false);
+            var jobsPanel = jobsPanelGo.AddComponent<JobsPanelController>();
+            jobsPanel.Init(world);
+
             var driverGo = new GameObject("SimDriver");
             driverGo.transform.SetParent(root.transform, false);
             var driver = driverGo.AddComponent<SimDriver>();
             driver.Init(world, settings, rig, worldView, entities, terrainView, placement, hud, hudUi, craftPanel, sun);
+            driver.RegisterPanels(techPanel, jobsPanel);
 
             hud.Init(world, rig, worldView, () => driver.Speed);
             hudUi.Init(world, () => driver.Speed, driver.JumpCameraTo, driver.NewGame, driver.SkipTutorial);

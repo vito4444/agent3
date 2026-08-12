@@ -19,7 +19,11 @@ namespace Starsoil.Core
         {
             // v0 (M0 skeleton: terrain + buildings only) → v1 (M1 colony): new collections
             // default to empty; buildings gain durability/stock defaults.
-            { 0, MigrateV0ToV1 }
+            { 0, MigrateV0ToV1 },
+            // v1 (M1) → v2 (M2 networks/machines): new building fields (WantsPower,
+            // ProcessAccum, BatteryKwh) and gas components deserialize to their class
+            // defaults, so the migration only bumps the version.
+            { 1, _ => { } }
         };
 
         public static void UpgradeInPlace(JObject root)
@@ -106,6 +110,9 @@ namespace Starsoil.Core
                     Rotation = b.Rotation,
                     Durability = b.Durability,
                     StaffedRequested = b.StaffedRequested,
+                    WantsPower = b.WantsPower,
+                    ProcessAccum = b.ProcessAccum,
+                    BatteryKwh = b.BatteryKwh,
                     Stock = StacksOf(b.Stock)
                 };
                 data.Buildings.Add(saved);
@@ -137,7 +144,13 @@ namespace Starsoil.Core
                     Alive = c.Alive,
                     CriticalCause = (int)c.CriticalCause,
                     CriticalTicksLeft = c.CriticalTicksLeft,
-                    FaintTicksLeft = c.FaintTicksLeft
+                    FaintTicksLeft = c.FaintTicksLeft,
+                    Job = (int)c.Job,
+                    Morale = c.Morale,
+                    MoraleEventOffset = c.MoraleEventOffset,
+                    OnStrike = c.OnStrike,
+                    FoodVarietyYesterday = c.FoodVarietyYesterday,
+                    NightWorkHours = c.NightWorkHours
                 });
             }
 
@@ -236,6 +249,63 @@ namespace Starsoil.Core
                 data.RngStreams.Add(new SavedRngStream { Name = name, State = stream.State, Inc = stream.Inc });
             }
 
+            var gasComponents = new List<int>(world.Networks.GasStored.Keys);
+            gasComponents.Sort();
+            foreach (int component in gasComponents)
+            {
+                data.GasComponents.Add(new SavedGasComponent
+                {
+                    ComponentId = component,
+                    Stored = world.Networks.GasStored[component]
+                });
+            }
+
+            var unlockedIds = new List<string>(world.Tech.Unlocked);
+            unlockedIds.Sort(StringComparer.Ordinal);
+            data.TechUnlocked.AddRange(unlockedIds);
+            data.ResearchTarget = world.Tech.ResearchTarget;
+            foreach (var entry in world.Tech.PaidCores.SortedEntries())
+            {
+                data.ResearchPaid.Add(new SavedStack { ItemId = entry.Key, Count = entry.Value });
+            }
+            foreach (JobType job in Enum.GetValues(typeof(JobType)))
+            {
+                world.Jobs.Quotas.TryGetValue(job, out int quota);
+                data.JobQuotas.Add(new SavedStack { ItemId = job.ToString(), Count = quota });
+            }
+            for (int j = 0; j < JobSystem.JobCount; j++)
+            {
+                for (int t = 0; t < JobSystem.TaskTypeCount; t++)
+                {
+                    data.JobMatrix.Add(world.Jobs.Matrix[j, t]);
+                }
+            }
+
+            foreach (var bot in world.Bots.AllSorted())
+            {
+                // Bot carried loads normalize into piles like colonists do.
+                if (bot.CarryingCount > 0)
+                {
+                    data.Piles.Add(new SavedPile
+                    {
+                        Id = nextPileId,
+                        ItemId = bot.CarryingItem,
+                        Count = bot.CarryingCount,
+                        X = bot.X,
+                        Y = bot.Y
+                    });
+                    nextPileId++;
+                }
+                data.Bots.Add(new SavedBot
+                {
+                    Id = bot.Id,
+                    HomeStationId = bot.HomeStationId,
+                    X = bot.X,
+                    Y = bot.Y,
+                    Battery = bot.Battery
+                });
+            }
+
             return data;
         }
 
@@ -257,6 +327,8 @@ namespace Starsoil.Core
             world.Colonists.RestoreFrom(data.Colonists);
             world.Crafting.RestoreFrom(data.CraftOrders);
             world.Alerts.RestoreFrom(data.Alerts);
+            world.Networks.RestoreGas(data.GasComponents);
+            world.Bots.RestoreFrom(data.Bots);
             world.RestoreMeta(data);
             return world;
         }

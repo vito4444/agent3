@@ -48,8 +48,10 @@ namespace Starsoil.Core
 
         public void EndTick(World world)
         {
+            // The pod's built-in oxygen maker drops to standby once a powered
+            // electrolyzer feeds a network (M2-T2); its tank stays as the reserve.
             bool hasPod = world.Buildings.FindFirstOfKind(BuildingKind.CrashPod) != null;
-            if (hasPod)
+            if (hasPod && !world.Networks.PodIsBackup)
             {
                 TankO2 = Math.Min(Balance.PodO2TankCapacity, TankO2 + Balance.PodO2ProductionPerTick);
             }
@@ -67,7 +69,12 @@ namespace Starsoil.Core
             }
 
             float spareBottleO2 = world.CountItemEverywhere(ItemIds.OxygenBottle) * Balance.BottleCapacity;
-            float reserve = TankO2 + spareBottleO2;
+            float networkO2 = 0f;
+            foreach (var pair in world.Networks.GasStored)
+            {
+                networkO2 += pair.Value;
+            }
+            float reserve = TankO2 + spareBottleO2 + networkO2;
             float needed = alive * Balance.PerColonistO2EstimatePerHour * Balance.O2ReserveAlertHours;
             if (reserve < needed)
             {

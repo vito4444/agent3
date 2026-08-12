@@ -26,6 +26,15 @@ namespace Starsoil.Core
         public TutorialSystem Tutorial { get; } = new TutorialSystem();
         public AlertSystem Alerts { get; } = new AlertSystem();
         public StatsSystem Stats { get; } = new StatsSystem();
+        public NetworkSystem Networks { get; } = new NetworkSystem();
+        public MachineSystem Machines { get; } = new MachineSystem();
+        public BotSystem Bots { get; } = new BotSystem();
+        public JobSystem Jobs { get; } = new JobSystem();
+        public MoraleSystem Morale { get; } = new MoraleSystem();
+        public TechSystem Tech { get; } = new TechSystem();
+
+        /// <summary>Wind supply factor (0.6–1.4), re-rolled hourly from the wind stream.</summary>
+        public float WindFactor { get; private set; } = 1f;
 
         public Pathfinding.Context PathContext { get; }
 
@@ -58,6 +67,7 @@ namespace Starsoil.Core
             Seed = seed;
             Terrain = terrain;
             Buildings = new BuildingSystem(terrain);
+            Buildings.Owner = this;
             Blueprints = new BlueprintSystem(terrain, Buildings);
             Commands = new CommandQueue();
             PathContext = new Pathfinding.Context { Terrain = terrain, Buildings = Buildings };
@@ -104,17 +114,41 @@ namespace Starsoil.Core
         {
             Events.Clear();
             Commands.Drain(this);
+            if (Tick % GameConstants.TicksPerHour == 0)
+            {
+                RollWind();
+                Morale.TickHourly(this);
+            }
             if (Tick % Balance.DispatchIntervalTicks == 0)
             {
+                Bots.EnsureStationBots(this);
                 Tasks.GenerateAndDispatch(this);
             }
             Life.BeginTick();
+            ResetCrankFlags();
             Colonists.Tick(this);
+            Bots.Tick(this);
+            Machines.Tick(this);
+            Networks.Tick(this);
             Life.EndTick(this);
             Storm.Tick(this);
             Tutorial.Tick(this);
             CheckDefeat();
             Tick++;
+        }
+
+        private void RollWind()
+        {
+            var stream = GetStream("wind");
+            WindFactor = 1f - Balance.WindFluctuation + stream.NextFloat() * (2f * Balance.WindFluctuation);
+        }
+
+        private void ResetCrankFlags()
+        {
+            foreach (var building in Buildings.All.Values)
+            {
+                building.CrankActive = false;
+            }
         }
 
         private void CheckDefeat()
@@ -176,6 +210,30 @@ namespace Starsoil.Core
                 foreach (var s in data.RngStreams)
                 {
                     _streams[s.Name] = Rng.FromState(s.State, s.Inc);
+                }
+            }
+
+            Tech.RestoreUnlocked(data.TechUnlocked, data.ResearchTarget, data.ResearchPaid);
+            if (data.JobQuotas != null)
+            {
+                foreach (var stack in data.JobQuotas)
+                {
+                    if (Enum.TryParse(stack.ItemId, out JobType job))
+                    {
+                        Jobs.Quotas[job] = stack.Count;
+                    }
+                }
+            }
+            if (data.JobMatrix != null && data.JobMatrix.Count == JobSystem.JobCount * JobSystem.TaskTypeCount)
+            {
+                int index = 0;
+                for (int j = 0; j < JobSystem.JobCount; j++)
+                {
+                    for (int t = 0; t < JobSystem.TaskTypeCount; t++)
+                    {
+                        Jobs.Matrix[j, t] = data.JobMatrix[index];
+                        index++;
+                    }
                 }
             }
         }
