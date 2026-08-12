@@ -191,10 +191,12 @@ namespace Starsoil.Core
             _prices = prices ?? new Dictionary<string, double>();
         }
 
+        private const double UnpricedFallback = 1.0;
+
         /// <summary>Baseline price (GeneratedData/prices.json); 1 for unpriced items.</summary>
         public double PriceOf(string itemId)
         {
-            return _prices.TryGetValue(itemId, out double price) ? price : 1.0;
+            return _prices.TryGetValue(itemId, out double price) ? price : UnpricedFallback;
         }
 
         private void ApplyContent(World world)

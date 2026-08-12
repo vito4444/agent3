@@ -121,6 +121,16 @@ namespace Starsoil.Core
         private const float SilentGrowth = 1.0f;
         private const float SilentTech = 1.6f;
         private const float SilentDefense = 2.5f;
+        private const int MerchantStartAttitude = 10;
+        private const int RedBannerStartAttitude = -10;
+        // Deterministic quote-roll mixers (arbitrary odd constants).
+        private const ulong QuoteMixA = 31UL;
+        private const ulong QuoteMixB = 131UL;
+        private const ulong QuoteMixC = 977UL;
+        private const ulong QuoteDivA = 7UL;
+        private const int QuoteDivBase = 11;
+        private const ulong QuoteCountRange = 9UL;
+        private const int AttackAttitudePenalty = 30;
         private const float UltimatumDemandFactor = 0.2f;
         private const int UltimatumIntervalDays = 3;
         private const int UltimatumsBeforeWar = 2;
@@ -180,7 +190,7 @@ namespace Starsoil.Core
                 Personality = FactionPersonality.Merchant,
                 P = StartPower, GrowthMult = MerchantGrowth, TechMult = MerchantTech, DefenseMult = MerchantDefense,
                 HeldBodies = { "warmmarsh" },
-                AttitudeToPlayer = 10
+                AttitudeToPlayer = MerchantStartAttitude
             });
             Factions.Add(new Faction
             {
@@ -188,7 +198,7 @@ namespace Starsoil.Core
                 Personality = FactionPersonality.Expansionist,
                 P = StartPower, GrowthMult = RedBannerGrowth, TechMult = RedBannerTech, DefenseMult = RedBannerDefense,
                 HeldBodies = { "redridge" },
-                AttitudeToPlayer = -10
+                AttitudeToPlayer = RedBannerStartAttitude
             });
             Factions.Add(new Faction
             {
@@ -261,16 +271,16 @@ namespace Starsoil.Core
             ulong roll = Fnv1a64.HashString(universe.Seed + ":quotes:" + hour);
 
             AddQuote(universe, "myco_gold_spore", merchantSells: true, roll);
-            AddQuote(universe, MerchantSellPool[(int)(roll % (ulong)MerchantSellPool.Length)], true, roll * 31UL);
-            AddQuote(universe, MerchantSellPool[(int)((roll / 7UL) % (ulong)MerchantSellPool.Length)], true, roll * 131UL);
+            AddQuote(universe, MerchantSellPool[(int)(roll % (ulong)MerchantSellPool.Length)], true, roll * QuoteMixA);
+            AddQuote(universe, MerchantSellPool[(int)((roll / QuoteDivA) % (ulong)MerchantSellPool.Length)], true, roll * QuoteMixB);
             for (int i = 0; i < 3; i++)
             {
-                AddQuote(universe, MerchantBuyPool[(int)((roll / (ulong)(11 + i * 3)) % (ulong)MerchantBuyPool.Length)],
-                    false, roll * (ulong)(17 + i));
+                AddQuote(universe, MerchantBuyPool[(int)((roll / (ulong)(QuoteDivBase + i * 3)) % (ulong)MerchantBuyPool.Length)],
+                    false, roll * (ulong)(QuoteDivBase + 6 + i));
             }
             if (merchant.AttitudeToPlayer >= RareAttitudeGate)
             {
-                AddQuote(universe, MerchantRarePool[(int)(roll % (ulong)MerchantRarePool.Length)], true, roll * 977UL);
+                AddQuote(universe, MerchantRarePool[(int)(roll % (ulong)MerchantRarePool.Length)], true, roll * QuoteMixC);
             }
             universe.ActiveWorld.Events.Add(new QuoteBoardRefreshedEvent { QuoteCount = Quotes.Count });
         }
@@ -282,7 +292,7 @@ namespace Starsoil.Core
             {
                 Id = _nextQuoteId,
                 ItemId = itemId,
-                Count = 4 + (int)(roll % 9UL),
+                Count = 4 + (int)(roll % QuoteCountRange),
                 UnitPrice = System.Math.Round(basePrice * (merchantSells ? SellMarkup : BuyMarkdown), 2),
                 MerchantSells = merchantSells,
                 ExpiresHour = QuoteBoardExpiresHour
@@ -595,7 +605,7 @@ namespace Starsoil.Core
             if (faction != null)
             {
                 faction.Embargoed = true;
-                faction.AttitudeToPlayer -= 30;
+                faction.AttitudeToPlayer -= AttackAttitudePenalty;
                 if (faction.Personality != FactionPersonality.Merchant)
                 {
                     faction.Stance = FactionStance.War;
