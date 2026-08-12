@@ -81,7 +81,8 @@ namespace Starsoil.Core
             TaskId = task.Id;
             Activity = ColonistActivity.GoingToTask;
             Phase = task.Type == TaskType.HaulToBlueprint || task.Type == TaskType.HaulToStation ||
-                    task.Type == TaskType.HaulToStorage || task.Type == TaskType.Bury
+                    task.Type == TaskType.HaulToStorage || task.Type == TaskType.Bury ||
+                    task.Type == TaskType.Repair
                 ? HaulPhase.ToSource
                 : HaulPhase.None;
             WorkAccum = 0f;
@@ -863,6 +864,7 @@ namespace Starsoil.Core
                 case TaskType.HaulToStation:
                     return world.Buildings.TryGet(task.StationId, out _);
                 case TaskType.HaulToStorage:
+                case TaskType.Repair:
                     return world.Buildings.TryGet(task.BuildingId, out _);
                 case TaskType.Bury:
                     return true;
@@ -926,6 +928,12 @@ namespace Starsoil.Core
                 case TaskType.Bury:
                     world.Stats.CountBurial();
                     world.Events.Add(new ColonistBuriedEvent { X = task.TargetX, Y = task.TargetY });
+                    break;
+                case TaskType.Repair:
+                    if (world.Buildings.TryGet(task.BuildingId, out var repaired))
+                    {
+                        repaired.Durability = Balance.RepairGelRestore;
+                    }
                     break;
             }
             colonist.CarryingItem = null;

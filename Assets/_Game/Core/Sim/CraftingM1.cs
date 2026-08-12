@@ -213,7 +213,19 @@ namespace Starsoil.Core
 
         private static BuildingKind ParseStation(string value)
         {
-            return value == "campfire" ? BuildingKind.Campfire : BuildingKind.Workbench;
+            switch (value)
+            {
+                case "campfire": return BuildingKind.Campfire;
+                case "workbench": return BuildingKind.Workbench;
+                case "purifier": return BuildingKind.WaterPurifier;
+                case "furnace": return BuildingKind.Furnace;
+                case "crusher": return BuildingKind.Crusher;
+                case "roll_mill": return BuildingKind.RollMill;
+                case "press": return BuildingKind.Press;
+                case "assembler": return BuildingKind.Assembler;
+                case "greenhouse": return BuildingKind.Greenhouse;
+                default: return BuildingKind.Workbench;
+            }
         }
 
         private static List<Ingredient> ParseIngredients(string cell)

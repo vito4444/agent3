@@ -12,7 +12,8 @@ namespace Starsoil.Core
         Craft,
         Mine,
         Crank,
-        Bury
+        Bury,
+        Repair
     }
 
     public sealed class WorkTask
@@ -48,6 +49,7 @@ namespace Starsoil.Core
         public const int PriorityHaulBlueprint = 70;
         public const int PriorityHaulStation = 65;
         public const int PriorityCraft = 60;
+        public const int PriorityRepair = 58;
         public const int PriorityBury = 50;
         /// <summary>Mining an item some station/blueprint is currently starving for.</summary>
         public const int PriorityMineDemand = 55;
@@ -86,8 +88,107 @@ namespace Starsoil.Core
             GenerateMineTasks(world);
             GenerateCrankTasks(world);
             GenerateBuryTasks(world);
+            GenerateRepairTasks(world);
+            GenerateOutputHaulTasks(world);
             GenerateStorageTasks(world);
             Dispatch(world);
+        }
+
+        /// <summary>Machines below the durability threshold get a repair-gel task (M2-T4).</summary>
+        private void GenerateRepairTasks(World world)
+        {
+            foreach (var building in SortedValues(world.Buildings.All))
+            {
+                if (!building.NeedsRepair ||
+                    HasTaskFor(t => t.Type == TaskType.Repair && t.BuildingId == building.Id))
+                {
+                    continue;
+                }
+                if (!TryReserveSource(world, ItemIds.RepairGel, 1, PriorityRepair,
+                        out int pileId, out int sourceBuildingId, out int reserved, excludeBuildingId: building.Id))
+                {
+                    continue;
+                }
+                AddTask(new WorkTask
+                {
+                    Type = TaskType.Repair,
+                    Priority = PriorityRepair,
+                    TargetX = building.X,
+                    TargetY = building.Y,
+                    BuildingId = building.Id,
+                    ItemId = ItemIds.RepairGel,
+                    Count = reserved,
+                    SourcePileId = pileId,
+                    SourceBuildingId = sourceBuildingId
+                });
+            }
+        }
+
+        /// <summary>Hauls finished goods out of station/machine buffers into storage.</summary>
+        private void GenerateOutputHaulTasks(World world)
+        {
+            foreach (var station in SortedValues(world.Buildings.All))
+            {
+                if (!BuildingDefs.TryGet(station.DefId, out var def) ||
+                    (!def.IsStation && !def.IsMachine) || def.StorageCapacity > 0 ||
+                    def.Kind == BuildingKind.ResearchBench)
+                {
+                    continue;
+                }
+                var keepItems = CollectStationInputs(world, station, def);
+                foreach (var entry in station.Stock.SortedEntries())
+                {
+                    if (keepItems.Contains(entry.Key))
+                    {
+                        continue;
+                    }
+                    int available = entry.Value - station.Reserved.Get(entry.Key);
+                    if (available <= 0 ||
+                        HasTaskFor(t => t.Type == TaskType.HaulToStorage &&
+                                        t.SourceBuildingId == station.Id && t.ItemId == entry.Key))
+                    {
+                        continue;
+                    }
+                    var storage = FindStorageWithSpace(world, entry.Key);
+                    if (storage == null)
+                    {
+                        continue;
+                    }
+                    int chunk = Math.Min(available, CarryCapacity);
+                    station.Reserved.Add(entry.Key, chunk);
+                    AddTask(new WorkTask
+                    {
+                        Type = TaskType.HaulToStorage,
+                        Priority = PriorityHaulStorage,
+                        TargetX = storage.X,
+                        TargetY = storage.Y,
+                        BuildingId = storage.Id,
+                        ItemId = entry.Key,
+                        Count = chunk,
+                        SourceBuildingId = station.Id
+                    });
+                }
+            }
+        }
+
+        /// <summary>Items this station's queued orders still consume (they stay in the buffer).</summary>
+        private static HashSet<string> CollectStationInputs(World world, BuildingState station, BuildingDef def)
+        {
+            var keep = new HashSet<string>();
+            if (world.Crafting.OrdersByStation.TryGetValue(station.Id, out var orders))
+            {
+                foreach (var order in orders)
+                {
+                    if (world.Crafting.TryGetRecipe(order.RecipeId, out var recipe))
+                    {
+                        foreach (var input in recipe.Inputs)
+                        {
+                            keep.Add(input.ItemId);
+                        }
+                    }
+                }
+            }
+            return keep;
         }
 
         private void GenerateBlueprintTasks(World world)
@@ -204,10 +305,19 @@ namespace Starsoil.Core
         private void GenerateMineTasks(World world)
         {
             var demanded = CollectDemandedItems(world);
+            var machineCovered = CollectExtractorTargets(world);
             foreach (var node in SortedValues(world.Nodes.All))
             {
                 if (!node.Designated || node.Remaining <= 0)
                 {
+                    continue;
+                }
+                if (machineCovered.Contains(node.Id))
+                {
+                    // A powered extraction machine works this deposit; hand mining stops
+                    // (docs/plan/03 hand-to-machine mapping, M2-T9). It resumes if the
+                    // machine loses power or is toggled off.
+                    RemoveMineTaskFor(world, node.Id);
                     continue;
                 }
                 int priority = demanded.Contains(node.ItemId) ? PriorityMineDemand : PriorityMine;
@@ -235,6 +345,46 @@ namespace Starsoil.Core
                         NodeId = node.Id
                     });
                 }
+            }
+        }
+
+        private static HashSet<int> CollectExtractorTargets(World world)
+        {
+            var covered = new HashSet<int>();
+            foreach (var building in world.Buildings.All.Values)
+            {
+                if (!BuildingDefs.TryGet(building.DefId, out var def) || !def.IsMachine ||
+                    def.Extracts.Count == 0 || !building.WantsPower)
+                {
+                    continue;
+                }
+                if (!world.Networks.IsPowered(world, building))
+                {
+                    continue;
+                }
+                int nodeId = world.Buildings.FindDepositFor(def, building.X, building.Y);
+                if (nodeId != 0)
+                {
+                    covered.Add(nodeId);
+                }
+            }
+            return covered;
+        }
+
+        private void RemoveMineTaskFor(World world, int nodeId)
+        {
+            WorkTask existing = null;
+            foreach (var task in _tasks.Values)
+            {
+                if (task.Type == TaskType.Mine && task.NodeId == nodeId && task.ClaimedBy == 0)
+                {
+                    existing = task;
+                    break;
+                }
+            }
+            if (existing != null)
+            {
+                Remove(world, existing, releaseReservations: false);
             }
         }
 
