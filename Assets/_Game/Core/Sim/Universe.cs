@@ -52,6 +52,8 @@ namespace Starsoil.Core
         public int ShortageHours;
         /// <summary>Region has a landing beacon (zero cargo loss, M5-T5).</summary>
         public bool HasBeacon;
+        /// <summary>Defense score at freeze time (raid targeting, M7-T1).</summary>
+        public float DefenseScoreAtFreeze;
     }
 
     public sealed class RocketLaunchedEvent : ISimEvent
@@ -127,6 +129,9 @@ namespace Starsoil.Core
         public List<Transit> Transits { get; } = new List<Transit>();
         public List<TradeRoute> Routes { get; } = new List<TradeRoute>();
         public FactionSystem FactionsSandbox { get; } = new FactionSystem();
+        public CombatSystem Combat { get; } = new CombatSystem();
+        /// <summary>Bodies taken from factions by occupation (count toward hegemony).</summary>
+        public HashSet<string> OccupiedBodies { get; } = new HashSet<string>();
         /// <summary>Player credit balance (星币, docs/plan/06 trade).</summary>
         public double PlayerCredits;
         private Dictionary<string, double> _prices = new Dictionary<string, double>();
@@ -228,6 +233,11 @@ namespace Starsoil.Core
                 TickRoutes();
                 RefreshFactionLayer();
                 FactionsSandbox.HourlyTick(this, PlayerBodies());
+                Combat.HourlyTick(this, ActiveWorld.Tick / GameConstants.TicksPerHour);
+                if (ActiveWorld.Tick % GameConstants.TicksPerDay == 0)
+                {
+                    Combat.DailyTribute(this);
+                }
             }
             TickLaunches();
         }
@@ -771,6 +781,63 @@ namespace Starsoil.Core
             }
         }
 
+        /// <summary>A raid destroyed the command core: the region is lost — buildings
+        /// become ruins (the frozen snapshot keeps them), survivors evacuate to the
+        /// nearest remaining player region (M7-T3 人口账).</summary>
+        public void LoseRegion(int regionId)
+        {
+            int survivors;
+            if (regionId == ActiveRegionId)
+            {
+                survivors = ActiveWorld.Colonists.AliveCount;
+                // The active region cannot be despawned mid-play; mark defeat-style loss:
+                // colonists evacuate to the nearest frozen region if one exists.
+                int refuge = 0;
+                foreach (int id in FrozenRegions.Keys)
+                {
+                    refuge = id;
+                    break;
+                }
+                if (refuge != 0)
+                {
+                    var slot = FrozenRegions[refuge];
+                    slot.ColonistCount += survivors;
+                    var pod = ActiveWorld.Buildings.FindFirstOfKind(BuildingKind.CrashPod);
+                    if (pod != null)
+                    {
+                        ActiveWorld.Buildings.Remove(pod.Id);
+                    }
+                    ActiveWorld.Events.Add(new RegionLostEvent
+                    {
+                        RegionId = regionId,
+                        SurvivorsMovedTo = refuge,
+                        Survivors = survivors
+                    });
+                    SwitchActive(refuge);
+                }
+                return;
+            }
+            if (!FrozenRegions.TryGetValue(regionId, out var lost))
+            {
+                return;
+            }
+            survivors = lost.ColonistCount - lost.PendingDeaths;
+            FrozenRegions.Remove(regionId);
+            var podHome = ActiveWorld.Buildings.FindFirstOfKind(BuildingKind.CrashPod);
+            // Survivors join the active region (nearest by definition of being reachable).
+            for (int i = 0; i < survivors; i++)
+            {
+                ActiveWorld.Colonists.Spawn(ActiveWorld.PodInteriorX, ActiveWorld.PodInteriorY);
+            }
+            _ = podHome;
+            ActiveWorld.Events.Add(new RegionLostEvent
+            {
+                RegionId = regionId,
+                SurvivorsMovedTo = ActiveRegionId,
+                Survivors = survivors
+            });
+        }
+
         /// <summary>Switches the fully simulated region (docs/plan/06 M4-T5).</summary>
         public void SwitchActive(int regionId)
         {
@@ -804,6 +871,7 @@ namespace Starsoil.Core
                     slot.HasBeacon = true;
                 }
             }
+            slot.DefenseScoreAtFreeze = CombatSystem.DefenseScore(world);
             CollectStock(world, slot.Stockpile);
             foreach (var pair in slot.Stockpile)
             {
@@ -969,6 +1037,10 @@ namespace Starsoil.Core
                 ["PendingDeals"] = JArray.FromObject(FactionsSandbox.PendingDeals),
                 ["QuoteBoardExpiresHour"] = FactionsSandbox.QuoteBoardExpiresHour,
                 ["PlayerCredits"] = PlayerCredits,
+                ["OccupiedBodies"] = JArray.FromObject(new List<string>(OccupiedBodies)),
+                ["MerchantVassal"] = Combat.MerchantVassal,
+                ["VictoryPath"] = Combat.VictoryPath,
+                ["BombardReduction"] = JObject.FromObject(Combat.BombardReduction),
                 ["NextRouteId"] = _nextRouteId,
                 ["FactionLayerVisible"] = FactionLayerVisible,
                 ["Slots"] = SlotsJson()
@@ -1001,7 +1073,8 @@ namespace Starsoil.Core
                     ["ColonistCount"] = slot.ColonistCount,
                     ["PendingDeaths"] = slot.PendingDeaths,
                     ["ShortageHours"] = slot.ShortageHours,
-                    ["HasBeacon"] = slot.HasBeacon
+                    ["HasBeacon"] = slot.HasBeacon,
+                    ["DefenseScoreAtFreeze"] = slot.DefenseScoreAtFreeze
                 });
             }
             return array;
@@ -1071,6 +1144,23 @@ namespace Starsoil.Core
             }
             universe.FactionsSandbox.QuoteBoardExpiresHour = root.Value<long?>("QuoteBoardExpiresHour") ?? 0;
             universe.PlayerCredits = root.Value<double?>("PlayerCredits") ?? 0;
+            if (root["OccupiedBodies"] is JArray occupied)
+            {
+                foreach (var token in occupied)
+                {
+                    universe.OccupiedBodies.Add(token.Value<string>());
+                }
+            }
+            universe.Combat.MerchantVassal = root.Value<bool?>("MerchantVassal") ?? false;
+            universe.Combat.VictoryPath = root.Value<string>("VictoryPath") ?? string.Empty;
+            universe.Combat.VictoryReached = universe.Combat.VictoryPath.Length > 0;
+            if (root["BombardReduction"] is JObject bombard)
+            {
+                foreach (var pair in bombard)
+                {
+                    universe.Combat.BombardReduction[pair.Key] = pair.Value.ToObject<float>();
+                }
+            }
             if (root["Slots"] is JArray slots)
             {
                 foreach (var token in slots)
@@ -1088,7 +1178,8 @@ namespace Starsoil.Core
                         ColonistCount = s.Value<int?>("ColonistCount") ?? 0,
                         PendingDeaths = s.Value<int?>("PendingDeaths") ?? 0,
                         ShortageHours = s.Value<int?>("ShortageHours") ?? 0,
-                        HasBeacon = s.Value<bool?>("HasBeacon") ?? false
+                        HasBeacon = s.Value<bool?>("HasBeacon") ?? false,
+                        DefenseScoreAtFreeze = s.Value<float?>("DefenseScoreAtFreeze") ?? 0f
                     };
                     ReadIntMap(s["Stockpile"] as JObject, slot.Stockpile);
                     ReadIntMap(s["Baseline"] as JObject, slot.Baseline);

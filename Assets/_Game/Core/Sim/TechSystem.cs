@@ -141,6 +141,37 @@ namespace Starsoil.Core
             }
         }
 
+        private readonly HashSet<string> _burnedBranches = new HashSet<string>();
+
+        public bool IsBranchBurned(string nodeId) => _burnedBranches.Contains(nodeId);
+
+        /// <summary>Occupation reward (docs/plan/07): unlocks a faction branch node chain.</summary>
+        public void UnlockBranch(string branchNodeId)
+        {
+            foreach (var node in _nodes.Values)
+            {
+                if (node.Id == branchNodeId || node.Prereqs.Contains(branchNodeId) ||
+                    node.Id.StartsWith(branchNodeId + "_"))
+                {
+                    _unlocked.Add(node.Id);
+                }
+            }
+            _unlocked.Add(branchNodeId);
+        }
+
+        /// <summary>The unchosen branch burns forever (结算界面明文警告的机制侧).</summary>
+        public void BurnBranch(string branchNodeId)
+        {
+            _burnedBranches.Add(branchNodeId);
+            foreach (var node in _nodes.Values)
+            {
+                if (node.Id.StartsWith(branchNodeId + "_"))
+                {
+                    _burnedBranches.Add(node.Id);
+                }
+            }
+        }
+
         /// <summary>Test/scenario helper: everything known (pre-built bases, E2).</summary>
         public void UnlockAll()
         {

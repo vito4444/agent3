@@ -58,7 +58,7 @@
       "WorkTicks": 80,
       "MachineStation": "arc_furnace",
       "HandStation": "",
-      "TechNode": "alloys_exotic",
+      "TechNode": "branch_bio_refining",
       "RationaleZh": "按配比合炼成生物复合材。有机质,用于食物链与生物材料。",
       "RationaleEn": "Alloyed to spec into bio-composite. it is organic, used in food chains and bio-materials.",
       "FactionLocked": false
@@ -213,7 +213,7 @@
       "WorkTicks": 80,
       "MachineStation": "arc_furnace",
       "HandStation": "",
-      "TechNode": "alloys_exotic",
+      "TechNode": "branch_phase_armor",
       "RationaleZh": "按配比合炼成相变复合材。储能密度高,用于电芯与聚变燃料。",
       "RationaleEn": "Alloyed to spec into phase-change composite. it stores energy densely, used in cells and fusion fuel.",
       "FactionLocked": false
@@ -306,7 +306,7 @@
       "WorkTicks": 80,
       "MachineStation": "arc_furnace",
       "HandStation": "",
-      "TechNode": "alloys_exotic",
+      "TechNode": "branch_superconductor_grid",
       "RationaleZh": "按配比合炼成超导合金。零电阻,用于超导输电与磁约束。",
       "RationaleEn": "Alloyed to spec into superconductor alloy. it superconducts, used in lossless power lines and magnetic confinement.",
       "FactionLocked": false
@@ -368,7 +368,7 @@
       "WorkTicks": 80,
       "MachineStation": "arc_furnace",
       "HandStation": "",
-      "TechNode": "alloys_exotic",
+      "TechNode": "branch_fast_reactor",
       "RationaleZh": "按配比合炼成铀燃料芯。可裂变,用于反应堆燃料。",
       "RationaleEn": "Alloyed to spec into uranium fuel core. it is fissile, used as reactor fuel.",
       "FactionLocked": false
@@ -2051,7 +2051,7 @@
       "WorkTicks": 25,
       "MachineStation": "press",
       "HandStation": "workbench",
-      "TechNode": "alloys_exotic",
+      "TechNode": "branch_superconductor_grid",
       "RationaleZh": "超导合金经压制成网,结构致密。零电阻,用于超导输电与磁约束。",
       "RationaleEn": "superconductor alloy is pressed into dense mesh. it superconducts, used in lossless power lines and magnetic confinement.",
       "FactionLocked": false
@@ -2078,7 +2078,7 @@
       "WorkTicks": 50,
       "MachineStation": "wire_mill",
       "HandStation": "",
-      "TechNode": "alloys_exotic",
+      "TechNode": "branch_superconductor_grid",
       "RationaleZh": "超导合金锭经拉丝机拉制成线。零电阻,用于超导输电与磁约束。",
       "RationaleEn": "superconductor alloy ingots are drawn into wire. it superconducts, used in lossless power lines and magnetic confinement.",
       "FactionLocked": false
@@ -2650,7 +2650,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_phase_armor",
+      "TechNode": "branch_phase_armor_4",
       "RationaleZh": "装配线完成装甲战斗蛛的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Armored combat bot. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -2961,7 +2961,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_orbital_logistics",
+      "TechNode": "branch_orbital_logistics_4",
       "RationaleZh": "装配线完成保税仓的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Bonded warehouse. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -3264,7 +3264,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_fast_reactor",
+      "TechNode": "branch_fast_reactor_2",
       "RationaleZh": "装配线完成紧凑快堆的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Compact fast reactor. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -3622,7 +3622,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_bio_refining",
+      "TechNode": "branch_bio_refining_4",
       "RationaleZh": "装配线完成生态穹顶的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Eco dome. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -3789,7 +3789,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_swarm_tactics",
+      "TechNode": "branch_swarm_tactics_4",
       "RationaleZh": "装配线完成前线装配巢的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Forward assembly nest. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -4166,7 +4166,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_phase_armor",
+      "TechNode": "branch_phase_armor_5",
       "RationaleZh": "装配线完成热汲护盾的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Heat-sink shield. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -4228,7 +4228,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_phase_armor",
+      "TechNode": "branch_phase_armor_3",
       "RationaleZh": "装配线完成重型城墙的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Heavy wall. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -4290,7 +4290,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_fast_reactor",
+      "TechNode": "branch_fast_reactor_4",
       "RationaleZh": "装配线完成同位素加热棒塔的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Isotope heater. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -4492,7 +4492,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_superconductor_grid",
+      "TechNode": "branch_superconductor_grid_4",
       "RationaleZh": "装配线完成磁约束节点的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Magnetic confinement node. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -4628,7 +4628,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_bio_refining",
+      "TechNode": "branch_bio_refining_2",
       "RationaleZh": "装配线完成菌木速生架的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Myco growth rack. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -4908,7 +4908,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_bio_refining",
+      "TechNode": "branch_bio_refining_3",
       "RationaleZh": "装配线完成蛋白高塔的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Protein tower. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -5351,7 +5351,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_swarm_tactics",
+      "TechNode": "branch_swarm_tactics_5",
       "RationaleZh": "装配线完成震荡炮的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Shock cannon. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -5518,7 +5518,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_superconductor_grid",
+      "TechNode": "branch_superconductor_grid_3",
       "RationaleZh": "装配线完成超导电池阵的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Superconducting bank. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -5549,7 +5549,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_superconductor_grid",
+      "TechNode": "branch_superconductor_grid_2",
       "RationaleZh": "装配线完成超导电网塔的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Superconducting pylon. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -7504,7 +7504,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_fast_reactor",
+      "TechNode": "branch_fast_reactor_4",
       "RationaleZh": "装配线完成同位素加热棒的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Isotope heating rod. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -7539,7 +7539,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_swarm_tactics",
+      "TechNode": "branch_swarm_tactics_3",
       "RationaleZh": "装配线完成干扰无人机的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Jammer drone. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -8074,7 +8074,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_fast_reactor",
+      "TechNode": "branch_fast_reactor_3",
       "RationaleZh": "装配线完成核电池芯的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Nuclear cell. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -8109,7 +8109,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_fast_reactor",
+      "TechNode": "branch_fast_reactor_5",
       "RationaleZh": "装配线完成核动力上面级的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Nuclear upper stage. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -8346,7 +8346,7 @@
       "WorkTicks": 25,
       "MachineStation": "press",
       "HandStation": "workbench",
-      "TechNode": "branch_phase_armor",
+      "TechNode": "branch_phase_armor_2",
       "RationaleZh": "压制成型得到相变装甲板,结构致密。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "Pressing yields dense Phase armor plate. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -9059,7 +9059,7 @@
       "WorkTicks": 80,
       "MachineStation": "chem_reactor",
       "HandStation": "",
-      "TechNode": "branch_bio_refining",
+      "TechNode": "branch_bio_refining_5",
       "RationaleZh": "化工釜内受控反应制得孢子疫苗。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "A controlled reaction yields Spore vaccine. the process is proven, used across base building and production.",
       "FactionLocked": true
@@ -9156,7 +9156,7 @@
       "WorkTicks": 30,
       "MachineStation": "assembler",
       "HandStation": "workbench",
-      "TechNode": "branch_swarm_tactics",
+      "TechNode": "branch_swarm_tactics_2",
       "RationaleZh": "装配线完成自爆蛛的组装与检验。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The line assembles and checks Breacher bot. the process is proven, used across base building and production.",
       "FactionLocked": true

@@ -16,6 +16,9 @@ namespace Starsoil.Core
         /// <summary>Ticks of hand work per yielded unit.</summary>
         public int TicksPerUnit;
         public int ClaimedBy;
+        /// <summary>势力专营 (docs/plan/07): the player's miners refuse this node until
+        /// the body is occupied (F6).</summary>
+        public bool FactionLocked;
 
         public bool IsShrub => ItemId == ItemIds.Biomass;
     }
@@ -200,7 +203,8 @@ namespace Starsoil.Core
                     X = s.X,
                     Y = s.Y,
                     Designated = s.Designated,
-                    TicksPerUnit = s.TicksPerUnit
+                    TicksPerUnit = s.TicksPerUnit,
+                    FactionLocked = s.FactionLocked
                 });
                 if (s.Id >= _nextId)
                 {

@@ -37,7 +37,9 @@ namespace Starsoil.Core
             switch (faction.Personality)
             {
                 case FactionPersonality.Merchant:
-                    // 货场: storage yards + a landing beacon + docks of crates.
+                    // 货场: storage yards + beacon; the home template always carries a
+                    // shield dome (vassal treaty precondition, docs/plan/07 附庸).
+                    world.Buildings.Place(BuildingDefs.ShieldDomeId, cx + 4, cy + 8, 0, out _);
                     for (int i = 0; i < 2 + scale * 2; i++)
                     {
                         world.Buildings.Place(BuildingDefs.SmallStorageId,

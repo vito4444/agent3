@@ -1,6 +1,6 @@
 # RecipeGen validation report
 
-Generated at (UTC): 2026-08-12 18:08:55
+Generated at (UTC): 2026-08-12 18:35:24
 
 ## Counts by family (target table: docs/plan/04)
 
@@ -16,7 +16,7 @@ Generated at (UTC): 2026-08-12 18:08:55
 | H | 25 |
 | total | 330 |
 
-Items: 344 · Verbs: 14 · Forms: 14 · Tech nodes: 96
+Items: 344 · Verbs: 14 · Forms: 14 · Tech nodes: 120
 
 ## Checks
 
