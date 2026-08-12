@@ -114,12 +114,38 @@ NODES = [
     ('assault_ops','强袭作战','Assault operations','defense','combat_bots;rocketry_2',cost(**{M:4})),
 ]
 FACTION_NODES = [
-    ('branch_superconductor_grid','超导输电','Superconducting grid','faction_silent','', ''),
-    ('branch_phase_armor','相变装甲','Phase armor','faction_silent','', ''),
-    ('branch_bio_refining','生物精炼','Bio-refining','faction_merchant','', ''),
-    ('branch_orbital_logistics','星际物流网','Orbital logistics','faction_merchant','', ''),
-    ('branch_fast_reactor','快堆动力','Fast reactor power','faction_redbanner','', ''),
-    ('branch_swarm_tactics','集群战术','Swarm tactics','faction_redbanner','', ''),
+    # 6 branches × 5 nodes (docs/plan/07 六条封锁分支; abilities carry empty unlock lists
+    # and are queried by id at runtime).
+    ('branch_superconductor_grid','超导线材','Superconductor wire','faction_silent','',''),
+    ('branch_superconductor_grid_2','超导电网塔','Superconducting pylon','faction_silent','branch_superconductor_grid',''),
+    ('branch_superconductor_grid_3','超导电池阵','Superconducting bank','faction_silent','branch_superconductor_grid_2',''),
+    ('branch_superconductor_grid_4','磁约束节点','Magnetic confinement node','faction_silent','branch_superconductor_grid_3',''),
+    ('branch_superconductor_grid_5','轨道能束(能力)','Orbital power beam (ability)','faction_silent','branch_superconductor_grid_4',''),
+    ('branch_phase_armor','相变凝胶精炼','Phase gel refining','faction_silent','',''),
+    ('branch_phase_armor_2','相变装甲板','Phase armor plate','faction_silent','branch_phase_armor',''),
+    ('branch_phase_armor_3','重型城墙','Heavy wall','faction_silent','branch_phase_armor_2',''),
+    ('branch_phase_armor_4','装甲战斗蛛','Armored combat bot','faction_silent','branch_phase_armor_3',''),
+    ('branch_phase_armor_5','热汲护盾','Heat-sink shield','faction_silent','branch_phase_armor_4',''),
+    ('branch_bio_refining','菌金催化','Myco catalysis','faction_merchant','',''),
+    ('branch_bio_refining_2','菌木速生架','Myco growth rack','faction_merchant','branch_bio_refining',''),
+    ('branch_bio_refining_3','蛋白高塔','Protein tower','faction_merchant','branch_bio_refining_2',''),
+    ('branch_bio_refining_4','生态穹顶','Eco dome','faction_merchant','branch_bio_refining_3',''),
+    ('branch_bio_refining_5','孢子疫苗','Spore vaccine','faction_merchant','branch_bio_refining_4',''),
+    ('branch_orbital_logistics','轨道货轮','Orbital freighter','faction_merchant','',''),
+    ('branch_orbital_logistics_2','自动报价单(能力)','Auto quotes (ability)','faction_merchant','branch_orbital_logistics',''),
+    ('branch_orbital_logistics_3','行情雷达(能力)','Market radar (ability)','faction_merchant','branch_orbital_logistics_2',''),
+    ('branch_orbital_logistics_4','保税仓','Bonded warehouse','faction_merchant','branch_orbital_logistics_3',''),
+    ('branch_orbital_logistics_5','航线保险(能力)','Route insurance (ability)','faction_merchant','branch_orbital_logistics_4',''),
+    ('branch_fast_reactor','快堆堆芯','Fast reactor core','faction_redbanner','',''),
+    ('branch_fast_reactor_2','紧凑快堆','Compact fast reactor','faction_redbanner','branch_fast_reactor',''),
+    ('branch_fast_reactor_3','核电池','Nuclear cell','faction_redbanner','branch_fast_reactor_2',''),
+    ('branch_fast_reactor_4','同位素加热棒','Isotope heater','faction_redbanner','branch_fast_reactor_3',''),
+    ('branch_fast_reactor_5','核动力上面级','Nuclear upper stage','faction_redbanner','branch_fast_reactor_4',''),
+    ('branch_swarm_tactics','蜂群协议(能力)','Swarm protocol (ability)','faction_redbanner','',''),
+    ('branch_swarm_tactics_2','自爆蛛','Breacher bot','faction_redbanner','branch_swarm_tactics',''),
+    ('branch_swarm_tactics_3','干扰无人机','Jammer drone','faction_redbanner','branch_swarm_tactics_2',''),
+    ('branch_swarm_tactics_4','前线装配巢','Forward assembly nest','faction_redbanner','branch_swarm_tactics_3',''),
+    ('branch_swarm_tactics_5','震荡炮','Shock cannon','faction_redbanner','branch_swarm_tactics_4',''),
 ]
 
 # ---- explicit recipe → node placements -------------------------------------------
@@ -154,7 +180,7 @@ put('forming_exotic','form_titanium_pipe','form_steel_brick','form_nickel_plate'
 put('alloys_basic','alloy_steel','alloy_electrical_steel','form_electrical_steel_wire','form_electrical_steel_gear')
 put('alloys_light','alloy_duralumin','alloy_titanium_alloy','form_duralumin_plate','form_duralumin_rod','form_duralumin_wire','form_duralumin_gear','form_titanium_alloy_gear','form_titanium_alloy_pipe','form_titanium_alloy_plate','form_titanium_alloy_rod')
 put('metallurgy_2','electrolyze_bauxite','smelt_nickel','smelt_rare_earth','alloy_bronze','alloy_invar','form_invar_plate','form_invar_pipe','form_invar_gear')
-put('alloys_exotic','smelt_platinum','smelt_aurite','alloy_aurite_steel','alloy_superconductor_alloy','alloy_platinum_mesh_alloy','alloy_uranium_core_alloy','alloy_bio_composite','alloy_phase_composite','form_aurite_steel_plate','form_aurite_steel_rod','form_aurite_steel_pipe','form_superconductor_alloy_wire','form_superconductor_alloy_mesh','form_platinum_mesh_alloy_mesh')
+put('alloys_exotic','smelt_platinum','smelt_aurite','alloy_aurite_steel','alloy_platinum_mesh_alloy','form_aurite_steel_plate','form_aurite_steel_rod','form_aurite_steel_pipe','form_platinum_mesh_alloy_mesh')
 put('machining_tech','make_machined_parts','make_gear_assembly','make_control_console','make_small_nozzle','make_valve','make_pump')
 put('deep_drilling','make_b_deep_drill','make_b_tailings_crusher','smelt_titanium','smelt_aluminum')
 put('recycling','make_b_recycler','make_filter_cartridge')
@@ -219,12 +245,31 @@ put('armor_materials','make_combat_frame')
 put('signals','make_firework','make_emergency_beacon')
 put('burial_rites','make_grave_marker')
 put('assault_ops','make_assault_pod')
-put('branch_superconductor_grid','make_b_superconductor_pylon','make_b_superconductor_battery','make_b_magnetic_node')
-put('branch_phase_armor','make_phase_gel_refined','make_phase_armor_plate','make_armored_combat_bot','make_b_heavy_wall','make_b_heat_sink_shield')
-put('branch_bio_refining','make_myco_catalyst','make_b_myco_rack','make_b_protein_tower','make_b_eco_dome','make_spore_vaccine')
-put('branch_orbital_logistics','make_orbital_freighter','make_b_bonded_warehouse')
-put('branch_fast_reactor','make_nuclear_upper_stage','make_compact_reactor_core','make_b_compact_reactor','make_isotope_rod','make_b_isotope_heater','make_nuclear_cell')
-put('branch_swarm_tactics','make_suicide_bot','make_jammer_drone','make_b_forward_nest','make_b_shock_cannon')
+put('branch_superconductor_grid','form_superconductor_alloy_wire','form_superconductor_alloy_mesh','alloy_superconductor_alloy')
+put('branch_superconductor_grid_2','make_b_superconductor_pylon')
+put('branch_superconductor_grid_3','make_b_superconductor_battery')
+put('branch_superconductor_grid_4','make_b_magnetic_node')
+put('branch_phase_armor','make_phase_gel_refined','alloy_phase_composite')
+put('branch_phase_armor_2','make_phase_armor_plate')
+put('branch_phase_armor_3','make_b_heavy_wall')
+put('branch_phase_armor_4','make_armored_combat_bot')
+put('branch_phase_armor_5','make_b_heat_sink_shield')
+put('branch_bio_refining','make_myco_catalyst','alloy_bio_composite')
+put('branch_bio_refining_2','make_b_myco_rack')
+put('branch_bio_refining_3','make_b_protein_tower')
+put('branch_bio_refining_4','make_b_eco_dome')
+put('branch_bio_refining_5','make_spore_vaccine')
+put('branch_orbital_logistics','make_orbital_freighter')
+put('branch_orbital_logistics_4','make_b_bonded_warehouse')
+put('branch_fast_reactor','make_compact_reactor_core','alloy_uranium_core_alloy')
+put('branch_fast_reactor_2','make_b_compact_reactor')
+put('branch_fast_reactor_3','make_nuclear_cell')
+put('branch_fast_reactor_4','make_isotope_rod','make_b_isotope_heater')
+put('branch_fast_reactor_5','make_nuclear_upper_stage')
+put('branch_swarm_tactics_2','make_suicide_bot')
+put('branch_swarm_tactics_3','make_jammer_drone')
+put('branch_swarm_tactics_4','make_b_forward_nest')
+put('branch_swarm_tactics_5','make_b_shock_cannon')
 
 P = {k: v for k, v in P.items() if k and not k.endswith('? ')}
 

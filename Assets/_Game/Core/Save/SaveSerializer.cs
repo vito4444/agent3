@@ -209,7 +209,8 @@ namespace Starsoil.Core
                     X = node.X,
                     Y = node.Y,
                     Designated = node.Designated,
-                    TicksPerUnit = node.TicksPerUnit
+                    TicksPerUnit = node.TicksPerUnit,
+                    FactionLocked = node.FactionLocked
                 });
             }
 

@@ -61,6 +61,7 @@ namespace Starsoil.Core
         public int Y;
         public bool Designated;
         public int TicksPerUnit;
+        public bool FactionLocked;
     }
 
     public sealed class SavedBlueprint

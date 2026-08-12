@@ -51,7 +51,11 @@ namespace Starsoil.Core
         CultureVat,
         Refinery,
         Recycler,
-        LaunchPad
+        LaunchPad,
+        Wall,
+        SentryGun,
+        LaserTower,
+        ShieldDome
     }
 
     /// <summary>Immutable building archetype. The T0/T1 set covers docs/plan/03 categories
@@ -257,7 +261,13 @@ namespace Starsoil.Core
 
         public static readonly BuildingDef Miner =
             new BuildingDef(MinerId, 2, 2, BuildingKind.Miner, isMachine: true,
-                powerKw: MinerKw, extracts: new[] { ItemIds.IronOre, ItemIds.CopperOre, ItemIds.QuartzSand, ItemIds.SaltOre, ItemIds.Carbon },
+                powerKw: MinerKw, extracts: new[]
+                {
+                    ItemIds.IronOre, ItemIds.CopperOre, ItemIds.QuartzSand, ItemIds.SaltOre, ItemIds.Carbon,
+                    "bauxite", "titanium_sand", "nickel_gravel", "rare_earth_ore", "sulfur", "regolith",
+                    "crimson_uranite", "platinum_sand", "azure_superconductor", "obsidian_gold_ore",
+                    "phase_gel_raw", "myco_gold_spore", "spore_protein", "fungal_timber"
+                },
                 buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CopperLump, 1), Need(ItemIds.CrudeTool, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "powered_extraction");
 
@@ -373,6 +383,48 @@ namespace Starsoil.Core
         public const string LaunchPadId = "launch_pad";
         public const string LandingBeaconId = "landing_beacon";
         public const string CommsArrayId = "comms_array";
+        public const string WarpBeaconId = "warp_beacon";
+        public const string WallId = "wall";
+        public const string SentryGunId = "sentry_gun";
+        public const string LaserTowerId = "laser_tower";
+        public const string ShieldDomeId = "shield_dome";
+
+        private const float LaserTowerKw = 25f;
+        private const float ShieldDomeKw = 30f;
+
+        /// <summary>Endgame megastructure (docs/plan/01): completion wins the game.
+        /// Recipe demands ≥2 unique resources (superconductor wire + deuterium fuel).</summary>
+        public static readonly BuildingDef WarpBeacon =
+            new BuildingDef(WarpBeaconId, 4, 4, BuildingKind.Generic,
+                buildCost: new[]
+                {
+                    Need("quantum_circuit", 3), Need("superconductor_alloy_wire", 4),
+                    Need("deuterium_fuel", 4), Need("platinum_mesh_alloy_mesh", 2), Need("heavy_frame", 4)
+                },
+                buildWorkTicks: BigBuildTicks * 3, techNode: "warp_beacon_3");
+
+        /// <summary>Defense set (docs/plan/07 战斗节; scoring in CombatSystem).</summary>
+        public static readonly BuildingDef Wall =
+            new BuildingDef(WallId, 1, 1, BuildingKind.Wall,
+                buildCost: new[] { Need("iron_brick", 2), Need("steel_rod", 1) },
+                buildWorkTicks: QuickBuildTicks, techNode: "fortification");
+
+        public static readonly BuildingDef SentryGun =
+            new BuildingDef(SentryGunId, 1, 1, BuildingKind.SentryGun,
+                buildCost: new[] { Need("combat_frame", 1), Need("kinetic_round", 2), Need("basic_circuit", 1) },
+                buildWorkTicks: NormalBuildTicks, techNode: "sentry_guns");
+
+        public static readonly BuildingDef LaserTower =
+            new BuildingDef(LaserTowerId, 1, 1, BuildingKind.LaserTower,
+                powerKw: LaserTowerKw, priority: PowerPriority.Production,
+                buildCost: new[] { Need("laser_cavity", 1), Need("advanced_circuit", 1), Need("heavy_frame", 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "laser_defense");
+
+        public static readonly BuildingDef ShieldDome =
+            new BuildingDef(ShieldDomeId, 2, 2, BuildingKind.ShieldDome,
+                powerKw: ShieldDomeKw, priority: PowerPriority.Production,
+                buildCost: new[] { Need("shield_emitter", 1), Need("heavy_frame", 2), Need("battery_pack", 2) },
+                buildWorkTicks: BigBuildTicks, techNode: "shield_tech");
 
         /// <summary>Zero cargo loss on arrival when the destination has one (M5-T5).</summary>
         public static readonly BuildingDef LandingBeacon =
@@ -461,7 +513,12 @@ namespace Starsoil.Core
             { Recycler.Id, Recycler },
             { LaunchPad.Id, LaunchPad },
             { LandingBeacon.Id, LandingBeacon },
-            { CommsArray.Id, CommsArray }
+            { CommsArray.Id, CommsArray },
+            { WarpBeacon.Id, WarpBeacon },
+            { Wall.Id, Wall },
+            { SentryGun.Id, SentryGun },
+            { LaserTower.Id, LaserTower },
+            { ShieldDome.Id, ShieldDome }
         };
 
         /// <summary>T0 hand-tech buildings, always available (M1 build menu).</summary>
@@ -481,7 +538,8 @@ namespace Starsoil.Core
             WaterPurifierId, GreenhouseId, ForageStationId, BotStationId, ChargingPostId,
             ArcFurnaceId, WireMillId, MachiningBenchId, ChemElectrolyzerId, DistillerId,
             ChemReactorId, PolymerReactorId, SabatierReactorId, CryoLiquefierId,
-            CultureVatId, RefineryId, RecyclerId, LaunchPadId, LandingBeaconId, CommsArrayId
+            CultureVatId, RefineryId, RecyclerId, LaunchPadId, LandingBeaconId, CommsArrayId,
+            WallId, SentryGunId, LaserTowerId, ShieldDomeId, WarpBeaconId
         };
 
         public static bool TryGet(string id, out BuildingDef def) => ById.TryGetValue(id, out def);
@@ -604,7 +662,8 @@ namespace Starsoil.Core
             return PlacementError.None;
         }
 
-        /// <summary>Nearest matching deposit node id within extraction radius, or 0.</summary>
+        /// <summary>Nearest matching deposit node id within extraction radius, or 0.
+        /// Faction-locked deposits are invisible to the player's extractors (F6).</summary>
         public int FindDepositFor(BuildingDef def, int x, int y)
         {
             if (Owner == null)
@@ -616,6 +675,10 @@ namespace Starsoil.Core
             foreach (var pair in Owner.Nodes.All)
             {
                 var node = pair.Value;
+                if (node.FactionLocked)
+                {
+                    continue;
+                }
                 bool matches = false;
                 for (int i = 0; i < def.Extracts.Count; i++)
                 {
