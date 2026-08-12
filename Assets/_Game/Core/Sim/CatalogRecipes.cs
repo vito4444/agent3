@@ -11,6 +11,8 @@ namespace Starsoil.Core
     /// </summary>
     public static class CatalogRecipes
     {
+        private const int FallbackWorkTicks = 10;
+
         public static List<RecipeM1> ParseJson(string json)
         {
             var result = new List<RecipeM1>();
@@ -28,7 +30,7 @@ namespace Starsoil.Core
                 var recipe = new RecipeM1
                 {
                     Id = r.Value<string>("Id") ?? string.Empty,
-                    WorkTicks = r.Value<int?>("WorkTicks") ?? 10,
+                    WorkTicks = r.Value<int?>("WorkTicks") ?? FallbackWorkTicks,
                     Station = ResolveKind(r.Value<string>("MachineStation")),
                     HandStation = ResolveKind(r.Value<string>("HandStation")),
                     RationaleZh = r.Value<string>("RationaleZh") ?? string.Empty,
