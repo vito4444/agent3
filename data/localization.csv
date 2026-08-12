@@ -127,7 +127,7 @@ ui_star_map,星图 (M),Star map (M)
 ui_regions,殖民区域,Colony regions
 ui_transits,在途航班,Transits
 ui_bodies,曦光系天体,Xiguang system bodies
-ui_travel_days,航程 {0} 日,{0}d travel
+ui_travel_hours,航程 {0} 时,{0}h travel
 ui_region_row,区域 {0} · {1} · 人口 {2},Region {0} · {1} · pop {2}
 ui_switch_region,切换,Switch
 building_launch_pad,发射台,Launch pad

@@ -14,7 +14,7 @@ namespace Starsoil.Core
         public int DayHours;
         public bool NightCold;
         public float SolarFactor;
-        public int TravelDays;
+        public int OrbitIndex;
         public List<string> Resources = new List<string>();
     }
 
@@ -71,7 +71,7 @@ namespace Starsoil.Core
                     DayHours = ParseInt(Get("day_hours"), GameConstants.HoursPerDay),
                     NightCold = Get("night_cold") == "1",
                     SolarFactor = ParseFloat(Get("solar_factor"), 1f),
-                    TravelDays = ParseInt(Get("travel_days"), 1)
+                    OrbitIndex = ParseInt(Get("orbit_index"), 1)
                 };
                 foreach (string resource in Get("resources").Split(';'))
                 {
