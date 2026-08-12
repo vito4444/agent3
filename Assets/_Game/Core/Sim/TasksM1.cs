@@ -87,6 +87,7 @@ namespace Starsoil.Core
             GenerateBlueprintTasks(world);
             GenerateStationTasks(world);
             GenerateElectrolyzerTasks(world);
+            GeneratePadTasks(world);
             GenerateResearchTasks(world);
             GenerateMineTasks(world);
             GenerateCrankTasks(world);
@@ -132,6 +133,51 @@ namespace Starsoil.Core
                         SourceBuildingId = buildingId
                     });
                     missing -= reserved;
+                }
+            }
+        }
+
+        /// <summary>Active pad orders demand rocket parts, fuel, the payload pod and cargo
+        /// like station inputs (M4, docs/plan/06).</summary>
+        private void GeneratePadTasks(World world)
+        {
+            foreach (var pad in SortedValues(world.Buildings.All))
+            {
+                if (pad.DefId != BuildingDefs.LaunchPadId || pad.Pad == null || !pad.Pad.Active)
+                {
+                    continue;
+                }
+                var wanted = new List<Ingredient>(Universe.RocketParts)
+                {
+                    new Ingredient { ItemId = Universe.PayloadItem(pad.Pad.Payload), Count = 1 }
+                };
+                wanted.AddRange(pad.Pad.Cargo);
+                foreach (var part in wanted)
+                {
+                    int missing = part.Count - pad.Stock.Get(part.ItemId) - pad.Inbound.Get(part.ItemId);
+                    while (missing > 0)
+                    {
+                        int chunk = Math.Min(missing, CarryCapacity);
+                        if (!TryReserveSource(world, part.ItemId, chunk, PriorityHaulStation,
+                                out int pileId, out int buildingId, out int reserved, excludeBuildingId: pad.Id))
+                        {
+                            break;
+                        }
+                        pad.Inbound.Add(part.ItemId, reserved);
+                        AddTask(new WorkTask
+                        {
+                            Type = TaskType.HaulToStation,
+                            Priority = PriorityHaulStation,
+                            TargetX = pad.X,
+                            TargetY = pad.Y,
+                            StationId = pad.Id,
+                            ItemId = part.ItemId,
+                            Count = reserved,
+                            SourcePileId = pileId,
+                            SourceBuildingId = buildingId
+                        });
+                        missing -= reserved;
+                    }
                 }
             }
         }

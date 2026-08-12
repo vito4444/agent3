@@ -160,6 +160,35 @@ namespace Starsoil.Core
             return colonist;
         }
 
+        /// <summary>Removes a colonist from this region (rocket crew boarding, M4).</summary>
+        public bool RemoveColonist(World world, int id)
+        {
+            if (!_byId.TryGetValue(id, out var colonist))
+            {
+                return false;
+            }
+            AbandonCurrent(world, colonist);
+            if (colonist.CarryingCount > 0)
+            {
+                world.Piles.Drop(colonist.CarryingItem, colonist.CarryingCount, colonist.X, colonist.Y);
+            }
+            _byId.Remove(id);
+            return true;
+        }
+
+        /// <summary>Applies an abstract-period casualty on thaw (docs/plan/06 shortage rule).</summary>
+        public void KillFirstAlive(World world)
+        {
+            foreach (var colonist in AllSorted())
+            {
+                if (colonist.Alive)
+                {
+                    Die(world, colonist, DeathCause.Starvation);
+                    return;
+                }
+            }
+        }
+
         public void Tick(World world)
         {
             foreach (var colonist in AllSorted())
@@ -233,12 +262,12 @@ namespace Starsoil.Core
                 colonist.Sleep -= Balance.SleepLossPerTick;
             }
 
-            // Temperature.
+            // Temperature (bodies without night cold skip the pressure, docs/plan/02).
             if (indoor)
             {
                 colonist.Temp = Math.Min(Balance.NeedMax, colonist.Temp + Balance.WarmRecoverPerTick);
             }
-            else if (world.IsNight)
+            else if (world.IsNight && world.NightIsCold)
             {
                 colonist.Temp -= Balance.ColdLossPerTick;
             }

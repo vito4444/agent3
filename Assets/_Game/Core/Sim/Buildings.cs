@@ -50,7 +50,8 @@ namespace Starsoil.Core
         CryoLiquefier,
         CultureVat,
         Refinery,
-        Recycler
+        Recycler,
+        LaunchPad
     }
 
     /// <summary>Immutable building archetype. The T0/T1 set covers docs/plan/03 categories
@@ -369,6 +370,15 @@ namespace Starsoil.Core
         public static readonly BuildingDef Recycler = Station(RecyclerId, 2, 2, BuildingKind.Recycler,
             RecyclerKw, "recycling", new[] { Need("steel_plate", 2), Need("gear_assembly", 1) });
 
+        public const string LaunchPadId = "launch_pad";
+
+        /// <summary>Launch pad (M4, docs/plan/06): parts and payload are hauled onto the
+        /// pad like station inputs; the Universe launches at the next window.</summary>
+        public static readonly BuildingDef LaunchPad =
+            new BuildingDef(LaunchPadId, 4, 4, BuildingKind.LaunchPad,
+                buildCost: new[] { Need("structural_panel", 4), Need("heat_shield_tile", 2), Need("control_console", 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "launch_infra");
+
         public static readonly BuildingDef ForageStation =
             new BuildingDef(ForageStationId, 1, 1, BuildingKind.ForageStation, isMachine: true,
                 powerKw: 5f, extracts: new[] { ItemIds.Biomass },
@@ -433,7 +443,8 @@ namespace Starsoil.Core
             { CryoLiquefier.Id, CryoLiquefier },
             { CultureVat.Id, CultureVat },
             { Refinery.Id, Refinery },
-            { Recycler.Id, Recycler }
+            { Recycler.Id, Recycler },
+            { LaunchPad.Id, LaunchPad }
         };
 
         /// <summary>T0 hand-tech buildings, always available (M1 build menu).</summary>
@@ -453,7 +464,7 @@ namespace Starsoil.Core
             WaterPurifierId, GreenhouseId, ForageStationId, BotStationId, ChargingPostId,
             ArcFurnaceId, WireMillId, MachiningBenchId, ChemElectrolyzerId, DistillerId,
             ChemReactorId, PolymerReactorId, SabatierReactorId, CryoLiquefierId,
-            CultureVatId, RefineryId, RecyclerId
+            CultureVatId, RefineryId, RecyclerId, LaunchPadId
         };
 
         public static bool TryGet(string id, out BuildingDef def) => ById.TryGetValue(id, out def);
@@ -498,6 +509,8 @@ namespace Starsoil.Core
         public float ProcessAccum;
         /// <summary>Stored energy for battery buildings.</summary>
         public float BatteryKwh;
+        /// <summary>Rocket order for launch pads (null elsewhere).</summary>
+        public PadOrder Pad;
 
         public bool NeedsRepair => Durability < Balance.LowDurabilityThreshold;
     }
@@ -727,6 +740,23 @@ namespace Starsoil.Core
                     foreach (var entry in s.Stock)
                     {
                         state.Stock.Add(entry.ItemId, entry.Count);
+                    }
+                }
+                if (!string.IsNullOrEmpty(s.PadPayload))
+                {
+                    state.Pad = new PadOrder
+                    {
+                        TargetBodyId = s.PadTargetBody ?? string.Empty,
+                        Payload = s.PadPayload,
+                        Crew = s.PadCrew,
+                        Active = s.PadActive
+                    };
+                    if (s.PadCargo != null)
+                    {
+                        foreach (var item in s.PadCargo)
+                        {
+                            state.Pad.Cargo.Add(new Ingredient { ItemId = item.ItemId, Count = item.Count });
+                        }
                     }
                 }
                 _byId.Add(state.Id, state);
