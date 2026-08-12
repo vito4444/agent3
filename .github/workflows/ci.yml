@@ -26,6 +26,12 @@ jobs:
       - name: RecipeGen validation
         run: dotnet run --project tools/RecipeGen -- --validate
 
+      # Gate 1.5: type-check the Unity-side scripts against stub assemblies
+      # (tools/UnityStubs) so compile-level breakage is caught without a Unity
+      # license. Unity's own compile in gate 2 stays authoritative.
+      - name: Unity script compile check (stubs)
+        run: dotnet build tools/UnityCompileCheck -v minimal
+
   # Gate 2 requires the UNITY_LICENSE secret; without it the jobs below are skipped
   # (visible as "skipped" on the PR) and gate 1 alone decides the check status.
   check-unity-license:

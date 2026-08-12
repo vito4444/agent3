@@ -45,6 +45,47 @@ namespace UnityEditor
     }
 }
 
+namespace UnityEditor
+{
+    public enum BuildTarget { StandaloneWindows64, StandaloneLinux64, StandaloneOSX }
+
+    [Flags]
+    public enum BuildOptions { None = 0, Development = 1 }
+
+    public struct BuildPlayerOptions
+    {
+        public string[] scenes;
+        public string locationPathName;
+        public BuildTarget target;
+        public BuildOptions options;
+    }
+
+    public static class BuildPipeline
+    {
+        public static Build.Reporting.BuildReport BuildPlayer(BuildPlayerOptions options) => null;
+    }
+
+    public static class EditorApplication
+    {
+        public static void Exit(int returnValue) { }
+    }
+}
+
+namespace UnityEditor.Build.Reporting
+{
+    public enum BuildResult { Unknown, Succeeded, Failed, Cancelled }
+
+    public struct BuildSummary
+    {
+        public BuildResult result;
+    }
+
+    public class BuildReport
+    {
+        public BuildSummary summary => new BuildSummary();
+    }
+}
+
 namespace UnityEditor.SceneManagement
 {
     public enum NewSceneSetup { EmptyScene, DefaultGameObjects }
