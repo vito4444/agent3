@@ -14,7 +14,7 @@ platinum_sand,铂族砂,Platinum-group sand,raw,3,catalytic;corrosion_resistant,
 azure_superconductor,超导蓝矿,Azure superconductor ore,raw,3,superconductive;conductive,sleetfall,4
 quartz_sand,石英砂,Quartz sand,raw,0,insulating,dustloam;palewatch;sleetfall,2
 salt_ore,盐矿,Salt ore,raw,0,corrosion_resistant,dustloam,2
-sulfur,硫,Sulfur,raw,1,flammable;catalytic,cinderrock;sulfmire;redridge,2
+sulfur,硫,Sulfur,raw,1,flammable;catalytic,dustloam;cinderrock;sulfmire;redridge,2
 regolith,尘壤土,Regolith,raw,0,insulating,dustloam;palewatch;redridge,3
 carbon,石墨矿,Graphite,raw,0,conductive;flammable,dustloam;flintfield;sulfmire,2
 obsidian_gold_ore,曜金矿,Aurite ore,raw,3,heat_resistant;catalytic,cinderrock,5

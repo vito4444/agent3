@@ -82,7 +82,7 @@
         }
       ],
       "Verb": "alloy",
-      "Tier": 1,
+      "Tier": 3,
       "Family": "A",
       "Seconds": 8.0,
       "Kw": 45.0,
@@ -175,7 +175,7 @@
         }
       ],
       "Verb": "alloy",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "A",
       "Seconds": 8.0,
       "Kw": 45.0,
@@ -388,7 +388,7 @@
         }
       ],
       "Verb": "distill",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "C",
       "Seconds": 6.0,
       "Kw": 30.0,
@@ -473,7 +473,7 @@
         }
       ],
       "Verb": "distill",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "C",
       "Seconds": 6.0,
       "Kw": 30.0,
@@ -500,7 +500,7 @@
         }
       ],
       "Verb": "distill",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "C",
       "Seconds": 6.0,
       "Kw": 30.0,
@@ -527,7 +527,7 @@
         }
       ],
       "Verb": "distill",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "C",
       "Seconds": 6.0,
       "Kw": 30.0,
@@ -554,7 +554,7 @@
         }
       ],
       "Verb": "distill",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "C",
       "Seconds": 6.0,
       "Kw": 30.0,
@@ -815,33 +815,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_aluminum_pipe",
-      "Inputs": [
-        {
-          "ItemId": "aluminum_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "aluminum_pipe",
-          "Count": 1
-        }
-      ],
-      "Verb": "machining",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 6.0,
-      "Kw": 25.0,
-      "WorkTicks": 60,
-      "MachineStation": "machining_bench",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "铝坯料车铣成型为管",
-      "RationaleEn": "公差可控。it is lightweight",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_aluminum_plate",
       "Inputs": [
         {
@@ -950,141 +923,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_aurite_pipe",
-      "Inputs": [
-        {
-          "ItemId": "aurite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "aurite_pipe",
-          "Count": 1
-        }
-      ],
-      "Verb": "machining",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 6.0,
-      "Kw": 25.0,
-      "WorkTicks": 60,
-      "MachineStation": "machining_bench",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "曜金坯料车铣成型为管",
-      "RationaleEn": "公差可控。it takes heat",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_aurite_plate",
-      "Inputs": [
-        {
-          "ItemId": "aurite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "aurite_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "曜金锭经铸轧成板。耐高温",
-      "RationaleEn": "used in furnace linings and engine hot sections。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_aurite_powder",
-      "Inputs": [
-        {
-          "ItemId": "aurite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "aurite_powder",
-          "Count": 2
-        }
-      ],
-      "Verb": "crush",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 3.0,
-      "Kw": 15.0,
-      "WorkTicks": 30,
-      "MachineStation": "crusher",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "曜金经破碎机粉碎分选",
-      "RationaleEn": "得到便于后续处理的碎料。it takes heat",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_aurite_rod",
-      "Inputs": [
-        {
-          "ItemId": "aurite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "aurite_rod",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "曜金锭经铸轧成杆。耐高温",
-      "RationaleEn": "used in furnace linings and engine hot sections。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_aurite_steel_gear",
-      "Inputs": [
-        {
-          "ItemId": "aurite_steel_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "aurite_steel_gear",
-          "Count": 1
-        }
-      ],
-      "Verb": "machining",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 6.0,
-      "Kw": 25.0,
-      "WorkTicks": 60,
-      "MachineStation": "machining_bench",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "耐热曜金钢坯料车铣成型为齿轮",
-      "RationaleEn": "公差可控。it takes heat",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_aurite_steel_pipe",
       "Inputs": [
         {
@@ -1099,7 +937,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 3,
+      "Tier": 4,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -1153,7 +991,7 @@
         }
       ],
       "Verb": "cast_roll",
-      "Tier": 3,
+      "Tier": 4,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -1163,114 +1001,6 @@
       "TechNode": "",
       "RationaleZh": "耐热曜金钢锭经铸轧成杆。耐高温",
       "RationaleEn": "used in furnace linings and engine hot sections。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_bio_composite_mesh",
-      "Inputs": [
-        {
-          "ItemId": "bio_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "bio_composite_mesh",
-          "Count": 2
-        }
-      ],
-      "Verb": "press",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "生物复合材经压制成网",
-      "RationaleEn": "结构致密。it is organic",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_bio_composite_pipe",
-      "Inputs": [
-        {
-          "ItemId": "bio_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "bio_composite_pipe",
-          "Count": 1
-        }
-      ],
-      "Verb": "machining",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 6.0,
-      "Kw": 25.0,
-      "WorkTicks": 60,
-      "MachineStation": "machining_bench",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "生物复合材坯料车铣成型为管",
-      "RationaleEn": "公差可控。it is organic",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_bio_composite_plate",
-      "Inputs": [
-        {
-          "ItemId": "bio_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "bio_composite_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "生物复合材锭经铸轧成板。有机质",
-      "RationaleEn": "used in food chains and bio-materials。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_bio_composite_rod",
-      "Inputs": [
-        {
-          "ItemId": "bio_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "bio_composite_rod",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "生物复合材锭经铸轧成杆。有机质",
-      "RationaleEn": "used in food chains and bio-materials。",
       "FactionLocked": false
     },
     {
@@ -1288,7 +1018,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -1315,7 +1045,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -1325,33 +1055,6 @@
       "TechNode": "",
       "RationaleZh": "青铜坯料车铣成型为管",
       "RationaleEn": "公差可控。it resists corrosion",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_bronze_plate",
-      "Inputs": [
-        {
-          "ItemId": "bronze_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "bronze_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "青铜锭经铸轧成板。耐蚀",
-      "RationaleEn": "used in piping and chemical vessels。",
       "FactionLocked": false
     },
     {
@@ -1369,7 +1072,7 @@
         }
       ],
       "Verb": "cast_roll",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -1382,7 +1085,7 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_copper_mesh",
+      "Id": "form_copper_gear",
       "Inputs": [
         {
           "ItemId": "copper_ingot",
@@ -1391,21 +1094,21 @@
       ],
       "Outputs": [
         {
-          "ItemId": "copper_mesh",
-          "Count": 2
+          "ItemId": "copper_gear",
+          "Count": 1
         }
       ],
-      "Verb": "press",
-      "Tier": 1,
+      "Verb": "machining",
+      "Tier": 2,
       "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
+      "Seconds": 6.0,
+      "Kw": 25.0,
+      "WorkTicks": 60,
+      "MachineStation": "machining_bench",
       "HandStation": "workbench",
       "TechNode": "",
-      "RationaleZh": "铜经压制成网",
-      "RationaleEn": "结构致密。it conducts well",
+      "RationaleZh": "铜坯料车铣成型为齿轮",
+      "RationaleEn": "公差可控。it conducts well",
       "FactionLocked": false
     },
     {
@@ -1423,7 +1126,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 1,
+      "Tier": 2,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -1477,7 +1180,7 @@
         }
       ],
       "Verb": "crush",
-      "Tier": 1,
+      "Tier": 2,
       "Family": "B",
       "Seconds": 3.0,
       "Kw": 15.0,
@@ -1504,7 +1207,7 @@
         }
       ],
       "Verb": "cast_roll",
-      "Tier": 1,
+      "Tier": 2,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -1585,7 +1288,7 @@
         }
       ],
       "Verb": "press",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 4.0,
       "Kw": 20.0,
@@ -1595,33 +1298,6 @@
       "TechNode": "",
       "RationaleZh": "硬铝经压制成网",
       "RationaleEn": "结构致密。it is lightweight",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_duralumin_pipe",
-      "Inputs": [
-        {
-          "ItemId": "duralumin_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "duralumin_pipe",
-          "Count": 1
-        }
-      ],
-      "Verb": "machining",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 6.0,
-      "Kw": 25.0,
-      "WorkTicks": 60,
-      "MachineStation": "machining_bench",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "硬铝坯料车铣成型为管",
-      "RationaleEn": "公差可控。it is lightweight",
       "FactionLocked": false
     },
     {
@@ -1733,33 +1409,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_electrical_steel_plate",
-      "Inputs": [
-        {
-          "ItemId": "electrical_steel_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "electrical_steel_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "电工硅钢锭经铸轧成板。导电性好",
-      "RationaleEn": "used in grid wiring and motor windings。",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_electrical_steel_wire",
       "Inputs": [
         {
@@ -1801,7 +1450,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -1828,7 +1477,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -1855,7 +1504,7 @@
         }
       ],
       "Verb": "cast_roll",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -1882,7 +1531,7 @@
         }
       ],
       "Verb": "cast_roll",
-      "Tier": 2,
+      "Tier": 4,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -1892,6 +1541,33 @@
       "TechNode": "",
       "RationaleZh": "殷钢锭经铸轧成杆。耐蚀",
       "RationaleEn": "used in piping and chemical vessels。",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_iron_brick",
+      "Inputs": [
+        {
+          "ItemId": "iron_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "iron_brick",
+          "Count": 2
+        }
+      ],
+      "Verb": "press",
+      "Tier": 1,
+      "Family": "B",
+      "Seconds": 4.0,
+      "Kw": 20.0,
+      "WorkTicks": 40,
+      "MachineStation": "press",
+      "HandStation": "workbench",
+      "TechNode": "",
+      "RationaleZh": "铁经压制成砖",
+      "RationaleEn": "结构致密。it is strong",
       "FactionLocked": false
     },
     {
@@ -1922,33 +1598,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_iron_mesh",
-      "Inputs": [
-        {
-          "ItemId": "iron_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "iron_mesh",
-          "Count": 2
-        }
-      ],
-      "Verb": "press",
-      "Tier": 1,
-      "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "铁经压制成网",
-      "RationaleEn": "结构致密。it is strong",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_iron_pipe",
       "Inputs": [
         {
@@ -1963,7 +1612,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 1,
+      "Tier": 2,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -2003,33 +1652,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_iron_powder",
-      "Inputs": [
-        {
-          "ItemId": "iron_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "iron_powder",
-          "Count": 2
-        }
-      ],
-      "Verb": "crush",
-      "Tier": 1,
-      "Family": "B",
-      "Seconds": 3.0,
-      "Kw": 15.0,
-      "WorkTicks": 30,
-      "MachineStation": "crusher",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "铁经破碎机粉碎分选",
-      "RationaleEn": "得到便于后续处理的碎料。it is strong",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_iron_rod",
       "Inputs": [
         {
@@ -2057,7 +1679,7 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_nickel_mesh",
+      "Id": "form_nickel_pipe",
       "Inputs": [
         {
           "ItemId": "nickel_ingot",
@@ -2066,21 +1688,21 @@
       ],
       "Outputs": [
         {
-          "ItemId": "nickel_mesh",
-          "Count": 2
+          "ItemId": "nickel_pipe",
+          "Count": 1
         }
       ],
-      "Verb": "press",
-      "Tier": 2,
+      "Verb": "machining",
+      "Tier": 3,
       "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
+      "Seconds": 6.0,
+      "Kw": 25.0,
+      "WorkTicks": 60,
+      "MachineStation": "machining_bench",
       "HandStation": "workbench",
       "TechNode": "",
-      "RationaleZh": "镍经压制成网",
-      "RationaleEn": "结构致密。it resists corrosion",
+      "RationaleZh": "镍坯料车铣成型为管",
+      "RationaleEn": "公差可控。it resists corrosion",
       "FactionLocked": false
     },
     {
@@ -2098,7 +1720,7 @@
         }
       ],
       "Verb": "cast_roll",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -2125,7 +1747,7 @@
         }
       ],
       "Verb": "crush",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 3.0,
       "Kw": 15.0,
@@ -2135,168 +1757,6 @@
       "TechNode": "",
       "RationaleZh": "镍经破碎机粉碎分选",
       "RationaleEn": "得到便于后续处理的碎料。it resists corrosion",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_nickel_rod",
-      "Inputs": [
-        {
-          "ItemId": "nickel_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "nickel_rod",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "镍锭经铸轧成杆。耐蚀",
-      "RationaleEn": "used in piping and chemical vessels。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_nickel_wire",
-      "Inputs": [
-        {
-          "ItemId": "nickel_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "nickel_wire",
-          "Count": 3
-        }
-      ],
-      "Verb": "draw_wire",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "wire_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "镍锭经拉丝机拉制成线。耐蚀",
-      "RationaleEn": "used in piping and chemical vessels。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_phase_composite_mesh",
-      "Inputs": [
-        {
-          "ItemId": "phase_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "phase_composite_mesh",
-          "Count": 2
-        }
-      ],
-      "Verb": "press",
-      "Tier": 4,
-      "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "相变复合材经压制成网",
-      "RationaleEn": "结构致密。it stores energy densely",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_phase_composite_plate",
-      "Inputs": [
-        {
-          "ItemId": "phase_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "phase_composite_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 4,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "相变复合材锭经铸轧成板。储能密度高",
-      "RationaleEn": "used in cells and fusion fuel。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_phase_composite_rod",
-      "Inputs": [
-        {
-          "ItemId": "phase_composite_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "phase_composite_rod",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 4,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "相变复合材锭经铸轧成杆。储能密度高",
-      "RationaleEn": "used in cells and fusion fuel。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_platinum_mesh",
-      "Inputs": [
-        {
-          "ItemId": "platinum_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "platinum_mesh",
-          "Count": 2
-        }
-      ],
-      "Verb": "press",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "铂经压制成网",
-      "RationaleEn": "结构致密。it catalyzes readily",
       "FactionLocked": false
     },
     {
@@ -2327,87 +1787,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_platinum_mesh_alloy_plate",
-      "Inputs": [
-        {
-          "ItemId": "platinum_mesh_alloy_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "platinum_mesh_alloy_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "铂催化网材锭经铸轧成板。催化活性强",
-      "RationaleEn": "used in reactors and refining stages。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_platinum_mesh_alloy_wire",
-      "Inputs": [
-        {
-          "ItemId": "platinum_mesh_alloy_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "platinum_mesh_alloy_wire",
-          "Count": 3
-        }
-      ],
-      "Verb": "draw_wire",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "wire_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "铂催化网材锭经拉丝机拉制成线。催化活性强",
-      "RationaleEn": "used in reactors and refining stages。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_platinum_plate",
-      "Inputs": [
-        {
-          "ItemId": "platinum_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "platinum_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "铂锭经铸轧成板。催化活性强",
-      "RationaleEn": "used in reactors and refining stages。",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_platinum_powder",
       "Inputs": [
         {
@@ -2435,33 +1814,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "form_platinum_wire",
-      "Inputs": [
-        {
-          "ItemId": "platinum_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "platinum_wire",
-          "Count": 3
-        }
-      ],
-      "Verb": "draw_wire",
-      "Tier": 3,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "wire_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "铂锭经拉丝机拉制成线。催化活性强",
-      "RationaleEn": "used in reactors and refining stages。",
-      "FactionLocked": false
-    },
-    {
       "Id": "form_rare_earth_powder",
       "Inputs": [
         {
@@ -2476,7 +1828,7 @@
         }
       ],
       "Verb": "crush",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 3.0,
       "Kw": 15.0,
@@ -2503,7 +1855,7 @@
         }
       ],
       "Verb": "draw_wire",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 5.0,
       "Kw": 20.0,
@@ -2513,87 +1865,6 @@
       "TechNode": "",
       "RationaleZh": "稀土锭经拉丝机拉制成线。催化活性强",
       "RationaleEn": "used in reactors and refining stages。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_silicon_brick",
-      "Inputs": [
-        {
-          "ItemId": "silicon_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "silicon_brick",
-          "Count": 2
-        }
-      ],
-      "Verb": "press",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 4.0,
-      "Kw": 20.0,
-      "WorkTicks": 40,
-      "MachineStation": "press",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "硅经压制成砖",
-      "RationaleEn": "结构致密。it insulates",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_silicon_plate",
-      "Inputs": [
-        {
-          "ItemId": "silicon_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "silicon_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 2,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "硅锭经铸轧成板。绝缘隔热",
-      "RationaleEn": "used for electrical isolation and thermal lining。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_silicon_powder",
-      "Inputs": [
-        {
-          "ItemId": "silicon_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "silicon_powder",
-          "Count": 2
-        }
-      ],
-      "Verb": "crush",
-      "Tier": 1,
-      "Family": "B",
-      "Seconds": 3.0,
-      "Kw": 15.0,
-      "WorkTicks": 30,
-      "MachineStation": "crusher",
-      "HandStation": "workbench",
-      "TechNode": "",
-      "RationaleZh": "硅经破碎机粉碎分选",
-      "RationaleEn": "得到便于后续处理的碎料。it insulates",
       "FactionLocked": false
     },
     {
@@ -2611,7 +1882,7 @@
         }
       ],
       "Verb": "press",
-      "Tier": 1,
+      "Tier": 2,
       "Family": "B",
       "Seconds": 4.0,
       "Kw": 20.0,
@@ -2783,33 +2054,6 @@
       "TechNode": "",
       "RationaleZh": "超导合金经压制成网",
       "RationaleEn": "结构致密。it superconducts",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_superconductor_alloy_plate",
-      "Inputs": [
-        {
-          "ItemId": "superconductor_alloy_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "superconductor_alloy_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 4,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "超导合金锭经铸轧成板。零电阻",
-      "RationaleEn": "used in lossless power lines and magnetic confinement。",
       "FactionLocked": false
     },
     {
@@ -2989,7 +2233,7 @@
         }
       ],
       "Verb": "machining",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "B",
       "Seconds": 6.0,
       "Kw": 25.0,
@@ -3080,60 +2324,6 @@
       "TechNode": "",
       "RationaleZh": "钛锭经铸轧成杆。耐高温",
       "RationaleEn": "used in furnace linings and engine hot sections。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_uranium_core_alloy_plate",
-      "Inputs": [
-        {
-          "ItemId": "uranium_core_alloy_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "uranium_core_alloy_plate",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 4,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "铀燃料芯锭经铸轧成板。可裂变",
-      "RationaleEn": "used as reactor fuel。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "form_uranium_core_alloy_rod",
-      "Inputs": [
-        {
-          "ItemId": "uranium_core_alloy_ingot",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "uranium_core_alloy_rod",
-          "Count": 2
-        }
-      ],
-      "Verb": "cast_roll",
-      "Tier": 4,
-      "Family": "B",
-      "Seconds": 5.0,
-      "Kw": 20.0,
-      "WorkTicks": 50,
-      "MachineStation": "roll_mill",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "铀燃料芯锭经铸轧成杆。可裂变",
-      "RationaleEn": "used as reactor fuel。",
       "FactionLocked": false
     },
     {
@@ -3318,7 +2508,7 @@
           "Count": 1
         },
         {
-          "ItemId": "rare_earth_powder",
+          "ItemId": "electrical_steel_wire",
           "Count": 1
         }
       ],
@@ -3475,6 +2665,10 @@
         {
           "ItemId": "hull_panel",
           "Count": 2
+        },
+        {
+          "ItemId": "titanium_plate",
+          "Count": 1
         },
         {
           "ItemId": "kinetic_round",
@@ -3672,6 +2866,10 @@
       "Inputs": [
         {
           "ItemId": "habitat_frame",
+          "Count": 1
+        },
+        {
+          "ItemId": "bronze_rod",
           "Count": 1
         },
         {
@@ -3935,7 +3133,7 @@
       "Id": "make_b_chem_reactor",
       "Inputs": [
         {
-          "ItemId": "invar_plate",
+          "ItemId": "steel_plate",
           "Count": 2
         },
         {
@@ -4141,6 +3339,10 @@
           "Count": 2
         },
         {
+          "ItemId": "invar_pipe",
+          "Count": 1
+        },
+        {
           "ItemId": "cryo_pump",
           "Count": 1
         },
@@ -4250,6 +3452,10 @@
           "Count": 2
         },
         {
+          "ItemId": "invar_rod",
+          "Count": 2
+        },
+        {
           "ItemId": "quantum_circuit",
           "Count": 1
         }
@@ -4351,6 +3557,10 @@
           "Count": 2
         },
         {
+          "ItemId": "aluminum_mesh",
+          "Count": 1
+        },
+        {
           "ItemId": "courier_drone",
           "Count": 2
         },
@@ -4390,7 +3600,11 @@
           "Count": 2
         },
         {
-          "ItemId": "myco_catalyst",
+          "ItemId": "duralumin_mesh",
+          "Count": 1
+        },
+        {
+          "ItemId": "bio_composite_ingot",
           "Count": 1
         }
       ],
@@ -4460,8 +3674,8 @@
           "Count": 1
         },
         {
-          "ItemId": "morale_treat",
-          "Count": 1
+          "ItemId": "preserved_ration",
+          "Count": 2
         }
       ],
       "Outputs": [
@@ -4592,6 +3806,10 @@
           "Count": 1
         },
         {
+          "ItemId": "bronze_pipe",
+          "Count": 1
+        },
+        {
           "ItemId": "valve",
           "Count": 2
         }
@@ -4712,8 +3930,12 @@
       "Id": "make_b_gas_tank",
       "Inputs": [
         {
-          "ItemId": "iron_lump",
-          "Count": 3
+          "ItemId": "iron_plate",
+          "Count": 2
+        },
+        {
+          "ItemId": "valve",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -4778,8 +4000,12 @@
           "Count": 1
         },
         {
+          "ItemId": "copper_pipe",
+          "Count": 2
+        },
+        {
           "ItemId": "steel_pipe",
-          "Count": 3
+          "Count": 2
         },
         {
           "ItemId": "heat_shield_tile",
@@ -4918,7 +4144,7 @@
           "Count": 1
         },
         {
-          "ItemId": "phase_composite",
+          "ItemId": "phase_composite_ingot",
           "Count": 1
         },
         {
@@ -5283,6 +4509,10 @@
           "Count": 2
         },
         {
+          "ItemId": "titanium_powder",
+          "Count": 1
+        },
+        {
           "ItemId": "control_console",
           "Count": 1
         }
@@ -5349,7 +4579,7 @@
           "Count": 4
         },
         {
-          "ItemId": "structural_panel",
+          "ItemId": "steel_brick",
           "Count": 2
         }
       ],
@@ -5411,7 +4641,7 @@
           "Count": 2
         },
         {
-          "ItemId": "enriched_uranium_rod",
+          "ItemId": "uranium_core_alloy_ingot",
           "Count": 2
         },
         {
@@ -5448,6 +4678,10 @@
         {
           "ItemId": "lens",
           "Count": 2
+        },
+        {
+          "ItemId": "bronze_gear",
+          "Count": 1
         },
         {
           "ItemId": "light_frame",
@@ -5489,6 +4723,10 @@
           "Count": 3
         },
         {
+          "ItemId": "titanium_alloy_plate",
+          "Count": 2
+        },
+        {
           "ItemId": "control_console",
           "Count": 1
         }
@@ -5521,6 +4759,10 @@
         },
         {
           "ItemId": "gas_collector",
+          "Count": 2
+        },
+        {
+          "ItemId": "nickel_plate",
           "Count": 2
         },
         {
@@ -5714,7 +4956,7 @@
           "Count": 2
         },
         {
-          "ItemId": "steel_pipe",
+          "ItemId": "iron_pipe",
           "Count": 2
         }
       ],
@@ -5811,12 +5053,20 @@
       "Id": "make_b_refinery",
       "Inputs": [
         {
-          "ItemId": "steel_pipe",
-          "Count": 3
+          "ItemId": "titanium_pipe",
+          "Count": 1
         },
         {
           "ItemId": "invar_plate",
           "Count": 2
+        },
+        {
+          "ItemId": "nickel_powder",
+          "Count": 2
+        },
+        {
+          "ItemId": "invar_gear",
+          "Count": 1
         },
         {
           "ItemId": "pump",
@@ -5966,7 +5216,7 @@
       "Id": "make_b_sabatier_reactor",
       "Inputs": [
         {
-          "ItemId": "invar_pipe",
+          "ItemId": "nickel_pipe",
           "Count": 2
         },
         {
@@ -6076,6 +5326,10 @@
         },
         {
           "ItemId": "shield_emitter",
+          "Count": 1
+        },
+        {
+          "ItemId": "aurite_steel_rod",
           "Count": 1
         },
         {
@@ -6401,7 +5655,7 @@
       "Id": "make_b_wall",
       "Inputs": [
         {
-          "ItemId": "regolith",
+          "ItemId": "iron_brick",
           "Count": 2
         },
         {
@@ -6732,6 +5986,10 @@
         },
         {
           "ItemId": "machined_parts",
+          "Count": 1
+        },
+        {
+          "ItemId": "duralumin_gear",
           "Count": 1
         }
       ],
@@ -7084,8 +6342,8 @@
       "Id": "make_compact_reactor_core",
       "Inputs": [
         {
-          "ItemId": "enriched_uranium_rod",
-          "Count": 2
+          "ItemId": "uranium_core_alloy_ingot",
+          "Count": 1
         },
         {
           "ItemId": "invar_plate",
@@ -7120,6 +6378,10 @@
         },
         {
           "ItemId": "glass",
+          "Count": 1
+        },
+        {
+          "ItemId": "copper_gear",
           "Count": 1
         },
         {
@@ -7186,6 +6448,10 @@
         },
         {
           "ItemId": "basic_circuit",
+          "Count": 1
+        },
+        {
+          "ItemId": "aluminum_wire",
           "Count": 1
         }
       ],
@@ -7274,7 +6540,11 @@
           "Count": 1
         },
         {
-          "ItemId": "invar_pipe",
+          "ItemId": "titanium_pipe",
+          "Count": 1
+        },
+        {
+          "ItemId": "radiator_fin",
           "Count": 1
         }
       ],
@@ -7398,7 +6668,7 @@
           "Count": 1
         },
         {
-          "ItemId": "aurite_steel_plate",
+          "ItemId": "titanium_alloy_plate",
           "Count": 1
         }
       ],
@@ -7549,7 +6819,7 @@
           "Count": 2
         },
         {
-          "ItemId": "fiber",
+          "ItemId": "steel_mesh",
           "Count": 1
         }
       ],
@@ -7608,6 +6878,10 @@
       "Inputs": [
         {
           "ItemId": "valve",
+          "Count": 1
+        },
+        {
+          "ItemId": "small_nozzle",
           "Count": 1
         },
         {
@@ -7688,7 +6962,7 @@
         }
       ],
       "Verb": "press",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "E",
       "Seconds": 4.0,
       "Kw": 20.0,
@@ -7736,10 +7010,10 @@
       "Inputs": [
         {
           "ItemId": "steel_gear",
-          "Count": 2
+          "Count": 1
         },
         {
-          "ItemId": "lubricant",
+          "ItemId": "iron_gear",
           "Count": 1
         }
       ],
@@ -7859,7 +7133,7 @@
       "Id": "make_heat_shield_tile",
       "Inputs": [
         {
-          "ItemId": "aurite_steel_plate",
+          "ItemId": "titanium_alloy_plate",
           "Count": 1
         },
         {
@@ -7894,7 +7168,7 @@
           "Count": 2
         },
         {
-          "ItemId": "steel_pipe",
+          "ItemId": "copper_rod",
           "Count": 1
         }
       ],
@@ -7926,6 +7200,10 @@
         },
         {
           "ItemId": "heavy_nozzle",
+          "Count": 1
+        },
+        {
+          "ItemId": "aurite_steel_pipe",
           "Count": 1
         }
       ],
@@ -8016,6 +7294,14 @@
         {
           "ItemId": "engine_nozzle",
           "Count": 2
+        },
+        {
+          "ItemId": "titanium_alloy_rod",
+          "Count": 1
+        },
+        {
+          "ItemId": "aurite_steel_plate",
+          "Count": 1
         },
         {
           "ItemId": "platinum_mesh_alloy_mesh",
@@ -8198,6 +7484,10 @@
         {
           "ItemId": "comms_array_module",
           "Count": 1
+        },
+        {
+          "ItemId": "duralumin_wire",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -8258,6 +7548,10 @@
           "Count": 2
         },
         {
+          "ItemId": "rare_earth_wire",
+          "Count": 1
+        },
+        {
           "ItemId": "rare_earth_powder",
           "Count": 1
         }
@@ -8285,12 +7579,12 @@
       "Id": "make_lead_lining",
       "Inputs": [
         {
-          "ItemId": "nickel_plate",
-          "Count": 2
+          "ItemId": "iron_plate",
+          "Count": 1
         },
         {
           "ItemId": "regolith",
-          "Count": 1
+          "Count": 2
         }
       ],
       "Outputs": [
@@ -8376,10 +7670,6 @@
         {
           "ItemId": "steel_rod",
           "Count": 1
-        },
-        {
-          "ItemId": "lubricant",
-          "Count": 1
         }
       ],
       "Outputs": [
@@ -8409,7 +7699,7 @@
           "Count": 2
         },
         {
-          "ItemId": "spore_extract",
+          "ItemId": "salt",
           "Count": 1
         }
       ],
@@ -8471,8 +7761,8 @@
           "Count": 1
         },
         {
-          "ItemId": "steel_gear",
-          "Count": 2
+          "ItemId": "titanium_gear",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -8808,7 +8098,7 @@
         }
       ],
       "Verb": "synthesize",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "E",
       "Seconds": 8.0,
       "Kw": 30.0,
@@ -8914,7 +8204,7 @@
       ],
       "Verb": "assemble",
       "Tier": 4,
-      "Family": "D",
+      "Family": "E",
       "Seconds": 8.0,
       "Kw": 25.0,
       "WorkTicks": 80,
@@ -8999,7 +8289,7 @@
       "Id": "make_phase_armor_plate",
       "Inputs": [
         {
-          "ItemId": "phase_composite",
+          "ItemId": "phase_gel_refined",
           "Count": 1
         },
         {
@@ -9096,7 +8386,7 @@
           "Count": 1
         },
         {
-          "ItemId": "synthetic_rubber",
+          "ItemId": "crude_seal",
           "Count": 1
         }
       ],
@@ -9138,7 +8428,7 @@
         }
       ],
       "Verb": "press",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "E",
       "Seconds": 4.0,
       "Kw": 20.0,
@@ -9162,7 +8452,7 @@
           "Count": 1
         },
         {
-          "ItemId": "seal_ring",
+          "ItemId": "crude_seal",
           "Count": 1
         }
       ],
@@ -9226,6 +8516,10 @@
         {
           "ItemId": "lead_lining",
           "Count": 1
+        },
+        {
+          "ItemId": "liquid_nitrogen",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -9252,7 +8546,11 @@
       "Inputs": [
         {
           "ItemId": "aluminum_plate",
-          "Count": 2
+          "Count": 1
+        },
+        {
+          "ItemId": "aluminum_rod",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -9615,7 +8913,7 @@
           "Count": 1
         },
         {
-          "ItemId": "phase_composite",
+          "ItemId": "phase_composite_ingot",
           "Count": 1
         }
       ],
@@ -9836,7 +9134,7 @@
           "Count": 2
         },
         {
-          "ItemId": "synthetic_rubber",
+          "ItemId": "crude_seal",
           "Count": 1
         }
       ],
@@ -9898,7 +9196,7 @@
           "Count": 1
         },
         {
-          "ItemId": "invar_plate",
+          "ItemId": "steel_plate",
           "Count": 1
         }
       ],
@@ -9983,11 +9281,11 @@
       "Id": "make_valve",
       "Inputs": [
         {
-          "ItemId": "bronze_pipe",
+          "ItemId": "steel_pipe",
           "Count": 1
         },
         {
-          "ItemId": "seal_ring",
+          "ItemId": "crude_seal",
           "Count": 1
         }
       ],
@@ -10131,37 +9429,6 @@
       "FactionLocked": false
     },
     {
-      "Id": "polymerize_gel_cure",
-      "Inputs": [
-        {
-          "ItemId": "phase_gel_raw",
-          "Count": 2
-        },
-        {
-          "ItemId": "polymer",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "phase_composite",
-          "Count": 1
-        }
-      ],
-      "Verb": "polymerize",
-      "Tier": 4,
-      "Family": "C",
-      "Seconds": 10.0,
-      "Kw": 35.0,
-      "WorkTicks": 100,
-      "MachineStation": "polymer_reactor",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "聚合反应链增长成材。工艺成熟",
-      "RationaleEn": "used across base building and production。",
-      "FactionLocked": false
-    },
-    {
       "Id": "polymerize_insulation",
       "Inputs": [
         {
@@ -10177,68 +9444,6 @@
         {
           "ItemId": "insulation_wrap",
           "Count": 2
-        }
-      ],
-      "Verb": "polymerize",
-      "Tier": 3,
-      "Family": "C",
-      "Seconds": 10.0,
-      "Kw": 35.0,
-      "WorkTicks": 100,
-      "MachineStation": "polymer_reactor",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "聚合反应链增长成材。工艺成熟",
-      "RationaleEn": "used across base building and production。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "polymerize_membrane",
-      "Inputs": [
-        {
-          "ItemId": "polymer",
-          "Count": 2
-        },
-        {
-          "ItemId": "platinum_powder",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "platinum_mesh_alloy",
-          "Count": 1
-        }
-      ],
-      "Verb": "polymerize",
-      "Tier": 4,
-      "Family": "C",
-      "Seconds": 10.0,
-      "Kw": 35.0,
-      "WorkTicks": 100,
-      "MachineStation": "polymer_reactor",
-      "HandStation": "",
-      "TechNode": "",
-      "RationaleZh": "聚合反应链增长成材。工艺成熟",
-      "RationaleEn": "used across base building and production。",
-      "FactionLocked": false
-    },
-    {
-      "Id": "polymerize_resin_plastic",
-      "Inputs": [
-        {
-          "ItemId": "resin",
-          "Count": 2
-        },
-        {
-          "ItemId": "polymer",
-          "Count": 1
-        }
-      ],
-      "Outputs": [
-        {
-          "ItemId": "bio_composite",
-          "Count": 1
         }
       ],
       "Verb": "polymerize",
@@ -10439,7 +9644,7 @@
         }
       ],
       "Verb": "smelt",
-      "Tier": 1,
+      "Tier": 3,
       "Family": "A",
       "Seconds": 6.0,
       "Kw": 35.0,
@@ -10493,7 +9698,7 @@
         }
       ],
       "Verb": "smelt",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "A",
       "Seconds": 6.0,
       "Kw": 35.0,
@@ -10591,6 +9796,68 @@
       "FactionLocked": false
     },
     {
+      "Id": "synth_bordeaux",
+      "Inputs": [
+        {
+          "ItemId": "copper_powder",
+          "Count": 1
+        },
+        {
+          "ItemId": "sulfuric_acid",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "fertilizer",
+          "Count": 2
+        }
+      ],
+      "Verb": "synthesize",
+      "Tier": 2,
+      "Family": "C",
+      "Seconds": 8.0,
+      "Kw": 30.0,
+      "WorkTicks": 80,
+      "MachineStation": "chem_reactor",
+      "HandStation": "",
+      "TechNode": "",
+      "RationaleZh": "化工釜内受控反应",
+      "RationaleEn": "产物配比稳定。it is organic",
+      "FactionLocked": false
+    },
+    {
+      "Id": "synth_crude_seal",
+      "Inputs": [
+        {
+          "ItemId": "sulfur",
+          "Count": 1
+        },
+        {
+          "ItemId": "fiber",
+          "Count": 2
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "crude_seal",
+          "Count": 2
+        }
+      ],
+      "Verb": "synthesize",
+      "Tier": 2,
+      "Family": "C",
+      "Seconds": 8.0,
+      "Kw": 30.0,
+      "WorkTicks": 80,
+      "MachineStation": "chem_reactor",
+      "HandStation": "",
+      "TechNode": "",
+      "RationaleZh": "化工釜内受控反应",
+      "RationaleEn": "产物配比稳定。it resists corrosion",
+      "FactionLocked": false
+    },
+    {
       "Id": "synth_deuterium_fuel",
       "Inputs": [
         {
@@ -10625,7 +9892,7 @@
       "Id": "synth_fertilizer",
       "Inputs": [
         {
-          "ItemId": "ammonia",
+          "ItemId": "sulfuric_acid",
           "Count": 1
         },
         {
@@ -10795,7 +10062,7 @@
         }
       ],
       "Verb": "synthesize",
-      "Tier": 2,
+      "Tier": 3,
       "Family": "C",
       "Seconds": 8.0,
       "Kw": 30.0,

@@ -5,8 +5,8 @@ iron,铁,iron,0,high_strength,iron_ore,2
 copper,铜,copper,0,conductive,copper_ore,2
 aluminum,铝,aluminum,1,light;corrosion_resistant,bauxite,2
 titanium,钛,titanium,2,heat_resistant;high_strength;light,titanium_sand,3
-nickel,镍,nickel,1,corrosion_resistant,nickel_gravel,2
+nickel,镍,nickel,3,corrosion_resistant,nickel_gravel,2
 silicon,硅,silicon,1,insulating,quartz_sand,2
-rare_earth,稀土,rare-earth metal,2,catalytic;conductive,rare_earth_ore,3
+rare_earth,稀土,rare-earth metal,3,catalytic;conductive,rare_earth_ore,3
 platinum,铂,platinum,3,catalytic;corrosion_resistant,platinum_sand,3
 aurite,曜金,aurite,3,heat_resistant;catalytic,obsidian_gold_ore,3

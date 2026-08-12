@@ -22,10 +22,11 @@ liquid_methane,液化甲烷,Liquid methane,intermediate,3,fluid;flammable,3
 liquid_hydrogen,液氢,Liquid hydrogen,intermediate,3,fluid;flammable,2
 liquid_nitrogen,液氮,Liquid nitrogen,intermediate,3,fluid,3
 deuterium_fuel,重氢燃料,Deuterium fuel,intermediate,4,energy_storing,2
-rocket_fuel,火箭燃料组,Rocket fuel load,intermediate,3,flammable,6
+rocket_fuel,火箭燃料组,Rocket fuel load,consumable,3,flammable,6
 enriched_uranium_rod,浓缩铀棒,Enriched uranium rod,intermediate,4,fissile,4
 glass,玻璃,Glass,intermediate,1,insulating,2
 brine,卤水,Brine,intermediate,1,fluid,2
 spore_extract,孢子提取液,Spore extract,intermediate,2,organic,1
 growth_medium,培养基,Growth medium,intermediate,2,organic,2
 protein_paste,蛋白浆,Protein paste,intermediate,2,organic,2
+crude_seal,粗密封圈,Crude seal,intermediate,2,corrosion_resistant,1
