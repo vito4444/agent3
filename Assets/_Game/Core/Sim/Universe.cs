@@ -50,6 +50,8 @@ namespace Starsoil.Core
         public int ColonistCount;
         public int PendingDeaths;
         public int ShortageHours;
+        /// <summary>Region has a landing beacon (zero cargo loss, M5-T5).</summary>
+        public bool HasBeacon;
     }
 
     public sealed class RocketLaunchedEvent : ISimEvent
@@ -70,6 +72,36 @@ namespace Starsoil.Core
     {
         public int RegionId;
         public string ItemId;
+    }
+
+    public sealed class CargoLossEvent : ISimEvent
+    {
+        public int TransitId;
+        public int RegionId;
+        public int UnitsLost;
+    }
+
+    /// <summary>Landing on a faction home body raises a warning (M5-T10 placeholder; M6 behavior).</summary>
+    public sealed class FactionWarningEvent : ISimEvent
+    {
+        public string BodyId;
+    }
+
+    /// <summary>Automated supply route (M5-T7): keeps the destination stocked above thresholds.</summary>
+    public sealed class TradeRoute
+    {
+        public int Id;
+        public int FromRegionId;
+        public int ToRegionId;
+        public string ToBodyId = string.Empty;
+        public List<Ingredient> Thresholds = new List<Ingredient>();
+        public bool Suspended;
+    }
+
+    public sealed class RouteSuspendedEvent : ISimEvent
+    {
+        public int RouteId;
+        public string Reason;
     }
 
     /// <summary>
@@ -93,6 +125,10 @@ namespace Starsoil.Core
         public string ActiveBodyId { get; private set; } = "dustloam";
         public Dictionary<int, RegionSlot> FrozenRegions { get; } = new Dictionary<int, RegionSlot>();
         public List<Transit> Transits { get; } = new List<Transit>();
+        public List<TradeRoute> Routes { get; } = new List<TradeRoute>();
+        /// <summary>Comms array built anywhere → faction layer visible on the map (M5-T8).</summary>
+        public bool FactionLayerVisible;
+        private int _nextRouteId = 1;
 
         private int _nextRegionId = 2;
         private int _nextTransitId = 1;
@@ -100,6 +136,22 @@ namespace Starsoil.Core
         private List<TechNode> _techNodes = new List<TechNode>();
 
         public long Tick => ActiveWorld.Tick;
+
+        /// <summary>Transfer time (docs/plan/06): same body 1h, adjacent orbit 2h,
+        /// +4h per additional hop.</summary>
+        public long TransferTicks(string fromBodyId, string toBodyId)
+        {
+            if (fromBodyId == toBodyId)
+            {
+                return GameConstants.TicksPerHour;
+            }
+            Bodies.TryGet(fromBodyId, out var from);
+            Bodies.TryGet(toBodyId, out var to);
+            int hops = Math.Abs((from?.OrbitIndex ?? 1) - (to?.OrbitIndex ?? 1));
+            hops = Math.Max(1, hops);
+            long hours = 2 + (hops - 1) * 4L;
+            return hours * GameConstants.TicksPerHour;
+        }
 
         public static Universe NewGame(ulong seed, int regionSize)
         {
@@ -144,6 +196,8 @@ namespace Starsoil.Core
                     AbstractHour(slot);
                 }
                 TickTransits();
+                TickRoutes();
+                RefreshFactionLayer();
             }
             TickLaunches();
         }
@@ -164,6 +218,29 @@ namespace Starsoil.Core
         public static string PayloadItem(string payload)
         {
             return payload == ColonistPodPayload ? "colonist_pod" : "cargo_pod";
+        }
+
+        /// <summary>Launch checklist (M5-T3): parts / fuel / payload / target / landing.
+        /// All five must pass before a window fires the rocket.</summary>
+        public (bool parts, bool fuel, bool payload, bool target, bool landing) PadChecklist(BuildingState pad)
+        {
+            bool parts = true;
+            bool fuel = false;
+            foreach (var part in RocketParts)
+            {
+                if (part.ItemId == "rocket_fuel")
+                {
+                    fuel = pad.Stock.Get(part.ItemId) >= part.Count;
+                }
+                else if (pad.Stock.Get(part.ItemId) < part.Count)
+                {
+                    parts = false;
+                }
+            }
+            bool payload = pad.Pad != null && pad.Stock.Get(PayloadItem(pad.Pad.Payload)) >= 1;
+            bool target = pad.Pad != null && Bodies.TryGet(pad.Pad.TargetBodyId, out var body) && body.Landable;
+            bool landing = target;
+            return (parts, fuel, payload, target, landing);
         }
 
         public static bool PadPartsComplete(BuildingState pad)
@@ -199,11 +276,15 @@ namespace Starsoil.Core
             padIds.Sort();
             foreach (int padId in padIds)
             {
-                if (!ActiveWorld.Buildings.TryGet(padId, out var pad) || !PadPartsComplete(pad))
+                if (!ActiveWorld.Buildings.TryGet(padId, out var pad) || pad.Pad == null || !pad.Pad.Active)
                 {
                     continue;
                 }
-                Launch(pad);
+                var checklist = PadChecklist(pad);
+                if (checklist.parts && checklist.fuel && checklist.payload && checklist.target && checklist.landing)
+                {
+                    Launch(pad);
+                }
             }
         }
 
@@ -230,7 +311,7 @@ namespace Starsoil.Core
                 Crew = order.Payload == ColonistPodPayload ? Math.Max(1, order.Crew) : 0,
                 Cargo = new List<Ingredient>(order.Cargo),
                 DepartTick = ActiveWorld.Tick,
-                ArriveTick = ActiveWorld.Tick + (long)Math.Max(1, body.TravelDays) * GameConstants.TicksPerDay
+                ArriveTick = ActiveWorld.Tick + TransferTicks(ActiveBodyId, order.TargetBodyId)
             };
             _nextTransitId++;
 
@@ -288,8 +369,18 @@ namespace Starsoil.Core
             }
         }
 
+        /// <summary>Cargo-loss factor without a landing beacon (M5-T5: fixed edge drop, 5% loss).</summary>
+        private const float NoBeaconLossFactor = 0.05f;
+
         private void Arrive(Transit transit)
         {
+            // Landing on a faction home body raises a warning placeholder (M5-T10 → M6).
+            if (transit.TargetBodyId == "redridge" || transit.TargetBodyId == "warmmarsh" ||
+                transit.TargetBodyId == "sleetfall")
+            {
+                ActiveWorld.Events.Add(new FactionWarningEvent { BodyId = transit.TargetBodyId });
+            }
+
             if (transit.Payload == ColonistPodPayload && transit.TargetRegionId == 0)
             {
                 int regionId = _nextRegionId;
@@ -310,12 +401,31 @@ namespace Starsoil.Core
                 return;
             }
 
-            // Cargo (or crewed resupply) to an existing region.
+            // Cargo (or crewed resupply) to an existing region. Without a landing beacon
+            // the pod drops at a fixed edge point and 5% of each stack is lost (M5-T5).
             int target = transit.TargetRegionId;
+            bool hasBeacon = DestinationHasBeacon(target);
+            int lost = 0;
+            var delivered = new List<Ingredient>();
+            foreach (var item in transit.Cargo)
+            {
+                int units = item.Count;
+                if (!hasBeacon)
+                {
+                    int loss = (int)Math.Floor(units * NoBeaconLossFactor);
+                    units -= loss;
+                    lost += loss;
+                }
+                if (units > 0)
+                {
+                    delivered.Add(new Ingredient { ItemId = item.ItemId, Count = units });
+                }
+            }
+
             if (target == ActiveRegionId)
             {
                 var pod = ActiveWorld.Buildings.FindFirstOfKind(BuildingKind.CrashPod);
-                foreach (var item in transit.Cargo)
+                foreach (var item in delivered)
                 {
                     if (pod != null)
                     {
@@ -329,11 +439,15 @@ namespace Starsoil.Core
             }
             else if (FrozenRegions.TryGetValue(target, out var slot))
             {
-                foreach (var item in transit.Cargo)
+                foreach (var item in delivered)
                 {
                     slot.Stockpile.TryGetValue(item.ItemId, out int existing);
                     slot.Stockpile[item.ItemId] = existing + item.Count;
                 }
+            }
+            if (lost > 0)
+            {
+                ActiveWorld.Events.Add(new CargoLossEvent { TransitId = transit.Id, RegionId = target, UnitsLost = lost });
             }
             ActiveWorld.Events.Add(new TransitArrivedEvent
             {
@@ -343,11 +457,26 @@ namespace Starsoil.Core
             });
         }
 
+        private bool DestinationHasBeacon(int regionId)
+        {
+            if (regionId == ActiveRegionId)
+            {
+                foreach (var pair in ActiveWorld.Buildings.All)
+                {
+                    if (pair.Value.DefId == BuildingDefs.LandingBeaconId)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return FrozenRegions.TryGetValue(regionId, out var slot) && slot.HasBeacon;
+        }
+
         /// <summary>Queues a cargo rocket to an existing region (docs/plan/06 resupply line).
         /// Used by scenario scripts and the pad order UI.</summary>
         public void QueueCargoTransit(int targetRegionId, string targetBodyId, List<Ingredient> cargo)
         {
-            Bodies.TryGet(targetBodyId, out var body);
             Transits.Add(new Transit
             {
                 Id = _nextTransitId++,
@@ -357,8 +486,203 @@ namespace Starsoil.Core
                 Payload = CargoPodPayload,
                 Cargo = cargo,
                 DepartTick = ActiveWorld.Tick,
-                ArriveTick = ActiveWorld.Tick + (long)Math.Max(1, body?.TravelDays ?? 1) * GameConstants.TicksPerDay
+                ArriveTick = ActiveWorld.Tick + TransferTicks(ActiveBodyId, targetBodyId)
             });
+        }
+
+        /// <summary>Creates an automated supply route (M5-T7).</summary>
+        public TradeRoute AddRoute(int fromRegionId, int toRegionId, string toBodyId, List<Ingredient> thresholds)
+        {
+            var route = new TradeRoute
+            {
+                Id = _nextRouteId,
+                FromRegionId = fromRegionId,
+                ToRegionId = toRegionId,
+                ToBodyId = toBodyId,
+                Thresholds = thresholds
+            };
+            _nextRouteId++;
+            Routes.Add(route);
+            return route;
+        }
+
+        /// <summary>Route upkeep: when the destination drops below a threshold, load the
+        /// shortfall plus one rocket_fuel from the origin and queue a cargo transit.
+        /// Missing fuel or goods suspends the route with an alert (M5-T7).</summary>
+        private void TickRoutes()
+        {
+            foreach (var route in Routes)
+            {
+                if (route.Suspended)
+                {
+                    continue;
+                }
+                if (route.FromRegionId != ActiveRegionId)
+                {
+                    TickFrozenOriginRoute(route);
+                    continue;
+                }
+                bool inFlight = false;
+                foreach (var transit in Transits)
+                {
+                    if (transit.TargetRegionId == route.ToRegionId && transit.Payload == CargoPodPayload)
+                    {
+                        inFlight = true;
+                    }
+                }
+                if (inFlight)
+                {
+                    continue;
+                }
+
+                var shortfall = new List<Ingredient>();
+                foreach (var threshold in route.Thresholds)
+                {
+                    int destStock = DestinationStock(route, threshold.ItemId);
+                    if (destStock < threshold.Count)
+                    {
+                        shortfall.Add(new Ingredient { ItemId = threshold.ItemId, Count = threshold.Count - destStock });
+                    }
+                }
+                if (shortfall.Count == 0)
+                {
+                    continue;
+                }
+
+                if (ActiveWorld.CountItemEverywhere("rocket_fuel") < 1)
+                {
+                    route.Suspended = true;
+                    ActiveWorld.Events.Add(new RouteSuspendedEvent { RouteId = route.Id, Reason = "fuel" });
+                    ActiveWorld.Alerts.Raise(ActiveWorld, "route_suspended_" + route.Id, AlertSeverity.Warning,
+                        ActiveWorld.PodInteriorX, ActiveWorld.PodInteriorY);
+                    continue;
+                }
+                var loaded = new List<Ingredient>();
+                foreach (var item in shortfall)
+                {
+                    int taken = 0;
+                    for (int i = 0; i < item.Count; i++)
+                    {
+                        if (ActiveWorld.TryConsumeItemAnywhere(item.ItemId))
+                        {
+                            taken++;
+                        }
+                    }
+                    if (taken > 0)
+                    {
+                        loaded.Add(new Ingredient { ItemId = item.ItemId, Count = taken });
+                    }
+                }
+                if (loaded.Count == 0)
+                {
+                    // Goods not stocked yet: wait for production (only missing fuel
+                    // suspends a route, M5-T7 wording).
+                    continue;
+                }
+                ActiveWorld.TryConsumeItemAnywhere("rocket_fuel");
+                QueueCargoTransit(route.ToRegionId, route.ToBodyId, loaded);
+            }
+        }
+
+        /// <summary>Routes departing a frozen region draw goods and fuel from its abstract
+        /// stockpile (the return leg of a two-way line, M5-T9).</summary>
+        private void TickFrozenOriginRoute(TradeRoute route)
+        {
+            if (!FrozenRegions.TryGetValue(route.FromRegionId, out var origin))
+            {
+                return;
+            }
+            bool inFlight = false;
+            foreach (var transit in Transits)
+            {
+                if (transit.TargetRegionId == route.ToRegionId && transit.FromRegionId == route.FromRegionId)
+                {
+                    inFlight = true;
+                }
+            }
+            if (inFlight)
+            {
+                return;
+            }
+            var shortfall = new List<Ingredient>();
+            foreach (var threshold in route.Thresholds)
+            {
+                int destStock = DestinationStock(route, threshold.ItemId);
+                if (destStock < threshold.Count)
+                {
+                    shortfall.Add(new Ingredient { ItemId = threshold.ItemId, Count = threshold.Count - destStock });
+                }
+            }
+            if (shortfall.Count == 0)
+            {
+                return;
+            }
+            origin.Stockpile.TryGetValue("rocket_fuel", out int fuel);
+            if (fuel < 1)
+            {
+                route.Suspended = true;
+                ActiveWorld.Events.Add(new RouteSuspendedEvent { RouteId = route.Id, Reason = "fuel" });
+                return;
+            }
+            var loaded = new List<Ingredient>();
+            foreach (var item in shortfall)
+            {
+                origin.Stockpile.TryGetValue(item.ItemId, out int stock);
+                int taken = Math.Min(stock, item.Count);
+                if (taken > 0)
+                {
+                    origin.Stockpile[item.ItemId] = stock - taken;
+                    loaded.Add(new Ingredient { ItemId = item.ItemId, Count = taken });
+                }
+            }
+            if (loaded.Count == 0)
+            {
+                // Wait for the origin's abstract production to stock up.
+                return;
+            }
+            origin.Stockpile["rocket_fuel"] = fuel - 1;
+            Bodies.TryGet(origin.BodyId, out _);
+            Transits.Add(new Transit
+            {
+                Id = _nextTransitId++,
+                FromRegionId = route.FromRegionId,
+                TargetBodyId = route.ToBodyId,
+                TargetRegionId = route.ToRegionId,
+                Payload = CargoPodPayload,
+                Cargo = loaded,
+                DepartTick = ActiveWorld.Tick,
+                ArriveTick = ActiveWorld.Tick + TransferTicks(origin.BodyId, route.ToBodyId)
+            });
+        }
+
+        private int DestinationStock(TradeRoute route, string itemId)
+        {
+            if (route.ToRegionId == ActiveRegionId)
+            {
+                return ActiveWorld.CountItemEverywhere(itemId);
+            }
+            if (FrozenRegions.TryGetValue(route.ToRegionId, out var slot))
+            {
+                slot.Stockpile.TryGetValue(itemId, out int stock);
+                return stock;
+            }
+            return 0;
+        }
+
+        private void RefreshFactionLayer()
+        {
+            if (FactionLayerVisible)
+            {
+                return;
+            }
+            foreach (var pair in ActiveWorld.Buildings.All)
+            {
+                if (pair.Value.DefId == "comms_array")
+                {
+                    FactionLayerVisible = true;
+                    return;
+                }
+            }
         }
 
         // ---------------------------------------------------------------- abstract regions
@@ -429,6 +753,13 @@ namespace Starsoil.Core
                 FrozenSave = SaveSerializer.ToGzipJson(SaveSerializer.Capture(world)),
                 ColonistCount = world.Colonists.AliveCount
             };
+            foreach (var pair in world.Buildings.All)
+            {
+                if (pair.Value.DefId == BuildingDefs.LandingBeaconId)
+                {
+                    slot.HasBeacon = true;
+                }
+            }
             CollectStock(world, slot.Stockpile);
             foreach (var pair in slot.Stockpile)
             {
@@ -588,6 +919,9 @@ namespace Starsoil.Core
                 ["NextTransitId"] = _nextTransitId,
                 ["ActiveBlob"] = Convert.ToBase64String(SaveSerializer.ToGzipJson(SaveSerializer.Capture(ActiveWorld))),
                 ["Transits"] = JArray.FromObject(Transits),
+                ["Routes"] = JArray.FromObject(Routes),
+                ["NextRouteId"] = _nextRouteId,
+                ["FactionLayerVisible"] = FactionLayerVisible,
                 ["Slots"] = SlotsJson()
             };
             byte[] raw = Encoding.UTF8.GetBytes(root.ToString(Formatting.None));
@@ -617,7 +951,8 @@ namespace Starsoil.Core
                     ["Baseline"] = JObject.FromObject(slot.Baseline),
                     ["ColonistCount"] = slot.ColonistCount,
                     ["PendingDeaths"] = slot.PendingDeaths,
-                    ["ShortageHours"] = slot.ShortageHours
+                    ["ShortageHours"] = slot.ShortageHours,
+                    ["HasBeacon"] = slot.HasBeacon
                 });
             }
             return array;
@@ -650,6 +985,15 @@ namespace Starsoil.Core
                     universe.Transits.Add(token.ToObject<Transit>());
                 }
             }
+            if (root["Routes"] is JArray routes)
+            {
+                foreach (var token in routes)
+                {
+                    universe.Routes.Add(token.ToObject<TradeRoute>());
+                }
+            }
+            universe._nextRouteId = root.Value<int?>("NextRouteId") ?? 1;
+            universe.FactionLayerVisible = root.Value<bool?>("FactionLayerVisible") ?? false;
             if (root["Slots"] is JArray slots)
             {
                 foreach (var token in slots)
@@ -666,7 +1010,8 @@ namespace Starsoil.Core
                         FrozenSave = Convert.FromBase64String(s.Value<string>("Blob")),
                         ColonistCount = s.Value<int?>("ColonistCount") ?? 0,
                         PendingDeaths = s.Value<int?>("PendingDeaths") ?? 0,
-                        ShortageHours = s.Value<int?>("ShortageHours") ?? 0
+                        ShortageHours = s.Value<int?>("ShortageHours") ?? 0,
+                        HasBeacon = s.Value<bool?>("HasBeacon") ?? false
                     };
                     ReadIntMap(s["Stockpile"] as JObject, slot.Stockpile);
                     ReadIntMap(s["Baseline"] as JObject, slot.Baseline);

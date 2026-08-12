@@ -126,11 +126,12 @@ namespace Starsoil.UI
             foreach (var pair in _universe.Bodies.All)
             {
                 var body = pair.Value;
+                long travelHours = _universe.TransferTicks(_universe.ActiveBodyId, body.Id) / GameConstants.TicksPerHour;
                 var row = new Label
                 {
                     text = (L10n.Language == "en" ? body.En : body.Zh) +
                            (body.Landable ? "" : " ✕") + "  " +
-                           L10n.TrF("ui_travel_days", body.TravelDays) + "  [" +
+                           L10n.TrF("ui_travel_hours", travelHours) + "  [" +
                            string.Join("/", body.Resources.ConvertAll(ItemCatalog.NameOf)) + "]"
                 };
                 row.style.color = body.Landable ? Color.white : new Color(0.55f, 0.55f, 0.6f);

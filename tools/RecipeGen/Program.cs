@@ -39,6 +39,13 @@ namespace Starsoil.RecipeGen
 
             Directory.CreateDirectory(outDir);
             WriteJson(Path.Combine(outDir, "items.json"), new { schemaVersion = SchemaVersion, items = db.Items.Values.OrderBy(i => i.Id, StringComparer.Ordinal) });
+            var prices = Prices.Solve(db);
+            WriteJson(Path.Combine(outDir, "prices.json"), new
+            {
+                schemaVersion = SchemaVersion,
+                prices = prices.OrderBy(p => p.Key, StringComparer.Ordinal)
+                    .ToDictionary(p => p.Key, p => Math.Round(p.Value, 2))
+            });
             WriteJson(Path.Combine(outDir, "recipes.json"), new { schemaVersion = SchemaVersion, recipes = db.Recipes.OrderBy(r => r.Id, StringComparer.Ordinal) });
             string report = BuildReport(db, checks);
             File.WriteAllText(Path.Combine(outDir, "validation_report.md"), report, new UTF8Encoding(false));

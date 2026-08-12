@@ -371,6 +371,21 @@ namespace Starsoil.Core
             RecyclerKw, "recycling", new[] { Need("steel_plate", 2), Need("gear_assembly", 1) });
 
         public const string LaunchPadId = "launch_pad";
+        public const string LandingBeaconId = "landing_beacon";
+        public const string CommsArrayId = "comms_array";
+
+        /// <summary>Zero cargo loss on arrival when the destination has one (M5-T5).</summary>
+        public static readonly BuildingDef LandingBeacon =
+            new BuildingDef(LandingBeaconId, 1, 1, BuildingKind.Generic,
+                buildCost: new[] { Need("antenna", 1), Need("basic_circuit", 1), Need("battery_cell", 1) },
+                buildWorkTicks: QuickBuildTicks, techNode: "beacon_nav");
+
+        /// <summary>Reveals the faction layer on the star map (M5-T8; diplomacy M6).</summary>
+        public static readonly BuildingDef CommsArray =
+            new BuildingDef(CommsArrayId, 2, 2, BuildingKind.Generic,
+                powerKw: AirChargingKw, priority: PowerPriority.Comfort,
+                buildCost: new[] { Need("comms_array_module", 2), Need("heavy_frame", 1), Need("battery_pack", 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "comms_arrays");
 
         /// <summary>Launch pad (M4, docs/plan/06): parts and payload are hauled onto the
         /// pad like station inputs; the Universe launches at the next window.</summary>
@@ -444,7 +459,9 @@ namespace Starsoil.Core
             { CultureVat.Id, CultureVat },
             { Refinery.Id, Refinery },
             { Recycler.Id, Recycler },
-            { LaunchPad.Id, LaunchPad }
+            { LaunchPad.Id, LaunchPad },
+            { LandingBeacon.Id, LandingBeacon },
+            { CommsArray.Id, CommsArray }
         };
 
         /// <summary>T0 hand-tech buildings, always available (M1 build menu).</summary>
@@ -464,7 +481,7 @@ namespace Starsoil.Core
             WaterPurifierId, GreenhouseId, ForageStationId, BotStationId, ChargingPostId,
             ArcFurnaceId, WireMillId, MachiningBenchId, ChemElectrolyzerId, DistillerId,
             ChemReactorId, PolymerReactorId, SabatierReactorId, CryoLiquefierId,
-            CultureVatId, RefineryId, RecyclerId, LaunchPadId
+            CultureVatId, RefineryId, RecyclerId, LaunchPadId, LandingBeaconId, CommsArrayId
         };
 
         public static bool TryGet(string id, out BuildingDef def) => ById.TryGetValue(id, out def);

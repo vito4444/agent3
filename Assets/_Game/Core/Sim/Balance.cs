@@ -156,6 +156,11 @@ namespace Starsoil.Core
         // Research (docs/plan/04 data cores; M2 ships the T0-T2 tree subset).
         public const int ResearchTicksPerCore = 250;
 
+        // Outpost kit survival buffer (docs/plan/09 M5-T6: 6 people, 2 game days).
+        public const int OutpostBufferWater = 12;
+        public const int OutpostBufferRations = 12;
+        public const int OutpostBufferBottles = 6;
+
         // Needs-driven eating/drinking consume whole items.
         public const float DrinkRestore = NeedMax;
         public const float EatRestore = NeedMax;

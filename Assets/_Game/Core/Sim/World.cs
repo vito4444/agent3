@@ -211,6 +211,19 @@ namespace Starsoil.Core
             world.Nodes.Generate(world.Terrain, world.Buildings, center, center,
                 world.GetStream("resources"), pool, hasBiomass ? Balance.TotalShrubs : 0);
 
+            // Outpost kit (M5-T6): one cargo slot expands into four micro-buildings plus
+            // a 6-person / 2-day survival buffer.
+            if (pod.Stock.TryRemove("outpost_kit", 1))
+            {
+                world.Buildings.Place(BuildingDefs.SolarPanelId, podX + podDef.Width + 1, podY, 0, out _);
+                world.Buildings.Place(BuildingDefs.SmallStorageId, podX + podDef.Width + 1, podY + 3, 0, out _);
+                world.Buildings.Place(BuildingDefs.SleepPodId, podX - 2, podY, 0, out _);
+                world.Buildings.Place(BuildingDefs.AirChargingStationId, podX - 2, podY + 3, 0, out _);
+                pod.Stock.Add(ItemIds.Water, Balance.OutpostBufferWater);
+                pod.Stock.Add(ItemIds.Ration, Balance.OutpostBufferRations);
+                pod.Stock.Add(ItemIds.OxygenBottle, Balance.OutpostBufferBottles);
+            }
+
             for (int i = 0; i < crew; i++)
             {
                 world.Colonists.Spawn(podX - 1, podY + i);
