@@ -29,10 +29,17 @@ namespace Starsoil.BalanceSim
             world.Crafting.LoadRecipes(CraftingSystem.ParseTempRecipesCsv(File.ReadAllLines(path)));
         }
 
+        public static void LoadTechTree(World world)
+        {
+            string path = Path.Combine(FindDataDir(), "tech_nodes.csv");
+            world.Tech.LoadNodes(TechSystem.ParseCsv(File.ReadAllLines(path)));
+        }
+
         public static World NewColonyWorld(ulong seed, int size)
         {
             var world = new World(seed, size);
             LoadTempRecipes(world);
+            LoadTechTree(world);
             return world;
         }
 

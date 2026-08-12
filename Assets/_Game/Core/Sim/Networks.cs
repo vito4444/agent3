@@ -214,7 +214,7 @@ namespace Starsoil.Core
                 {
                     batteries.Add(pair.Value);
                 }
-                if (def.PowerKw > 0f && pair.Value.WantsPower)
+                if (def.PowerKw > 0f && pair.Value.WantsPower && WantsToWork(world, pair.Value, def))
                 {
                     demandByClass[(int)def.Priority] += def.PowerKw;
                 }
@@ -305,6 +305,50 @@ namespace Starsoil.Core
             }
         }
 
+        /// <summary>Idle machines draw no load: extractors demand power only over a live
+        /// deposit with buffer room, processors only with an active order, electrolyzers
+        /// only with water and network space (a full tank grid stops the draw).</summary>
+        public bool WantsToWork(World world, BuildingState building, BuildingDef def)
+        {
+            if (def.Kind == BuildingKind.ChargingPost)
+            {
+                foreach (var bot in world.Bots.All.Values)
+                {
+                    if (bot.State == BotState.Charging && bot.ChargePostId == building.Id)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            if (!def.IsMachine && def.Kind != BuildingKind.Electrolyzer)
+            {
+                return true;
+            }
+            if (def.Kind == BuildingKind.Electrolyzer)
+            {
+                if (building.Stock.Get(ItemIds.Water) <= 0 && building.ProcessAccum <= 0f)
+                {
+                    return false;
+                }
+                int component = GasComponentOf(building.Id);
+                if (component != 0 &&
+                    _gasCapacity.TryGetValue(component, out float capacity) &&
+                    GasStored.TryGetValue(component, out float stored) &&
+                    stored >= capacity - 1f)
+                {
+                    return false;
+                }
+                return true;
+            }
+            if (def.Extracts.Count > 0)
+            {
+                return building.Stock.TotalUnits() < Balance.ExtractorOutputBufferCap &&
+                       world.Buildings.FindDepositFor(def, building.X, building.Y) != 0;
+            }
+            return world.Crafting.ActiveOrder(world, building) != null;
+        }
+
         public static float SolarOutput(World world)
         {
             if (world.IsNight)
@@ -344,7 +388,8 @@ namespace Starsoil.Core
                     else if (def.Kind == BuildingKind.Electrolyzer)
                     {
                         capacity += Balance.ElectrolyzerBufferCapacity;
-                        if (IsPowered(world, pair.Value) && pair.Value.WantsPower)
+                        if (IsPowered(world, pair.Value) && pair.Value.WantsPower &&
+                            WantsToWork(world, pair.Value, def))
                         {
                             production += TryElectrolyze(world, pair.Value);
                         }

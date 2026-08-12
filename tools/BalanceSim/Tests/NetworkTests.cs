@@ -42,11 +42,18 @@ namespace Starsoil.BalanceSim.Tests
             int cx = world.StartX;
             int cy = world.StartY + 10;
             PlaceOk(world, BuildingDefs.PowerPylonId, cx, cy);
-            // One wind turbine (≤14 kW) cannot feed purifier (10, LifeSupport) + miner-less
-            // production load, so production sheds first.
+            // One wind turbine (≤14 kW) cannot feed purifier (10, LifeSupport) plus the
+            // press (20, Production), so production sheds first. Idle machines draw no
+            // load, so both get real orders with stocked inputs.
             PlaceOk(world, BuildingDefs.WindTurbineId, cx + 1, cy);
             int purifier = PlaceOk(world, BuildingDefs.WaterPurifierId, cx + 3, cy);
             int press = PlaceOk(world, BuildingDefs.PressId, cx + 5, cy);
+            world.Buildings.TryGet(purifier, out var purifierBuffer);
+            purifierBuffer.Stock.Add(ItemIds.Ice, 20);
+            world.Crafting.AddOrder(purifier, "m_purify_ice", -1, 999);
+            world.Buildings.TryGet(press, out var pressBuffer);
+            pressBuffer.Stock.Add(ItemIds.Biomass, 20);
+            world.Crafting.AddOrder(press, "m_ration", -1, 999);
             world.Step();
             world.Step();
 
@@ -75,6 +82,9 @@ namespace Starsoil.BalanceSim.Tests
 
             // Night + a life-support load: battery covers the deficit and drains.
             int purifier = PlaceOk(world, BuildingDefs.WaterPurifierId, cx + 4, cy);
+            world.Buildings.TryGet(purifier, out var purifierLoad);
+            purifierLoad.Stock.Add(ItemIds.Ice, 500);
+            world.Crafting.AddOrder(purifier, "m_purify_ice", -1, 99999);
             bool night = TestUtil.RunUntil(world, 2 * GameConstants.TicksPerDay, w => w.IsNight);
             Assert.IsTrue(night);
             float beforeNightDrain = battery.BatteryKwh;

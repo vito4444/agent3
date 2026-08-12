@@ -84,6 +84,12 @@ namespace Starsoil.Core
         public int CriticalCause;
         public int CriticalTicksLeft;
         public int FaintTicksLeft;
+        public int Job;
+        public float Morale = Balance.MoraleStart;
+        public float MoraleEventOffset;
+        public bool OnStrike;
+        public int FoodVarietyYesterday;
+        public int NightWorkHours;
     }
 
     public sealed class SavedCraftOrder
@@ -134,6 +140,11 @@ namespace Starsoil.Core
         public List<SavedRngStream> RngStreams = new List<SavedRngStream>();
         public List<SavedGasComponent> GasComponents = new List<SavedGasComponent>();
         public List<SavedBot> Bots = new List<SavedBot>();
+        public List<string> TechUnlocked = new List<string>();
+        public string ResearchTarget = string.Empty;
+        public List<SavedStack> ResearchPaid = new List<SavedStack>();
+        public List<SavedStack> JobQuotas = new List<SavedStack>();
+        public List<int> JobMatrix = new List<int>();
 
         public int StartX;
         public int StartY;

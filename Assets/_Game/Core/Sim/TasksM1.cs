@@ -13,7 +13,8 @@ namespace Starsoil.Core
         Mine,
         Crank,
         Bury,
-        Repair
+        Repair,
+        Research
     }
 
     public sealed class WorkTask
@@ -85,6 +86,8 @@ namespace Starsoil.Core
         {
             GenerateBlueprintTasks(world);
             GenerateStationTasks(world);
+            GenerateElectrolyzerTasks(world);
+            GenerateResearchTasks(world);
             GenerateMineTasks(world);
             GenerateCrankTasks(world);
             GenerateBuryTasks(world);
@@ -92,6 +95,101 @@ namespace Starsoil.Core
             GenerateOutputHaulTasks(world);
             GenerateStorageTasks(world);
             Dispatch(world);
+        }
+
+        /// <summary>Electrolyzers keep a water buffer stocked (they are not craft stations,
+        /// so the order-driven generator does not feed them).</summary>
+        private void GenerateElectrolyzerTasks(World world)
+        {
+            foreach (var building in SortedValues(world.Buildings.All))
+            {
+                if (!BuildingDefs.TryGet(building.DefId, out var def) ||
+                    def.Kind != BuildingKind.Electrolyzer || !building.WantsPower)
+                {
+                    continue;
+                }
+                int missing = Balance.ElectrolyzerWaterBuffer - building.Stock.Get(ItemIds.Water) -
+                              building.Inbound.Get(ItemIds.Water);
+                while (missing > 0)
+                {
+                    int chunk = Math.Min(missing, CarryCapacity);
+                    if (!TryReserveSource(world, ItemIds.Water, chunk, PriorityHaulStation,
+                            out int pileId, out int buildingId, out int reserved, excludeBuildingId: building.Id))
+                    {
+                        break;
+                    }
+                    building.Inbound.Add(ItemIds.Water, reserved);
+                    AddTask(new WorkTask
+                    {
+                        Type = TaskType.HaulToStation,
+                        Priority = PriorityHaulStation,
+                        TargetX = building.X,
+                        TargetY = building.Y,
+                        StationId = building.Id,
+                        ItemId = ItemIds.Water,
+                        Count = reserved,
+                        SourcePileId = pileId,
+                        SourceBuildingId = buildingId
+                    });
+                    missing -= reserved;
+                }
+            }
+        }
+
+        /// <summary>Research target set → haul the owed data cores to the bench and queue
+        /// bench work (M2-T11).</summary>
+        private void GenerateResearchTasks(World world)
+        {
+            if (world.Tech.ResearchTarget.Length == 0)
+            {
+                return;
+            }
+            var bench = world.Buildings.FindFirstOfKind(BuildingKind.ResearchBench);
+            if (bench == null)
+            {
+                return;
+            }
+            string neededCore = world.Tech.NextNeededCore();
+            if (neededCore == null)
+            {
+                return;
+            }
+            int missing = world.Tech.RemainingCost(neededCore) - bench.Stock.Get(neededCore) - bench.Inbound.Get(neededCore);
+            while (missing > 0)
+            {
+                int chunk = Math.Min(missing, CarryCapacity);
+                if (!TryReserveSource(world, neededCore, chunk, PriorityHaulStation,
+                        out int pileId, out int buildingId, out int reserved, excludeBuildingId: bench.Id))
+                {
+                    break;
+                }
+                bench.Inbound.Add(neededCore, reserved);
+                AddTask(new WorkTask
+                {
+                    Type = TaskType.HaulToStation,
+                    Priority = PriorityHaulStation,
+                    TargetX = bench.X,
+                    TargetY = bench.Y,
+                    StationId = bench.Id,
+                    ItemId = neededCore,
+                    Count = reserved,
+                    SourcePileId = pileId,
+                    SourceBuildingId = buildingId
+                });
+                missing -= reserved;
+            }
+            if (bench.Stock.Get(neededCore) > 0 &&
+                !HasTaskFor(t => t.Type == TaskType.Research && t.BuildingId == bench.Id))
+            {
+                AddTask(new WorkTask
+                {
+                    Type = TaskType.Research,
+                    Priority = PriorityCraft,
+                    TargetX = bench.X,
+                    TargetY = bench.Y,
+                    BuildingId = bench.Id
+                });
+            }
         }
 
         /// <summary>Machines below the durability threshold get a repair-gel task (M2-T4).</summary>
@@ -541,7 +639,7 @@ namespace Starsoil.Core
             var idleColonists = new List<Colonist>();
             foreach (var colonist in world.Colonists.AllSorted())
             {
-                if (colonist.Alive && colonist.Activity == ColonistActivity.Idle)
+                if (colonist.Alive && colonist.Activity == ColonistActivity.Idle && !colonist.OnStrike)
                 {
                     idleColonists.Add(colonist);
                 }
@@ -571,7 +669,11 @@ namespace Starsoil.Core
                 {
                     continue;
                 }
-                var worker = TakeNearestColonist(idleColonists, task);
+                var worker = TakeBestColonist(world, idleColonists, task);
+                if (worker == null)
+                {
+                    continue;
+                }
                 task.ClaimedBy = worker.Id;
                 worker.AssignTask(task);
             }
@@ -595,18 +697,31 @@ namespace Starsoil.Core
             return bot;
         }
 
-        private static Colonist TakeNearestColonist(List<Colonist> idle, WorkTask task)
+        /// <summary>Job matrix rules (docs/plan/03): P0 workers never take the task; among
+        /// the eligible, higher matrix priority wins, then distance.</summary>
+        private static Colonist TakeBestColonist(World world, List<Colonist> idle, WorkTask task)
         {
-            int bestIndex = 0;
+            int bestIndex = -1;
+            int bestPriority = JobSystem.Forbidden;
             int bestDistance = int.MaxValue;
             for (int i = 0; i < idle.Count; i++)
             {
-                int distance = Math.Abs(idle[i].X - task.TargetX) + Math.Abs(idle[i].Y - task.TargetY);
-                if (distance < bestDistance)
+                int jobPriority = world.Jobs.PriorityFor(idle[i].Job, task.Type);
+                if (jobPriority == JobSystem.Forbidden)
                 {
+                    continue;
+                }
+                int distance = Math.Abs(idle[i].X - task.TargetX) + Math.Abs(idle[i].Y - task.TargetY);
+                if (jobPriority > bestPriority || (jobPriority == bestPriority && distance < bestDistance))
+                {
+                    bestPriority = jobPriority;
                     bestDistance = distance;
                     bestIndex = i;
                 }
+            }
+            if (bestIndex < 0)
+            {
+                return null;
             }
             var worker = idle[bestIndex];
             idle.RemoveAt(bestIndex);

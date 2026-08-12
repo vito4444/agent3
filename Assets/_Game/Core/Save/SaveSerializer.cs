@@ -144,7 +144,13 @@ namespace Starsoil.Core
                     Alive = c.Alive,
                     CriticalCause = (int)c.CriticalCause,
                     CriticalTicksLeft = c.CriticalTicksLeft,
-                    FaintTicksLeft = c.FaintTicksLeft
+                    FaintTicksLeft = c.FaintTicksLeft,
+                    Job = (int)c.Job,
+                    Morale = c.Morale,
+                    MoraleEventOffset = c.MoraleEventOffset,
+                    OnStrike = c.OnStrike,
+                    FoodVarietyYesterday = c.FoodVarietyYesterday,
+                    NightWorkHours = c.NightWorkHours
                 });
             }
 
@@ -252,6 +258,27 @@ namespace Starsoil.Core
                     ComponentId = component,
                     Stored = world.Networks.GasStored[component]
                 });
+            }
+
+            var unlockedIds = new List<string>(world.Tech.Unlocked);
+            unlockedIds.Sort(StringComparer.Ordinal);
+            data.TechUnlocked.AddRange(unlockedIds);
+            data.ResearchTarget = world.Tech.ResearchTarget;
+            foreach (var entry in world.Tech.PaidCores.SortedEntries())
+            {
+                data.ResearchPaid.Add(new SavedStack { ItemId = entry.Key, Count = entry.Value });
+            }
+            foreach (JobType job in Enum.GetValues(typeof(JobType)))
+            {
+                world.Jobs.Quotas.TryGetValue(job, out int quota);
+                data.JobQuotas.Add(new SavedStack { ItemId = job.ToString(), Count = quota });
+            }
+            for (int j = 0; j < JobSystem.JobCount; j++)
+            {
+                for (int t = 0; t < JobSystem.TaskTypeCount; t++)
+                {
+                    data.JobMatrix.Add(world.Jobs.Matrix[j, t]);
+                }
             }
 
             foreach (var bot in world.Bots.AllSorted())

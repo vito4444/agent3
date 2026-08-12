@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Starsoil.Core
 {
+
     public enum ColonistActivity
     {
         Idle,
@@ -75,6 +76,15 @@ namespace Starsoil.Core
         public int CriticalTicksLeft;
         public int FaintTicksLeft;
         public bool Alive = true;
+
+        // M2: jobs and morale (docs/plan/02+03).
+        public JobType Job = JobType.Operator;
+        public float Morale = Balance.MoraleStart;
+        public float MoraleEventOffset;
+        public int FoodVarietyYesterday;
+        public int NightWorkHours;
+        public bool OnStrike;
+        public readonly HashSet<string> FoodsEatenToday = new HashSet<string>();
 
         public void AssignTask(WorkTask task)
         {
@@ -324,6 +334,7 @@ namespace Starsoil.Core
             world.Piles.Drop(ItemIds.Remains, 1, colonist.X, colonist.Y);
             world.Stats.CountDeath(cause);
             world.Alerts.Clear(world, AlertIds.ColonistCritical + colonist.Id);
+            world.Morale.OnColonistDied(world);
             world.Events.Add(new ColonistDiedEvent { ColonistId = colonist.Id, Cause = cause });
         }
 
@@ -561,6 +572,7 @@ namespace Starsoil.Core
                     if (world.TryConsumeItemAt(food, colonist.StockTargetX, colonist.StockTargetY))
                     {
                         consumed = true;
+                        colonist.FoodsEatenToday.Add(food);
                         break;
                     }
                 }
@@ -673,6 +685,9 @@ namespace Starsoil.Core
                 case TaskType.Crank:
                     TickCrank(world, colonist, task);
                     break;
+                case TaskType.Research:
+                    TickResearch(world, colonist, task);
+                    break;
                 default:
                     TickHaul(world, colonist, task);
                     break;
@@ -691,7 +706,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
-            colonist.WorkAccum += 1f;
+            colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
             if (colonist.WorkAccum < node.TicksPerUnit)
             {
                 return;
@@ -721,7 +736,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
-            if (world.Blueprints.ApplyBuildWork(bp, 1f, world) != 0)
+            if (world.Blueprints.ApplyBuildWork(bp, MoraleSystem.WorkSpeedFactor(colonist), world) != 0)
             {
                 CompleteTask(world, colonist, task);
             }
@@ -741,7 +756,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
-            colonist.WorkAccum += 1f;
+            colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
             if (colonist.WorkAccum >= CraftingSystem.EffectiveWorkTicks(recipe, station))
             {
                 var order = FindOrder(world, station, task.OrderId);
@@ -789,6 +804,41 @@ namespace Starsoil.Core
             colonist.Activity = ColonistActivity.WorkingTask;
             crank.CrankActive = true;
             world.Life.RegisterCrank();
+        }
+
+        private void TickResearch(World world, Colonist colonist, WorkTask task)
+        {
+            if (world.Tech.ResearchTarget.Length == 0 ||
+                !world.Buildings.TryGet(task.BuildingId, out var bench))
+            {
+                CompleteTask(world, colonist, task);
+                return;
+            }
+            string neededCore = world.Tech.NextNeededCore();
+            if (neededCore == null || bench.Stock.Get(neededCore) <= 0)
+            {
+                CompleteTask(world, colonist, task);
+                return;
+            }
+            if (!MoveToward(world, colonist, bench.X, bench.Y))
+            {
+                return;
+            }
+            colonist.Activity = ColonistActivity.WorkingTask;
+            colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
+            if (colonist.WorkAccum < Balance.ResearchTicksPerCore)
+            {
+                return;
+            }
+            colonist.WorkAccum = 0f;
+            if (bench.Stock.TryRemove(neededCore, 1))
+            {
+                world.Tech.PayCore(world, neededCore);
+            }
+            if (world.Tech.ResearchTarget.Length == 0)
+            {
+                CompleteTask(world, colonist, task);
+            }
         }
 
         private void TickHaul(World world, Colonist colonist, WorkTask task)
@@ -1106,6 +1156,12 @@ namespace Starsoil.Core
                     CriticalCause = (DeathCause)s.CriticalCause,
                     CriticalTicksLeft = s.CriticalTicksLeft,
                     FaintTicksLeft = s.FaintTicksLeft,
+                    Job = (JobType)s.Job,
+                    Morale = s.Morale,
+                    MoraleEventOffset = s.MoraleEventOffset,
+                    OnStrike = s.OnStrike,
+                    FoodVarietyYesterday = s.FoodVarietyYesterday,
+                    NightWorkHours = s.NightWorkHours,
                     Activity = s.Alive
                         ? (s.FaintTicksLeft > 0 ? ColonistActivity.Fainted : ColonistActivity.Idle)
                         : ColonistActivity.Dead

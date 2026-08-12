@@ -54,6 +54,10 @@ namespace Starsoil.Core
 
         private void TickExtractor(World world, BuildingState machine, BuildingDef def)
         {
+            if (machine.Stock.TotalUnits() >= Balance.ExtractorOutputBufferCap)
+            {
+                return;
+            }
             int nodeId = world.Buildings.FindDepositFor(def, machine.X, machine.Y);
             if (nodeId == 0 || !world.Nodes.TryGet(nodeId, out var node))
             {

@@ -118,12 +118,16 @@ namespace Starsoil.Core
         public const float ElectrolyzerO2PerTick = 120f / GameConstants.TicksPerHour;
         /// <summary>One water electrolyzes into this much breathable O2.</summary>
         public const float ElectrolyzerO2PerWater = 60f;
+        /// <summary>Water buffer the logistics system keeps stocked in each electrolyzer.</summary>
+        public const int ElectrolyzerWaterBuffer = 10;
 
         // Machines (docs/plan/03 generic machine model).
         public const float MachineLowDurabilityFactor = 0.5f;
         public const float MachineWearPerWorkHour = 0.5f;
         public const int ExtractionMachineRadius = 3;
         public const int ExtractorTicksPerUnit = 75;
+        /// <summary>Extractors idle (and stop drawing power) once their buffer holds this much.</summary>
+        public const int ExtractorOutputBufferCap = 40;
         public const float RepairGelRestore = 100f;
 
         // Hauler bots (docs/plan/02: carry 4 stacks; recharge at charging posts).

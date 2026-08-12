@@ -1,3 +1,26 @@
-# Tech tree nodes (90 common + faction branches at M3, see docs/plan/04).
-# prereqs: nodeId;nodeId (max 3). Recipes reference nodes via their tech_node column (added at M3).
-id,zh,en,domain,prereqs
+# Tech tree v1 (M2-T11: T0-T2 subset, ≥20 nodes; the full 90-node tree lands at M3-T6).
+# cost: coreItemId:count;... (empty cost = unlocked at start). recipes/buildings: unlock lists.
+# Placeholder nodes marked [M3] have names and costs but bind their unlock lists at M3.
+id,zh,en,domain,prereqs,cost,recipes,buildings
+t0_survival,徒手求生,Hand survival,survival,,,melt_ice;emergency_ration;plant_fiber;iron_lump;copper_lump;crude_glass;carbon_powder;salt_refine;preserved_ration;bandage;insulation_wrap;crude_tool;survey_core,campfire;workbench;sleep_pod;small_storage;hand_crank;road;research_bench
+power_basics,基础电力,Basic power,industry,t0_survival,survey_data_core:2,,power_pylon;solar_panel;wind_turbine
+power_storage,储能,Power storage,industry,power_basics,survey_data_core:1;engineering_data_core:1,,battery
+powered_processing,动力加工,Powered processing,industry,power_basics,survey_data_core:3,m_smelt_iron;m_smelt_copper;m_glass;m_crush_carbon;m_refine_salt;m_fiber;m_ration;m_preserved;m_insulation;m_plate;engineering_core,crusher;furnace;roll_mill;press
+powered_assembly,自动装配,Powered assembly,industry,powered_processing,engineering_data_core:2,m_tool;m_bandage;m_repair_gel,assembler
+powered_extraction,动力采掘,Powered extraction,industry,power_basics,engineering_data_core:2,,miner;ice_miner;forage_station
+life_support_1,生保设备 I,Life support I,survival,power_basics,survey_data_core:2,m_purify_ice;greenhouse_grow,water_purifier;greenhouse
+oxygen_network,氧气网络,Oxygen network,survival,life_support_1,engineering_data_core:3,,gas_pylon;gas_tank;electrolyzer;air_charging_station
+hauler_bots,搬运蛛,Hauler bots,logistics,powered_assembly,engineering_data_core:3,,bot_station;charging_post
+metallurgy_2,冶金 II [M3],Metallurgy II [M3],industry,powered_processing,engineering_data_core:2,,
+chem_basics,化学基础 [M3],Basic chemistry [M3],chemistry,powered_processing,survey_data_core:2;engineering_data_core:1,,
+distillation,蒸馏 [M3],Distillation [M3],chemistry,chem_basics,engineering_data_core:2,,
+insulation_suits,保温服 [M3],Insulated suits [M3],survival,powered_processing,survey_data_core:2,,
+medical_basics,基础医疗 [M3],Basic medicine [M3],survival,life_support_1,survey_data_core:2,,
+food_prep,烹饪 [M3],Food preparation [M3],survival,life_support_1,survey_data_core:1,,
+comfort_habitats,舒适居住 [M3],Comfort habitats [M3],survival,life_support_1,survey_data_core:2,,
+logistics_planning,物流规划 [M3],Logistics planning [M3],logistics,hauler_bots,engineering_data_core:2,,
+deep_drilling,深井钻探 [M3],Deep drilling [M3],industry,powered_extraction,engineering_data_core:3,,
+defense_basics,基础防御 [M3],Basic defense [M3],defense,powered_assembly,engineering_data_core:2,,
+radio_basics,无线电 [M3],Radio basics [M3],astronautics,powered_assembly,engineering_data_core:2,,
+cartography,测绘学 [M3],Cartography [M3],astronautics,radio_basics,survey_data_core:3,,
+weather_science,气象学 [M3],Weather science [M3],survival,radio_basics,survey_data_core:2,,
