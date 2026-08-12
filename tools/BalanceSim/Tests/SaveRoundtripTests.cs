@@ -10,13 +10,27 @@ namespace Starsoil.BalanceSim.Tests
         private const ulong Seed = 123UL;
         private const int RegionSize = 96;
         private const int WarmupTicks = 500;
+        // M0-T6 acceptance: roundtrip a world holding 20 placed test buildings.
+        private const int BuildingCount = 20;
+        private const int BuildingsPerRow = 10;
+        private const int FirstColumn = 26;
+        private const int ColumnStride = 4;
+        private const int FirstRow = 30;
+        private const int RowStride = 8;
 
         private static World BuildSampleWorld()
         {
             var world = new World(Seed, RegionSize);
-            int center = RegionSize / 2;
-            world.Commands.Enqueue(new PlaceBuildingCommand { DefId = BuildingDefs.TestBlockId, X = center, Y = center, Rotation = 0 });
-            world.Commands.Enqueue(new PlaceBuildingCommand { DefId = BuildingDefs.TestBlockId, X = center + 4, Y = center, Rotation = 1 });
+            for (int i = 0; i < BuildingCount; i++)
+            {
+                world.Commands.Enqueue(new PlaceBuildingCommand
+                {
+                    DefId = BuildingDefs.TestBlockId,
+                    X = FirstColumn + (i % BuildingsPerRow) * ColumnStride,
+                    Y = FirstRow + (i / BuildingsPerRow) * RowStride,
+                    Rotation = i % 4
+                });
+            }
             for (int i = 0; i < WarmupTicks; i++)
             {
                 world.Step();
@@ -29,8 +43,9 @@ namespace Starsoil.BalanceSim.Tests
         {
             var world = BuildSampleWorld();
             ulong hashBefore = world.ComputeStateHash();
+            var captured = SaveSerializer.Capture(world);
 
-            byte[] blob = SaveSerializer.ToGzipJson(SaveSerializer.Capture(world));
+            byte[] blob = SaveSerializer.ToGzipJson(captured);
 
             // Mutate the original after capture; the restored copy must match the capture.
             world.Commands.Enqueue(new RemoveBuildingCommand { BuildingId = 1 });
@@ -39,7 +54,29 @@ namespace Starsoil.BalanceSim.Tests
             var restored = SaveSerializer.Restore(SaveSerializer.FromGzipJson(blob));
             Assert.AreEqual(hashBefore, restored.ComputeStateHash());
             Assert.AreEqual(WarmupTicks, restored.Tick);
-            Assert.AreEqual(2, restored.Buildings.Count);
+            Assert.AreEqual(BuildingCount, restored.Buildings.Count);
+
+            // Field-by-field comparison against the captured snapshot (M0-T6 acceptance).
+            Assert.AreEqual(captured.Seed, restored.Seed);
+            Assert.AreEqual(captured.RegionSize, restored.Terrain.Size);
+            foreach (var saved in captured.Buildings)
+            {
+                Assert.IsTrue(restored.Buildings.TryGet(saved.Id, out var state), "missing building " + saved.Id);
+                Assert.AreEqual(saved.DefId, state.DefId);
+                Assert.AreEqual(saved.X, state.X);
+                Assert.AreEqual(saved.Y, state.Y);
+                Assert.AreEqual(saved.Rotation, state.Rotation);
+            }
+            for (int y = 0; y < restored.Terrain.Size; y++)
+            {
+                for (int x = 0; x < restored.Terrain.Size; x++)
+                {
+                    if (world.Terrain.GetHeight(x, y) != restored.Terrain.GetHeight(x, y))
+                    {
+                        Assert.Fail("terrain mismatch at " + x + "," + y);
+                    }
+                }
+            }
         }
 
         [Test]

@@ -45,5 +45,24 @@ namespace Starsoil.Tests
             var b = new World(Seed, RegionSize);
             Assert.AreEqual(a.ComputeStateHash(), b.ComputeStateHash());
         }
+
+        [Test]
+        public void SaveRoundtrip_PreservesStateHash()
+        {
+            var world = new World(Seed, RegionSize);
+            int center = RegionSize / 2;
+            world.Commands.Enqueue(new PlaceBuildingCommand
+            {
+                DefId = BuildingDefs.TestBlockId,
+                X = center,
+                Y = center,
+                Rotation = 0
+            });
+            world.Step();
+
+            var restored = SaveSerializer.Restore(
+                SaveSerializer.FromGzipJson(SaveSerializer.ToGzipJson(SaveSerializer.Capture(world))));
+            Assert.AreEqual(world.ComputeStateHash(), restored.ComputeStateHash());
+        }
     }
 }
