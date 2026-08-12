@@ -160,14 +160,23 @@ namespace Starsoil.UI
             {
                 food += _world.CountItemEverywhere(f);
             }
+            float networkO2 = _world.Life.TankO2;
+            foreach (var pair in _world.Networks.GasStored)
+            {
+                networkO2 += pair.Value;
+            }
             string speed = _speed() == 0 ? L10n.Tr("hud_speed_paused") : "x" + _speed();
+            // Power overview per M2-T1: supply / demand / battery store (crank ledger included).
+            string power = (_world.Networks.LastSupplyKw + _world.Life.PowerKw).ToString("F0") + "/" +
+                           _world.Networks.LastDemandKw.ToString("F0") + "kW ⚡" +
+                           _world.Networks.BatteryStoredKwh.ToString("F0") + "kWh";
             _topBar.text =
-                L10n.Tr("hud_power") + " " + _world.Life.PowerKw.ToString("F0") + "kW · " +
-                L10n.Tr("hud_oxygen") + " " + _world.Life.TankO2.ToString("F0") + " · " +
+                L10n.Tr("hud_power") + " " + power + " · " +
+                L10n.Tr("hud_oxygen") + " " + networkO2.ToString("F0") + " · " +
                 L10n.Tr("hud_water") + " " + _world.CountItemEverywhere(ItemIds.Water) + " · " +
                 L10n.Tr("hud_food") + " " + food + " · " +
                 L10n.Tr("hud_credits") + " 0 · " +
-                L10n.Tr("hud_population") + " " + _world.Colonists.AliveCount + " · " +
+                L10n.Tr("hud_population") + " " + _world.Colonists.AliveCount + " (" + _world.Bots.All.Count + "🤖) · " +
                 L10n.TrF("hud_day", _world.Day) + " " + L10n.TrF("hud_hour", _world.HourOfDay) + " · " + speed +
                 "  |  " + L10n.Tr("ui_speed_hint");
         }

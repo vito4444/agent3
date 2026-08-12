@@ -31,4 +31,4 @@ m_bandage,assembler,fiber:2,bandage:1,40,"无尘台上织出的绷带,更干净�
 m_repair_gel,assembler,fiber:1;carbon_powder:1,repair_gel:1,50,"纤维掺碳粉调成修补凝胶,机器的创可贴。","Fiber and carbon mixed into repair gel — a bandage for machines."
 m_plate,roll_mill,iron_lump:2,iron_plate:1,60,"铸轧机把铁块轧成平整板材,后续工业的基材。","The roll mill flattens iron into plate, feedstock for later industry."
 engineering_core,assembler,crude_tool:1;copper_lump:1,engineering_data_core:1,150,"工具与导体的应力测试记录,汇编成工程数据。","Stress-test records of tools and conductors, compiled into engineering data."
-greenhouse_grow,greenhouse,algae_seed:1;water:1,biomass:4;algae_seed:1,600,"温室循环栽培:藻种不灭,水换生物质。","Greenhouse cycle: the seed culture persists, water becomes biomass."
+greenhouse_grow,greenhouse,algae_seed:1;water:1,biomass:8;algae_seed:1,400,"温室循环栽培:藻种不灭,水换生物质。","Greenhouse cycle: the seed culture persists, water becomes biomass."

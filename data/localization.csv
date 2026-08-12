@@ -102,6 +102,17 @@ ui_crank_on,安排摇柄手,Staff the crank
 ui_crank_off,撤下摇柄手,Unstaff the crank
 ui_speed_hint,空格暂停 · F1/F2/F3 变速 · F5/F9 存读档,Space pause · F1/F2/F3 speed · F5/F9 save/load
 ui_skip_tutorial,跳过教学,Skip tutorial
+ui_tech_tree,科技树 (T),Tech tree (T)
+ui_research,研究,Research
+ui_jobs,职业 (J),Jobs (J)
+job_miner,矿工,Miner
+job_hauler,搬运员,Hauler
+job_builder,建造工,Builder
+job_operator,操作员,Operator
+job_farmer,农夫,Farmer
+job_cook,厨师,Cook
+job_medic,医师,Medic
+job_researcher,研究员,Researcher
 settings_autopause,危急警报时自动暂停,Auto-pause on critical alerts
 settings_language,语言,Language
 colonist_name_1,艾达,Ida

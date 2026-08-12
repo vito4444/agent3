@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Starsoil.Core;
 
@@ -32,7 +33,32 @@ namespace Starsoil.Presentation
 
         public bool BuildMode => _buildMode;
 
-        public string SelectedDefId => BuildingDefs.BuildableT0[_selectedIndex];
+        /// <summary>Buildable list = full menu filtered by unlocked tech (M2-T11 gating).</summary>
+        private List<string> UnlockedBuildables()
+        {
+            var list = new List<string>();
+            foreach (string defId in BuildingDefs.BuildableAll)
+            {
+                if (BuildingDefs.TryGet(defId, out var def) && _world.Tech.IsBuildingUnlocked(def))
+                {
+                    list.Add(defId);
+                }
+            }
+            return list;
+        }
+
+        public string SelectedDefId
+        {
+            get
+            {
+                var unlocked = UnlockedBuildables();
+                if (unlocked.Count == 0)
+                {
+                    return BuildingDefs.BuildableT0[0];
+                }
+                return unlocked[Math.Min(_selectedIndex, unlocked.Count - 1)];
+            }
+        }
 
         public void Init(World world, CameraRig rig)
         {
@@ -107,12 +133,22 @@ namespace Starsoil.Presentation
             }
             if (_buildMode)
             {
-                for (int i = 0; i < BuildingDefs.BuildableT0.Length; i++)
+                int menuSize = UnlockedBuildables().Count;
+                for (int i = 0; i < 9 && i < menuSize; i++)
                 {
                     if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                     {
                         _selectedIndex = i;
                     }
+                }
+                // [ and ] page through the unlocked list beyond the digit keys.
+                if (Input.GetKeyDown(KeyCode.LeftBracket) && menuSize > 0)
+                {
+                    _selectedIndex = (_selectedIndex + menuSize - 1) % menuSize;
+                }
+                if (Input.GetKeyDown(KeyCode.RightBracket) && menuSize > 0)
+                {
+                    _selectedIndex = (_selectedIndex + 1) % menuSize;
                 }
                 if (Input.GetKeyDown(KeyCode.R))
                 {
