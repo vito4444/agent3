@@ -73,7 +73,7 @@ namespace Starsoil.BalanceSim.Tests
         [Test]
         public void Rotation_SwapsFootprint()
         {
-            BuildingSystem.FootprintSize(new BuildingDef("t", 3, 1), 1, out int w, out int h);
+            BuildingSystem.FootprintSize(new BuildingDef("t", 3, 1, BuildingKind.Generic), 1, out int w, out int h);
             Assert.AreEqual(1, w);
             Assert.AreEqual(3, h);
         }

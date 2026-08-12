@@ -18,6 +18,6 @@ namespace Starsoil.Core
         public const int MaxTerrainStep = 6;
         public const float MetersPerTerrainStep = 2f;
 
-        public const int SaveSchemaVersion = 0;
+        public const int SaveSchemaVersion = 1;
     }
 }

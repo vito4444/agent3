@@ -17,25 +17,27 @@ namespace Starsoil.Tests
         public void World_PlacesBuildingViaCommand_AndTicks()
         {
             var world = new World(Seed, RegionSize);
+            int before = world.Buildings.Count;
             int center = RegionSize / 2;
 
             world.Commands.Enqueue(new PlaceBuildingCommand
             {
                 DefId = BuildingDefs.TestBlockId,
-                X = center,
-                Y = center,
+                X = center + 6,
+                Y = center + 6,
                 Rotation = 0
             });
             world.Step();
 
-            Assert.AreEqual(1, world.Buildings.Count);
+            Assert.AreEqual(before + 1, world.Buildings.Count);
 
+            long tickBefore = world.Tick;
             const int extraTicks = 100;
             for (int i = 0; i < extraTicks; i++)
             {
                 world.Step();
             }
-            Assert.AreEqual(extraTicks + 1, world.Tick);
+            Assert.AreEqual(tickBefore + extraTicks, world.Tick);
         }
 
         [Test]

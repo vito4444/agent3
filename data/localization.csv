@@ -1,0 +1,85 @@
+# Player-facing strings (Steam-standard discipline from M1 on: zero hardcoded UI text).
+# zh-CN is the source language (docs/plan/10). Unity Localization tables are generated
+# from this file at M8; until then Game.Data loads it directly.
+key,zh,en
+game_title,星壤,Starsoil
+item_ice,水冰,Ice
+item_water,水,Water
+item_biomass,生物质,Biomass
+item_fiber,植物纤维,Plant fiber
+item_ration,应急口粮,Emergency ration
+item_preserved_ration,腌制口粮,Preserved ration
+item_iron_ore,铁矿石,Iron ore
+item_iron_lump,粗铁块,Iron lump
+item_copper_ore,铜矿石,Copper ore
+item_copper_lump,粗铜块,Copper lump
+item_quartz_sand,石英砂,Quartz sand
+item_crude_glass,粗玻璃,Crude glass
+item_salt_ore,盐矿,Salt ore
+item_salt,盐,Salt
+item_carbon,石墨矿,Graphite
+item_carbon_powder,碳粉,Carbon powder
+item_insulation_wrap,保温衬垫,Insulation wrap
+item_crude_tool,简易工具,Crude tool
+item_bandage,绷带,Bandage
+item_oxygen_bottle,备用气瓶,Spare oxygen bottle
+item_algae_seed,藻种,Algae seed
+item_remains,遗体,Remains
+building_crash_pod,指挥核心(坠毁舱),Command core (crash pod)
+building_workbench,手工台,Workbench
+building_campfire,篝火炉,Campfire
+building_sleep_pod,睡舱,Sleep pod
+building_small_storage,小仓库,Small storage
+building_hand_crank,手摇发电机,Hand-crank generator
+building_road,砂石路,Gravel road
+building_test_block,测试方块,Test block
+hud_power,电力,Power
+hud_oxygen,氧气,Oxygen
+hud_water,水,Water
+hud_food,食物,Food
+hud_credits,星币,Credits
+hud_population,人口,Population
+hud_day,第 {0} 日,Day {0}
+hud_hour,{0} 时,{0}:00
+hud_speed_paused,已暂停,Paused
+alert_o2_low,氧气储备不足 2 小时,Oxygen reserve below 2 hours
+alert_food_low,食物见底,Food running out
+alert_water_low,饮水见底,Water running out
+alert_storm_incoming,沙暴将至(约 1 日后),Sandstorm inbound (about 1 day)
+alert_storm_active,沙暴过境:舱外作业停止,Sandstorm: outdoor work suspended
+alert_colonist_critical,殖民者濒危!,Colonist critical!
+alert_defeat,殖民地覆灭,Colony lost
+tutorial_step_mine_ice,指派采集:点选水冰矿脉,采回 2 份水冰,Designate the ice deposit and mine 2 ice
+tutorial_step_melt_water,在篝火炉下达"融冰"订单,获得 2 份水,Order "melt ice" at the campfire for 2 water
+tutorial_step_gather_biomass,采集 2 份灌丛生物质,Gather 2 biomass from shrubs
+tutorial_step_craft_ration,在手工台制作 1 份应急口粮,Craft 1 emergency ration at the workbench
+tutorial_step_build_sleep_pod,建造 1 座睡舱,Build a sleep pod
+tutorial_step_survive_night,熬过第一夜,Survive the first night
+tutorial_done,教学完成。活下去。,Tutorial complete. Now survive.
+defeat_title,殖民地覆灭,Colony lost
+defeat_days,存活天数:{0},Days survived: {0}
+defeat_deaths,死因统计:,Deaths by cause:
+defeat_load,读取存档,Load save
+defeat_new_game,新的开始,New game
+death_suffocation,窒息,Suffocation
+death_dehydration,脱水,Dehydration
+death_starvation,饥饿,Starvation
+death_hypothermia,失温,Hypothermia
+ui_build_menu,建造,Build
+ui_orders,合成订单,Craft orders
+ui_order_count,数量,Count
+ui_order_maintain,维持库存,Maintain stock
+ui_demolish,拆除(返还50%),Demolish (50% refund)
+ui_cancel,取消,Cancel
+ui_designate_on,开始采集,Start harvesting
+ui_designate_off,停止采集,Stop harvesting
+ui_crank_on,安排摇柄手,Staff the crank
+ui_crank_off,撤下摇柄手,Unstaff the crank
+ui_speed_hint,空格暂停 · F1/F2/F3 变速 · F5/F9 存读档,Space pause · F1/F2/F3 speed · F5/F9 save/load
+ui_skip_tutorial,跳过教学,Skip tutorial
+settings_autopause,危急警报时自动暂停,Auto-pause on critical alerts
+settings_language,语言,Language
+colonist_name_1,艾达,Ida
+colonist_name_2,老周,Zhou
+colonist_name_3,穆恩,Moon
+colonist_name_4,萨米,Sami

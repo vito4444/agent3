@@ -6,6 +6,7 @@ namespace Starsoil.Core
     /// Deterministic PCG32 generator. All sim randomness must come from named streams
     /// derived from the world seed; System.Random and UnityEngine.Random are banned in
     /// Game.Core (docs/plan/08 determinism policy, enforced by scripts/check_core_constraints.sh).
+    /// Stream state is persisted in saves so loading never re-rolls history.
     /// </summary>
     public sealed class Rng
     {
@@ -14,7 +15,7 @@ namespace Starsoil.Core
         private const float UIntToUnitFloat = 1.0f / 4294967296.0f;
 
         private ulong _state;
-        private readonly ulong _inc;
+        private ulong _inc;
 
         public Rng(ulong seed, ulong sequence)
         {
@@ -30,6 +31,20 @@ namespace Starsoil.Core
         {
             ulong nameHash = Fnv1a64.HashString(streamName);
             return new Rng(worldSeed ^ (nameHash * SeedMix), nameHash);
+        }
+
+        /// <summary>Internal state, exposed for save persistence (docs/plan/08).</summary>
+        public ulong State => _state;
+
+        public ulong Inc => _inc;
+
+        /// <summary>Rebuilds a stream from persisted state.</summary>
+        public static Rng FromState(ulong state, ulong inc)
+        {
+            var rng = new Rng(0UL, 0UL);
+            rng._state = state;
+            rng._inc = inc;
+            return rng;
         }
 
         public uint NextUInt()

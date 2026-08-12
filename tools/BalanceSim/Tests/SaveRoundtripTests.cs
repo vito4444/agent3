@@ -48,13 +48,14 @@ namespace Starsoil.BalanceSim.Tests
             byte[] blob = SaveSerializer.ToGzipJson(captured);
 
             // Mutate the original after capture; the restored copy must match the capture.
-            world.Commands.Enqueue(new RemoveBuildingCommand { BuildingId = 1 });
+            world.Commands.Enqueue(new RemoveBuildingCommand { BuildingId = 2 });
             world.Step();
 
             var restored = SaveSerializer.Restore(SaveSerializer.FromGzipJson(blob));
             Assert.AreEqual(hashBefore, restored.ComputeStateHash());
-            Assert.AreEqual(WarmupTicks, restored.Tick);
-            Assert.AreEqual(BuildingCount, restored.Buildings.Count);
+            Assert.AreEqual(captured.Tick, restored.Tick);
+            // 20 placed test blocks + the starting crash pod.
+            Assert.AreEqual(BuildingCount + 1, restored.Buildings.Count);
 
             // Field-by-field comparison against the captured snapshot (M0-T6 acceptance).
             Assert.AreEqual(captured.Seed, restored.Seed);
@@ -100,18 +101,23 @@ namespace Starsoil.BalanceSim.Tests
         }
 
         [Test]
-        public void RestoredWorld_ContinuesDeterministically()
+        public void SameSnapshot_LoadedTwice_ContinuesIdentically()
         {
+            // Transient AI state (paths, claimed tasks) is deliberately not saved, so a
+            // live world and its snapshot may evolve differently. What must hold is that
+            // two restores of the same snapshot evolve identically (docs/plan/08).
             var world = BuildSampleWorld();
-            var restored = SaveSerializer.Restore(SaveSerializer.FromGzipJson(SaveSerializer.ToGzipJson(SaveSerializer.Capture(world))));
+            byte[] blob = SaveSerializer.ToGzipJson(SaveSerializer.Capture(world));
+            var a = SaveSerializer.Restore(SaveSerializer.FromGzipJson(blob));
+            var b = SaveSerializer.Restore(SaveSerializer.FromGzipJson(blob));
 
             const int extraTicks = 200;
             for (int i = 0; i < extraTicks; i++)
             {
-                world.Step();
-                restored.Step();
+                a.Step();
+                b.Step();
             }
-            Assert.AreEqual(world.ComputeStateHash(), restored.ComputeStateHash());
+            Assert.AreEqual(a.ComputeStateHash(), b.ComputeStateHash());
         }
 
         [Test]

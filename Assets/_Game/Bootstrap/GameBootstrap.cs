@@ -1,12 +1,14 @@
 using UnityEngine;
 using Starsoil.Core;
+using Starsoil.Data;
 using Starsoil.Presentation;
+using Starsoil.UI;
 
 namespace Starsoil.Bootstrap
 {
     /// <summary>
     /// Runtime composition root (docs/plan/08: services are assembled here, no global
-    /// singletons). The Main scene is intentionally empty; everything M0 needs is built
+    /// singletons). The Main scene is intentionally empty; everything M1 needs is built
     /// in code so no hand-authored scene content or prefabs are required yet.
     /// </summary>
     public static class GameBootstrap
@@ -25,7 +27,16 @@ namespace Starsoil.Bootstrap
                 return;
             }
 
+            var settings = GameSettings.Load();
+            L10n.TryLoadDefault();
+            L10n.SetLanguage(settings.Language);
+
             var world = new World(DefaultWorldSeed, GameConstants.DefaultRegionSize);
+            TempRecipes.LoadInto(world);
+            if (settings.SkipTutorial)
+            {
+                world.Commands.Enqueue(new SetTutorialSkippedCommand { Skipped = true });
+            }
 
             var root = new GameObject("Starsoil");
 
@@ -43,6 +54,8 @@ namespace Starsoil.Bootstrap
             var light = lightGo.AddComponent<Light>();
             light.type = LightType.Directional;
             lightGo.transform.rotation = Quaternion.Euler(SunPitch, SunYaw, 0f);
+            var sun = lightGo.AddComponent<SunController>();
+            sun.Init(world, light);
 
             var terrainGo = new GameObject("TerrainView");
             terrainGo.transform.SetParent(root.transform, false);
@@ -54,6 +67,11 @@ namespace Starsoil.Bootstrap
             var worldView = viewGo.AddComponent<WorldView>();
             worldView.Init(world, rig);
 
+            var entitiesGo = new GameObject("EntityViews");
+            entitiesGo.transform.SetParent(root.transform, false);
+            var entities = entitiesGo.AddComponent<EntityViews>();
+            entities.Init(world);
+
             var placementGo = new GameObject("PlacementController");
             placementGo.transform.SetParent(root.transform, false);
             var placement = placementGo.AddComponent<PlacementController>();
@@ -63,13 +81,26 @@ namespace Starsoil.Bootstrap
             hudGo.transform.SetParent(root.transform, false);
             var hud = hudGo.AddComponent<DebugHud>();
 
+            var hudUiGo = new GameObject("Hud");
+            hudUiGo.transform.SetParent(root.transform, false);
+            var hudUi = hudUiGo.AddComponent<HudController>();
+
+            var craftPanelGo = new GameObject("CraftPanel");
+            craftPanelGo.transform.SetParent(root.transform, false);
+            var craftPanel = craftPanelGo.AddComponent<CraftPanelController>();
+            craftPanel.Init(world);
+            placement.StationClicked += craftPanel.Open;
+
             var driverGo = new GameObject("SimDriver");
             driverGo.transform.SetParent(root.transform, false);
             var driver = driverGo.AddComponent<SimDriver>();
-            driver.Init(world, worldView, terrainView, placement, hud);
-            hud.Init(world, rig, worldView, () => driver.Speed);
+            driver.Init(world, settings, rig, worldView, entities, terrainView, placement, hud, hudUi, craftPanel, sun);
 
-            Debug.Log("[GameBootstrap] World ready: seed " + world.Seed + ", region " + world.Terrain.Size);
+            hud.Init(world, rig, worldView, () => driver.Speed);
+            hudUi.Init(world, () => driver.Speed, driver.JumpCameraTo, driver.NewGame, driver.SkipTutorial);
+
+            Debug.Log("[GameBootstrap] World ready: seed " + world.Seed + ", region " + world.Terrain.Size +
+                      ", colonists " + world.Colonists.AliveCount);
         }
     }
 }
