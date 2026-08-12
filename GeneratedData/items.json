@@ -1,4 +1,4569 @@
 {
   "schemaVersion": 0,
-  "items": []
+  "items": [
+    {
+      "Id": "advanced_circuit",
+      "Zh": "高阶电路",
+      "En": "Advanced circuit",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "air_charging_station",
+      "Zh": "空气充装站",
+      "En": "Air charging station",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "air_freshener",
+      "Zh": "舱内清新剂",
+      "En": "Cabin freshener",
+      "Category": "consumable",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "algae_paste",
+      "Zh": "藻膏",
+      "En": "Algae paste",
+      "Category": "food",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "algae_seed",
+      "Zh": "藻种",
+      "En": "Algae seed",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "warmmarsh"
+      ],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_ingot",
+      "Zh": "铝锭",
+      "En": "aluminum ingot",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "aluminum:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_mesh",
+      "Zh": "铝网",
+      "En": "aluminum mesh",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aluminum:mesh:press",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_plate",
+      "Zh": "铝板",
+      "En": "aluminum plate",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aluminum:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_powder",
+      "Zh": "铝粉",
+      "En": "aluminum powder",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aluminum:powder:crush",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_rod",
+      "Zh": "铝杆",
+      "En": "aluminum rod",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aluminum:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_wire",
+      "Zh": "铝线",
+      "En": "aluminum wire",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aluminum:wire:draw_wire",
+      "IsStub": false
+    },
+    {
+      "Id": "ammo_line",
+      "Zh": "弹药装配线",
+      "En": "Ammo line",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "ammonia",
+      "Zh": "氨",
+      "En": "Ammonia",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "gas",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "ammonia_ice",
+      "Zh": "氨冰",
+      "En": "Ammonia ice",
+      "Category": "raw",
+      "Tier": 2,
+      "Tags": [
+        "gas",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [
+        "mistwatch",
+        "frostmaw"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "antenna",
+      "Zh": "天线",
+      "En": "Antenna",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "arc_furnace",
+      "Zh": "电弧炉",
+      "En": "Arc furnace",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "armored_combat_bot",
+      "Zh": "装甲战斗蛛",
+      "En": "Armored combat bot",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "assault_pod",
+      "Zh": "强袭舱",
+      "En": "Assault pod",
+      "Category": "vehicle",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "assembler",
+      "Zh": "装配机",
+      "En": "Assembler",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "astro_data_core",
+      "Zh": "航天数据核",
+      "En": "Astronautics data core",
+      "Category": "consumable",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "aurite_ingot",
+      "Zh": "曜金锭",
+      "En": "aurite ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "catalytic"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "aurite:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "aurite_steel_ingot",
+      "Zh": "耐热曜金钢锭",
+      "En": "aurite steel ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "aurite_steel:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "aurite_steel_pipe",
+      "Zh": "耐热曜金钢管",
+      "En": "aurite steel pipe",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "heat_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aurite_steel:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "aurite_steel_plate",
+      "Zh": "耐热曜金钢板",
+      "En": "aurite steel plate",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aurite_steel:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "aurite_steel_rod",
+      "Zh": "耐热曜金钢杆",
+      "En": "aurite steel rod",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "heat_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aurite_steel:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "azure_superconductor",
+      "Zh": "超导蓝矿",
+      "En": "Azure superconductor ore",
+      "Category": "raw",
+      "Tier": 3,
+      "Tags": [
+        "superconductive",
+        "conductive"
+      ],
+      "SourceBodies": [
+        "sleetfall"
+      ],
+      "Mass": 4.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bandage",
+      "Zh": "绷带",
+      "En": "Bandage",
+      "Category": "consumable",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bar",
+      "Zh": "酒吧",
+      "En": "Bar",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "basic_circuit",
+      "Zh": "基础电路",
+      "En": "Basic circuit",
+      "Category": "component",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "battery",
+      "Zh": "电池组",
+      "En": "Battery bank",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "battery_cell",
+      "Zh": "电芯",
+      "En": "Battery cell",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "battery_pack",
+      "Zh": "电池组件",
+      "En": "Battery pack",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bauxite",
+      "Zh": "铝土",
+      "En": "Bauxite",
+      "Category": "raw",
+      "Tier": 1,
+      "Tags": [
+        "light"
+      ],
+      "SourceBodies": [
+        "palewatch",
+        "dustloam"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bio_composite_ingot",
+      "Zh": "生物复合材锭",
+      "En": "bio-composite ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "organic",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "bio_composite:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "biomass",
+      "Zh": "生物质",
+      "En": "Biomass",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "organic",
+        "flammable"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "warmmarsh"
+      ],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bonded_warehouse",
+      "Zh": "保税仓",
+      "En": "Bonded warehouse",
+      "Category": "faction",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bot_station",
+      "Zh": "搬运蛛站",
+      "En": "Hauler bot station",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "brine",
+      "Zh": "卤水",
+      "En": "Brine",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "bronze_gear",
+      "Zh": "青铜齿轮",
+      "En": "bronze gear",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "bronze:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "bronze_ingot",
+      "Zh": "青铜锭",
+      "En": "bronze ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "bronze:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "bronze_pipe",
+      "Zh": "青铜管",
+      "En": "bronze pipe",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "bronze:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "bronze_rod",
+      "Zh": "青铜杆",
+      "En": "bronze rod",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "bronze:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "builder_bot",
+      "Zh": "工程蛛",
+      "En": "Builder bot",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "campfire",
+      "Zh": "篝火炉",
+      "En": "Campfire",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "canteen",
+      "Zh": "食堂",
+      "En": "Canteen",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "carbon",
+      "Zh": "石墨矿",
+      "En": "Graphite",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "conductive",
+        "flammable"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "flintfield",
+        "sulfmire"
+      ],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "carbon_powder",
+      "Zh": "碳粉",
+      "En": "Carbon powder",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "cargo_pod",
+      "Zh": "货舱",
+      "En": "Cargo pod",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "charging_post",
+      "Zh": "回充桩",
+      "En": "Charging post",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "chem_electrolyzer",
+      "Zh": "电解槽",
+      "En": "Chemical electrolyzer",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "chem_engine",
+      "Zh": "化学引擎",
+      "En": "Chemical engine",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "chem_reactor",
+      "Zh": "化工釜",
+      "En": "Chem reactor",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "chemistry_data_core",
+      "Zh": "化学数据核",
+      "En": "Chemistry data core",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "chlorine",
+      "Zh": "氯气",
+      "En": "Chlorine",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "gas",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "co2_gas",
+      "Zh": "二氧化碳",
+      "En": "Carbon dioxide",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "gas"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "co2_ice",
+      "Zh": "二氧化碳冰",
+      "En": "CO2 ice",
+      "Category": "raw",
+      "Tier": 1,
+      "Tags": [
+        "gas"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "mistwatch"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "colonist_pod",
+      "Zh": "殖民舱",
+      "En": "Colonist pod",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "colonist_supplies",
+      "Zh": "殖民者随身物资",
+      "En": "Colonist kit",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "combat_bot",
+      "Zh": "战斗蛛",
+      "En": "Combat bot",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "combat_bot_works",
+      "Zh": "战斗蛛工坊",
+      "En": "Combat bot works",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "combat_frame",
+      "Zh": "战斗骨架",
+      "En": "Combat chassis",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "combo_meal",
+      "Zh": "营养套餐",
+      "En": "Combo meal",
+      "Category": "food",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "comms_array",
+      "Zh": "通讯阵列",
+      "En": "Comms array",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "comms_array_module",
+      "Zh": "通讯模组",
+      "En": "Comms module",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "compact_reactor",
+      "Zh": "紧凑快堆",
+      "En": "Compact fast reactor",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "compact_reactor_core",
+      "Zh": "快堆堆芯",
+      "En": "Fast reactor core",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "control_console",
+      "Zh": "控制台",
+      "En": "Control console",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_gear",
+      "Zh": "铜齿轮",
+      "En": "copper gear",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_ingot",
+      "Zh": "铜锭",
+      "En": "copper ingot",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "copper:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_lump",
+      "Zh": "粗铜块",
+      "En": "Copper lump",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_ore",
+      "Zh": "铜矿石",
+      "En": "Copper ore",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "cinderrock"
+      ],
+      "Mass": 4.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_pipe",
+      "Zh": "铜管",
+      "En": "copper pipe",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_plate",
+      "Zh": "铜板",
+      "En": "copper plate",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_powder",
+      "Zh": "铜粉",
+      "En": "copper powder",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:powder:crush",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_rod",
+      "Zh": "铜杆",
+      "En": "copper rod",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_wire",
+      "Zh": "铜线",
+      "En": "copper wire",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:wire:draw_wire",
+      "IsStub": false
+    },
+    {
+      "Id": "courier_drone",
+      "Zh": "快递无人机",
+      "En": "Courier drone",
+      "Category": "vehicle",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "crash_pod",
+      "Zh": "指挥核心(坠毁舱)",
+      "En": "Command core",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "crimson_uranite",
+      "Zh": "绯铀",
+      "En": "Crimson uranite",
+      "Category": "raw",
+      "Tier": 3,
+      "Tags": [
+        "fissile"
+      ],
+      "SourceBodies": [
+        "redridge"
+      ],
+      "Mass": 5.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "crude_glass",
+      "Zh": "粗玻璃",
+      "En": "Crude glass",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "crude_seal",
+      "Zh": "粗密封圈",
+      "En": "Crude seal",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "crude_tool",
+      "Zh": "简易工具",
+      "En": "Crude tool",
+      "Category": "component",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "crusher",
+      "Zh": "破碎机",
+      "En": "Crusher",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "cryo_liquefier",
+      "Zh": "制冷液化器",
+      "En": "Cryo liquefier",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "cryo_pump",
+      "Zh": "深冷泵",
+      "En": "Cryogenic pump",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "culture_vat",
+      "Zh": "培养槽",
+      "En": "Culture vat",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "data_recorder",
+      "Zh": "战斗记录仪",
+      "En": "Combat recorder",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "deep_drill",
+      "Zh": "深井钻机",
+      "En": "Deep drill",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "deep_space_telescope",
+      "Zh": "深空望远镜",
+      "En": "Deep-space telescope",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "deuterium_fuel",
+      "Zh": "重氢燃料",
+      "En": "Deuterium fuel",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "energy_storing"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "deuterium_ice",
+      "Zh": "重氢冰",
+      "En": "Deuterium ice",
+      "Category": "raw",
+      "Tier": 4,
+      "Tags": [
+        "energy_storing",
+        "fluid"
+      ],
+      "SourceBodies": [
+        "frostmaw"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "distiller",
+      "Zh": "蒸馏塔",
+      "En": "Distiller",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "dormitory",
+      "Zh": "宿舍",
+      "En": "Dormitory",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "drone_port",
+      "Zh": "无人机港",
+      "En": "Drone port",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "drone_rotor",
+      "Zh": "无人机旋翼",
+      "En": "Drone rotor",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "duralumin_gear",
+      "Zh": "硬铝齿轮",
+      "En": "duralumin gear",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "duralumin:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "duralumin_ingot",
+      "Zh": "硬铝锭",
+      "En": "duralumin ingot",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "duralumin:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "duralumin_mesh",
+      "Zh": "硬铝网",
+      "En": "duralumin mesh",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "light",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "duralumin:mesh:press",
+      "IsStub": false
+    },
+    {
+      "Id": "duralumin_plate",
+      "Zh": "硬铝板",
+      "En": "duralumin plate",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "duralumin:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "duralumin_rod",
+      "Zh": "硬铝杆",
+      "En": "duralumin rod",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "duralumin:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "duralumin_wire",
+      "Zh": "硬铝线",
+      "En": "duralumin wire",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "duralumin:wire:draw_wire",
+      "IsStub": false
+    },
+    {
+      "Id": "eco_dome",
+      "Zh": "生态穹顶",
+      "En": "Eco dome",
+      "Category": "faction",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "electrical_steel_gear",
+      "Zh": "电工硅钢齿轮",
+      "En": "electrical steel gear",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "electrical_steel:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "electrical_steel_ingot",
+      "Zh": "电工硅钢锭",
+      "En": "electrical steel ingot",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "electrical_steel:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "electrical_steel_wire",
+      "Zh": "电工硅钢线",
+      "En": "electrical steel wire",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "electrical_steel:wire:draw_wire",
+      "IsStub": false
+    },
+    {
+      "Id": "electrolyzer",
+      "Zh": "制氧电解站",
+      "En": "Oxygen electrolyzer",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "emergency_beacon",
+      "Zh": "应急信标",
+      "En": "Emergency beacon",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "engine_nozzle",
+      "Zh": "发动机喷管",
+      "En": "Engine nozzle",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "engineering_data_core",
+      "Zh": "工程数据核",
+      "En": "Engineering data core",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "enriched_uranium_rod",
+      "Zh": "浓缩铀棒",
+      "En": "Enriched uranium rod",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "fissile"
+      ],
+      "SourceBodies": [],
+      "Mass": 4.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fairing",
+      "Zh": "整流罩",
+      "En": "Fairing",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "family_cabin",
+      "Zh": "家庭舱",
+      "En": "Family cabin",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fertilizer",
+      "Zh": "肥料",
+      "En": "Fertilizer",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fiber",
+      "Zh": "植物纤维",
+      "En": "Plant fiber",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fiber_optic",
+      "Zh": "光纤",
+      "En": "Optical fiber",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "filter_cartridge",
+      "Zh": "滤芯",
+      "En": "Filter cartridge",
+      "Category": "component",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "firework",
+      "Zh": "信号焰火",
+      "En": "Signal flare",
+      "Category": "consumable",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fluid_tank",
+      "Zh": "液罐",
+      "En": "Fluid tank",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "forage_station",
+      "Zh": "蜂巢采集站",
+      "En": "Forage station",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "forward_nest",
+      "Zh": "前线装配巢",
+      "En": "Forward assembly nest",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fuel_injector",
+      "Zh": "燃料喷注器",
+      "En": "Fuel injector",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fuel_tank_module",
+      "Zh": "贮箱",
+      "En": "Fuel tank",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fueling_station",
+      "Zh": "加注泵站",
+      "En": "Fueling station",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fungal_snack",
+      "Zh": "菌木脆片",
+      "En": "Fungal chips",
+      "Category": "food",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "fungal_timber",
+      "Zh": "菌木",
+      "En": "Fungal timber",
+      "Category": "raw",
+      "Tier": 1,
+      "Tags": [
+        "organic",
+        "high_strength"
+      ],
+      "SourceBodies": [
+        "warmmarsh"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "furnace",
+      "Zh": "熔炉",
+      "En": "Electric furnace",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "gas_collector",
+      "Zh": "集气塔",
+      "En": "Gas collector",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "gas_pylon",
+      "Zh": "气管桩",
+      "En": "Gas pylon",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "gas_tank",
+      "Zh": "气罐",
+      "En": "Gas tank",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "gas_turbine",
+      "Zh": "燃气轮机",
+      "En": "Gas turbine",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "gasket_set",
+      "Zh": "密封件组",
+      "En": "Gasket set",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "gear_assembly",
+      "Zh": "齿轮组",
+      "En": "Gear assembly",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "geothermal_well",
+      "Zh": "地热井",
+      "En": "Geothermal well",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "glass",
+      "Zh": "玻璃",
+      "En": "Glass",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "insulating"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "grave_marker",
+      "Zh": "墓碑",
+      "En": "Grave marker",
+      "Category": "consumable",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "greenhouse",
+      "Zh": "温室",
+      "En": "Greenhouse",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "growth_medium",
+      "Zh": "培养基",
+      "En": "Growth medium",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "habitat_frame",
+      "Zh": "居住舱框架",
+      "En": "Habitat frame",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "hand_crank",
+      "Zh": "手摇发电机",
+      "En": "Hand-crank generator",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "hatchery",
+      "Zh": "孵化舱",
+      "En": "Hatchery",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "hauler_bot",
+      "Zh": "搬运蛛",
+      "En": "Hauler bot",
+      "Category": "vehicle",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heat_shield_tile",
+      "Zh": "隔热瓦",
+      "En": "Heat-shield tile",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heat_sink_shield",
+      "Zh": "热汲护盾",
+      "En": "Heat-sink shield",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heater_tower",
+      "Zh": "加热塔",
+      "En": "Heater tower",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heating_rod",
+      "Zh": "加热棒",
+      "En": "Heating rod",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heavy_engine",
+      "Zh": "重型引擎",
+      "En": "Heavy engine",
+      "Category": "vehicle",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heavy_frame",
+      "Zh": "重型框架",
+      "En": "Heavy frame",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heavy_motor",
+      "Zh": "重型电机",
+      "En": "Heavy motor",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heavy_nozzle",
+      "Zh": "重型喷管",
+      "En": "Heavy nozzle",
+      "Category": "component",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "heavy_wall",
+      "Zh": "重型城墙",
+      "En": "Heavy wall",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "helium3",
+      "Zh": "氦-3",
+      "En": "Helium-3",
+      "Category": "raw",
+      "Tier": 4,
+      "Tags": [
+        "energy_storing",
+        "gas"
+      ],
+      "SourceBodies": [
+        "azurecolossus"
+      ],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "hull_panel",
+      "Zh": "壳体板件",
+      "En": "Hull panel",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "hydrogen",
+      "Zh": "氢气",
+      "En": "Hydrogen",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "gas",
+        "flammable"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "hydroponic_greens",
+      "Zh": "水培蔬菜",
+      "En": "Hydroponic greens",
+      "Category": "food",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "ice",
+      "Zh": "水冰",
+      "En": "Water ice",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "flintfield",
+        "mistwatch",
+        "frostmaw",
+        "sleetfall"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "ice_miner",
+      "Zh": "采冰机",
+      "En": "Ice extractor",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "insulation_wrap",
+      "Zh": "保温衬垫",
+      "En": "Insulation wrap",
+      "Category": "consumable",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "invar_gear",
+      "Zh": "殷钢齿轮",
+      "En": "invar gear",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "invar:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "invar_ingot",
+      "Zh": "殷钢锭",
+      "En": "invar ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "invar:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "invar_pipe",
+      "Zh": "殷钢管",
+      "En": "invar pipe",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "invar:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "invar_plate",
+      "Zh": "殷钢板",
+      "En": "invar plate",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "invar:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "invar_rod",
+      "Zh": "殷钢杆",
+      "En": "invar rod",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "invar:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_brick",
+      "Zh": "铁砖",
+      "En": "iron brick",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "iron:brick:press",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_gear",
+      "Zh": "铁齿轮",
+      "En": "iron gear",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "iron:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_ingot",
+      "Zh": "铁锭",
+      "En": "iron ingot",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "iron:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_lump",
+      "Zh": "粗铁块",
+      "En": "Iron lump",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_ore",
+      "Zh": "铁矿石",
+      "En": "Iron ore",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "palewatch",
+        "flintfield",
+        "redridge",
+        "cinderrock"
+      ],
+      "Mass": 4.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_pipe",
+      "Zh": "铁管",
+      "En": "iron pipe",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "iron:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_plate",
+      "Zh": "铁板",
+      "En": "iron plate",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "iron:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_rod",
+      "Zh": "铁杆",
+      "En": "iron rod",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "iron:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "isotope_heater",
+      "Zh": "同位素加热棒塔",
+      "En": "Isotope heater",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "isotope_rod",
+      "Zh": "同位素加热棒",
+      "En": "Isotope heating rod",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "jammer_drone",
+      "Zh": "干扰无人机",
+      "En": "Jammer drone",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "kinetic_round",
+      "Zh": "动能弹药",
+      "En": "Kinetic rounds",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "landing_beacon",
+      "Zh": "着陆信标",
+      "En": "Landing beacon",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "large_storage",
+      "Zh": "大仓库",
+      "En": "Large storage",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "laser_cavity",
+      "Zh": "激光腔",
+      "En": "Laser cavity",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "laser_tower",
+      "Zh": "激光塔",
+      "En": "Laser tower",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "launch_pad",
+      "Zh": "发射台",
+      "En": "Launch pad",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "lead_lining",
+      "Zh": "铅衬",
+      "En": "Radiation lining",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "lens",
+      "Zh": "镜片",
+      "En": "Lens",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "light_frame",
+      "Zh": "轻型框架",
+      "En": "Light frame",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "liquid_hydrogen",
+      "Zh": "液氢",
+      "En": "Liquid hydrogen",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "fluid",
+        "flammable"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "liquid_methane",
+      "Zh": "液化甲烷",
+      "En": "Liquid methane",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "fluid",
+        "flammable"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "liquid_nitrogen",
+      "Zh": "液氮",
+      "En": "Liquid nitrogen",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "liquid_oxygen",
+      "Zh": "液氧",
+      "En": "Liquid oxygen",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "lubricant",
+      "Zh": "润滑剂",
+      "En": "Lubricant",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "machined_parts",
+      "Zh": "精密件",
+      "En": "Machined parts",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "machining_bench",
+      "Zh": "机加工台",
+      "En": "Machining bench",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "magnetic_node",
+      "Zh": "磁约束节点",
+      "En": "Magnetic confinement node",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "med_bay",
+      "Zh": "医疗舱",
+      "En": "Med bay",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "med_kit",
+      "Zh": "医疗包",
+      "En": "Med kit",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "methane",
+      "Zh": "甲烷",
+      "En": "Methane",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "gas",
+        "flammable"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "methane_ice",
+      "Zh": "甲烷冰",
+      "En": "Methane ice",
+      "Category": "raw",
+      "Tier": 2,
+      "Tags": [
+        "flammable",
+        "gas"
+      ],
+      "SourceBodies": [
+        "warmmarsh",
+        "frostmaw"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "military_data_core",
+      "Zh": "军情数据核",
+      "En": "Military data core",
+      "Category": "consumable",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "miner",
+      "Zh": "采矿机",
+      "En": "Mining rig",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "miner_bot",
+      "Zh": "采矿蛛",
+      "En": "Miner bot",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "mirror",
+      "Zh": "反射镜",
+      "En": "Mirror",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "monument",
+      "Zh": "纪念碑",
+      "En": "Monument",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "morale_treat",
+      "Zh": "庆功甜点",
+      "En": "Celebration treat",
+      "Category": "food",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "motor",
+      "Zh": "电机",
+      "En": "Motor",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "myco_catalyst",
+      "Zh": "菌金催化剂",
+      "En": "Myco-gold catalyst",
+      "Category": "faction",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "myco_gold_spore",
+      "Zh": "菌金胞",
+      "En": "Myco-gold spores",
+      "Category": "raw",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "organic"
+      ],
+      "SourceBodies": [
+        "warmmarsh"
+      ],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "myco_rack",
+      "Zh": "菌木速生架",
+      "En": "Myco growth rack",
+      "Category": "faction",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nav_pod",
+      "Zh": "导航舱",
+      "En": "Navigation pod",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nav_pod_deep",
+      "Zh": "深空导航舱",
+      "En": "Deep-space nav pod",
+      "Category": "vehicle",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nav_sensor_suite",
+      "Zh": "导航传感组",
+      "En": "Navigation sensor suite",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nickel_gravel",
+      "Zh": "镍铁砾",
+      "En": "Nickel-iron gravel",
+      "Category": "raw",
+      "Tier": 1,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [
+        "palewatch",
+        "flintfield",
+        "ringfield"
+      ],
+      "Mass": 4.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nickel_ingot",
+      "Zh": "镍锭",
+      "En": "nickel ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "nickel:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "nickel_pipe",
+      "Zh": "镍管",
+      "En": "nickel pipe",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "nickel:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "nickel_plate",
+      "Zh": "镍板",
+      "En": "nickel plate",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "nickel:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "nickel_powder",
+      "Zh": "镍粉",
+      "En": "nickel powder",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "nickel:powder:crush",
+      "IsStub": false
+    },
+    {
+      "Id": "nitric_acid",
+      "Zh": "硝酸",
+      "En": "Nitric acid",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "fluid",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nitrogen_gas",
+      "Zh": "氮气",
+      "En": "Nitrogen",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "gas"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nitrogen_ice",
+      "Zh": "氮冰",
+      "En": "Nitrogen ice",
+      "Category": "raw",
+      "Tier": 2,
+      "Tags": [
+        "gas"
+      ],
+      "SourceBodies": [
+        "mistwatch",
+        "sleetfall"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nuclear_cell",
+      "Zh": "核电池芯",
+      "En": "Nuclear cell",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nuclear_reactor",
+      "Zh": "核反应堆",
+      "En": "Nuclear reactor",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nuclear_upper_stage",
+      "Zh": "核动力上面级",
+      "En": "Nuclear upper stage",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "nutrient_gel",
+      "Zh": "营养凝胶",
+      "En": "Nutrient gel",
+      "Category": "food",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "observatory",
+      "Zh": "观星台",
+      "En": "Observatory",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "obsidian_gold_ore",
+      "Zh": "曜金矿",
+      "En": "Aurite ore",
+      "Category": "raw",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "catalytic"
+      ],
+      "SourceBodies": [
+        "cinderrock"
+      ],
+      "Mass": 5.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "optical_sensor",
+      "Zh": "光学传感器",
+      "En": "Optical sensor",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "orbital_dock",
+      "Zh": "轨道货运站",
+      "En": "Orbital dock",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "orbital_freighter",
+      "Zh": "轨道货轮",
+      "En": "Orbital freighter",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "orbital_gas_platform",
+      "Zh": "轨道气矿平台",
+      "En": "Orbital gas platform",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "orbital_penetrator",
+      "Zh": "轨道穿甲弹",
+      "En": "Orbital penetrator",
+      "Category": "consumable",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "outpost_kit",
+      "Zh": "前哨包",
+      "En": "Outpost kit",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "oxygen_bottle",
+      "Zh": "备用气瓶",
+      "En": "Spare oxygen bottle",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "oxygen_gas",
+      "Zh": "氧气瓶装",
+      "En": "Bottled oxygen",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "gas"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "phase_armor_plate",
+      "Zh": "相变装甲板",
+      "En": "Phase armor plate",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "phase_composite_ingot",
+      "Zh": "相变复合材锭",
+      "En": "phase-change composite ingot",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "energy_storing",
+        "insulating"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "phase_composite:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "phase_gel_raw",
+      "Zh": "相变凝胶原浆",
+      "En": "Raw phase gel",
+      "Category": "raw",
+      "Tier": 4,
+      "Tags": [
+        "energy_storing",
+        "insulating"
+      ],
+      "SourceBodies": [
+        "sleetfall"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "phase_gel_refined",
+      "Zh": "相变凝胶",
+      "En": "Refined phase gel",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "platinum_ingot",
+      "Zh": "铂锭",
+      "En": "platinum ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "platinum:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "platinum_mesh_alloy_ingot",
+      "Zh": "铂催化网材锭",
+      "En": "platinum catalyst alloy ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "platinum_mesh_alloy:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "platinum_mesh_alloy_mesh",
+      "Zh": "铂催化网材网",
+      "En": "platinum catalyst alloy mesh",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "platinum_mesh_alloy:mesh:press",
+      "IsStub": false
+    },
+    {
+      "Id": "platinum_powder",
+      "Zh": "铂粉",
+      "En": "platinum powder",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "platinum:powder:crush",
+      "IsStub": false
+    },
+    {
+      "Id": "platinum_sand",
+      "Zh": "铂族砂",
+      "En": "Platinum-group sand",
+      "Category": "raw",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [
+        "ringfield"
+      ],
+      "Mass": 5.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "polymer",
+      "Zh": "聚合物",
+      "En": "Polymer",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "light",
+        "insulating"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "polymer_reactor",
+      "Zh": "聚合反应器",
+      "En": "Polymer reactor",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "power_pylon",
+      "Zh": "输电塔",
+      "En": "Power pylon",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "preserved_ration",
+      "Zh": "腌制口粮",
+      "En": "Preserved ration",
+      "Category": "food",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "press",
+      "Zh": "压制机",
+      "En": "Press",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "pressure_sensor",
+      "Zh": "压力传感器",
+      "En": "Pressure sensor",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "protein_meal",
+      "Zh": "蛋白餐",
+      "En": "Protein meal",
+      "Category": "food",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "protein_paste",
+      "Zh": "蛋白浆",
+      "En": "Protein paste",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "protein_tower",
+      "Zh": "蛋白高塔",
+      "En": "Protein tower",
+      "Category": "faction",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "protein_vat",
+      "Zh": "蛋白釜",
+      "En": "Protein vat",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "pump",
+      "Zh": "泵",
+      "En": "Pump",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "pump_station",
+      "Zh": "泵站",
+      "En": "Pump station",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "quantum_circuit",
+      "Zh": "量子电路",
+      "En": "Quantum circuit",
+      "Category": "component",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "quartz_sand",
+      "Zh": "石英砂",
+      "En": "Quartz sand",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "insulating"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "palewatch",
+        "sleetfall"
+      ],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rad_suit",
+      "Zh": "铅衬服",
+      "En": "Radiation suit",
+      "Category": "consumable",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "radiator_fin",
+      "Zh": "散热鳍",
+      "En": "Radiator fin",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rare_earth_ingot",
+      "Zh": "稀土锭",
+      "En": "rare-earth metal ingot",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "rare_earth:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "rare_earth_ore",
+      "Zh": "稀土矿",
+      "En": "Rare-earth ore",
+      "Category": "raw",
+      "Tier": 2,
+      "Tags": [
+        "catalytic",
+        "conductive"
+      ],
+      "SourceBodies": [
+        "redridge",
+        "palewatch"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rare_earth_powder",
+      "Zh": "稀土粉",
+      "En": "rare-earth metal powder",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "rare_earth:powder:crush",
+      "IsStub": false
+    },
+    {
+      "Id": "rare_earth_wire",
+      "Zh": "稀土线",
+      "En": "rare-earth metal wire",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "rare_earth:wire:draw_wire",
+      "IsStub": false
+    },
+    {
+      "Id": "ration",
+      "Zh": "应急口粮",
+      "En": "Emergency ration",
+      "Category": "food",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rec_room",
+      "Zh": "娱乐舱",
+      "En": "Rec room",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "recycler",
+      "Zh": "回收机",
+      "En": "Recycler",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "refinery",
+      "Zh": "精炼塔",
+      "En": "Refinery",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "regolith",
+      "Zh": "尘壤土",
+      "En": "Regolith",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "insulating"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "palewatch",
+        "redridge"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "repair_gel",
+      "Zh": "维修凝胶",
+      "En": "Repair gel",
+      "Category": "consumable",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "research_bench",
+      "Zh": "研究台",
+      "En": "Research bench",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "resin",
+      "Zh": "树脂",
+      "En": "Resin",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rivet_set",
+      "Zh": "铆钉组",
+      "En": "Rivet set",
+      "Category": "component",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "road",
+      "Zh": "砂石路",
+      "En": "Gravel road",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rocket_frame_1",
+      "Zh": "箭体框架 I",
+      "En": "Rocket frame I",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rocket_frame_2",
+      "Zh": "箭体框架 II",
+      "En": "Rocket frame II",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rocket_frame_3",
+      "Zh": "箭体框架 III",
+      "En": "Rocket frame III",
+      "Category": "vehicle",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rocket_fuel",
+      "Zh": "火箭燃料组",
+      "En": "Rocket fuel load",
+      "Category": "consumable",
+      "Tier": 3,
+      "Tags": [
+        "flammable"
+      ],
+      "SourceBodies": [],
+      "Mass": 6.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rocket_gantry",
+      "Zh": "火箭装配架",
+      "En": "Rocket gantry",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "roll_mill",
+      "Zh": "铸轧机",
+      "En": "Roll mill",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "rover_kit",
+      "Zh": "拓荒车组件",
+      "En": "Rover kit",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "sabatier_reactor",
+      "Zh": "Sabatier 反应器",
+      "En": "Sabatier reactor",
+      "Category": "building",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "salt",
+      "Zh": "盐",
+      "En": "Salt",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "salt_ore",
+      "Zh": "盐矿",
+      "En": "Salt ore",
+      "Category": "raw",
+      "Tier": 0,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [
+        "dustloam"
+      ],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "satellite_pod",
+      "Zh": "卫星舱",
+      "En": "Satellite pod",
+      "Category": "vehicle",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "seal_ring",
+      "Zh": "密封环",
+      "En": "Seal ring",
+      "Category": "component",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "seed_kit",
+      "Zh": "藻种培育包",
+      "En": "Seed culture kit",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "sentry_gun",
+      "Zh": "哨戒炮",
+      "En": "Sentry gun",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "shield_dome",
+      "Zh": "护盾穹顶",
+      "En": "Shield dome",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "shield_emitter",
+      "Zh": "护盾发生器",
+      "En": "Shield emitter",
+      "Category": "component",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "shock_cannon",
+      "Zh": "震荡炮",
+      "En": "Shock cannon",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "silicon_ingot",
+      "Zh": "硅锭",
+      "En": "silicon ingot",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "insulating"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "silicon:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "sleep_pod",
+      "Zh": "睡舱",
+      "En": "Sleep pod",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "small_motor",
+      "Zh": "小型电机",
+      "En": "Small motor",
+      "Category": "component",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "small_nozzle",
+      "Zh": "小型喷管",
+      "En": "Small nozzle",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "small_storage",
+      "Zh": "小仓库",
+      "En": "Small storage",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "sodium",
+      "Zh": "钠",
+      "En": "Sodium",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "flammable"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "solar_panel",
+      "Zh": "太阳板",
+      "En": "Solar panel",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "spaceport_tower",
+      "Zh": "星港调度塔",
+      "En": "Spaceport control tower",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "spore_extract",
+      "Zh": "孢子提取液",
+      "En": "Spore extract",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "spore_protein",
+      "Zh": "孢子朊",
+      "En": "Spore protein",
+      "Category": "raw",
+      "Tier": 2,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [
+        "warmmarsh"
+      ],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "spore_vaccine",
+      "Zh": "孢子疫苗",
+      "En": "Spore vaccine",
+      "Category": "faction",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_brick",
+      "Zh": "钢砖",
+      "En": "steel brick",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "steel:brick:press",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_gear",
+      "Zh": "钢齿轮",
+      "En": "steel gear",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "steel:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_ingot",
+      "Zh": "钢锭",
+      "En": "steel ingot",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "steel:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_mesh",
+      "Zh": "钢网",
+      "En": "steel mesh",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "steel:mesh:press",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_pipe",
+      "Zh": "钢管",
+      "En": "steel pipe",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "steel:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_plate",
+      "Zh": "钢板",
+      "En": "steel plate",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "steel:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "steel_rod",
+      "Zh": "钢杆",
+      "En": "steel rod",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "steel:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "stim_shot",
+      "Zh": "强心针",
+      "En": "Stim shot",
+      "Category": "consumable",
+      "Tier": 3,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "structural_panel",
+      "Zh": "结构板件",
+      "En": "Structural panel",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "suicide_bot",
+      "Zh": "自爆蛛",
+      "En": "Breacher bot",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "suit_liner",
+      "Zh": "服装内衬",
+      "En": "Suit liner",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "sulfur",
+      "Zh": "硫",
+      "En": "Sulfur",
+      "Category": "raw",
+      "Tier": 1,
+      "Tags": [
+        "flammable",
+        "catalytic"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "cinderrock",
+        "sulfmire",
+        "redridge"
+      ],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "sulfuric_acid",
+      "Zh": "硫酸",
+      "En": "Sulfuric acid",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "fluid",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "superconductor_alloy_ingot",
+      "Zh": "超导合金锭",
+      "En": "superconductor alloy ingot",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "superconductive",
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "superconductor_alloy:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "superconductor_alloy_mesh",
+      "Zh": "超导合金网",
+      "En": "superconductor alloy mesh",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "superconductive",
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "superconductor_alloy:mesh:press",
+      "IsStub": false
+    },
+    {
+      "Id": "superconductor_alloy_wire",
+      "Zh": "超导合金线",
+      "En": "superconductor alloy wire",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "superconductive",
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "superconductor_alloy:wire:draw_wire",
+      "IsStub": false
+    },
+    {
+      "Id": "superconductor_battery",
+      "Zh": "超导电池阵",
+      "En": "Superconducting bank",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "superconductor_pylon",
+      "Zh": "超导电网塔",
+      "En": "Superconducting pylon",
+      "Category": "faction",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "survey_data_core",
+      "Zh": "勘探数据核",
+      "En": "Survey data core",
+      "Category": "consumable",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "survey_radar",
+      "Zh": "勘探雷达",
+      "En": "Survey radar",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "synthetic_rubber",
+      "Zh": "合成橡胶",
+      "En": "Synthetic rubber",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "insulating"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "tailings_crusher",
+      "Zh": "尾矿粉碎机",
+      "En": "Tailings crusher",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "thermal_sensor",
+      "Zh": "热传感器",
+      "En": "Thermal sensor",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "thermal_suit",
+      "Zh": "保温服",
+      "En": "Insulated suit",
+      "Category": "consumable",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "timber_rack",
+      "Zh": "菌木伐木架",
+      "En": "Timber rack",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_alloy_gear",
+      "Zh": "钛合金齿轮",
+      "En": "titanium alloy gear",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium_alloy:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_alloy_ingot",
+      "Zh": "钛合金锭",
+      "En": "titanium alloy ingot",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "titanium_alloy:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_alloy_pipe",
+      "Zh": "钛合金管",
+      "En": "titanium alloy pipe",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium_alloy:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_alloy_plate",
+      "Zh": "钛合金板",
+      "En": "titanium alloy plate",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium_alloy:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_alloy_rod",
+      "Zh": "钛合金杆",
+      "En": "titanium alloy rod",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium_alloy:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_gear",
+      "Zh": "钛齿轮",
+      "En": "titanium gear",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:gear:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_ingot",
+      "Zh": "钛锭",
+      "En": "titanium ingot",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "titanium:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_pipe",
+      "Zh": "钛管",
+      "En": "titanium pipe",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_plate",
+      "Zh": "钛板",
+      "En": "titanium plate",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:plate:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_powder",
+      "Zh": "钛粉",
+      "En": "titanium powder",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:powder:crush",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_rod",
+      "Zh": "钛杆",
+      "En": "titanium rod",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:rod:cast_roll",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_sand",
+      "Zh": "钛砂",
+      "En": "Titanium sand",
+      "Category": "raw",
+      "Tier": 1,
+      "Tags": [
+        "heat_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [
+        "dustloam",
+        "cinderrock"
+      ],
+      "Mass": 3.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "truss_section",
+      "Zh": "桁架段",
+      "En": "Truss section",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "uranium_core_alloy_ingot",
+      "Zh": "铀燃料芯锭",
+      "En": "uranium fuel core ingot",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "fissile"
+      ],
+      "SourceBodies": [],
+      "Mass": 3.0,
+      "IconSpec": "uranium_core_alloy:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "valve",
+      "Zh": "阀门",
+      "En": "Valve",
+      "Category": "component",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "wall",
+      "Zh": "围墙",
+      "En": "Wall",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "warp_beacon",
+      "Zh": "跃迁灯塔",
+      "En": "Warp beacon",
+      "Category": "building",
+      "Tier": 4,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "water",
+      "Zh": "水",
+      "En": "Water",
+      "Category": "intermediate",
+      "Tier": 0,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "water_bottle",
+      "Zh": "净水瓶装",
+      "En": "Bottled water",
+      "Category": "consumable",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "water_purifier",
+      "Zh": "水净化器",
+      "En": "Water purifier",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "wind_turbine",
+      "Zh": "风机",
+      "En": "Wind turbine",
+      "Category": "building",
+      "Tier": 1,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "wire_mill",
+      "Zh": "拉丝机",
+      "En": "Wire mill",
+      "Category": "building",
+      "Tier": 2,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "workbench",
+      "Zh": "手工台",
+      "En": "Workbench",
+      "Category": "building",
+      "Tier": 0,
+      "Tags": [],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    }
+  ]
 }

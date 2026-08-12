@@ -37,7 +37,20 @@ namespace Starsoil.Core
         ForageStation,
         BotStation,
         ChargingPost,
-        ResearchBench
+        ResearchBench,
+        // M3 processing stations (docs/plan/03 加工 catalog; generic machine model).
+        ArcFurnace,
+        WireMill,
+        MachiningBench,
+        ChemElectrolyzer,
+        Distiller,
+        ChemReactor,
+        PolymerReactor,
+        SabatierReactor,
+        CryoLiquefier,
+        CultureVat,
+        Refinery,
+        Recycler
     }
 
     /// <summary>Immutable building archetype. The T0/T1 set covers docs/plan/03 categories
@@ -283,17 +296,78 @@ namespace Starsoil.Core
                 buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CopperLump, 2), Need(ItemIds.CrudeTool, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "powered_assembly");
 
+        // The purifier is a low-tier distiller and the greenhouse a walk-in culture vat:
+        // they share the station kind so generated distill/cultivate recipes run on them
+        // (one verb → one machine family, docs/plan/04).
         public static readonly BuildingDef WaterPurifier =
-            new BuildingDef(WaterPurifierId, 1, 2, BuildingKind.WaterPurifier, isStation: true, isMachine: true,
+            new BuildingDef(WaterPurifierId, 1, 2, BuildingKind.Distiller, isStation: true, isMachine: true,
                 powerKw: PurifierKw, priority: PowerPriority.LifeSupport,
                 buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CrudeGlass, 1) },
                 buildWorkTicks: NormalBuildTicks, techNode: "life_support_1");
 
         public static readonly BuildingDef Greenhouse =
-            new BuildingDef(GreenhouseId, 3, 2, BuildingKind.Greenhouse, isStation: true, isMachine: true,
-                powerKw: 8f, priority: PowerPriority.LifeSupport,
+            new BuildingDef(GreenhouseId, 3, 2, BuildingKind.CultureVat, isStation: true, isMachine: true,
+                powerKw: GreenhouseKw, priority: PowerPriority.LifeSupport,
                 buildCost: new[] { Need(ItemIds.CrudeGlass, 3), Need(ItemIds.Fiber, 2), Need(ItemIds.IronLump, 1) },
                 buildWorkTicks: BigBuildTicks, techNode: "life_support_1");
+
+        public const string ArcFurnaceId = "arc_furnace";
+        public const string WireMillId = "wire_mill";
+        public const string MachiningBenchId = "machining_bench";
+        public const string ChemElectrolyzerId = "chem_electrolyzer";
+        public const string DistillerId = "distiller";
+        public const string ChemReactorId = "chem_reactor";
+        public const string PolymerReactorId = "polymer_reactor";
+        public const string SabatierReactorId = "sabatier_reactor";
+        public const string CryoLiquefierId = "cryo_liquefier";
+        public const string CultureVatId = "culture_vat";
+        public const string RefineryId = "refinery";
+        public const string RecyclerId = "recycler";
+
+        private const float ArcFurnaceKw = 45f;
+        private const float WireMillKw = 20f;
+        private const float MachiningKw = 25f;
+        private const float ChemElectrolyzerKw = 40f;
+        private const float DistillerKw = 30f;
+        private const float ChemReactorKw = 30f;
+        private const float PolymerKw = 35f;
+        private const float SabatierKw = 30f;
+        private const float CryoKw = 30f;
+        private const float CultureVatKw = 10f;
+        private const float RefineryKw = 40f;
+        private const float RecyclerKw = 15f;
+
+        private static BuildingDef Station(string id, int w, int h, BuildingKind kind, float kw, string tech,
+            Ingredient[] costItems)
+        {
+            return new BuildingDef(id, w, h, kind, isStation: true, isMachine: true, powerKw: kw,
+                buildCost: costItems, buildWorkTicks: BigBuildTicks, techNode: tech);
+        }
+
+        public static readonly BuildingDef ArcFurnace = Station(ArcFurnaceId, 2, 2, BuildingKind.ArcFurnace,
+            ArcFurnaceKw, "arc_smelting", new[] { Need("steel_plate", 2), Need(ItemIds.CopperLump, 2), Need("heating_rod", 1) });
+        public static readonly BuildingDef WireMill = Station(WireMillId, 2, 1, BuildingKind.WireMill,
+            WireMillKw, "forming_basic", new[] { Need("steel_plate", 1), Need("steel_gear", 2) });
+        public static readonly BuildingDef MachiningBench = Station(MachiningBenchId, 2, 1, BuildingKind.MachiningBench,
+            MachiningKw, "machining_tech", new[] { Need("steel_plate", 2), Need("steel_gear", 1), Need(ItemIds.CopperLump, 1) });
+        public static readonly BuildingDef ChemElectrolyzer = Station(ChemElectrolyzerId, 2, 2, BuildingKind.ChemElectrolyzer,
+            ChemElectrolyzerKw, "chem_basics", new[] { Need("steel_plate", 2), Need("copper_wire", 2), Need("glass", 1) });
+        public static readonly BuildingDef Distiller = Station(DistillerId, 2, 2, BuildingKind.Distiller,
+            DistillerKw, "distillation", new[] { Need("steel_pipe", 2), Need("steel_plate", 2), Need("valve", 1) });
+        public static readonly BuildingDef ChemReactor = Station(ChemReactorId, 2, 2, BuildingKind.ChemReactor,
+            ChemReactorKw, "chem_basics", new[] { Need("steel_plate", 2), Need("steel_pipe", 2), Need("valve", 2) });
+        public static readonly BuildingDef PolymerReactor = Station(PolymerReactorId, 2, 2, BuildingKind.PolymerReactor,
+            PolymerKw, "polymers", new[] { Need("invar_plate", 2), Need("pump", 1), Need("heating_rod", 1) });
+        public static readonly BuildingDef SabatierReactor = Station(SabatierReactorId, 2, 2, BuildingKind.SabatierReactor,
+            SabatierKw, "sabatier_tech", new[] { Need("nickel_pipe", 2), Need("pump", 1), Need("platinum_powder", 1) });
+        public static readonly BuildingDef CryoLiquefier = Station(CryoLiquefierId, 2, 2, BuildingKind.CryoLiquefier,
+            CryoKw, "cryogenics", new[] { Need("invar_plate", 2), Need("cryo_pump", 1), Need("radiator_fin", 2) });
+        public static readonly BuildingDef CultureVat = Station(CultureVatId, 2, 2, BuildingKind.CultureVat,
+            CultureVatKw, "food_hydroponics", new[] { Need("glass", 2), Need("steel_plate", 1), Need("pump", 1) });
+        public static readonly BuildingDef Refinery = Station(RefineryId, 2, 3, BuildingKind.Refinery,
+            RefineryKw, "cryogenics", new[] { Need("titanium_pipe", 1), Need("invar_plate", 2), Need("pump", 2) });
+        public static readonly BuildingDef Recycler = Station(RecyclerId, 2, 2, BuildingKind.Recycler,
+            RecyclerKw, "recycling", new[] { Need("steel_plate", 2), Need("gear_assembly", 1) });
 
         public static readonly BuildingDef ForageStation =
             new BuildingDef(ForageStationId, 1, 1, BuildingKind.ForageStation, isMachine: true,
@@ -347,7 +421,19 @@ namespace Starsoil.Core
             { ForageStation.Id, ForageStation },
             { BotStation.Id, BotStation },
             { ChargingPost.Id, ChargingPost },
-            { ResearchBench.Id, ResearchBench }
+            { ResearchBench.Id, ResearchBench },
+            { ArcFurnace.Id, ArcFurnace },
+            { WireMill.Id, WireMill },
+            { MachiningBench.Id, MachiningBench },
+            { ChemElectrolyzer.Id, ChemElectrolyzer },
+            { Distiller.Id, Distiller },
+            { ChemReactor.Id, ChemReactor },
+            { PolymerReactor.Id, PolymerReactor },
+            { SabatierReactor.Id, SabatierReactor },
+            { CryoLiquefier.Id, CryoLiquefier },
+            { CultureVat.Id, CultureVat },
+            { Refinery.Id, Refinery },
+            { Recycler.Id, Recycler }
         };
 
         /// <summary>T0 hand-tech buildings, always available (M1 build menu).</summary>
@@ -364,7 +450,10 @@ namespace Starsoil.Core
             PowerPylonId, SolarPanelId, WindTurbineId, BatteryId,
             GasPylonId, GasTankId, ElectrolyzerId, AirChargingStationId,
             MinerId, IceMinerId, CrusherId, FurnaceId, RollMillId, PressId, AssemblerId,
-            WaterPurifierId, GreenhouseId, ForageStationId, BotStationId, ChargingPostId
+            WaterPurifierId, GreenhouseId, ForageStationId, BotStationId, ChargingPostId,
+            ArcFurnaceId, WireMillId, MachiningBenchId, ChemElectrolyzerId, DistillerId,
+            ChemReactorId, PolymerReactorId, SabatierReactorId, CryoLiquefierId,
+            CultureVatId, RefineryId, RecyclerId
         };
 
         public static bool TryGet(string id, out BuildingDef def) => ById.TryGetValue(id, out def);

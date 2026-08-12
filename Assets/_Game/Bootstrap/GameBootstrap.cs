@@ -29,6 +29,7 @@ namespace Starsoil.Bootstrap
 
             var settings = GameSettings.Load();
             L10n.TryLoadDefault();
+            ItemCatalog.TryLoadDefault();
             L10n.SetLanguage(settings.Language);
 
             var world = new World(DefaultWorldSeed, GameConstants.DefaultRegionSize);
@@ -97,6 +98,11 @@ namespace Starsoil.Bootstrap
             var techPanel = techPanelGo.AddComponent<TechPanelController>();
             techPanel.Init(world);
 
+            var browserGo = new GameObject("RecipeBrowser");
+            browserGo.transform.SetParent(root.transform, false);
+            var browser = browserGo.AddComponent<RecipeBrowserController>();
+            browser.Init(world);
+
             var jobsPanelGo = new GameObject("JobsPanel");
             jobsPanelGo.transform.SetParent(root.transform, false);
             var jobsPanel = jobsPanelGo.AddComponent<JobsPanelController>();
@@ -107,6 +113,7 @@ namespace Starsoil.Bootstrap
             var driver = driverGo.AddComponent<SimDriver>();
             driver.Init(world, settings, rig, worldView, entities, terrainView, placement, hud, hudUi, craftPanel, sun);
             driver.RegisterPanels(techPanel, jobsPanel);
+            driver.RegisterBrowser(browser);
 
             hud.Init(world, rig, worldView, () => driver.Speed);
             hudUi.Init(world, () => driver.Speed, driver.JumpCameraTo, driver.NewGame, driver.SkipTutorial);

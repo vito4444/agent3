@@ -1,2 +1,14 @@
-# Alloys (12 at M3, locked list in docs/plan/04). components: itemId:count;itemId:count
+# Alloys (12, locked list in docs/plan/04). components: itemId:count → 1 alloy ingot.
 id,zh,en,components,tier,tags
+steel,钢,steel,iron_ingot:2;carbon:1,1,high_strength
+bronze,青铜,bronze,copper_ingot:2;nickel_ingot:1,3,corrosion_resistant
+duralumin,硬铝,duralumin,aluminum_ingot:2;copper_ingot:1,2,light;high_strength
+titanium_alloy,钛合金,titanium alloy,titanium_ingot:2;aluminum_ingot:1,2,heat_resistant;high_strength;light
+invar,殷钢,invar,iron_ingot:1;nickel_ingot:1,3,corrosion_resistant;high_strength
+electrical_steel,电工硅钢,electrical steel,iron_ingot:2;silicon_ingot:1,2,conductive
+aurite_steel,耐热曜金钢,aurite steel,steel_ingot:2;aurite_ingot:1,3,heat_resistant;high_strength
+superconductor_alloy,超导合金,superconductor alloy,azure_superconductor:2;copper_ingot:1,4,superconductive;conductive
+platinum_mesh_alloy,铂催化网材,platinum catalyst alloy,platinum_ingot:1;nickel_ingot:2,3,catalytic;corrosion_resistant
+uranium_core_alloy,铀燃料芯,uranium fuel core,crimson_uranite:3;titanium_ingot:1,4,fissile
+bio_composite,生物复合材,bio-composite,myco_gold_spore:2;polymer:2,3,organic;light
+phase_composite,相变复合材,phase-change composite,phase_gel_raw:2;aluminum_ingot:1,4,energy_storing;insulating

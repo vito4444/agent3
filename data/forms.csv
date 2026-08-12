@@ -1,3 +1,16 @@
-# Item forms (14 at M3: ingot/plate/rod/wire/gear/pipe/mesh/powder/brick/gas/fluid/cell/circuit/frame).
-# verb = the process verb that produces this form (used by the matrix expansion).
+# Item forms (14, docs/plan/04). verb = process that produces this form via the matrix.
 id,zh,en,verb
+ingot,锭,ingot,smelt
+plate,板,plate,cast_roll
+rod,杆,rod,cast_roll
+wire,线,wire,draw_wire
+gear,齿轮,gear,machining
+pipe,管,pipe,machining
+mesh,网,mesh,press
+powder,粉,powder,crush
+brick,砖,brick,press
+gas,气,gas,electrolyze
+fluid,液,fluid,distill
+cell,电芯,cell,assemble
+circuit,电路,circuit,assemble
+frame,框架,frame,assemble

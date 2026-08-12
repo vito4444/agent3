@@ -7,26 +7,30 @@ namespace Starsoil.BalanceSim.Tests
     public sealed class CraftingFlowTests
     {
         [Test]
-        public void HandStations_RunAtHalfSpeed()
+        public void HandStations_RunSlower_ByTheMappingFactor()
         {
             var world = TestUtil.NewColonyWorld(41UL, 96);
-            Assert.IsTrue(world.Crafting.TryGetRecipe("melt_ice", out var recipe));
+            Assert.IsTrue(world.Crafting.TryGetRecipe("make_water_melt", out var recipe));
+            Assert.IsTrue(recipe.RunsOn(BuildingKind.Campfire, out bool hand) && hand,
+                "water melting must run on the campfire as a hand station");
+            Assert.IsTrue(recipe.RunsOn(BuildingKind.Furnace, out bool machineHand) && !machineHand,
+                "water melting must run on the furnace at machine speed");
             var station = new BuildingState { DefId = BuildingDefs.CampfireId, Durability = 100f };
             Assert.AreEqual(recipe.WorkTicks * Balance.HandcraftTimeFactor,
-                CraftingSystem.EffectiveWorkTicks(recipe, station), 0.001f,
-                "hand stations must run at 0.5x machine speed (docs/plan/03)");
+                CraftingSystem.EffectiveWorkTicks(recipe, station, handSpeed: true), 0.001f,
+                "hand stations run at 1/" + Balance.HandcraftTimeFactor + " machine speed (docs/plan/03 mapping)");
         }
 
         [Test]
         public void LowDurability_HalvesWorkSpeed()
         {
             var world = TestUtil.NewColonyWorld(42UL, 96);
-            Assert.IsTrue(world.Crafting.TryGetRecipe("melt_ice", out var recipe));
+            Assert.IsTrue(world.Crafting.TryGetRecipe("make_water_melt", out var recipe));
             var worn = new BuildingState { DefId = BuildingDefs.CampfireId, Durability = Balance.LowDurabilityThreshold - 1f };
             var fresh = new BuildingState { DefId = BuildingDefs.CampfireId, Durability = 100f };
             Assert.AreEqual(
-                CraftingSystem.EffectiveWorkTicks(recipe, fresh) / Balance.LowDurabilitySpeedFactor,
-                CraftingSystem.EffectiveWorkTicks(recipe, worn), 0.001f);
+                CraftingSystem.EffectiveWorkTicks(recipe, fresh, true) / Balance.LowDurabilitySpeedFactor,
+                CraftingSystem.EffectiveWorkTicks(recipe, worn, true), 0.001f);
         }
 
         [Test]
@@ -36,7 +40,7 @@ namespace Starsoil.BalanceSim.Tests
             int stationId = world.Buildings.Place(BuildingDefs.CampfireId, world.StartX + 4, world.StartY, 0, out var err);
             Assert.AreEqual(PlacementError.None, err);
             world.Piles.Drop(ItemIds.Ice, 4, world.StartX - 4, world.StartY);
-            world.Commands.Enqueue(new AddCraftOrderCommand { StationId = stationId, RecipeId = "melt_ice", Count = 1 });
+            world.Commands.Enqueue(new AddCraftOrderCommand { StationId = stationId, RecipeId = "make_water_melt", Count = 1 });
 
             bool crafted = TestUtil.RunUntil(world, 6000, w => w.Stats.CraftedOf(ItemIds.Water) >= 2);
             Assert.IsTrue(crafted, "melt_ice order never completed");
@@ -57,7 +61,7 @@ namespace Starsoil.BalanceSim.Tests
             world.Commands.Enqueue(new AddCraftOrderCommand
             {
                 StationId = stationId,
-                RecipeId = "melt_ice",
+                RecipeId = "make_water_melt",
                 Count = -1,
                 MaintainTarget = target
             });

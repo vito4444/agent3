@@ -43,10 +43,17 @@ namespace Starsoil.Bootstrap
         private TechPanelController _techPanel;
         private JobsPanelController _jobsPanel;
 
+        private RecipeBrowserController _browser;
+
         public void RegisterPanels(TechPanelController techPanel, JobsPanelController jobsPanel)
         {
             _techPanel = techPanel;
             _jobsPanel = jobsPanel;
+        }
+
+        public void RegisterBrowser(RecipeBrowserController browser)
+        {
+            _browser = browser;
         }
 
         public void Init(World world, GameSettings settings, CameraRig rig, WorldView view, EntityViews entities,
@@ -113,6 +120,10 @@ namespace Starsoil.Bootstrap
             if (_jobsPanel != null)
             {
                 _jobsPanel.SwitchWorld(world);
+            }
+            if (_browser != null)
+            {
+                _browser.SwitchWorld(world);
             }
         }
 

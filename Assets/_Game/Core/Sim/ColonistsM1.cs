@@ -755,9 +755,11 @@ namespace Starsoil.Core
             {
                 return;
             }
+            BuildingDefs.TryGet(station.DefId, out var stationDef);
+            recipe.RunsOn(stationDef.Kind, out bool handSpeed);
             colonist.Activity = ColonistActivity.WorkingTask;
             colonist.WorkAccum += MoraleSystem.WorkSpeedFactor(colonist);
-            if (colonist.WorkAccum >= CraftingSystem.EffectiveWorkTicks(recipe, station))
+            if (colonist.WorkAccum >= CraftingSystem.EffectiveWorkTicks(recipe, station, handSpeed))
             {
                 var order = FindOrder(world, station, task.OrderId);
                 if (order != null)

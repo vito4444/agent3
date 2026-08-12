@@ -4,18 +4,44 @@ using System.Globalization;
 
 namespace Starsoil.Core
 {
-    /// <summary>M1 hand recipe (staged interface: replaced by the RecipeGen pipeline at M3-T10).</summary>
+    /// <summary>
+    /// Runtime recipe (from the RecipeGen catalog since M3-T10). One recipe can run on
+    /// its machine station at full speed and, when a hand station exists for the verb,
+    /// on that hand station at Balance.HandcraftTimeFactor slower.
+    /// </summary>
     public sealed class RecipeM1
     {
         public string Id;
-        /// <summary>Station building kind that runs this recipe (Workbench or Campfire at T0).</summary>
+        /// <summary>Machine station kind that runs this recipe at full speed.</summary>
         public BuildingKind Station;
+        /// <summary>Hand station kind (Generic = none).</summary>
+        public BuildingKind HandStation = BuildingKind.Generic;
         public List<Ingredient> Inputs = new List<Ingredient>();
         public List<Ingredient> Outputs = new List<Ingredient>();
-        /// <summary>Base machine ticks; hand stations apply Balance.HandcraftTimeFactor.</summary>
+        /// <summary>Machine ticks; hand stations apply Balance.HandcraftTimeFactor.</summary>
         public int WorkTicks;
         public string RationaleZh;
         public string RationaleEn;
+        public bool FactionLocked;
+
+        public bool HasHandStation => HandStation != BuildingKind.Generic;
+
+        /// <summary>Can this recipe run on the given station kind?</summary>
+        public bool RunsOn(BuildingKind kind, out bool handSpeed)
+        {
+            if (kind == Station)
+            {
+                handSpeed = false;
+                return true;
+            }
+            if (HasHandStation && kind == HandStation)
+            {
+                handSpeed = true;
+                return true;
+            }
+            handSpeed = false;
+            return false;
+        }
     }
 
     public sealed class CraftOrder
@@ -160,126 +186,16 @@ namespace Starsoil.Core
             world.Events.Add(new CraftCompletedEvent { StationId = station.Id, RecipeId = recipe.Id });
         }
 
-        /// <summary>Effective work ticks at a hand station, including durability slowdown.</summary>
-        public static float EffectiveWorkTicks(RecipeM1 recipe, BuildingState station)
+        /// <summary>Effective work ticks on the given station, including hand penalty and
+        /// durability slowdown.</summary>
+        public static float EffectiveWorkTicks(RecipeM1 recipe, BuildingState station, bool handSpeed)
         {
-            float ticks = recipe.WorkTicks * Balance.HandcraftTimeFactor;
+            float ticks = recipe.WorkTicks * (handSpeed ? Balance.HandcraftTimeFactor : 1f);
             if (station.Durability < Balance.LowDurabilityThreshold)
             {
                 ticks /= Balance.LowDurabilitySpeedFactor;
             }
             return ticks;
-        }
-
-        /// <summary>
-        /// Parses data/temp_recipes_m1.csv (staged interface, deleted at M3-T10).
-        /// Columns: id,station,inputs,outputs,work_ticks,zh_rationale,en_rationale.
-        /// </summary>
-        public static List<RecipeM1> ParseTempRecipesCsv(IEnumerable<string> lines)
-        {
-            var result = new List<RecipeM1>();
-            bool headerSeen = false;
-            foreach (string raw in lines)
-            {
-                string line = raw.Trim();
-                if (line.Length == 0 || line.StartsWith("#", StringComparison.Ordinal))
-                {
-                    continue;
-                }
-                if (!headerSeen)
-                {
-                    headerSeen = true;
-                    continue;
-                }
-                string[] cells = SplitCsvLine(line);
-                if (cells.Length < 7)
-                {
-                    continue;
-                }
-                var recipe = new RecipeM1
-                {
-                    Id = cells[0].Trim(),
-                    Station = ParseStation(cells[1].Trim()),
-                    Inputs = ParseIngredients(cells[2]),
-                    Outputs = ParseIngredients(cells[3]),
-                    WorkTicks = int.Parse(cells[4].Trim(), CultureInfo.InvariantCulture),
-                    RationaleZh = cells[5].Trim(),
-                    RationaleEn = cells[6].Trim()
-                };
-                result.Add(recipe);
-            }
-            return result;
-        }
-
-        private static BuildingKind ParseStation(string value)
-        {
-            switch (value)
-            {
-                case "campfire": return BuildingKind.Campfire;
-                case "workbench": return BuildingKind.Workbench;
-                case "purifier": return BuildingKind.WaterPurifier;
-                case "furnace": return BuildingKind.Furnace;
-                case "crusher": return BuildingKind.Crusher;
-                case "roll_mill": return BuildingKind.RollMill;
-                case "press": return BuildingKind.Press;
-                case "assembler": return BuildingKind.Assembler;
-                case "greenhouse": return BuildingKind.Greenhouse;
-                default: return BuildingKind.Workbench;
-            }
-        }
-
-        private static List<Ingredient> ParseIngredients(string cell)
-        {
-            var list = new List<Ingredient>();
-            foreach (string entry in cell.Split(';'))
-            {
-                string trimmed = entry.Trim();
-                if (trimmed.Length == 0)
-                {
-                    continue;
-                }
-                string[] parts = trimmed.Split(':');
-                int count = parts.Length > 1 ? int.Parse(parts[1].Trim(), CultureInfo.InvariantCulture) : 1;
-                list.Add(new Ingredient { ItemId = parts[0].Trim(), Count = count });
-            }
-            return list;
-        }
-
-        private static string[] SplitCsvLine(string line)
-        {
-            var fields = new List<string>();
-            var current = new System.Text.StringBuilder();
-            bool inQuotes = false;
-            for (int i = 0; i < line.Length; i++)
-            {
-                char c = line[i];
-                if (inQuotes)
-                {
-                    if (c == '"')
-                    {
-                        inQuotes = false;
-                    }
-                    else
-                    {
-                        current.Append(c);
-                    }
-                }
-                else if (c == '"')
-                {
-                    inQuotes = true;
-                }
-                else if (c == ',')
-                {
-                    fields.Add(current.ToString());
-                    current.Clear();
-                }
-                else
-                {
-                    current.Append(c);
-                }
-            }
-            fields.Add(current.ToString());
-            return fields.ToArray();
         }
 
         internal void RestoreFrom(List<SavedCraftOrder> saved)

@@ -83,7 +83,7 @@ namespace Starsoil.Core
         {
             var order = world.Crafting.ActiveOrder(world, machine);
             if (order == null || !world.Crafting.TryGetRecipe(order.RecipeId, out var recipe) ||
-                recipe.Station != def.Kind)
+                !recipe.RunsOn(def.Kind, out bool handSpeed) || handSpeed)
             {
                 machine.ProcessAccum = 0f;
                 return;

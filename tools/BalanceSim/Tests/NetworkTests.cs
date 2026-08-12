@@ -50,10 +50,10 @@ namespace Starsoil.BalanceSim.Tests
             int press = PlaceOk(world, BuildingDefs.PressId, cx + 5, cy);
             world.Buildings.TryGet(purifier, out var purifierBuffer);
             purifierBuffer.Stock.Add(ItemIds.Ice, 20);
-            world.Crafting.AddOrder(purifier, "m_purify_ice", -1, 999);
+            world.Crafting.AddOrder(purifier, "distill_water_clean", -1, 999);
             world.Buildings.TryGet(press, out var pressBuffer);
             pressBuffer.Stock.Add(ItemIds.Biomass, 20);
-            world.Crafting.AddOrder(press, "m_ration", -1, 999);
+            world.Crafting.AddOrder(press, "make_ration", -1, 999);
             world.Step();
             world.Step();
 
@@ -84,7 +84,7 @@ namespace Starsoil.BalanceSim.Tests
             int purifier = PlaceOk(world, BuildingDefs.WaterPurifierId, cx + 4, cy);
             world.Buildings.TryGet(purifier, out var purifierLoad);
             purifierLoad.Stock.Add(ItemIds.Ice, 500);
-            world.Crafting.AddOrder(purifier, "m_purify_ice", -1, 99999);
+            world.Crafting.AddOrder(purifier, "distill_water_clean", -1, 99999);
             bool night = TestUtil.RunUntil(world, 2 * GameConstants.TicksPerDay, w => w.IsNight);
             Assert.IsTrue(night);
             float beforeNightDrain = battery.BatteryKwh;

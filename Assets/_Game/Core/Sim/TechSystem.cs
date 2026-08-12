@@ -15,6 +15,9 @@ namespace Starsoil.Core
         public List<Ingredient> Cost = new List<Ingredient>();
         public List<string> Recipes = new List<string>();
         public List<string> Buildings = new List<string>();
+        /// <summary>Faction-locked branch (docs/plan/07): never self-researchable; only
+        /// occupation grants it.</summary>
+        public bool FactionLocked;
     }
 
     /// <summary>
@@ -48,7 +51,7 @@ namespace Starsoil.Core
                 {
                     _recipeToNode[recipe] = node.Id;
                 }
-                if (node.Cost.Count == 0)
+                if (node.Cost.Count == 0 && !node.FactionLocked)
                 {
                     _unlocked.Add(node.Id);
                 }
@@ -77,7 +80,7 @@ namespace Starsoil.Core
 
         public bool CanSelectTarget(string nodeId)
         {
-            if (!_nodes.TryGetValue(nodeId, out var node) || _unlocked.Contains(nodeId))
+            if (!_nodes.TryGetValue(nodeId, out var node) || _unlocked.Contains(nodeId) || node.FactionLocked)
             {
                 return false;
             }
@@ -211,7 +214,8 @@ namespace Starsoil.Core
                     Domain = Get("domain"),
                     Prereqs = SplitMulti(Get("prereqs")),
                     Recipes = SplitMulti(Get("recipes")),
-                    Buildings = SplitMulti(Get("buildings"))
+                    Buildings = SplitMulti(Get("buildings")),
+                    FactionLocked = Get("faction") == "1"
                 };
                 foreach (string entry in SplitMulti(Get("cost")))
                 {

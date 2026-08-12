@@ -109,7 +109,8 @@ namespace Starsoil.UI
             foreach (var pair in SortedRecipes())
             {
                 var recipe = pair.Value;
-                if (recipe.Station != stationDef.Kind)
+                if (!recipe.RunsOn(stationDef.Kind, out _) ||
+                    !_world.Tech.IsRecipeUnlocked(recipe.Id))
                 {
                     continue;
                 }
