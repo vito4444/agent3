@@ -28,6 +28,7 @@ namespace Starsoil.Core
         public StatsSystem Stats { get; } = new StatsSystem();
         public NetworkSystem Networks { get; } = new NetworkSystem();
         public MachineSystem Machines { get; } = new MachineSystem();
+        public BotSystem Bots { get; } = new BotSystem();
 
         /// <summary>Wind supply factor (0.6–1.4), re-rolled hourly from the wind stream.</summary>
         public float WindFactor { get; private set; } = 1f;
@@ -116,11 +117,13 @@ namespace Starsoil.Core
             }
             if (Tick % Balance.DispatchIntervalTicks == 0)
             {
+                Bots.EnsureStationBots(this);
                 Tasks.GenerateAndDispatch(this);
             }
             Life.BeginTick();
             ResetCrankFlags();
             Colonists.Tick(this);
+            Bots.Tick(this);
             Machines.Tick(this);
             Networks.Tick(this);
             Life.EndTick(this);

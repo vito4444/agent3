@@ -520,6 +520,12 @@ namespace Starsoil.Core
             return null;
         }
 
+        private static bool IsBotHaulType(TaskType type)
+        {
+            return type == TaskType.HaulToBlueprint || type == TaskType.HaulToStation ||
+                   type == TaskType.HaulToStorage;
+        }
+
         private void Dispatch(World world)
         {
             var unclaimed = new List<WorkTask>();
@@ -532,37 +538,79 @@ namespace Starsoil.Core
             }
             unclaimed.Sort((a, b) => a.Priority != b.Priority ? b.Priority.CompareTo(a.Priority) : a.Id.CompareTo(b.Id));
 
-            var idle = new List<Colonist>();
+            var idleColonists = new List<Colonist>();
             foreach (var colonist in world.Colonists.AllSorted())
             {
                 if (colonist.Alive && colonist.Activity == ColonistActivity.Idle)
                 {
-                    idle.Add(colonist);
+                    idleColonists.Add(colonist);
                 }
             }
+            var idleBots = world.Bots.IdleReady();
+            // While any bot is operational, haul work leaves the human labor pool
+            // (docs/plan/03 hand-to-machine mapping row "人力搬运 → 搬运蛛", M2-T9).
+            bool botsOperational = world.Bots.AnyOperational();
 
             foreach (var task in unclaimed)
             {
-                if (idle.Count == 0)
+                if (IsBotHaulType(task.Type))
                 {
-                    break;
-                }
-                int bestIndex = -1;
-                int bestDistance = int.MaxValue;
-                for (int i = 0; i < idle.Count; i++)
-                {
-                    int distance = Math.Abs(idle[i].X - task.TargetX) + Math.Abs(idle[i].Y - task.TargetY);
-                    if (distance < bestDistance)
+                    if (idleBots.Count > 0)
                     {
-                        bestDistance = distance;
-                        bestIndex = i;
+                        var bot = TakeNearestBot(idleBots, task);
+                        task.ClaimedBy = -bot.Id;
+                        bot.AssignTask(task);
+                        continue;
+                    }
+                    if (botsOperational)
+                    {
+                        continue;
                     }
                 }
-                var worker = idle[bestIndex];
-                idle.RemoveAt(bestIndex);
+                if (idleColonists.Count == 0)
+                {
+                    continue;
+                }
+                var worker = TakeNearestColonist(idleColonists, task);
                 task.ClaimedBy = worker.Id;
                 worker.AssignTask(task);
             }
+        }
+
+        private static Bot TakeNearestBot(List<Bot> idleBots, WorkTask task)
+        {
+            int bestIndex = 0;
+            int bestDistance = int.MaxValue;
+            for (int i = 0; i < idleBots.Count; i++)
+            {
+                int distance = Math.Abs(idleBots[i].X - task.TargetX) + Math.Abs(idleBots[i].Y - task.TargetY);
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestIndex = i;
+                }
+            }
+            var bot = idleBots[bestIndex];
+            idleBots.RemoveAt(bestIndex);
+            return bot;
+        }
+
+        private static Colonist TakeNearestColonist(List<Colonist> idle, WorkTask task)
+        {
+            int bestIndex = 0;
+            int bestDistance = int.MaxValue;
+            for (int i = 0; i < idle.Count; i++)
+            {
+                int distance = Math.Abs(idle[i].X - task.TargetX) + Math.Abs(idle[i].Y - task.TargetY);
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestIndex = i;
+                }
+            }
+            var worker = idle[bestIndex];
+            idle.RemoveAt(bestIndex);
+            return worker;
         }
 
         public void ReleaseSourceReservation(World world, WorkTask task)

@@ -254,6 +254,31 @@ namespace Starsoil.Core
                 });
             }
 
+            foreach (var bot in world.Bots.AllSorted())
+            {
+                // Bot carried loads normalize into piles like colonists do.
+                if (bot.CarryingCount > 0)
+                {
+                    data.Piles.Add(new SavedPile
+                    {
+                        Id = nextPileId,
+                        ItemId = bot.CarryingItem,
+                        Count = bot.CarryingCount,
+                        X = bot.X,
+                        Y = bot.Y
+                    });
+                    nextPileId++;
+                }
+                data.Bots.Add(new SavedBot
+                {
+                    Id = bot.Id,
+                    HomeStationId = bot.HomeStationId,
+                    X = bot.X,
+                    Y = bot.Y,
+                    Battery = bot.Battery
+                });
+            }
+
             return data;
         }
 
@@ -276,6 +301,7 @@ namespace Starsoil.Core
             world.Crafting.RestoreFrom(data.CraftOrders);
             world.Alerts.RestoreFrom(data.Alerts);
             world.Networks.RestoreGas(data.GasComponents);
+            world.Bots.RestoreFrom(data.Bots);
             world.RestoreMeta(data);
             return world;
         }

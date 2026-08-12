@@ -29,6 +29,15 @@ namespace Starsoil.Core
         public float Stored;
     }
 
+    public sealed class SavedBot
+    {
+        public int Id;
+        public int HomeStationId;
+        public int X;
+        public int Y;
+        public float Battery;
+    }
+
     public sealed class SavedPile
     {
         public int Id;
@@ -124,6 +133,7 @@ namespace Starsoil.Core
         public List<SavedAlert> Alerts = new List<SavedAlert>();
         public List<SavedRngStream> RngStreams = new List<SavedRngStream>();
         public List<SavedGasComponent> GasComponents = new List<SavedGasComponent>();
+        public List<SavedBot> Bots = new List<SavedBot>();
 
         public int StartX;
         public int StartY;
