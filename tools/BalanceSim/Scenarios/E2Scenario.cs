@@ -97,7 +97,9 @@ namespace Starsoil.BalanceSim.Scenarios
             int component = world.Networks.GasComponentOf(electrolyzer);
             if (component != 0)
             {
-                world.Networks.GasStored[component] = 2000f;
+                // Overshoot on purpose; the next settle clamps it to grid capacity.
+                world.Networks.GasStored[component] = 100000f;
+                world.Step();
             }
             return world;
         }
