@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>Starsoil.BalanceSim</AssemblyName>
+    <RootNamespace>Starsoil.BalanceSim</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Game.Core is pure C# (no UnityEngine); compile it directly so the sim test
+       suite and future balance scenarios run without a Unity license (CI gate 1). -->
+  <ItemGroup>
+    <Compile Include="../../Assets/_Game/Core/**/*.cs" LinkBase="Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,3 @@
+# Material × form validity mask (docs/plan/04): the first hand-maintained gate that keeps
+# generated recipes sensible. Cell value = unlock tier when the combination is valid, empty otherwise.
+material_id,ingot,plate,rod,wire,gear,pipe,mesh,powder,brick,gas,fluid,cell,circuit,frame

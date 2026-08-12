@@ -1,0 +1,20 @@
+{
+    "name": "Game.EditorTools",
+    "rootNamespace": "Starsoil.EditorTools",
+    "references": [
+        "Game.Core",
+        "Game.Data",
+        "Unity.RenderPipelines.Universal.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

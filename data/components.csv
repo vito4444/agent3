@@ -1,0 +1,3 @@
+# Components, consumables, buildings, vehicles, faction-branch recipes (families D-H).
+# category: component/consumable/food/building/vehicle/faction/terminal. outputs empty = self x1.
+id,zh,en,inputs,outputs,verb,tier,category
