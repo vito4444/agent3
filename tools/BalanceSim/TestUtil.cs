@@ -14,7 +14,7 @@ namespace Starsoil.BalanceSim
             for (int depth = 0; depth < 8 && current != null; depth++)
             {
                 string candidate = Path.Combine(current.FullName, "data");
-                if (File.Exists(Path.Combine(candidate, "temp_recipes_m1.csv")))
+                if (File.Exists(Path.Combine(candidate, "materials.csv")))
                 {
                     return candidate;
                 }
@@ -23,10 +23,11 @@ namespace Starsoil.BalanceSim
             throw new DirectoryNotFoundException("repo data/ directory not found from " + AppContext.BaseDirectory);
         }
 
+        /// <summary>Loads the generated recipe catalog (checked-in GeneratedData/).</summary>
         public static void LoadTempRecipes(World world)
         {
-            string path = Path.Combine(FindDataDir(), "temp_recipes_m1.csv");
-            world.Crafting.LoadRecipes(CraftingSystem.ParseTempRecipesCsv(File.ReadAllLines(path)));
+            string path = Path.Combine(FindDataDir(), "..", "GeneratedData", "recipes.json");
+            world.Crafting.LoadRecipes(CatalogRecipes.ParseJson(File.ReadAllText(path)));
         }
 
         public static void LoadTechTree(World world)

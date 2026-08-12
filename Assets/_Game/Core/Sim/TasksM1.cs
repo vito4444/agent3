@@ -351,7 +351,7 @@ namespace Starsoil.Core
                 {
                     continue;
                 }
-                if (recipe.Station != def.Kind)
+                if (!recipe.RunsOn(def.Kind, out _))
                 {
                     continue;
                 }
@@ -385,8 +385,11 @@ namespace Starsoil.Core
                         }
                     }
                 }
-                else if (!HasTaskFor(t => t.Type == TaskType.Craft && t.StationId == station.Id))
+                else if (!def.IsMachine &&
+                         !HasTaskFor(t => t.Type == TaskType.Craft && t.StationId == station.Id))
                 {
+                    // Machines run their own orders (MachineSystem); only hand stations
+                    // queue colonist craft work.
                     AddTask(new WorkTask
                     {
                         Type = TaskType.Craft,

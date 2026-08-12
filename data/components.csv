@@ -219,3 +219,4 @@ b_compact_reactor,紧凑快堆,Compact fast reactor,compact_reactor_core:1;lead_
 b_isotope_heater,同位素加热棒塔,Isotope heater,isotope_rod:2;steel_plate:2,isotope_heater:1,assemble,4,faction
 b_forward_nest,前线装配巢,Forward assembly nest,combat_frame:2;structural_panel:2,forward_nest:1,assemble,4,faction
 b_shock_cannon,震荡炮,Shock cannon,heavy_frame:1;shield_emitter:1;aurite_steel_rod:1;kinetic_round:4,shock_cannon:1,assemble,4,faction
+grow_biomass,温室栽培,Greenhouse cycle,algae_seed:1;water:1,biomass:8;algae_seed:1,cultivate,1,intermediate

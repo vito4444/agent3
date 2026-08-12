@@ -50,8 +50,9 @@ namespace Starsoil.Core
         public const float WalkCellsPerTick = 3.5f / GameConstants.TicksPerRealSecondAt1x;
         public const float RoadSpeedFactor = 1.4f;
 
-        // Hand work rates (docs/plan/03: hand stations run at ×0.5, machines take over in M2).
-        public const float HandcraftTimeFactor = 2f;
+        // Hand work rates (docs/plan/03 mapping table: machines deliver ≥4× hand throughput;
+        // since M3 one recipe runs on both stations, the hand penalty carries the ratio).
+        public const float HandcraftTimeFactor = 4f;
         public const int MineTicksPerUnit = 300;
         public const int GatherTicksPerUnit = 200;
 

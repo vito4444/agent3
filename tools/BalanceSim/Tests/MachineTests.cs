@@ -32,13 +32,13 @@ namespace Starsoil.BalanceSim.Tests
         }
 
         [Test]
-        public void MachinePurifier_Beats_HandCampfire_ByFourX()
+        public void MachineWaterRoute_Beats_HandCampfire_ByFourX()
         {
             var world = TestUtil.NewColonyWorld(81UL, 96);
-            Assert.IsTrue(world.Crafting.TryGetRecipe("melt_ice", out var hand));
-            Assert.IsTrue(world.Crafting.TryGetRecipe("m_purify_ice", out var machine));
-            float handEffective = hand.WorkTicks * Balance.HandcraftTimeFactor;
-            Assert.GreaterOrEqual(handEffective / machine.WorkTicks, 4f,
+            Assert.IsTrue(world.Crafting.TryGetRecipe("make_water_melt", out var recipe));
+            var campfire = new BuildingState { DefId = BuildingDefs.CampfireId, Durability = 100f };
+            float handEffective = CraftingSystem.EffectiveWorkTicks(recipe, campfire, handSpeed: true);
+            Assert.GreaterOrEqual(handEffective / recipe.WorkTicks, 4f,
                 "machine water route must be ≥4x hand throughput (M2-T9)");
         }
 
@@ -84,7 +84,7 @@ namespace Starsoil.BalanceSim.Tests
             int furnaceId = PlaceOk(world, BuildingDefs.FurnaceId, px + 4, py);
             world.Buildings.TryGet(furnaceId, out var furnace);
             furnace.Stock.Add(ItemIds.IronOre, 10);
-            world.Crafting.AddOrder(furnaceId, "m_smelt_iron", 3, 0);
+            world.Crafting.AddOrder(furnaceId, "smelt_iron", 3, 0);
 
             // Freeze the colonists so nothing human touches the furnace.
             foreach (var colonist in world.Colonists.AllSorted())
@@ -93,8 +93,8 @@ namespace Starsoil.BalanceSim.Tests
                 colonist.Activity = ColonistActivity.Dead;
             }
 
-            bool done = TestUtil.RunUntil(world, 3000, w => furnace.Stock.Get(ItemIds.IronLump) >= 3);
-            Assert.IsTrue(done, "machine must smelt without any colonist");
+            bool done = TestUtil.RunUntil(world, 3000, w => furnace.Stock.Get("iron_ingot") >= 3);
+            Assert.IsTrue(done, "machine must smelt ingots without any colonist");
         }
 
         [Test]
@@ -104,11 +104,11 @@ namespace Starsoil.BalanceSim.Tests
             int furnaceId = PlaceOk(world, BuildingDefs.FurnaceId, px + 4, py);
             world.Buildings.TryGet(furnaceId, out var furnace);
             furnace.Stock.Add(ItemIds.IronOre, 40);
-            world.Crafting.AddOrder(furnaceId, "m_smelt_iron", -1, 999);
+            world.Crafting.AddOrder(furnaceId, "smelt_iron", -1, 999);
 
             furnace.Durability = Balance.LowDurabilityThreshold - 5f;
             long start = world.Tick;
-            bool one = TestUtil.RunUntil(world, 3000, w => furnace.Stock.Get(ItemIds.IronLump) >= 1);
+            bool one = TestUtil.RunUntil(world, 3000, w => furnace.Stock.Get("iron_ingot") >= 1);
             Assert.IsTrue(one);
             long slowTicks = world.Tick - start;
 
@@ -120,9 +120,9 @@ namespace Starsoil.BalanceSim.Tests
             Assert.Less(pod.Stock.Get(ItemIds.RepairGel), 2, "gel must be consumed");
 
             furnace.Stock.Add(ItemIds.IronOre, 40);
-            int before = furnace.Stock.Get(ItemIds.IronLump);
+            int before = furnace.Stock.Get("iron_ingot");
             start = world.Tick;
-            bool next = TestUtil.RunUntil(world, 3000, w => furnace.Stock.Get(ItemIds.IronLump) >= before + 1);
+            bool next = TestUtil.RunUntil(world, 3000, w => furnace.Stock.Get("iron_ingot") >= before + 1);
             Assert.IsTrue(next);
             long fastTicks = world.Tick - start;
             Assert.Less(fastTicks, slowTicks, "repaired machine must run faster than a worn one");
@@ -136,7 +136,7 @@ namespace Starsoil.BalanceSim.Tests
             world.Buildings.TryGet(greenhouseId, out var greenhouse);
             greenhouse.Stock.Add(ItemIds.AlgaeSeed, 1);
             greenhouse.Stock.Add(ItemIds.Water, 5);
-            world.Crafting.AddOrder(greenhouseId, "greenhouse_grow", 2, 0);
+            world.Crafting.AddOrder(greenhouseId, "make_grow_biomass", 2, 0);
 
             bool grew = TestUtil.RunUntil(world, 3000, w => w.Stats.CraftedOf(ItemIds.Biomass) >= 8);
             Assert.IsTrue(grew, "greenhouse must grow biomass");

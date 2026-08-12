@@ -67,10 +67,10 @@ namespace Starsoil.BalanceSim.Scenarios
         /// <summary>Adds maintain orders as soon as the stations exist. Call every game hour.</summary>
         public static void TickOrders(World world)
         {
-            TryEnsureOrder(world, BuildingKind.Campfire, "melt_ice", 8);
-            TryEnsureOrder(world, BuildingKind.Workbench, "emergency_ration", 8);
-            TryEnsureOrder(world, BuildingKind.Workbench, "plant_fiber", 4);
-            TryEnsureOrder(world, BuildingKind.Workbench, "bandage", 2);
+            TryEnsureOrder(world, BuildingKind.Campfire, "make_water_melt", 8);
+            TryEnsureOrder(world, BuildingKind.Workbench, "make_ration", 8);
+            TryEnsureOrder(world, BuildingKind.Workbench, "make_fiber", 4);
+            TryEnsureOrder(world, BuildingKind.Workbench, "make_bandage", 2);
         }
 
         private static void TryEnsureOrder(World world, BuildingKind stationKind, string recipeId, int maintain)

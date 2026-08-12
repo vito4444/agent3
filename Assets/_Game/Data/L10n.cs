@@ -118,5 +118,11 @@ namespace Starsoil.Data
             string candidate = Path.Combine(Application.dataPath, "..", "data", fileName);
             return File.Exists(candidate) ? Path.GetFullPath(candidate) : null;
         }
+
+        public static string RepoGeneratedPath(string fileName)
+        {
+            string candidate = Path.Combine(Application.dataPath, "..", "GeneratedData", fileName);
+            return File.Exists(candidate) ? Path.GetFullPath(candidate) : null;
+        }
     }
 }

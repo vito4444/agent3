@@ -25,7 +25,7 @@ namespace Starsoil.BalanceSim.Scenarios
             Place(world, BuildingDefs.PowerPylonId, cx, cy);
             Place(world, BuildingDefs.PowerPylonId, cx + 14, cy);
             Place(world, BuildingDefs.PowerPylonId, cx - 14, cy);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 Place(world, BuildingDefs.SolarPanelId, cx - 15 + i * 3, cy + 5);
             }
@@ -55,7 +55,7 @@ namespace Starsoil.BalanceSim.Scenarios
             iceNode.Designated = false;
             Place(world, BuildingDefs.IceMinerId, cx - 7, cy + 10);
             int purifier = Place(world, BuildingDefs.WaterPurifierId, cx - 3, cy + 9);
-            world.Crafting.AddOrder(purifier, "m_purify_ice", -1, 60);
+            world.Crafting.AddOrder(purifier, "distill_water_clean", -1, 60);
 
             // Food: greenhouses feed a press.
             int greenhouseA = Place(world, BuildingDefs.GreenhouseId, cx, cy + 9);
@@ -64,10 +64,10 @@ namespace Starsoil.BalanceSim.Scenarios
             world.Buildings.TryGet(greenhouseB, out var gB);
             gA.Stock.Add(ItemIds.AlgaeSeed, 1);
             gB.Stock.Add(ItemIds.AlgaeSeed, 1);
-            world.Crafting.AddOrder(greenhouseA, "greenhouse_grow", -1, 40);
-            world.Crafting.AddOrder(greenhouseB, "greenhouse_grow", -1, 40);
+            world.Crafting.AddOrder(greenhouseA, "make_grow_biomass", -1, 40);
+            world.Crafting.AddOrder(greenhouseB, "make_grow_biomass", -1, 40);
             int press = Place(world, BuildingDefs.PressId, cx + 9, cy + 9);
-            world.Crafting.AddOrder(press, "m_ration", -1, 32);
+            world.Crafting.AddOrder(press, "make_ration", -1, 32);
 
             // Logistics: bots haul, humans do not.
             Place(world, BuildingDefs.BotStationId, cx - 4, cy - 3);

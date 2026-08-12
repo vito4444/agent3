@@ -1,6 +1,6 @@
 # RecipeGen validation report
 
-Generated at (UTC): 2026-08-12 17:04:27
+Generated at (UTC): 2026-08-12 17:07:27
 
 ## Counts by family (target table: docs/plan/04)
 
@@ -9,19 +9,19 @@ Generated at (UTC): 2026-08-12 17:04:27
 | A | 21 |
 | B | 57 |
 | C | 41 |
-| D | 56 |
+| D | 57 |
 | E | 30 |
 | F | 79 |
 | G | 20 |
 | H | 25 |
-| total | 329 |
+| total | 330 |
 
 Items: 344 · Verbs: 14 · Forms: 14 · Tech nodes: 96
 
 ## Checks
 
 ### 1 reachability (start planet + crash-pod inventory) — PASS
-_235/329 recipes reachable_
+_236/330 recipes reachable_
 
 ### 2 no orphan items — PASS
 
@@ -82,6 +82,7 @@ _warnings only; whitelist decisions happen in M3 review_
 - warning: mass gain make_firework: 4 -> 6
 - warning: mass gain make_water_bottle: 3 -> 4
 - warning: mass gain make_nutrient_gel: 3 -> 4
+- warning: mass gain make_grow_biomass: 2 -> 17
 
 ### 6 unlock coverage (1 tech node per recipe, <=14 per node) — PASS
 
@@ -89,4 +90,4 @@ _warnings only; whitelist decisions happen in M3 review_
 
 ### 8 localization strings present (zh/en) — PASS
 
-TOTAL recipes: 329, errors: 0, warnings: 51
+TOTAL recipes: 330, errors: 0, warnings: 52

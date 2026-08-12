@@ -1,17 +1,17 @@
 # Process verbs (14, docs/plan/04). machine = building id; hand_version = T0 station or empty.
 # base_seconds are game-seconds per craft (RecipeGen converts to ticks); base_kw = machine draw.
 id,zh,en,machine,hand_version,base_seconds,base_kw,template_id
-crush,破碎,crush,crusher,workbench,3,15,tpl_crush
-smelt,熔炼,smelt,furnace,campfire,6,35,tpl_smelt
+crush,破碎,crush,crusher,workbench,2,15,tpl_crush
+smelt,熔炼,smelt,furnace,campfire,3,35,tpl_smelt
 alloy,合金,alloy,arc_furnace,,8,45,tpl_alloy
 cast_roll,铸轧,cast and roll,roll_mill,,5,20,tpl_cast_roll
 draw_wire,拉丝,draw wire,wire_mill,,5,20,tpl_draw_wire
-machining,机加工,machining,machining_bench,workbench,6,25,tpl_machining
-press,压制,press,press,workbench,4,20,tpl_press
+machining,机加工,machining,machining_bench,workbench,4,25,tpl_machining
+press,压制,press,press,workbench,2.5,20,tpl_press
 electrolyze,电解,electrolyze,chem_electrolyzer,,6,40,tpl_electrolyze
 distill,蒸馏,distill,distiller,,6,30,tpl_distill
 synthesize,化合,synthesize,chem_reactor,,8,30,tpl_synthesize
 polymerize,聚合,polymerize,polymer_reactor,,10,35,tpl_polymerize
 liquefy,液化,liquefy,cryo_liquefier,,8,30,tpl_liquefy
 cultivate,培养,cultivate,culture_vat,,40,10,tpl_cultivate
-assemble,组装,assemble,assembler,workbench,8,25,tpl_assemble
+assemble,组装,assemble,assembler,workbench,3,25,tpl_assemble

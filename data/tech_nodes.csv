@@ -2,7 +2,7 @@
 # cost: coreItemId:count;... (empty cost on common nodes = unlocked at start).
 id,zh,en,domain,prereqs,cost,recipes,buildings,faction
 t0_survival,徒手求生,Hand survival,survival,,,make_bandage;make_carbon_powder;make_copper_lump;make_crude_glass;make_crude_tool;make_fiber;make_insulation_wrap;make_iron_lump;make_preserved_ration;make_ration;make_salt;make_survey_data_core;make_water_melt,,
-life_support_1,生保设备 I,Life support I,survival,power_basics,survey_data_core:2,make_b_air_charging_station;make_b_electrolyzer;make_b_gas_pylon;make_b_gas_tank;make_b_greenhouse;make_b_water_purifier;make_oxygen_bottle,air_charging_station;electrolyzer;gas_pylon;gas_tank;greenhouse;water_purifier,
+life_support_1,生保设备 I,Life support I,survival,power_basics,survey_data_core:2,make_b_air_charging_station;make_b_electrolyzer;make_b_gas_pylon;make_b_gas_tank;make_b_greenhouse;make_b_water_purifier;make_grow_biomass;make_oxygen_bottle,air_charging_station;electrolyzer;gas_pylon;gas_tank;greenhouse;water_purifier,
 food_hydroponics,水培农业,Hydroponics,survival,life_support_1,survey_data_core:2,make_algae_paste;make_b_canteen;make_b_culture_vat;make_hydroponic_greens;make_seed_kit;synth_growth_medium,canteen;culture_vat,
 food_protein,蛋白质链,Protein chain,survival,food_hydroponics,chemistry_data_core:2,distill_spore;make_b_protein_vat;make_nutrient_gel;make_protein_meal;synth_protein_paste,protein_vat,
 food_gourmet,精致饮食,Gourmet food,survival,food_protein,chemistry_data_core:1;survey_data_core:1,make_air_freshener;make_combo_meal;make_fungal_snack;make_morale_treat;make_water_bottle,,
