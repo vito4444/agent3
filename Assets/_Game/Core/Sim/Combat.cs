@@ -91,6 +91,9 @@ namespace Starsoil.Core
         private const int HegemonyBodies = 8;
         private const int VassalTributeMyco = 20;
         private const int VassalTributeCredits = 500;
+        private const int BotsPerWave = 16;
+        private const float PercentScale = 100f;
+        private const int AssaultFailAttitude = 20;
 
         /// <summary>Pending raid state (persisted in the universe save).</summary>
         public long NextRaidHour;
@@ -150,7 +153,7 @@ namespace Starsoil.Core
                 {
                     TargetRegionId = WarnedRegionId,
                     Strength = WarnedStrength,
-                    Waves = 1 + WarnedStrength / 16,
+                    Waves = 1 + WarnedStrength / BotsPerWave,
                     RaidHour = NextRaidHour
                 });
             }
@@ -250,7 +253,7 @@ namespace Starsoil.Core
             universe.ActiveWorld.Events.Add(new BombardmentEvent
             {
                 BodyId = bodyId,
-                DefenseAfterPercent = (1f - reduction) * 100f
+                DefenseAfterPercent = (1f - reduction) * PercentScale
             });
             return true;
         }
@@ -279,7 +282,7 @@ namespace Starsoil.Core
                 // Failure: defense recovers 10%, attitude −20 (docs/plan/07 进攻战 3).
                 BombardReduction.TryGetValue(bodyId, out float reduction);
                 BombardReduction[bodyId] = Math.Max(0f, reduction - BombardReductionStep);
-                faction.AttitudeToPlayer -= 20;
+                faction.AttitudeToPlayer -= AssaultFailAttitude;
                 return false;
             }
 
