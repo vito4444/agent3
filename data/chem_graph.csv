@@ -1,0 +1,2 @@
+# Chemical reaction edges (~50 at M3, family C). inputs/outputs: itemId:count;itemId:count
+id,inputs,outputs,verb,tier

@@ -1,0 +1,34 @@
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+sysinfo.txt
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+crashlytics-build.properties
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+!tools/**/*.csproj
+!tools/**/*.sln
+*.user
+*.userprefs
+
+# dotnet tools
+tools/**/bin/
+tools/**/obj/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,3 @@
+# Rationale sentence templates per verb (docs/plan/04). Slots: {material} {form} {verb}.
+# Attribute/use phrases are composed from material tags at M3.
+template_id,zh,en

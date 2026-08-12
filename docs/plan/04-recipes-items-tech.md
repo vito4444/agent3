@@ -53,13 +53,15 @@
 
 | 文件 | 内容 | 维护方式 |
 |---|---|---|
-| `data/materials.csv` | 28 原料 + 合金/化工产物的属性标签、层级、来源星体 | 人工 |
+| `data/materials.csv` | 28 原料 + 合金/化工产物的属性标签、层级、来源星体、单位质量 | 人工 |
 | `data/verbs.csv` | 14 工艺的机器、速率基准、电耗基准、文案模板引用 | 人工 |
+| `data/forms.csv` | 14 形态的显示名(zh/en)与产出工艺(矩阵展开与物品命名用) | 人工 |
 | `data/form_mask.csv` | 材料 × 形态有效性掩码(行 = 材料,列 = 形态,值 = 有效层级或空) | 人工(这是"讲得通"的第一道闸) |
 | `data/alloys.csv` | 12 种合金的组成与属性(见下) | 人工 |
 | `data/chem_graph.csv` | 化工反应边表(输入组合 → 输出,含配比) | 人工 |
 | `data/components.csv` | 部件与终端产品的手工配方(输入引用中间品) | 人工 |
 | `data/rationale_templates.csv` | 合理性文案模板(zh/en 各一列,含槽位) | 人工 |
+| `data/tech_nodes.csv` | 科技节点(域、前置、消耗;配方经 tech_node 列归属节点) | 人工 |
 
 `RecipeGen` 读取以上表,输出 `GeneratedData/recipes.json`、`GeneratedData/items.json`、校验报告 `GeneratedData/validation_report.md`。生成结果入库(便于 diff 审查),运行期只读 JSON。
 

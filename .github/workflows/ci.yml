@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # Gate 1 (docs/plan/08): pure C# — no Unity license required, runs on every PR.
+  gate1:
+    name: "Gate 1: sim tests + content validation + core constraints"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Core constraint checks
+        run: bash scripts/check_core_constraints.sh
+
+      - name: Sim test suite (BalanceSim)
+        run: dotnet test tools/BalanceSim -v minimal
+
+      - name: RecipeGen validation
+        run: dotnet run --project tools/RecipeGen -- --validate
+
+  # Gate 2 requires the UNITY_LICENSE secret; without it the jobs below are skipped
+  # (visible as "skipped" on the PR) and gate 1 alone decides the check status.
+  check-unity-license:
+    name: "Gate 2 precheck: UNITY_LICENSE present?"
+    runs-on: ubuntu-latest
+    outputs:
+      has-license: ${{ steps.probe.outputs.has }}
+    steps:
+      - id: probe
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        run: |
+          if [ -n "$UNITY_LICENSE" ]; then
+            echo "has=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has=false" >> "$GITHUB_OUTPUT"
+            echo "UNITY_LICENSE secret not configured; gate 2 will be skipped."
+          fi
+
+  gate2-editmode-tests:
+    name: "Gate 2: Unity EditMode tests"
+    needs: check-unity-license
+    if: needs.check-unity-license.outputs.has-license == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-tests-${{ hashFiles('Packages/manifest.json') }}
+
+      - uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 6000.3.21f1
+          testMode: EditMode
+
+  gate2-build:
+    name: "Gate 2: build ${{ matrix.targetPlatform }}"
+    needs: [check-unity-license, gate2-editmode-tests]
+    if: needs.check-unity-license.outputs.has-license == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform: [StandaloneWindows64, StandaloneLinux64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-build-${{ matrix.targetPlatform }}-${{ hashFiles('Packages/manifest.json') }}
+
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 6000.3.21f1
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: Starsoil
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Starsoil_${{ matrix.targetPlatform }}_${{ github.sha }}
+          path: build/${{ matrix.targetPlatform }}

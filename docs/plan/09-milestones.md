@@ -82,7 +82,7 @@
 
 | ID | 任务 | 验收标准(字面) |
 |---|---|---|
-| M3-T1 | 编写 `data/` 七张 CSV 全量数据 | 28 原料、14 工艺、14 形态、12 合金、化工边表、部件与建筑配方、rationale 模板全部入库;每张表首行注释列出列定义;git diff 可读 |
+| M3-T1 | 编写 `data/` 九张 CSV 全量数据(清单见 `04` 数据源表) | 28 原料、14 工艺、14 形态、12 合金、化工边表、部件与建筑配方、rationale 模板、科技节点全部入库;每张表首行注释列出列定义;git diff 可读 |
 | M3-T2 | RecipeGen 完整实现 | `dotnet run --project tools/RecipeGen -- --generate` 产出 `GeneratedData/recipes.json`、`items.json`、`validation_report.md`;`--validate` 执行 `04` 的 8 项校验 |
 | M3-T3 | 配方量达标 | `validation_report.md` 末行统计:配方总数 ≥300 且 8 项校验 error = 0;A–H 各类计数与 `04` 计数表偏差 ≤15% |
 | M3-T4 | IconComposer 图集 | 全部物品图标自动合成;40 个高频物品重绘覆盖清单入库;32×32 下三种色盲模式抽查 30 对无混淆(检查工具输出 + 人工签字记录) |

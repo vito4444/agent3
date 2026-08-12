@@ -1,0 +1,5 @@
+# Raw materials (28 at M3, see docs/plan/02 resource table).
+# tags: conductive/light/heat_resistant/corrosion_resistant/insulating/high_strength/catalytic/flammable/superconductive/energy_storing/gas
+# source_bodies: cinderrock,dustloam,palewatch,flintfield,warmmarsh,mistwatch,redridge,azurecolossus,frostmaw,sulfmire,ringfield,sleetfall
+# mass: kg per unit (used by validation check 5)
+id,zh,en,category,tier,tags,source_bodies,mass

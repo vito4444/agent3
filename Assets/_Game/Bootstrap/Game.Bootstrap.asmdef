@@ -1,0 +1,19 @@
+{
+    "name": "Game.Bootstrap",
+    "rootNamespace": "Starsoil.Bootstrap",
+    "references": [
+        "Game.Core",
+        "Game.Data",
+        "Game.Presentation",
+        "Game.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

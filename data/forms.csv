@@ -1,0 +1,3 @@
+# Item forms (14 at M3: ingot/plate/rod/wire/gear/pipe/mesh/powder/brick/gas/fluid/cell/circuit/frame).
+# verb = the process verb that produces this form (used by the matrix expansion).
+id,zh,en,verb
