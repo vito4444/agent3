@@ -1,5 +1,33 @@
-# Raw materials (28 at M3, see docs/plan/02 resource table).
-# tags: conductive/light/heat_resistant/corrosion_resistant/insulating/high_strength/catalytic/flammable/superconductive/energy_storing/gas
+# Raw materials (28, docs/plan/02 resource table).
+# tags: conductive/light/heat_resistant/corrosion_resistant/insulating/high_strength/catalytic/flammable/superconductive/energy_storing/gas/fluid/organic/fissile
 # source_bodies: cinderrock,dustloam,palewatch,flintfield,warmmarsh,mistwatch,redridge,azurecolossus,frostmaw,sulfmire,ringfield,sleetfall
-# mass: kg per unit (used by validation check 5)
+# mass: kg per unit (validation check 5)
 id,zh,en,category,tier,tags,source_bodies,mass
+iron_ore,铁矿石,Iron ore,raw,0,high_strength,dustloam;palewatch;flintfield;redridge;cinderrock,4
+copper_ore,铜矿石,Copper ore,raw,0,conductive,dustloam;cinderrock,4
+bauxite,铝土,Bauxite,raw,1,light,palewatch;dustloam,3
+titanium_sand,钛砂,Titanium sand,raw,1,heat_resistant;high_strength,dustloam;cinderrock,3
+nickel_gravel,镍铁砾,Nickel-iron gravel,raw,1,corrosion_resistant;high_strength,palewatch;flintfield;ringfield,4
+rare_earth_ore,稀土矿,Rare-earth ore,raw,2,catalytic;conductive,redridge;palewatch,3
+crimson_uranite,绯铀,Crimson uranite,raw,3,fissile,redridge,5
+platinum_sand,铂族砂,Platinum-group sand,raw,3,catalytic;corrosion_resistant,ringfield,5
+azure_superconductor,超导蓝矿,Azure superconductor ore,raw,3,superconductive;conductive,sleetfall,4
+quartz_sand,石英砂,Quartz sand,raw,0,insulating,dustloam;palewatch;sleetfall,2
+salt_ore,盐矿,Salt ore,raw,0,corrosion_resistant,dustloam,2
+sulfur,硫,Sulfur,raw,1,flammable;catalytic,cinderrock;sulfmire;redridge,2
+regolith,尘壤土,Regolith,raw,0,insulating,dustloam;palewatch;redridge,3
+carbon,石墨矿,Graphite,raw,0,conductive;flammable,dustloam;flintfield;sulfmire,2
+obsidian_gold_ore,曜金矿,Aurite ore,raw,3,heat_resistant;catalytic,cinderrock,5
+phase_gel_raw,相变凝胶原浆,Raw phase gel,raw,4,energy_storing;insulating,sleetfall,3
+myco_gold_spore,菌金胞,Myco-gold spores,raw,3,catalytic;organic,warmmarsh,1
+ice,水冰,Water ice,raw,0,fluid,dustloam;flintfield;mistwatch;frostmaw;sleetfall,3
+co2_ice,二氧化碳冰,CO2 ice,raw,1,gas,dustloam;mistwatch,3
+nitrogen_ice,氮冰,Nitrogen ice,raw,2,gas,mistwatch;sleetfall,3
+ammonia_ice,氨冰,Ammonia ice,raw,2,gas;corrosion_resistant,mistwatch;frostmaw,3
+methane_ice,甲烷冰,Methane ice,raw,2,flammable;gas,warmmarsh;frostmaw,3
+deuterium_ice,重氢冰,Deuterium ice,raw,4,energy_storing;fluid,frostmaw,3
+helium3,氦-3,Helium-3,raw,4,energy_storing;gas,azurecolossus,1
+biomass,生物质,Biomass,raw,0,organic;flammable,dustloam;warmmarsh,2
+fungal_timber,菌木,Fungal timber,raw,1,organic;high_strength,warmmarsh,3
+spore_protein,孢子朊,Spore protein,raw,2,organic,warmmarsh,1
+algae_seed,藻种,Algae seed,raw,0,organic,dustloam;warmmarsh,1

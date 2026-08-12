@@ -1,3 +1,25 @@
-# Material × form validity mask (docs/plan/04): the first hand-maintained gate that keeps
-# generated recipes sensible. Cell value = unlock tier when the combination is valid, empty otherwise.
-material_id,ingot,plate,rod,wire,gear,pipe,mesh,powder,brick,gas,fluid,cell,circuit,frame
+# Material × form validity mask (docs/plan/04): the hand-maintained gate that keeps the
+# generated recipes sensible. Cell = unlock tier when valid, empty = combination invalid.
+# Rows are smeltables + formable alloys; inputs are the material's ingot.
+material_id,plate,rod,wire,gear,pipe,mesh,powder,brick
+iron,1,1,,1,1,1,1,
+copper,1,1,1,,1,1,1,
+aluminum,2,2,2,,2,2,2,
+titanium,2,2,,2,2,,2,
+nickel,2,2,2,,,2,2,
+silicon,2,,,,,,1,2
+rare_earth,,,2,,,,2,
+platinum,3,,3,,,3,3,
+aurite,3,3,,,3,,3,
+steel,1,1,,1,1,1,,1
+bronze,2,2,,2,2,,,
+duralumin,2,2,2,2,2,2,,
+titanium_alloy,3,3,,3,3,,,
+invar,2,2,,2,2,,,
+electrical_steel,2,,2,2,,,,
+aurite_steel,3,3,,3,3,,,
+superconductor_alloy,4,,4,,,4,,
+platinum_mesh_alloy,3,,3,,,3,,
+uranium_core_alloy,4,4,,,,,,
+bio_composite,3,3,,,3,3,,
+phase_composite,4,4,,,,4,,

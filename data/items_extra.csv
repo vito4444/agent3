@@ -1,0 +1,31 @@
+# Items produced by chem_graph (and other non-matrix outputs) that need display names,
+# tiers and tags. Matrix items ({material}_{form}) and components define themselves.
+id,zh,en,category,tier,tags,mass
+water,水,Water,intermediate,0,fluid,1
+oxygen_gas,氧气瓶装,Bottled oxygen,intermediate,2,gas,1
+hydrogen,氢气,Hydrogen,intermediate,2,gas;flammable,1
+nitrogen_gas,氮气,Nitrogen,intermediate,2,gas,1
+ammonia,氨,Ammonia,intermediate,2,gas;corrosion_resistant,1
+methane,甲烷,Methane,intermediate,2,gas;flammable,1
+co2_gas,二氧化碳,Carbon dioxide,intermediate,1,gas,1
+chlorine,氯气,Chlorine,intermediate,2,gas;corrosion_resistant,1
+sodium,钠,Sodium,intermediate,2,flammable,1
+sulfuric_acid,硫酸,Sulfuric acid,intermediate,2,fluid;corrosion_resistant,2
+nitric_acid,硝酸,Nitric acid,intermediate,3,fluid;corrosion_resistant,2
+fertilizer,肥料,Fertilizer,intermediate,2,organic,2
+polymer,聚合物,Polymer,intermediate,3,light;insulating,2
+synthetic_rubber,合成橡胶,Synthetic rubber,intermediate,3,insulating,2
+resin,树脂,Resin,intermediate,3,organic,2
+lubricant,润滑剂,Lubricant,intermediate,3,fluid,2
+liquid_oxygen,液氧,Liquid oxygen,intermediate,3,fluid,3
+liquid_methane,液化甲烷,Liquid methane,intermediate,3,fluid;flammable,3
+liquid_hydrogen,液氢,Liquid hydrogen,intermediate,3,fluid;flammable,2
+liquid_nitrogen,液氮,Liquid nitrogen,intermediate,3,fluid,3
+deuterium_fuel,重氢燃料,Deuterium fuel,intermediate,4,energy_storing,2
+rocket_fuel,火箭燃料组,Rocket fuel load,intermediate,3,flammable,6
+enriched_uranium_rod,浓缩铀棒,Enriched uranium rod,intermediate,4,fissile,4
+glass,玻璃,Glass,intermediate,1,insulating,2
+brine,卤水,Brine,intermediate,1,fluid,2
+spore_extract,孢子提取液,Spore extract,intermediate,2,organic,1
+growth_medium,培养基,Growth medium,intermediate,2,organic,2
+protein_paste,蛋白浆,Protein paste,intermediate,2,organic,2
