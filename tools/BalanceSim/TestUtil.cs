@@ -44,6 +44,17 @@ namespace Starsoil.BalanceSim
             return world;
         }
 
+        /// <summary>Universe with bodies + content loaded (M4 multi-region tests).</summary>
+        public static Universe NewUniverse(ulong seed, int size)
+        {
+            var universe = Universe.NewGame(seed, size);
+            universe.Bodies.LoadFromCsv(File.ReadAllLines(Path.Combine(FindDataDir(), "celestial_bodies.csv")));
+            string recipesJson = File.ReadAllText(Path.Combine(FindDataDir(), "..", "GeneratedData", "recipes.json"));
+            var techNodes = TechSystem.ParseCsv(File.ReadAllLines(Path.Combine(FindDataDir(), "tech_nodes.csv")));
+            universe.SetContent(CatalogRecipes.ParseJson(recipesJson), techNodes);
+            return universe;
+        }
+
         public static void Run(World world, int ticks)
         {
             for (int i = 0; i < ticks; i++)

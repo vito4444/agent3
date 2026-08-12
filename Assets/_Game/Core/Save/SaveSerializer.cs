@@ -115,6 +115,18 @@ namespace Starsoil.Core
                     BatteryKwh = b.BatteryKwh,
                     Stock = StacksOf(b.Stock)
                 };
+                if (b.Pad != null)
+                {
+                    saved.PadTargetBody = b.Pad.TargetBodyId;
+                    saved.PadPayload = b.Pad.Payload;
+                    saved.PadCrew = b.Pad.Crew;
+                    saved.PadActive = b.Pad.Active;
+                    saved.PadCargo = new List<SavedStack>();
+                    foreach (var item in b.Pad.Cargo)
+                    {
+                        saved.PadCargo.Add(new SavedStack { ItemId = item.ItemId, Count = item.Count });
+                    }
+                }
                 data.Buildings.Add(saved);
             }
 

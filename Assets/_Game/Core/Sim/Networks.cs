@@ -357,7 +357,7 @@ namespace Starsoil.Core
             }
             float dayFraction = (world.HourOfDay - Balance.DayStartHour) /
                                 (float)(Balance.NightStartHour - Balance.DayStartHour);
-            return Balance.SolarPanelKw * (float)Math.Sin(dayFraction * Math.PI);
+            return Balance.SolarPanelKw * world.SolarFactor * (float)Math.Sin(dayFraction * Math.PI);
         }
 
         // ---------------------------------------------------------------- oxygen

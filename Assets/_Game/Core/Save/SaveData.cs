@@ -21,6 +21,11 @@ namespace Starsoil.Core
         public float ProcessAccum;
         public float BatteryKwh;
         public List<SavedStack> Stock;
+        public string PadTargetBody;
+        public string PadPayload;
+        public int PadCrew;
+        public bool PadActive;
+        public List<SavedStack> PadCargo;
     }
 
     public sealed class SavedGasComponent

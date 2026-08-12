@@ -42,28 +42,60 @@ namespace Starsoil.Core
 
         public void Generate(TerrainGrid terrain, BuildingSystem buildings, int startX, int startY, Rng stream)
         {
-            foreach (string itemId in GuaranteedDeposits)
+            Generate(terrain, buildings, startX, startY, stream, GuaranteedDeposits, Balance.TotalShrubs);
+        }
+
+        /// <summary>Body-specific generation (M4): deposits come from the body's resource
+        /// list; shrubs only where biomass occurs (docs/plan/02 per-body resources).</summary>
+        public void Generate(TerrainGrid terrain, BuildingSystem buildings, int startX, int startY,
+            Rng stream, IReadOnlyList<string> depositPool, int shrubCount)
+        {
+            var deposits = new List<string>();
+            foreach (string itemId in depositPool)
+            {
+                if (itemId != ItemIds.Biomass && itemId != ItemIds.AlgaeSeed)
+                {
+                    deposits.Add(itemId);
+                }
+            }
+            foreach (string itemId in deposits)
             {
                 var cell = FindFreeCellNear(terrain, buildings, startX, startY, Balance.GuaranteedDepositRadius, stream);
                 Spawn(itemId, stream.NextInt(Balance.DepositMinAmount, Balance.DepositMaxAmount + 1),
                     cell.x, cell.y, Balance.MineTicksPerUnit);
             }
 
-            for (int i = 0; i < Balance.ExtraDepositCount; i++)
+            if (deposits.Count > 0)
             {
-                string itemId = GuaranteedDeposits[stream.NextInt(0, GuaranteedDeposits.Length)];
-                var cell = FindFreeCellNear(terrain, buildings, terrain.Size / 2, terrain.Size / 2, terrain.Size / 2, stream);
-                Spawn(itemId, stream.NextInt(Balance.DepositMinAmount, Balance.DepositMaxAmount + 1),
-                    cell.x, cell.y, Balance.MineTicksPerUnit);
+                for (int i = 0; i < Balance.ExtraDepositCount; i++)
+                {
+                    string itemId = deposits[stream.NextInt(0, deposits.Count)];
+                    var cell = FindFreeCellNear(terrain, buildings, terrain.Size / 2, terrain.Size / 2, terrain.Size / 2, stream);
+                    Spawn(itemId, stream.NextInt(Balance.DepositMinAmount, Balance.DepositMaxAmount + 1),
+                        cell.x, cell.y, Balance.MineTicksPerUnit);
+                }
             }
 
-            for (int i = 0; i < Balance.MinShrubsNearStart; i++)
+            bool hasBiomass = false;
+            foreach (string itemId in depositPool)
+            {
+                if (itemId == ItemIds.Biomass)
+                {
+                    hasBiomass = true;
+                }
+            }
+            if (!hasBiomass || shrubCount <= 0)
+            {
+                return;
+            }
+            int nearShrubs = Math.Min(Balance.MinShrubsNearStart, shrubCount);
+            for (int i = 0; i < nearShrubs; i++)
             {
                 var cell = FindFreeCellNear(terrain, buildings, startX, startY, Balance.GuaranteedDepositRadius, stream);
                 Spawn(ItemIds.Biomass, stream.NextInt(Balance.ShrubMinAmount, Balance.ShrubMaxAmount + 1),
                     cell.x, cell.y, Balance.GatherTicksPerUnit);
             }
-            for (int i = Balance.MinShrubsNearStart; i < Balance.TotalShrubs; i++)
+            for (int i = nearShrubs; i < shrubCount; i++)
             {
                 var cell = FindFreeCellNear(terrain, buildings, terrain.Size / 2, terrain.Size / 2, terrain.Size / 2, stream);
                 Spawn(ItemIds.Biomass, stream.NextInt(Balance.ShrubMinAmount, Balance.ShrubMaxAmount + 1),

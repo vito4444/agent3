@@ -44,6 +44,14 @@ namespace Starsoil.Core
         /// <summary>Named deterministic random streams, persisted in saves (docs/plan/08).</summary>
         private readonly Dictionary<string, Rng> _streams = new Dictionary<string, Rng>();
 
+        /// <summary>Celestial body this region sits on (injected by Universe; null = Dustloam
+        /// defaults for M0-M3 single-region worlds). Not part of the save hash — fixed per region.</summary>
+        public BodyDef Body;
+
+        public float SolarFactor => Body?.SolarFactor ?? 1f;
+
+        public bool NightIsCold => Body?.NightCold ?? true;
+
         public int StartX { get; private set; }
         public int StartY { get; private set; }
         public int PodInteriorX { get; private set; }
@@ -159,6 +167,56 @@ namespace Starsoil.Core
                 Alerts.Raise(this, AlertIds.Defeat, AlertSeverity.Critical, PodInteriorX, PodInteriorY);
                 Events.Add(new DefeatEvent { DaysSurvived = Day });
             }
+        }
+
+        /// <summary>Creates a freshly landed region on another body (M4): lander pod,
+        /// crew, and whatever cargo the rocket carried as the starting stock.</summary>
+        public static World CreateLandingRegion(ulong seed, int regionSize, BodyDef body,
+            int crew, List<Ingredient> cargo)
+        {
+            var world = new World(seed, TerrainGenerator.Generate(regionSize, seed), spawnColony: false);
+            world.Body = body;
+            world.Tick = StartHourOfDay * GameConstants.TicksPerHour;
+
+            int center = regionSize / 2;
+            BuildingDefs.TryGet(BuildingDefs.CrashPodId, out var podDef);
+            int podX = center - podDef.Width / 2;
+            int podY = center - podDef.Height / 2;
+            int podId = world.Buildings.Place(BuildingDefs.CrashPodId, podX, podY, 0, out _);
+            world.Buildings.TryGet(podId, out var pod);
+            foreach (var item in cargo)
+            {
+                pod.Stock.Add(item.ItemId, item.Count);
+            }
+
+            world.StartX = center;
+            world.StartY = center;
+            world.PodInteriorX = podX + 1;
+            world.PodInteriorY = podY + 1;
+            world.GraveX = Math.Max(1, podX - 6);
+            world.GraveY = Math.Max(1, podY - 6);
+            world.Life.TankO2 = Balance.PodO2TankCapacity;
+
+            var pool = body != null && body.Resources.Count > 0
+                ? (IReadOnlyList<string>)body.Resources
+                : new[] { ItemIds.IronOre, ItemIds.Ice };
+            bool hasBiomass = false;
+            foreach (string resource in pool)
+            {
+                if (resource == ItemIds.Biomass)
+                {
+                    hasBiomass = true;
+                }
+            }
+            world.Nodes.Generate(world.Terrain, world.Buildings, center, center,
+                world.GetStream("resources"), pool, hasBiomass ? Balance.TotalShrubs : 0);
+
+            for (int i = 0; i < crew; i++)
+            {
+                world.Colonists.Spawn(podX - 1, podY + i);
+            }
+            world.Storm.ScheduleFirst(world);
+            return world;
         }
 
         public long Day => Tick / GameConstants.TicksPerDay;

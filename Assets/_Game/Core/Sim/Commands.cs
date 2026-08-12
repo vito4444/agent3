@@ -272,6 +272,34 @@ namespace Starsoil.Core
         }
     }
 
+    /// <summary>Configures a launch pad's rocket order (M4). Parts and payload are then
+    /// hauled in by logistics; the Universe launches at the next window.</summary>
+    public sealed class SetPadOrderCommand : ICommand
+    {
+        public int PadId;
+        public string TargetBodyId = string.Empty;
+        public string Payload = Universe.CargoPodPayload;
+        public int Crew;
+        public List<Ingredient> Cargo = new List<Ingredient>();
+
+        public void Execute(World world)
+        {
+            if (!world.Buildings.TryGet(PadId, out var pad) || pad.DefId != BuildingDefs.LaunchPadId)
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "pad_order:not_a_pad" });
+                return;
+            }
+            pad.Pad = new PadOrder
+            {
+                TargetBodyId = TargetBodyId,
+                Payload = Payload,
+                Crew = Crew,
+                Cargo = Cargo,
+                Active = true
+            };
+        }
+    }
+
     public sealed class SetTutorialSkippedCommand : ICommand
     {
         public bool Skipped;
