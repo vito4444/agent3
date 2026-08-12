@@ -23,7 +23,9 @@ namespace Starsoil.Core
             // v1 (M1) → v2 (M2 networks/machines): new building fields (WantsPower,
             // ProcessAccum, BatteryKwh) and gas components deserialize to their class
             // defaults, so the migration only bumps the version.
-            { 1, _ => { } }
+            { 1, _ => { } },
+            // v2 → v3 (combat entities): unit/wave lists default to empty.
+            { 2, _ => { } }
         };
 
         public static void UpgradeInPlace(JObject root)
@@ -294,6 +296,36 @@ namespace Starsoil.Core
                 }
             }
 
+            foreach (var unit in world.Battle.UnitsSorted())
+            {
+                data.CombatUnits.Add(new SavedCombatUnit
+                {
+                    Id = unit.Id,
+                    Side = (int)unit.Side,
+                    X = unit.X,
+                    Y = unit.Y,
+                    Hp = unit.Hp,
+                    MaxHp = unit.MaxHp,
+                    DamagePerHit = unit.DamagePerHit,
+                    Order = (int)unit.Order,
+                    HoldX = unit.HoldX,
+                    HoldY = unit.HoldY,
+                    PatrolAx = unit.PatrolAx,
+                    PatrolAy = unit.PatrolAy,
+                    PatrolBx = unit.PatrolBx,
+                    PatrolBy = unit.PatrolBy,
+                    Armored = unit.Armored
+                });
+            }
+            foreach (var wave in world.Battle.PendingWaves)
+            {
+                data.PendingWaves.Add(new SavedWave { Tick = wave.tick, Count = wave.count });
+            }
+            data.RallyX = world.Battle.RallyX;
+            data.RallyY = world.Battle.RallyY;
+            data.ShieldTicksRemaining = world.Battle.ShieldTicksRemaining;
+            data.ActiveRaidStrength = world.Battle.ActiveRaidStrength;
+
             foreach (var bot in world.Bots.AllSorted())
             {
                 // Bot carried loads normalize into piles like colonists do.
@@ -342,6 +374,8 @@ namespace Starsoil.Core
             world.Alerts.RestoreFrom(data.Alerts);
             world.Networks.RestoreGas(data.GasComponents);
             world.Bots.RestoreFrom(data.Bots);
+            world.Battle.RestoreFrom(data.CombatUnits, data.PendingWaves,
+                data.RallyX, data.RallyY, data.ShieldTicksRemaining, data.ActiveRaidStrength);
             world.RestoreMeta(data);
             return world;
         }

@@ -242,6 +242,15 @@ namespace Starsoil.Core
                 }
             }
             TickLaunches();
+            // The active region's command core falling to a raid loses the region (M7-T3).
+            for (int i = 0; i < ActiveWorld.Events.Count; i++)
+            {
+                if (ActiveWorld.Events[i] is CommandCoreDestroyedEvent)
+                {
+                    LoseRegion(ActiveRegionId);
+                    break;
+                }
+            }
             Achievements.ObserveEvents(this);
         }
 
@@ -504,6 +513,17 @@ namespace Starsoil.Core
             }
             if (lost > 0)
             {
+                // 航线保险 (branch_orbital_logistics_5): full credit compensation for losses.
+                if (ActiveWorld.Tech.IsUnlocked("branch_orbital_logistics_5"))
+                {
+                    double refund = 0;
+                    foreach (var item in transit.Cargo)
+                    {
+                        int units = (int)Math.Floor(item.Count * NoBeaconLossFactor);
+                        refund += PriceOf(item.ItemId) * units;
+                    }
+                    PlayerCredits += refund;
+                }
                 ActiveWorld.Events.Add(new CargoLossEvent { TransitId = transit.Id, RegionId = target, UnitsLost = lost });
             }
             ActiveWorld.Events.Add(new TransitArrivedEvent

@@ -210,6 +210,64 @@ namespace Starsoil.Core
             });
         }
 
+        /// <summary>Loads the personality table from data/faction_params.csv (M6-T2:
+        /// 参数全部来自数据表). Falls back to InitDefault when absent.</summary>
+        public void InitFromCsv(IEnumerable<string> lines)
+        {
+            var loaded = new List<Faction>();
+            string[] header = null;
+            foreach (string raw in lines)
+            {
+                string line = raw.TrimEnd('\r');
+                if (line.Length == 0 || line.TrimStart().StartsWith("#"))
+                {
+                    continue;
+                }
+                var cells = new List<string>(line.Split(','));
+                if (header == null)
+                {
+                    header = cells.ToArray();
+                    continue;
+                }
+                string Get(string column)
+                {
+                    for (int i = 0; i < header.Length && i < cells.Count; i++)
+                    {
+                        if (header[i].Trim() == column)
+                        {
+                            return cells[i].Trim();
+                        }
+                    }
+                    return string.Empty;
+                }
+                var personality = Get("personality") switch
+                {
+                    "merchant" => FactionPersonality.Merchant,
+                    "expansionist" => FactionPersonality.Expansionist,
+                    _ => FactionPersonality.Reclusive
+                };
+                var faction = new Faction
+                {
+                    Id = Get("id"),
+                    Zh = Get("zh"),
+                    En = Get("en"),
+                    Personality = personality,
+                    P = StartPower,
+                    GrowthMult = float.Parse(Get("growth_mult"), System.Globalization.CultureInfo.InvariantCulture),
+                    TechMult = float.Parse(Get("tech_mult"), System.Globalization.CultureInfo.InvariantCulture),
+                    DefenseMult = float.Parse(Get("defense_mult"), System.Globalization.CultureInfo.InvariantCulture),
+                    AttitudeToPlayer = int.Parse(Get("start_attitude"), System.Globalization.CultureInfo.InvariantCulture)
+                };
+                faction.HeldBodies.Add(Get("home_body"));
+                loaded.Add(faction);
+            }
+            if (loaded.Count > 0)
+            {
+                Factions.Clear();
+                Factions.AddRange(loaded);
+            }
+        }
+
         public Faction Get(string id)
         {
             foreach (var faction in Factions)
@@ -247,6 +305,34 @@ namespace Starsoil.Core
             TickRedBannerFriction(universe, playerBodies, hour);
             TickMerchantQuotes(universe, hour);
             SettleDeals(universe, hour);
+            TickMerchantColdShoulder(universe, hour);
+        }
+
+        private const int ColdShoulderDays = 5;
+        private long _lastTradeHour;
+
+        /// <summary>连续 5 游戏日无交易: attitude -1/日 (docs/plan/07 商盟行为 2).</summary>
+        private void TickMerchantColdShoulder(Universe universe, long hour)
+        {
+            var merchant = Get(MerchantId);
+            if (merchant == null || hour % GameConstants.HoursPerDay != 0)
+            {
+                return;
+            }
+            if (PendingDeals.Count > 0)
+            {
+                _lastTradeHour = hour;
+                return;
+            }
+            if (_lastTradeHour == 0)
+            {
+                _lastTradeHour = hour;
+                return;
+            }
+            if (hour - _lastTradeHour >= (long)ColdShoulderDays * GameConstants.HoursPerDay)
+            {
+                merchant.AttitudeToPlayer -= 1;
+            }
         }
 
         // ---------------------------------------------------------------- merchant trade
@@ -387,6 +473,7 @@ namespace Starsoil.Core
                 if (merchant != null)
                 {
                     merchant.AttitudeToPlayer += 2;
+                    _lastTradeHour = universe.Tick / GameConstants.TicksPerHour;
                     merchant.Treasury += deal.MerchantSells ? (float)deal.Total : -(float)deal.Total;
                 }
                 universe.ActiveWorld.Events.Add(new DealSettledEvent { QuoteId = deal.QuoteId, Credits = deal.Total });
@@ -575,6 +662,28 @@ namespace Starsoil.Core
                     Count = redBanner.UltimatumsRejected + 1
                 });
             }
+        }
+
+        /// <summary>Pays the current ultimatum: credits drain, tension persists but the
+        /// clock and the rejection count reset (docs/plan/07 摩擦链的缓和路径).</summary>
+        public bool PayUltimatum(Universe universe)
+        {
+            var redBanner = Get(RedBannerId);
+            if (redBanner == null || redBanner.Stance != FactionStance.Tense)
+            {
+                return false;
+            }
+            int demand = (int)(redBanner.P * UltimatumDemandFactor);
+            if (universe.PlayerCredits < demand)
+            {
+                return false;
+            }
+            universe.PlayerCredits -= demand;
+            redBanner.Treasury += demand;
+            redBanner.UltimatumsRejected = 0;
+            redBanner.NextUltimatumHour = universe.Tick / GameConstants.TicksPerHour +
+                (long)UltimatumIntervalDays * GameConstants.HoursPerDay;
+            return true;
         }
 
         /// <summary>Player rejects the current ultimatum; the second rejection is war.</summary>

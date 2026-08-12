@@ -190,20 +190,29 @@ namespace Starsoil.Core
 
         private void ResolveRaid(Universe universe, int regionId, int strength)
         {
-            float defense = regionId == universe.ActiveRegionId
-                ? DefenseScore(universe.ActiveWorld)
-                : universe.FrozenRegions.TryGetValue(regionId, out var slot) ? slot.DefenseScoreAtFreeze : 0f;
+            // The active region fights it out entity by entity (docs/plan/07 防御战);
+            // the outcome arrives via WaveRepelled / CommandCoreDestroyed events.
+            if (regionId == universe.ActiveRegionId)
+            {
+                int waves = 1 + strength / BotsPerWave;
+                universe.ActiveWorld.Battle.QueueRaid(universe.ActiveWorld, strength, waves);
+                universe.ActiveWorld.Events.Add(new RaidResolvedEvent
+                {
+                    TargetRegionId = regionId,
+                    Repelled = false,
+                    RecordersDropped = 0
+                });
+                return;
+            }
 
+            // Frozen regions resolve numerically against their frozen defense score.
+            float defense = universe.FrozenRegions.TryGetValue(regionId, out var slot)
+                ? slot.DefenseScoreAtFreeze : 0f;
             bool repelled = defense >= strength;
             if (repelled)
             {
                 int recorders = Math.Max(1, strength / RecorderDropDivisor);
-                if (regionId == universe.ActiveRegionId)
-                {
-                    universe.ActiveWorld.Piles.Drop("data_recorder", recorders,
-                        universe.ActiveWorld.StartX, universe.ActiveWorld.StartY);
-                }
-                else if (universe.FrozenRegions.TryGetValue(regionId, out var frozen))
+                if (universe.FrozenRegions.TryGetValue(regionId, out var frozen))
                 {
                     frozen.Stockpile.TryGetValue("data_recorder", out int existing);
                     frozen.Stockpile["data_recorder"] = existing + recorders;
@@ -217,7 +226,6 @@ namespace Starsoil.Core
                 return;
             }
 
-            // Region falls: command core destroyed, survivors evacuate (M7-T3).
             universe.LoseRegion(regionId);
             universe.ActiveWorld.Events.Add(new RaidResolvedEvent
             {

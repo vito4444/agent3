@@ -29,6 +29,7 @@ namespace Starsoil.Core
         public NetworkSystem Networks { get; } = new NetworkSystem();
         public MachineSystem Machines { get; } = new MachineSystem();
         public BotSystem Bots { get; } = new BotSystem();
+        public BattleSystem Battle { get; } = new BattleSystem();
         public JobSystem Jobs { get; } = new JobSystem();
         public MoraleSystem Morale { get; } = new MoraleSystem();
         public TechSystem Tech { get; } = new TechSystem();
@@ -136,6 +137,7 @@ namespace Starsoil.Core
             ResetCrankFlags();
             Colonists.Tick(this);
             Bots.Tick(this);
+            Battle.Tick(this);
             Machines.Tick(this);
             Networks.Tick(this);
             Life.EndTick(this);

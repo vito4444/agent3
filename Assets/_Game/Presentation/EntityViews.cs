@@ -56,6 +56,7 @@ namespace Starsoil.Presentation
             _world = world;
             ClearAll(_colonists);
             ClearAll(_bots);
+            ClearAll(_combatUnits);
             ClearAll(_piles);
             ClearAll(_nodes);
             ClearAll(_blueprints);
@@ -69,6 +70,7 @@ namespace Starsoil.Presentation
             }
             SyncColonists();
             SyncBots();
+            SyncCombatUnits();
             SyncPiles();
             SyncNodes();
             SyncBlueprints();
@@ -76,6 +78,38 @@ namespace Starsoil.Presentation
 
         private readonly Dictionary<int, GameObject> _bots = new Dictionary<int, GameObject>();
         private Material _botMat;
+        private readonly Dictionary<int, GameObject> _combatUnits = new Dictionary<int, GameObject>();
+        private Material _playerUnitMat;
+        private Material _hostileUnitMat;
+
+        private void SyncCombatUnits()
+        {
+            if (_playerUnitMat == null)
+            {
+                _playerUnitMat = Mats.Solid(new Color(0.35f, 0.65f, 0.95f));
+                _hostileUnitMat = Mats.Solid(new Color(0.9f, 0.3f, 0.25f));
+            }
+            foreach (var pair in _world.Battle.Units)
+            {
+                var unit = pair.Value;
+                if (!_combatUnits.TryGetValue(pair.Key, out var go))
+                {
+                    go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    go.name = "Unit_" + pair.Key + "_" + unit.Side;
+                    go.transform.SetParent(transform, false);
+                    go.transform.localScale = new Vector3(0.7f, 0.9f, 0.7f);
+                    Destroy(go.GetComponent<Collider>());
+                    go.GetComponent<MeshRenderer>().sharedMaterial =
+                        unit.Side == UnitSide.Player ? _playerUnitMat : _hostileUnitMat;
+                    _combatUnits.Add(pair.Key, go);
+                }
+                float ground = _world.Terrain.GetHeight(unit.X, unit.Y) * GameConstants.MetersPerTerrainStep;
+                go.transform.position = new Vector3(unit.X + 0.5f, ground + 0.45f, unit.Y + 0.5f);
+                float hpScale = Mathf.Clamp01(unit.Hp / unit.MaxHp);
+                go.transform.localScale = new Vector3(0.7f, 0.4f + 0.5f * hpScale, 0.7f);
+            }
+            RemoveStale(_combatUnits, id => _world.Battle.Units.ContainsKey(id));
+        }
 
         private void SyncBots()
         {
