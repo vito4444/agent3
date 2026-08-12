@@ -3,6 +3,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 
 namespace Starsoil.EditorTools
 {
@@ -18,6 +19,8 @@ namespace Starsoil.EditorTools
         private const string SettingsFolderName = "Settings";
         private const string RendererAssetPath = "Assets/Settings/URP_Renderer.asset";
         private const string PipelineAssetPath = "Assets/Settings/URP_Pipeline.asset";
+        private const string ResourcesFolder = "Assets/Resources";
+        private const string PanelSettingsPath = "Assets/Resources/StarsoilPanelSettings.asset";
         private const string ScenePath = "Assets/_Game/Bootstrap/Main.unity";
         private const string ProductName = "Starsoil";
 
@@ -39,6 +42,14 @@ namespace Starsoil.EditorTools
             QualitySettings.renderPipeline = pipeline;
             PlayerSettings.colorSpace = ColorSpace.Linear;
             PlayerSettings.productName = ProductName;
+
+            // UI Toolkit panel for the runtime HUD (loaded via Resources by Game.UI).
+            if (!AssetDatabase.IsValidFolder(ResourcesFolder))
+            {
+                AssetDatabase.CreateFolder(SettingsFolderParent, "Resources");
+            }
+            var panelSettings = ScriptableObject.CreateInstance<PanelSettings>();
+            AssetDatabase.CreateAsset(panelSettings, PanelSettingsPath);
 
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             EditorSceneManager.SaveScene(scene, ScenePath);

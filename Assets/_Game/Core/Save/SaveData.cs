@@ -2,6 +2,12 @@ using System.Collections.Generic;
 
 namespace Starsoil.Core
 {
+    public sealed class SavedStack
+    {
+        public string ItemId;
+        public int Count;
+    }
+
     public sealed class SavedBuilding
     {
         public int Id;
@@ -9,11 +15,89 @@ namespace Starsoil.Core
         public int X;
         public int Y;
         public int Rotation;
+        public float Durability = Balance.NeedMax;
+        public bool StaffedRequested;
+        public List<SavedStack> Stock;
+    }
+
+    public sealed class SavedPile
+    {
+        public int Id;
+        public string ItemId;
+        public int Count;
+        public int X;
+        public int Y;
+    }
+
+    public sealed class SavedNode
+    {
+        public int Id;
+        public string ItemId;
+        public int Remaining;
+        public int X;
+        public int Y;
+        public bool Designated;
+        public int TicksPerUnit;
+    }
+
+    public sealed class SavedBlueprint
+    {
+        public int Id;
+        public string DefId;
+        public int X;
+        public int Y;
+        public int Rotation;
+        public float BuildProgress;
+        public List<SavedStack> Delivered;
+    }
+
+    public sealed class SavedColonist
+    {
+        public int Id;
+        public int X;
+        public int Y;
+        public float O2;
+        public float Water;
+        public float Food;
+        public float Sleep;
+        public float Temp;
+        public float BottleO2;
+        public bool Alive;
+        public int CriticalCause;
+        public int CriticalTicksLeft;
+        public int FaintTicksLeft;
+    }
+
+    public sealed class SavedCraftOrder
+    {
+        public int Id;
+        public int StationId;
+        public string RecipeId;
+        public int Remaining;
+        public int MaintainTarget;
+    }
+
+    public sealed class SavedAlert
+    {
+        public string Id;
+        public int Severity;
+        public int X;
+        public int Y;
+    }
+
+    public sealed class SavedRngStream
+    {
+        public string Name;
+        public ulong State;
+        public ulong Inc;
     }
 
     /// <summary>
-    /// Save schema v0 (docs/plan/08): single-region world — seed, tick, terrain, buildings.
-    /// Schema changes bump GameConstants.SaveSchemaVersion and register a migration.
+    /// Save schema v1 (docs/plan/08): single-region colony. Transient data (paths, claimed
+    /// tasks, in-progress work) is intentionally not saved — tasks regenerate from world
+    /// needs on the next dispatch round; carried loads are normalized into ground piles
+    /// at capture time. Schema changes bump GameConstants.SaveSchemaVersion and register
+    /// a migration in SaveMigrations.
     /// </summary>
     public sealed class SaveData
     {
@@ -23,5 +107,31 @@ namespace Starsoil.Core
         public int RegionSize;
         public byte[] TerrainHeights;
         public List<SavedBuilding> Buildings = new List<SavedBuilding>();
+        public List<SavedPile> Piles = new List<SavedPile>();
+        public List<SavedNode> Nodes = new List<SavedNode>();
+        public List<SavedBlueprint> Blueprints = new List<SavedBlueprint>();
+        public List<SavedColonist> Colonists = new List<SavedColonist>();
+        public List<SavedCraftOrder> CraftOrders = new List<SavedCraftOrder>();
+        public List<SavedAlert> Alerts = new List<SavedAlert>();
+        public List<SavedRngStream> RngStreams = new List<SavedRngStream>();
+
+        public int StartX;
+        public int StartY;
+        public int PodInteriorX;
+        public int PodInteriorY;
+        public int GraveX;
+        public int GraveY;
+        public bool Defeated;
+        public float O2Tank;
+        public int StormState;
+        public long StormNextStartTick;
+        public long StormEndTick;
+        public int TutorialStep;
+        public bool TutorialSkipped;
+        public Dictionary<string, int> StatsMined = new Dictionary<string, int>();
+        public Dictionary<string, int> StatsCrafted = new Dictionary<string, int>();
+        public Dictionary<string, int> StatsBuilt = new Dictionary<string, int>();
+        public Dictionary<string, int> StatsDeaths = new Dictionary<string, int>();
+        public int StatsBurials;
     }
 }

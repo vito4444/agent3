@@ -16,6 +16,7 @@ namespace Starsoil.Presentation
         private CameraRig _rig;
         private WorldView _view;
         private System.Func<int> _speedGetter;
+        private bool _visible;
 
         public void Init(World world, CameraRig rig, WorldView view, System.Func<int> speedGetter)
         {
@@ -30,9 +31,17 @@ namespace Starsoil.Presentation
             _world = world;
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                _visible = !_visible;
+            }
+        }
+
         private void OnGUI()
         {
-            if (_world == null)
+            if (_world == null || !_visible)
             {
                 return;
             }

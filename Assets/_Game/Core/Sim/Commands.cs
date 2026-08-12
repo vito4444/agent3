@@ -31,6 +31,8 @@ namespace Starsoil.Core
         }
     }
 
+    /// <summary>Debug/test-only instant placement (M0 path). Player construction goes
+    /// through PlaceBlueprintCommand.</summary>
     public sealed class PlaceBuildingCommand : ICommand
     {
         public string DefId;
@@ -73,6 +75,149 @@ namespace Starsoil.Core
             {
                 world.Events.Add(new CommandRejectedEvent { Reason = "remove:not_found" });
             }
+        }
+    }
+
+    /// <summary>Player construction: places a blueprint that must be hauled and built.</summary>
+    public sealed class PlaceBlueprintCommand : ICommand
+    {
+        public string DefId;
+        public int X;
+        public int Y;
+        public int Rotation;
+
+        public void Execute(World world)
+        {
+            int id = world.Blueprints.Place(DefId, X, Y, Rotation, out PlacementError error);
+            if (error == PlacementError.None)
+            {
+                world.Events.Add(new BlueprintPlacedEvent
+                {
+                    BlueprintId = id,
+                    DefId = DefId,
+                    X = X,
+                    Y = Y,
+                    Rotation = Rotation
+                });
+            }
+            else
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "blueprint:" + error });
+            }
+        }
+    }
+
+    public sealed class CancelBlueprintCommand : ICommand
+    {
+        public int BlueprintId;
+
+        public void Execute(World world)
+        {
+            if (world.Blueprints.Cancel(BlueprintId, world.Piles))
+            {
+                world.Events.Add(new BlueprintRemovedEvent { BlueprintId = BlueprintId });
+            }
+        }
+    }
+
+    /// <summary>Demolish refunds 50% of the build cost (docs/plan/03).</summary>
+    public sealed class DemolishBuildingCommand : ICommand
+    {
+        public int BuildingId;
+
+        public void Execute(World world)
+        {
+            if (!world.Buildings.TryGet(BuildingId, out var building) ||
+                !BuildingDefs.TryGet(building.DefId, out var def) || !def.Demolishable)
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "demolish:not_allowed" });
+                return;
+            }
+            foreach (var entry in building.Stock.SortedEntries())
+            {
+                world.Piles.Drop(entry.Key, entry.Value, building.X, building.Y);
+            }
+            foreach (var need in def.BuildCost)
+            {
+                int refund = (int)(need.Count * Balance.DemolishRefundFactor);
+                if (refund > 0)
+                {
+                    world.Piles.Drop(need.ItemId, refund, building.X, building.Y);
+                }
+            }
+            world.Buildings.Remove(BuildingId);
+            world.Events.Add(new BuildingRemovedEvent { BuildingId = BuildingId });
+        }
+    }
+
+    public sealed class ToggleNodeDesignationCommand : ICommand
+    {
+        public int NodeId;
+        public bool Designated;
+
+        public void Execute(World world)
+        {
+            if (world.Nodes.TryGet(NodeId, out var node))
+            {
+                node.Designated = Designated;
+            }
+        }
+    }
+
+    public sealed class AddCraftOrderCommand : ICommand
+    {
+        public int StationId;
+        public string RecipeId;
+        /// <summary>Craft count; -1 with MaintainTarget for maintain orders.</summary>
+        public int Count = 1;
+        public int MaintainTarget;
+
+        public void Execute(World world)
+        {
+            if (world.Buildings.TryGet(StationId, out _) && world.Crafting.TryGetRecipe(RecipeId, out _))
+            {
+                world.Crafting.AddOrder(StationId, RecipeId, Count, MaintainTarget);
+            }
+            else
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "craft_order:invalid" });
+            }
+        }
+    }
+
+    public sealed class RemoveCraftOrderCommand : ICommand
+    {
+        public int StationId;
+        public int OrderId;
+
+        public void Execute(World world)
+        {
+            world.Crafting.RemoveOrder(StationId, OrderId);
+        }
+    }
+
+    public sealed class SetCrankStaffedCommand : ICommand
+    {
+        public int BuildingId;
+        public bool Staffed;
+
+        public void Execute(World world)
+        {
+            if (world.Buildings.TryGet(BuildingId, out var building) &&
+                building.DefId == BuildingDefs.HandCrankId)
+            {
+                building.StaffedRequested = Staffed;
+            }
+        }
+    }
+
+    public sealed class SetTutorialSkippedCommand : ICommand
+    {
+        public bool Skipped;
+
+        public void Execute(World world)
+        {
+            world.Tutorial.Skipped = Skipped;
         }
     }
 }

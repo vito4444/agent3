@@ -13,11 +13,12 @@ namespace Starsoil.BalanceSim.Tests
         private const int RegionSize = 96;
         private const int TickCount = 10000;
 
+        // Building id 1 is the starting crash pod; the block placed at tick 3 gets id 2.
         private static readonly (long tick, ICommand command)[] Script =
         {
             (3, new PlaceBuildingCommand { DefId = BuildingDefs.TestBlockId, X = 34, Y = 34, Rotation = 0 }),
             (10, new PlaceBuildingCommand { DefId = BuildingDefs.TestBlockId, X = 40, Y = 36, Rotation = 1 }),
-            (20, new RemoveBuildingCommand { BuildingId = 1 }),
+            (20, new RemoveBuildingCommand { BuildingId = 2 }),
             (50, new PlaceBuildingCommand { DefId = BuildingDefs.TestBlockId, X = 36, Y = 44, Rotation = 2 }),
             (5000, new PlaceBuildingCommand { DefId = BuildingDefs.TestBlockId, X = 44, Y = 44, Rotation = 3 })
         };
