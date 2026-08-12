@@ -127,6 +127,9 @@ namespace Starsoil.Core
         public List<Transit> Transits { get; } = new List<Transit>();
         public List<TradeRoute> Routes { get; } = new List<TradeRoute>();
         public FactionSystem FactionsSandbox { get; } = new FactionSystem();
+        /// <summary>Player credit balance (星币, docs/plan/06 trade).</summary>
+        public double PlayerCredits;
+        private Dictionary<string, double> _prices = new Dictionary<string, double>();
         /// <summary>Comms array built anywhere → faction layer visible on the map (M5-T8).</summary>
         public bool FactionLayerVisible;
         private int _nextRouteId = 1;
@@ -181,6 +184,17 @@ namespace Starsoil.Core
             _recipes = recipes;
             _techNodes = techNodes;
             ApplyContent(ActiveWorld);
+        }
+
+        public void SetPrices(Dictionary<string, double> prices)
+        {
+            _prices = prices ?? new Dictionary<string, double>();
+        }
+
+        /// <summary>Baseline price (GeneratedData/prices.json); 1 for unpriced items.</summary>
+        public double PriceOf(string itemId)
+        {
+            return _prices.TryGetValue(itemId, out double price) ? price : 1.0;
         }
 
         private void ApplyContent(World world)
@@ -412,6 +426,20 @@ namespace Starsoil.Core
                     RegionId = regionId,
                     Payload = transit.Payload
                 });
+                return;
+            }
+
+            // Cargo to region 0 = bonded-warehouse sale at the merchant home (M6-T7).
+            if (transit.Payload == CargoPodPayload && transit.TargetRegionId == 0)
+            {
+                double credits = FactionsSandbox.BondedSaleValue(this, transit.Cargo);
+                PlayerCredits += credits;
+                var merchantFaction = FactionsSandbox.Get(FactionSystem.MerchantId);
+                if (merchantFaction != null)
+                {
+                    merchantFaction.AttitudeToPlayer += 2;
+                }
+                ActiveWorld.Events.Add(new DealSettledEvent { QuoteId = 0, Credits = credits });
                 return;
             }
 
@@ -935,6 +963,10 @@ namespace Starsoil.Core
                 ["Transits"] = JArray.FromObject(Transits),
                 ["Routes"] = JArray.FromObject(Routes),
                 ["Factions"] = JArray.FromObject(FactionsSandbox.Factions),
+                ["Quotes"] = JArray.FromObject(FactionsSandbox.Quotes),
+                ["PendingDeals"] = JArray.FromObject(FactionsSandbox.PendingDeals),
+                ["QuoteBoardExpiresHour"] = FactionsSandbox.QuoteBoardExpiresHour,
+                ["PlayerCredits"] = PlayerCredits,
                 ["NextRouteId"] = _nextRouteId,
                 ["FactionLayerVisible"] = FactionLayerVisible,
                 ["Slots"] = SlotsJson()
@@ -1021,6 +1053,22 @@ namespace Starsoil.Core
             {
                 universe.FactionsSandbox.InitDefault();
             }
+            if (root["Quotes"] is JArray quotes)
+            {
+                foreach (var token in quotes)
+                {
+                    universe.FactionsSandbox.Quotes.Add(token.ToObject<MerchantQuote>());
+                }
+            }
+            if (root["PendingDeals"] is JArray deals)
+            {
+                foreach (var token in deals)
+                {
+                    universe.FactionsSandbox.PendingDeals.Add(token.ToObject<PendingDeal>());
+                }
+            }
+            universe.FactionsSandbox.QuoteBoardExpiresHour = root.Value<long?>("QuoteBoardExpiresHour") ?? 0;
+            universe.PlayerCredits = root.Value<double?>("PlayerCredits") ?? 0;
             if (root["Slots"] is JArray slots)
             {
                 foreach (var token in slots)

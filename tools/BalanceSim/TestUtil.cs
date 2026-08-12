@@ -52,6 +52,14 @@ namespace Starsoil.BalanceSim
             string recipesJson = File.ReadAllText(Path.Combine(FindDataDir(), "..", "GeneratedData", "recipes.json"));
             var techNodes = TechSystem.ParseCsv(File.ReadAllLines(Path.Combine(FindDataDir(), "tech_nodes.csv")));
             universe.SetContent(CatalogRecipes.ParseJson(recipesJson), techNodes);
+            var pricesRoot = Newtonsoft.Json.Linq.JObject.Parse(
+                File.ReadAllText(Path.Combine(FindDataDir(), "..", "GeneratedData", "prices.json")));
+            var prices = new System.Collections.Generic.Dictionary<string, double>();
+            foreach (var pair in (Newtonsoft.Json.Linq.JObject)pricesRoot["prices"])
+            {
+                prices[pair.Key] = pair.Value.ToObject<double>();
+            }
+            universe.SetPrices(prices);
             return universe;
         }
 

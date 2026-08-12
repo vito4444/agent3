@@ -61,6 +61,38 @@ namespace Starsoil.Core
         public int BaseTier => Math.Max(1, Math.Min(4, (int)Math.Floor(T)));
     }
 
+    public sealed class MerchantQuote
+    {
+        public int Id;
+        public string ItemId = string.Empty;
+        public int Count;
+        public double UnitPrice;
+        /// <summary>True: the merchant sells (player buys). False: the merchant buys.</summary>
+        public bool MerchantSells;
+        public long ExpiresHour;
+    }
+
+    public sealed class PendingDeal
+    {
+        public int QuoteId;
+        public string ItemId = string.Empty;
+        public int Count;
+        public double Total;
+        public bool MerchantSells;
+        public long SettleHour;
+    }
+
+    public sealed class QuoteBoardRefreshedEvent : ISimEvent
+    {
+        public int QuoteCount;
+    }
+
+    public sealed class DealSettledEvent : ISimEvent
+    {
+        public int QuoteId;
+        public double Credits;
+    }
+
     /// <summary>
     /// AI faction sandbox (docs/plan/07): scalar power/tech growth per star-map tick
     /// (one game hour), expansion checks every 6 hours by personality rules over the
@@ -102,6 +134,32 @@ namespace Starsoil.Core
         };
 
         public List<Faction> Factions { get; } = new List<Faction>();
+        public List<MerchantQuote> Quotes { get; } = new List<MerchantQuote>();
+        public List<PendingDeal> PendingDeals { get; } = new List<PendingDeal>();
+        public long QuoteBoardExpiresHour;
+        private int _nextQuoteId = 1;
+
+        private const int QuoteRefreshHours = 12;
+        private const int DealSettleHours = 6;
+        private const double SellMarkup = 1.3;
+        private const double BuyMarkdown = 0.9;
+        private const double BondedBonus = 1.1;
+        private const int RareAttitudeGate = 60;
+
+        private static readonly string[] MerchantSellPool =
+        {
+            "myco_gold_spore", "spore_protein", "fungal_timber", "methane_ice", "algae_seed", "biomass"
+        };
+
+        private static readonly string[] MerchantBuyPool =
+        {
+            "steel_plate", "basic_circuit", "water", "ration", "copper_wire", "glass"
+        };
+
+        private static readonly string[] MerchantRarePool =
+        {
+            "platinum_sand", "helium3", "deuterium_ice"
+        };
 
         public void InitDefault()
         {
@@ -167,6 +225,164 @@ namespace Starsoil.Core
                 }
             }
             TickRedBannerFriction(universe, playerBodies, hour);
+            TickMerchantQuotes(universe, hour);
+            SettleDeals(universe, hour);
+        }
+
+        // ---------------------------------------------------------------- merchant trade
+
+        /// <summary>Quote board (M6-T6): needs the player's comms array and non-negative
+        /// attitude; refreshes every 12 game hours with 3 sell + 3 buy (myco spores always
+        /// on the sell side); attitude ≥60 adds a rare listing; embargo while attacked.</summary>
+        private void TickMerchantQuotes(Universe universe, long hour)
+        {
+            var merchant = Get(MerchantId);
+            if (merchant == null || merchant.Embargoed || merchant.AttitudeToPlayer < 0 ||
+                !universe.FactionLayerVisible)
+            {
+                return;
+            }
+            if (Quotes.Count > 0 && hour < QuoteBoardExpiresHour)
+            {
+                return;
+            }
+            Quotes.Clear();
+            QuoteBoardExpiresHour = hour + QuoteRefreshHours;
+            ulong roll = Fnv1a64.HashString(universe.Seed + ":quotes:" + hour);
+
+            AddQuote(universe, "myco_gold_spore", merchantSells: true, roll);
+            AddQuote(universe, MerchantSellPool[(int)(roll % (ulong)MerchantSellPool.Length)], true, roll * 31UL);
+            AddQuote(universe, MerchantSellPool[(int)((roll / 7UL) % (ulong)MerchantSellPool.Length)], true, roll * 131UL);
+            for (int i = 0; i < 3; i++)
+            {
+                AddQuote(universe, MerchantBuyPool[(int)((roll / (ulong)(11 + i * 3)) % (ulong)MerchantBuyPool.Length)],
+                    false, roll * (ulong)(17 + i));
+            }
+            if (merchant.AttitudeToPlayer >= RareAttitudeGate)
+            {
+                AddQuote(universe, MerchantRarePool[(int)(roll % (ulong)MerchantRarePool.Length)], true, roll * 977UL);
+            }
+            universe.ActiveWorld.Events.Add(new QuoteBoardRefreshedEvent { QuoteCount = Quotes.Count });
+        }
+
+        private void AddQuote(Universe universe, string itemId, bool merchantSells, ulong roll)
+        {
+            double basePrice = universe.PriceOf(itemId);
+            var quote = new MerchantQuote
+            {
+                Id = _nextQuoteId,
+                ItemId = itemId,
+                Count = 4 + (int)(roll % 9UL),
+                UnitPrice = System.Math.Round(basePrice * (merchantSells ? SellMarkup : BuyMarkdown), 2),
+                MerchantSells = merchantSells,
+                ExpiresHour = QuoteBoardExpiresHour
+            };
+            _nextQuoteId++;
+            Quotes.Add(quote);
+        }
+
+        /// <summary>Accepts a quote; goods/credits settle after 6 game hours (M6-T6).</summary>
+        public bool AcceptQuote(Universe universe, int quoteId)
+        {
+            MerchantQuote quote = null;
+            foreach (var candidate in Quotes)
+            {
+                if (candidate.Id == quoteId)
+                {
+                    quote = candidate;
+                }
+            }
+            long hour = universe.Tick / GameConstants.TicksPerHour;
+            if (quote == null || hour >= quote.ExpiresHour)
+            {
+                return false;
+            }
+            double total = quote.UnitPrice * quote.Count;
+            if (quote.MerchantSells)
+            {
+                if (universe.PlayerCredits < total)
+                {
+                    return false;
+                }
+                universe.PlayerCredits -= total;
+            }
+            else
+            {
+                int removed = 0;
+                for (int i = 0; i < quote.Count; i++)
+                {
+                    if (universe.ActiveWorld.TryConsumeItemAnywhere(quote.ItemId))
+                    {
+                        removed++;
+                    }
+                }
+                if (removed < quote.Count)
+                {
+                    // Partial stock: settle what was actually loaded.
+                    total = quote.UnitPrice * removed;
+                    quote.Count = removed;
+                    if (removed == 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            Quotes.Remove(quote);
+            PendingDeals.Add(new PendingDeal
+            {
+                QuoteId = quote.Id,
+                ItemId = quote.ItemId,
+                Count = quote.Count,
+                Total = total,
+                MerchantSells = quote.MerchantSells,
+                SettleHour = hour + DealSettleHours
+            });
+            return true;
+        }
+
+        private void SettleDeals(Universe universe, long hour)
+        {
+            for (int i = 0; i < PendingDeals.Count; i++)
+            {
+                var deal = PendingDeals[i];
+                if (hour < deal.SettleHour)
+                {
+                    continue;
+                }
+                PendingDeals.RemoveAt(i);
+                i--;
+                var merchant = Get(MerchantId);
+                if (deal.MerchantSells)
+                {
+                    var pod = universe.ActiveWorld.Buildings.FindFirstOfKind(BuildingKind.CrashPod);
+                    if (pod != null)
+                    {
+                        pod.Stock.Add(deal.ItemId, deal.Count);
+                    }
+                }
+                else
+                {
+                    universe.PlayerCredits += deal.Total;
+                }
+                if (merchant != null)
+                {
+                    merchant.AttitudeToPlayer += 2;
+                    merchant.Treasury += deal.MerchantSells ? (float)deal.Total : -(float)deal.Total;
+                }
+                universe.ActiveWorld.Events.Add(new DealSettledEvent { QuoteId = deal.QuoteId, Credits = deal.Total });
+            }
+        }
+
+        /// <summary>Bonded-warehouse sale (M6-T7): goods delivered to the merchant's home
+        /// settle at 10% above the quote-board buy price.</summary>
+        public double BondedSaleValue(Universe universe, List<Ingredient> cargo)
+        {
+            double total = 0;
+            foreach (var item in cargo)
+            {
+                total += universe.PriceOf(item.ItemId) * BuyMarkdown * BondedBonus * item.Count;
+            }
+            return System.Math.Round(total, 2);
         }
 
         private void TryExpand(Universe universe, Faction faction, HashSet<string> playerBodies)
