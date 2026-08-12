@@ -40,6 +40,41 @@ namespace Starsoil.Data
         }
     }
 
+    /// <summary>Loads celestial bodies into a universe (data/celestial_bodies.csv).</summary>
+    public static class BodiesData
+    {
+        public static bool LoadInto(Universe universe)
+        {
+            string path = DataFiles.RepoDataPath("celestial_bodies.csv");
+            if (path == null || !File.Exists(path))
+            {
+                Debug.LogError("[BodiesData] data/celestial_bodies.csv not found.");
+                return false;
+            }
+            universe.Bodies.LoadFromCsv(File.ReadAllLines(path));
+            return true;
+        }
+    }
+
+    /// <summary>Applies recipes + tech content to a universe (all thawed regions).</summary>
+    public static class CatalogContent
+    {
+        public static bool ApplyTo(Universe universe)
+        {
+            string recipesPath = DataFiles.RepoGeneratedPath("recipes.json");
+            string techPath = DataFiles.RepoDataPath("tech_nodes.csv");
+            if (recipesPath == null || techPath == null)
+            {
+                Debug.LogError("[CatalogContent] missing recipes.json or tech_nodes.csv");
+                return false;
+            }
+            universe.SetContent(
+                CatalogRecipes.ParseJson(File.ReadAllText(recipesPath)),
+                TechSystem.ParseCsv(File.ReadAllLines(techPath)));
+            return true;
+        }
+    }
+
     /// <summary>Item display names from GeneratedData/items.json (zh/en), used by UI panels
     /// alongside data/localization.csv UI-framework keys.</summary>
     public static class ItemCatalog

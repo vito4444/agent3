@@ -22,6 +22,7 @@ namespace Starsoil.Bootstrap
         private const string SaveFileName = "save_v1.json.gz";
 
         private World _world;
+        private Universe _universe;
         private WorldView _view;
         private EntityViews _entities;
         private TerrainView _terrainView;
@@ -38,6 +39,23 @@ namespace Starsoil.Bootstrap
 
         public int Speed => _speed;
         public World World => _world;
+        public Universe Universe => _universe;
+
+        public void AttachUniverse(Universe universe)
+        {
+            _universe = universe;
+        }
+
+        /// <summary>Region switch from the star map (M4): freeze/thaw + rebuild views.</summary>
+        public void SwitchRegion(int regionId)
+        {
+            if (_universe == null)
+            {
+                return;
+            }
+            _universe.SwitchActive(regionId);
+            SwitchWorld(_universe.ActiveWorld);
+        }
         public GameSettings Settings => _settings;
 
         private TechPanelController _techPanel;
@@ -137,7 +155,18 @@ namespace Starsoil.Bootstrap
             while (_accumulator >= 1f && ticksThisFrame < MaxTicksPerFrame)
             {
                 _accumulator -= 1f;
-                _world.Step();
+                if (_universe != null)
+                {
+                    _universe.Step();
+                    if (!ReferenceEquals(_world, _universe.ActiveWorld))
+                    {
+                        SwitchWorld(_universe.ActiveWorld);
+                    }
+                }
+                else
+                {
+                    _world.Step();
+                }
                 _view.ApplyEvents(_world.Events);
                 HandleAutoPause();
                 ticksThisFrame++;
@@ -188,10 +217,18 @@ namespace Starsoil.Bootstrap
 
         private void HandleSaveLoadKeys()
         {
-            string path = Path.Combine(Application.persistentDataPath, SaveFileName);
+            string path = Path.Combine(Application.persistentDataPath,
+                _universe != null ? UniverseSaveFileName : SaveFileName);
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                SaveSerializer.WriteFile(path, SaveSerializer.Capture(_world));
+                if (_universe != null)
+                {
+                    File.WriteAllBytes(path, _universe.ToGzipJson());
+                }
+                else
+                {
+                    SaveSerializer.WriteFile(path, SaveSerializer.Capture(_world));
+                }
                 Debug.Log("[SimDriver] Saved to " + path);
             }
             if (Input.GetKeyDown(KeyCode.F9))
@@ -201,12 +238,25 @@ namespace Starsoil.Bootstrap
                     Debug.LogWarning("[SimDriver] No save file at " + path);
                     return;
                 }
-                var world = SaveSerializer.Restore(SaveSerializer.ReadFile(path));
-                TempRecipes.LoadInto(world);
-                TechTreeData.LoadInto(world);
-                SwitchWorld(world);
-                Debug.Log("[SimDriver] Loaded from " + path + " (tick " + world.Tick + ")");
+                if (_universe != null)
+                {
+                    var universe = Universe.FromGzipJson(File.ReadAllBytes(path));
+                    BodiesData.LoadInto(universe);
+                    CatalogContent.ApplyTo(universe);
+                    _universe = universe;
+                    SwitchWorld(universe.ActiveWorld);
+                }
+                else
+                {
+                    var world = SaveSerializer.Restore(SaveSerializer.ReadFile(path));
+                    TempRecipes.LoadInto(world);
+                    TechTreeData.LoadInto(world);
+                    SwitchWorld(world);
+                }
+                Debug.Log("[SimDriver] Loaded from " + path);
             }
         }
+
+        private const string UniverseSaveFileName = "save_universe.json.gz";
     }
 }

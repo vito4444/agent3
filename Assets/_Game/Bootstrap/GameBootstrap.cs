@@ -32,9 +32,10 @@ namespace Starsoil.Bootstrap
             ItemCatalog.TryLoadDefault();
             L10n.SetLanguage(settings.Language);
 
-            var world = new World(DefaultWorldSeed, GameConstants.DefaultRegionSize);
-            TempRecipes.LoadInto(world);
-            TechTreeData.LoadInto(world);
+            var universe = Universe.NewGame(DefaultWorldSeed, GameConstants.DefaultRegionSize);
+            BodiesData.LoadInto(universe);
+            CatalogContent.ApplyTo(universe);
+            var world = universe.ActiveWorld;
             if (settings.SkipTutorial)
             {
                 world.Commands.Enqueue(new SetTutorialSkippedCommand { Skipped = true });
@@ -114,6 +115,12 @@ namespace Starsoil.Bootstrap
             driver.Init(world, settings, rig, worldView, entities, terrainView, placement, hud, hudUi, craftPanel, sun);
             driver.RegisterPanels(techPanel, jobsPanel);
             driver.RegisterBrowser(browser);
+            driver.AttachUniverse(universe);
+
+            var starMapGo = new GameObject("StarMap");
+            starMapGo.transform.SetParent(root.transform, false);
+            var starMap = starMapGo.AddComponent<StarMapController>();
+            starMap.Init(universe, driver.SwitchRegion);
 
             hud.Init(world, rig, worldView, () => driver.Speed);
             hudUi.Init(world, () => driver.Speed, driver.JumpCameraTo, driver.NewGame, driver.SkipTutorial);
