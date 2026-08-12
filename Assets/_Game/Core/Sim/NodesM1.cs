@@ -40,9 +40,15 @@ namespace Starsoil.Core
 
         public bool TryGet(int id, out ResourceNode node) => _nodes.TryGetValue(id, out node);
 
+        private static readonly string[] DustloamPool =
+        {
+            ItemIds.IronOre, ItemIds.CopperOre, ItemIds.QuartzSand,
+            ItemIds.SaltOre, ItemIds.Carbon, ItemIds.Ice, ItemIds.Biomass
+        };
+
         public void Generate(TerrainGrid terrain, BuildingSystem buildings, int startX, int startY, Rng stream)
         {
-            Generate(terrain, buildings, startX, startY, stream, GuaranteedDeposits, Balance.TotalShrubs);
+            Generate(terrain, buildings, startX, startY, stream, DustloamPool, Balance.TotalShrubs);
         }
 
         /// <summary>Body-specific generation (M4): deposits come from the body's resource
