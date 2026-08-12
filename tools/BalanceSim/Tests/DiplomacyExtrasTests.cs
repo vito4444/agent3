@@ -66,6 +66,85 @@ namespace Starsoil.BalanceSim.Tests
         }
 
         [Test]
+        public void AutoQuotes_KeepBoardAlive_WhenMerchantIsRemnant()
+        {
+            var universe = TestUtil.NewUniverse(214UL, 96);
+            universe.FactionLayerVisible = true;
+            var merchant = universe.FactionsSandbox.Get(FactionSystem.MerchantId);
+            merchant.Embargoed = true; // 残部/禁运态: 常规报价停摆
+            for (long i = 0; i < 13L * GameConstants.TicksPerHour; i++)
+            {
+                universe.Step();
+            }
+            Assert.AreEqual(0, universe.FactionsSandbox.Quotes.Count, "无自动报价科技时禁运停板");
+
+            universe.ActiveWorld.Tech.UnlockBranch("branch_orbital_logistics");
+            for (long i = 0; i < 12L * GameConstants.TicksPerHour; i++)
+            {
+                universe.Step();
+            }
+            Assert.GreaterOrEqual(universe.FactionsSandbox.Quotes.Count, 6,
+                "自动报价单: 中立保税区顶上, 板子照刷 (branch_orbital_logistics_2)");
+
+            // Deals settle but never move the embargoed merchant's attitude/treasury.
+            int attitudeBefore = merchant.AttitudeToPlayer;
+            float treasuryBefore = merchant.Treasury;
+            universe.PlayerCredits = 100000;
+            MerchantQuote buyable = null;
+            foreach (var quote in universe.FactionsSandbox.Quotes)
+            {
+                if (quote.MerchantSells)
+                {
+                    buyable = quote;
+                }
+            }
+            Assert.IsNotNull(buyable, "板上有卖单");
+            Assert.IsTrue(universe.FactionsSandbox.AcceptQuote(universe, buyable.Id), "中立区报价可成交");
+            for (long i = 0; i < 7L * GameConstants.TicksPerHour; i++)
+            {
+                universe.Step();
+            }
+            Assert.AreEqual(attitudeBefore, merchant.AttitudeToPlayer, "中立区成交不改商盟态度");
+            Assert.AreEqual(treasuryBefore, merchant.Treasury, 0.001f, "中立区成交不进商盟金库");
+        }
+
+        [Test]
+        public void MarketRadar_PreviewsNextThreeBoards_Deterministically()
+        {
+            var universe = TestUtil.NewUniverse(215UL, 96);
+            universe.FactionLayerVisible = true;
+            Assert.AreEqual(0, universe.FactionsSandbox.PeekUpcomingQuotes(universe, 3).Count,
+                "未解锁行情雷达时无预告");
+
+            universe.ActiveWorld.Tech.UnlockBranch("branch_orbital_logistics");
+            var preview = universe.FactionsSandbox.PeekUpcomingQuotes(universe, 3);
+            Assert.AreEqual(18, preview.Count, "3 张预告板 × 每板 6 条 (态度<60 无稀有位)");
+
+            // Advance past the current board's expiry; the live board must match the
+            // first previewed board item-for-item.
+            var firstBoard = new List<MerchantQuote>();
+            foreach (var quote in preview)
+            {
+                if (quote.ExpiresHour == preview[0].ExpiresHour)
+                {
+                    firstBoard.Add(quote);
+                }
+            }
+            for (long i = 0; i < 13L * GameConstants.TicksPerHour; i++)
+            {
+                universe.Step();
+            }
+            var live = universe.FactionsSandbox.Quotes;
+            Assert.AreEqual(firstBoard.Count, live.Count, "到期后的实刷板条数与预告一致");
+            for (int i = 0; i < firstBoard.Count; i++)
+            {
+                Assert.AreEqual(firstBoard[i].ItemId, live[i].ItemId, "预告条目 " + i + " 品类一致");
+                Assert.AreEqual(firstBoard[i].Count, live[i].Count, "预告条目 " + i + " 数量一致");
+                Assert.AreEqual(firstBoard[i].UnitPrice, live[i].UnitPrice, 0.001, "预告条目 " + i + " 单价一致");
+            }
+        }
+
+        [Test]
         public void FactionParams_LoadFromCsv_MatchDefaults()
         {
             var system = new FactionSystem();
