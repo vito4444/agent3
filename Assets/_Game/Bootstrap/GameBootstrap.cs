@@ -122,6 +122,11 @@ namespace Starsoil.Bootstrap
             var starMap = starMapGo.AddComponent<StarMapController>();
             starMap.Init(universe, driver.SwitchRegion);
 
+            var tradeGo = new GameObject("TradePanel");
+            tradeGo.transform.SetParent(root.transform, false);
+            var tradePanel = tradeGo.AddComponent<TradePanelController>();
+            tradePanel.Init(universe);
+
             hud.Init(world, rig, worldView, () => driver.Speed);
             hudUi.Init(world, () => driver.Speed, driver.JumpCameraTo, driver.NewGame, driver.SkipTutorial);
 
