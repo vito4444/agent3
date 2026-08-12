@@ -2,15 +2,15 @@
 # transfer time (docs/plan/06): same body 1h, adjacent orbit 2h, +4h per extra hop.
 # landable: 1 = colonist pods can open a ground region there.
 id,zh,en,type,landable,gravity,day_hours,night_cold,solar_factor,orbit_index,resources
-cinderrock,烬岩,Cinderrock,rocky,1,0.6,18,0,1.6,1,sulfur;obsidian_gold_ore;iron_ore;copper_ore
+cinderrock,灼岩,Cinderrock,rocky,1,0.6,18,0,1.6,1,sulfur;obsidian_gold_ore;iron_ore;copper_ore
 dustloam,尘壤,Dustloam,rocky,1,0.8,24,1,1.0,2,iron_ore;copper_ore;quartz_sand;salt_ore;carbon;ice;biomass;titanium_sand;bauxite;sulfur
 palewatch,苍卫,Palewatch,moon,1,0.3,30,1,0.9,2,nickel_gravel;rare_earth_ore;regolith;quartz_sand;iron_ore;bauxite
-flintfield,燧石带,Flintfield,asteroid,1,0.1,12,1,0.7,3,iron_ore;nickel_gravel;ice;carbon
-warmmarsh,温泽,Warmmarsh,rocky,1,0.9,36,0,0.6,4,biomass;fungal_timber;spore_protein;myco_gold_spore;methane_ice;algae_seed
+flintfield,燧砾带,Flintfield,asteroid,1,0.1,12,1,0.7,3,iron_ore;nickel_gravel;ice;carbon
+warmmarsh,温菏,Warmmarsh,rocky,1,0.9,36,0,0.6,4,biomass;fungal_timber;spore_protein;myco_gold_spore;methane_ice;algae_seed
 mistwatch,雾卫,Mistwatch,moon,1,0.4,20,1,0.5,4,ice;nitrogen_ice;ammonia_ice;co2_ice
-redridge,赤脊,Redridge,rocky,1,0.7,28,1,0.4,5,crimson_uranite;rare_earth_ore;iron_ore;sulfur;regolith
-azurecolossus,青掣,Azure Colossus,gas_giant,0,2.5,10,1,0.3,6,helium3
-frostmaw,霜颚,Frostmaw,moon,1,0.35,26,1,0.25,6,deuterium_ice;methane_ice;ice;ammonia_ice
+redridge,赤峦,Redridge,rocky,1,0.7,28,1,0.4,5,crimson_uranite;rare_earth_ore;iron_ore;sulfur;regolith
+azurecolossus,巨蔚,Azure Colossus,gas_giant,0,2.5,10,1,0.3,6,helium3
+frostmaw,冰噬,Frostmaw,moon,1,0.35,26,1,0.25,6,deuterium_ice;methane_ice;ice;ammonia_ice
 sulfmire,硫沼,Sulfmire,moon,1,0.3,22,0,0.28,6,sulfur;carbon;ice
 ringfield,环带,Ringfield,asteroid,1,0.05,8,1,0.2,7,platinum_sand;nickel_gravel;ice
-sleetfall,霰落,Sleetfall,dwarf,1,0.2,40,1,0.12,8,azure_superconductor;phase_gel_raw;ice;quartz_sand;nitrogen_ice
+sleetfall,眠霜,Sleetfall,dwarf,1,0.2,40,1,0.12,8,azure_superconductor;phase_gel_raw;ice;quartz_sand;nitrogen_ice

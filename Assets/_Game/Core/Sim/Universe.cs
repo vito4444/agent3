@@ -126,6 +126,7 @@ namespace Starsoil.Core
         public Dictionary<int, RegionSlot> FrozenRegions { get; } = new Dictionary<int, RegionSlot>();
         public List<Transit> Transits { get; } = new List<Transit>();
         public List<TradeRoute> Routes { get; } = new List<TradeRoute>();
+        public FactionSystem FactionsSandbox { get; } = new FactionSystem();
         /// <summary>Comms array built anywhere → faction layer visible on the map (M5-T8).</summary>
         public bool FactionLayerVisible;
         private int _nextRouteId = 1;
@@ -158,7 +159,19 @@ namespace Starsoil.Core
             var universe = new Universe { Seed = seed };
             universe.ActiveWorld = new World(seed, regionSize);
             universe.ActiveRegionId = 1;
+            universe.FactionsSandbox.InitDefault();
             return universe;
+        }
+
+        /// <summary>Bodies currently colonized by the player (active + frozen regions).</summary>
+        public HashSet<string> PlayerBodies()
+        {
+            var bodies = new HashSet<string> { ActiveBodyId };
+            foreach (var slot in FrozenRegions.Values)
+            {
+                bodies.Add(slot.BodyId);
+            }
+            return bodies;
         }
 
         /// <summary>Recipes/tech are content, not state; the universe re-applies them to
@@ -198,6 +211,7 @@ namespace Starsoil.Core
                 TickTransits();
                 TickRoutes();
                 RefreshFactionLayer();
+                FactionsSandbox.HourlyTick(this, PlayerBodies());
             }
             TickLaunches();
         }
@@ -920,6 +934,7 @@ namespace Starsoil.Core
                 ["ActiveBlob"] = Convert.ToBase64String(SaveSerializer.ToGzipJson(SaveSerializer.Capture(ActiveWorld))),
                 ["Transits"] = JArray.FromObject(Transits),
                 ["Routes"] = JArray.FromObject(Routes),
+                ["Factions"] = JArray.FromObject(FactionsSandbox.Factions),
                 ["NextRouteId"] = _nextRouteId,
                 ["FactionLayerVisible"] = FactionLayerVisible,
                 ["Slots"] = SlotsJson()
@@ -994,6 +1009,18 @@ namespace Starsoil.Core
             }
             universe._nextRouteId = root.Value<int?>("NextRouteId") ?? 1;
             universe.FactionLayerVisible = root.Value<bool?>("FactionLayerVisible") ?? false;
+            if (root["Factions"] is JArray factions && factions.Count > 0)
+            {
+                universe.FactionsSandbox.Factions.Clear();
+                foreach (var token in factions)
+                {
+                    universe.FactionsSandbox.Factions.Add(token.ToObject<Faction>());
+                }
+            }
+            else
+            {
+                universe.FactionsSandbox.InitDefault();
+            }
             if (root["Slots"] is JArray slots)
             {
                 foreach (var token in slots)
