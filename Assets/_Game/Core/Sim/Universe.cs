@@ -126,6 +126,10 @@ namespace Starsoil.Core
         public Dictionary<int, RegionSlot> FrozenRegions { get; } = new Dictionary<int, RegionSlot>();
         public List<Transit> Transits { get; } = new List<Transit>();
         public List<TradeRoute> Routes { get; } = new List<TradeRoute>();
+        public FactionSystem FactionsSandbox { get; } = new FactionSystem();
+        /// <summary>Player credit balance (星币, docs/plan/06 trade).</summary>
+        public double PlayerCredits;
+        private Dictionary<string, double> _prices = new Dictionary<string, double>();
         /// <summary>Comms array built anywhere → faction layer visible on the map (M5-T8).</summary>
         public bool FactionLayerVisible;
         private int _nextRouteId = 1;
@@ -158,7 +162,19 @@ namespace Starsoil.Core
             var universe = new Universe { Seed = seed };
             universe.ActiveWorld = new World(seed, regionSize);
             universe.ActiveRegionId = 1;
+            universe.FactionsSandbox.InitDefault();
             return universe;
+        }
+
+        /// <summary>Bodies currently colonized by the player (active + frozen regions).</summary>
+        public HashSet<string> PlayerBodies()
+        {
+            var bodies = new HashSet<string> { ActiveBodyId };
+            foreach (var slot in FrozenRegions.Values)
+            {
+                bodies.Add(slot.BodyId);
+            }
+            return bodies;
         }
 
         /// <summary>Recipes/tech are content, not state; the universe re-applies them to
@@ -168,6 +184,19 @@ namespace Starsoil.Core
             _recipes = recipes;
             _techNodes = techNodes;
             ApplyContent(ActiveWorld);
+        }
+
+        public void SetPrices(Dictionary<string, double> prices)
+        {
+            _prices = prices ?? new Dictionary<string, double>();
+        }
+
+        private const double UnpricedFallback = 1.0;
+
+        /// <summary>Baseline price (GeneratedData/prices.json); 1 for unpriced items.</summary>
+        public double PriceOf(string itemId)
+        {
+            return _prices.TryGetValue(itemId, out double price) ? price : UnpricedFallback;
         }
 
         private void ApplyContent(World world)
@@ -198,6 +227,7 @@ namespace Starsoil.Core
                 TickTransits();
                 TickRoutes();
                 RefreshFactionLayer();
+                FactionsSandbox.HourlyTick(this, PlayerBodies());
             }
             TickLaunches();
         }
@@ -398,6 +428,20 @@ namespace Starsoil.Core
                     RegionId = regionId,
                     Payload = transit.Payload
                 });
+                return;
+            }
+
+            // Cargo to region 0 = bonded-warehouse sale at the merchant home (M6-T7).
+            if (transit.Payload == CargoPodPayload && transit.TargetRegionId == 0)
+            {
+                double credits = FactionsSandbox.BondedSaleValue(this, transit.Cargo);
+                PlayerCredits += credits;
+                var merchantFaction = FactionsSandbox.Get(FactionSystem.MerchantId);
+                if (merchantFaction != null)
+                {
+                    merchantFaction.AttitudeToPlayer += 2;
+                }
+                ActiveWorld.Events.Add(new DealSettledEvent { QuoteId = 0, Credits = credits });
                 return;
             }
 
@@ -920,6 +964,11 @@ namespace Starsoil.Core
                 ["ActiveBlob"] = Convert.ToBase64String(SaveSerializer.ToGzipJson(SaveSerializer.Capture(ActiveWorld))),
                 ["Transits"] = JArray.FromObject(Transits),
                 ["Routes"] = JArray.FromObject(Routes),
+                ["Factions"] = JArray.FromObject(FactionsSandbox.Factions),
+                ["Quotes"] = JArray.FromObject(FactionsSandbox.Quotes),
+                ["PendingDeals"] = JArray.FromObject(FactionsSandbox.PendingDeals),
+                ["QuoteBoardExpiresHour"] = FactionsSandbox.QuoteBoardExpiresHour,
+                ["PlayerCredits"] = PlayerCredits,
                 ["NextRouteId"] = _nextRouteId,
                 ["FactionLayerVisible"] = FactionLayerVisible,
                 ["Slots"] = SlotsJson()
@@ -994,6 +1043,34 @@ namespace Starsoil.Core
             }
             universe._nextRouteId = root.Value<int?>("NextRouteId") ?? 1;
             universe.FactionLayerVisible = root.Value<bool?>("FactionLayerVisible") ?? false;
+            if (root["Factions"] is JArray factions && factions.Count > 0)
+            {
+                universe.FactionsSandbox.Factions.Clear();
+                foreach (var token in factions)
+                {
+                    universe.FactionsSandbox.Factions.Add(token.ToObject<Faction>());
+                }
+            }
+            else
+            {
+                universe.FactionsSandbox.InitDefault();
+            }
+            if (root["Quotes"] is JArray quotes)
+            {
+                foreach (var token in quotes)
+                {
+                    universe.FactionsSandbox.Quotes.Add(token.ToObject<MerchantQuote>());
+                }
+            }
+            if (root["PendingDeals"] is JArray deals)
+            {
+                foreach (var token in deals)
+                {
+                    universe.FactionsSandbox.PendingDeals.Add(token.ToObject<PendingDeal>());
+                }
+            }
+            universe.FactionsSandbox.QuoteBoardExpiresHour = root.Value<long?>("QuoteBoardExpiresHour") ?? 0;
+            universe.PlayerCredits = root.Value<double?>("PlayerCredits") ?? 0;
             if (root["Slots"] is JArray slots)
             {
                 foreach (var token in slots)
