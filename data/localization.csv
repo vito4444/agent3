@@ -119,3 +119,7 @@ colonist_name_1,艾达,Ida
 colonist_name_2,老周,Zhou
 colonist_name_3,穆恩,Moon
 colonist_name_4,萨米,Sami
+ui_recipe_browser,配方浏览器 (F4),Recipe browser (F4)
+ui_filter_all,全部,All
+ui_upstream,上游,Upstream
+ui_downstream,下游,Downstream
