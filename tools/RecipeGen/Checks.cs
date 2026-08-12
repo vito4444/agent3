@@ -277,13 +277,25 @@ namespace Starsoil.RecipeGen
                     result.Errors.Add("recipe without tech node: " + recipe.Id);
                     continue;
                 }
-                if (!db.TechNodes.ContainsKey(recipe.TechNode))
-                {
-                    result.Errors.Add("recipe references unknown tech node: " + recipe.Id + " -> " + recipe.TechNode);
-                    continue;
-                }
                 perNode.TryGetValue(recipe.TechNode, out int count);
                 perNode[recipe.TechNode] = count + 1;
+            }
+            // Tech rows may also reference recipe ids that were never generated (typos).
+            foreach (var pair in db.RecipeToTechNode)
+            {
+                bool found = false;
+                foreach (var recipe in db.Recipes)
+                {
+                    if (recipe.Id == pair.Key)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    result.Errors.Add("tech node " + pair.Value + " references unknown recipe: " + pair.Key);
+                }
             }
             foreach (var pair in perNode.Where(p => p.Value > MaxRecipesPerTechNode))
             {

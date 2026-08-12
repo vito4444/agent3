@@ -16,11 +16,80 @@ namespace Starsoil.RecipeGen
         {
             var db = new Database();
             LoadTemplates(db, Path.Combine(dataDir, "rationale_templates.csv"));
+            LoadTagPhrases(db, Path.Combine(dataDir, "tag_phrases.csv"));
             LoadVerbs(db, Path.Combine(dataDir, "verbs.csv"));
             LoadForms(db, Path.Combine(dataDir, "forms.csv"));
             LoadMaterials(db, Path.Combine(dataDir, "materials.csv"));
+            LoadItemsExtra(db, Path.Combine(dataDir, "items_extra.csv"));
+            LoadSmeltables(db, Path.Combine(dataDir, "smeltables.csv"));
             LoadTechNodes(db, Path.Combine(dataDir, "tech_nodes.csv"));
             return db;
+        }
+
+        private static void LoadItemsExtra(Database db, string path)
+        {
+            var table = CsvTable.Load(path);
+            foreach (var row in table.Rows)
+            {
+                string id = table.Get(row, "id");
+                if (id.Length == 0)
+                {
+                    continue;
+                }
+                db.Items[id] = new ItemDef
+                {
+                    Id = id,
+                    Zh = table.Get(row, "zh"),
+                    En = table.Get(row, "en"),
+                    Category = table.Get(row, "category"),
+                    Tier = ParseInt(table.Get(row, "tier"), 1),
+                    Tags = SplitMulti(table.Get(row, "tags")),
+                    Mass = ParseDouble(table.Get(row, "mass"), 0)
+                };
+            }
+        }
+
+        private static void LoadSmeltables(Database db, string path)
+        {
+            var table = CsvTable.Load(path);
+            foreach (var row in table.Rows)
+            {
+                string id = table.Get(row, "id");
+                if (id.Length == 0)
+                {
+                    continue;
+                }
+                db.Smeltables[id] = new SmeltableDef
+                {
+                    Id = id,
+                    Zh = table.Get(row, "zh"),
+                    En = table.Get(row, "en"),
+                    Tier = ParseInt(table.Get(row, "tier"), 0),
+                    Tags = SplitMulti(table.Get(row, "tags")),
+                    SourceOre = table.Get(row, "source_ore"),
+                    OrePerIngot = ParseInt(table.Get(row, "ore_per_ingot"), 2)
+                };
+            }
+        }
+
+        private static void LoadTagPhrases(Database db, string path)
+        {
+            var table = CsvTable.Load(path);
+            foreach (var row in table.Rows)
+            {
+                string tag = table.Get(row, "tag");
+                if (tag.Length == 0)
+                {
+                    continue;
+                }
+                db.TagPhrases[tag] = new TagPhrase
+                {
+                    ZhAttr = table.Get(row, "zh_attr"),
+                    ZhUse = table.Get(row, "zh_use"),
+                    EnAttr = table.Get(row, "en_attr"),
+                    EnUse = table.Get(row, "en_use")
+                };
+            }
         }
 
         public static List<string> SplitMulti(string cell)
@@ -143,11 +212,18 @@ namespace Starsoil.RecipeGen
                     Zh = table.Get(row, "zh"),
                     En = table.Get(row, "en"),
                     Domain = table.Get(row, "domain"),
-                    Prereqs = SplitMulti(table.Get(row, "prereqs"))
+                    Prereqs = SplitMulti(table.Get(row, "prereqs")),
+                    Recipes = SplitMulti(table.Get(row, "recipes")),
+                    Buildings = SplitMulti(table.Get(row, "buildings"))
                 };
-                if (node.Id.Length > 0)
+                if (node.Id.Length == 0)
                 {
-                    db.TechNodes[node.Id] = node;
+                    continue;
+                }
+                db.TechNodes[node.Id] = node;
+                foreach (string recipe in node.Recipes)
+                {
+                    db.RecipeToTechNode[recipe] = node.Id;
                 }
             }
         }

@@ -5,37 +5,117 @@ using System.IO;
 namespace Starsoil.RecipeGen
 {
     /// <summary>
-    /// Recipe generation per docs/plan/04: matrix expansion (material × form via the
-    /// hand-maintained validity mask) plus direct translation of chem_graph and
-    /// components rows. With M0's empty tables every stage yields zero entries but the
-    /// code paths are the real ones the M3 content fills.
+    /// Recipe generation per docs/plan/04:
+    /// A — ore→ingot smelting (smeltables.csv) and alloying (alloys.csv);
+    /// B — ingot→form matrix expansion gated by the hand-maintained validity mask;
+    /// C — chem_graph reaction edges;
+    /// D..H — components.csv rows (parts, consumables, buildings, vehicles, faction).
+    /// Every recipe carries machine/hand stations, tick times and a bilingual rationale
+    /// composed from verb templates plus material tag phrases.
     /// </summary>
     public static class Generator
     {
-        private const string MaterialSlot = "{material}";
-        private const string FormSlot = "{form}";
-        private const string VerbSlot = "{verb}";
+        private const int TicksPerSecond = 10;
+
+        /// <summary>Units produced per ingot for each form (docs/plan/04 sample: 1 ingot → 2 plates).</summary>
+        private static readonly Dictionary<string, int> FormYield = new Dictionary<string, int>
+        {
+            { "plate", 2 }, { "rod", 2 }, { "wire", 3 }, { "gear", 1 },
+            { "pipe", 1 }, { "mesh", 2 }, { "powder", 2 }, { "brick", 2 }
+        };
 
         public static void Run(Database db, string dataDir)
         {
-            ExpandFormMatrix(db, Path.Combine(dataDir, "form_mask.csv"));
-            ExpandAlloys(db, Path.Combine(dataDir, "alloys.csv"));
-            TranslateGraph(db, Path.Combine(dataDir, "chem_graph.csv"), "C");
-            TranslateComponents(db, Path.Combine(dataDir, "components.csv"));
+            EmitSmelting(db);
+            EmitAlloys(db, Path.Combine(dataDir, "alloys.csv"));
+            EmitFormMatrix(db, Path.Combine(dataDir, "form_mask.csv"));
+            EmitChemGraph(db, Path.Combine(dataDir, "chem_graph.csv"));
+            EmitComponents(db, Path.Combine(dataDir, "components.csv"));
+            AssignTechNodes(db);
         }
 
-        private static void ExpandFormMatrix(Database db, string path)
+        // ---------------------------------------------------------------- family A
+
+        private static void EmitSmelting(Database db)
+        {
+            foreach (var smeltable in db.Smeltables.Values)
+            {
+                string ingotId = smeltable.Id + "_ingot";
+                db.Items[ingotId] = new ItemDef
+                {
+                    Id = ingotId,
+                    Zh = smeltable.Zh + "锭",
+                    En = smeltable.En + " ingot",
+                    Category = "intermediate",
+                    Tier = smeltable.Tier,
+                    Tags = new List<string>(smeltable.Tags),
+                    Mass = 3,
+                    IconSpec = smeltable.Id + ":ingot:smelt"
+                };
+                var verb = db.Verbs["smelt"];
+                var recipe = NewRecipe(db, "smelt_" + smeltable.Id, verb, smeltable.Tier, "A");
+                recipe.Inputs.Add(new Ingredient { ItemId = smeltable.SourceOre, Count = smeltable.OrePerIngot });
+                recipe.Outputs.Add(new Ingredient { ItemId = ingotId, Count = 1 });
+                FillRationale(db, recipe, verb, smeltable.Zh, smeltable.En, string.Empty, string.Empty, smeltable.Tags);
+                db.Recipes.Add(recipe);
+            }
+        }
+
+        private static void EmitAlloys(Database db, string path)
+        {
+            var table = CsvTable.Load(path);
+            var verb = db.Verbs["alloy"];
+            foreach (var row in table.Rows)
+            {
+                string id = table.Get(row, "id");
+                if (id.Length == 0)
+                {
+                    continue;
+                }
+                int tier = Loader.ParseInt(table.Get(row, "tier"), 1);
+                var tags = Loader.SplitMulti(table.Get(row, "tags"));
+                string ingotId = id + "_ingot";
+                db.Items[ingotId] = new ItemDef
+                {
+                    Id = ingotId,
+                    Zh = table.Get(row, "zh") + "锭",
+                    En = table.Get(row, "en") + " ingot",
+                    Category = "intermediate",
+                    Tier = tier,
+                    Tags = tags,
+                    Mass = 3,
+                    IconSpec = id + ":ingot:alloy"
+                };
+                var recipe = NewRecipe(db, "alloy_" + id, verb, tier, "A");
+                recipe.Inputs = Loader.ParseIngredients(table.Get(row, "components"));
+                recipe.Outputs.Add(new Ingredient { ItemId = ingotId, Count = 1 });
+                foreach (var input in recipe.Inputs)
+                {
+                    db.GetOrStubItem(input.ItemId);
+                }
+                FillRationale(db, recipe, verb, table.Get(row, "zh"), table.Get(row, "en"), string.Empty, string.Empty, tags);
+                db.Recipes.Add(recipe);
+            }
+        }
+
+        // ---------------------------------------------------------------- family B
+
+        private static void EmitFormMatrix(Database db, string path)
         {
             var table = CsvTable.Load(path);
             if (table.Header.Length == 0)
             {
                 return;
             }
-            for (int r = 0; r < table.Rows.Count; r++)
+            foreach (var row in table.Rows)
             {
-                var row = table.Rows[r];
                 string materialId = row[0].Trim();
-                if (materialId.Length == 0 || !db.Items.TryGetValue(materialId, out var material))
+                if (materialId.Length == 0)
+                {
+                    continue;
+                }
+                GetMaterialNames(db, materialId, out string zh, out string en, out var tags, out int materialTier);
+                if (zh == null)
                 {
                     continue;
                 }
@@ -51,66 +131,58 @@ namespace Starsoil.RecipeGen
                     {
                         continue;
                     }
-                    int tier = Loader.ParseInt(cell, material.Tier);
-                    EmitFormedItemRecipe(db, material, form, verb, tier);
+                    int tier = Math.Max(materialTier, Loader.ParseInt(cell, materialTier));
+                    string itemId = materialId + "_" + formId;
+                    db.Items[itemId] = new ItemDef
+                    {
+                        Id = itemId,
+                        Zh = zh + form.Zh,
+                        En = en + " " + form.En,
+                        Category = "intermediate",
+                        Tier = tier,
+                        Tags = new List<string>(tags),
+                        Mass = 2,
+                        IconSpec = materialId + ":" + formId + ":" + verb.Id
+                    };
+                    var recipe = NewRecipe(db, "form_" + itemId, verb, tier, "B");
+                    recipe.Inputs.Add(new Ingredient { ItemId = materialId + "_ingot", Count = 1 });
+                    FormYield.TryGetValue(formId, out int yield);
+                    recipe.Outputs.Add(new Ingredient { ItemId = itemId, Count = Math.Max(1, yield) });
+                    FillRationale(db, recipe, verb, zh, en, form.Zh, form.En, tags);
+                    db.Recipes.Add(recipe);
                 }
             }
         }
 
-        private static void EmitFormedItemRecipe(Database db, ItemDef material, FormDef form, VerbDef verb, int tier)
+        private static void GetMaterialNames(Database db, string materialId,
+            out string zh, out string en, out List<string> tags, out int tier)
         {
-            string itemId = material.Id + "_" + form.Id;
-            if (!db.Items.ContainsKey(itemId))
+            if (db.Smeltables.TryGetValue(materialId, out var smeltable))
             {
-                db.Items[itemId] = new ItemDef
-                {
-                    Id = itemId,
-                    Zh = material.Zh + form.Zh,
-                    En = material.En + " " + form.En,
-                    Category = "intermediate",
-                    Tier = tier,
-                    Tags = new List<string>(material.Tags),
-                    IconSpec = material.Id + ":" + form.Id + ":" + verb.Id
-                };
+                zh = smeltable.Zh;
+                en = smeltable.En;
+                tags = smeltable.Tags;
+                tier = smeltable.Tier;
+                return;
             }
-
-            var recipe = new RecipeDef
+            string ingotId = materialId + "_ingot";
+            if (db.Items.TryGetValue(ingotId, out var alloyIngot))
             {
-                Id = "form_" + itemId,
-                Verb = verb.Id,
-                Tier = tier,
-                Family = "B",
-                Seconds = verb.BaseSeconds,
-                Kw = verb.BaseKw,
-                RationaleZh = FillTemplate(db.TemplatesZh, verb.TemplateId, material.Zh, form.Zh, verb.Zh),
-                RationaleEn = FillTemplate(db.TemplatesEn, verb.TemplateId, material.En, form.En, verb.En)
-            };
-            recipe.Inputs.Add(new Ingredient { ItemId = SourceItemFor(db, material), Count = 1 });
-            recipe.Outputs.Add(new Ingredient { ItemId = itemId, Count = 1 });
-            db.Recipes.Add(recipe);
-        }
-
-        /// <summary>Forming consumes the smelted ingot when one exists, otherwise the raw material.</summary>
-        private static string SourceItemFor(Database db, ItemDef material)
-        {
-            string ingotId = material.Id + "_ingot";
-            return db.Items.ContainsKey(ingotId) ? ingotId : material.Id;
-        }
-
-        private static string FillTemplate(Dictionary<string, string> templates, string templateId,
-            string material, string form, string verb)
-        {
-            if (templateId == null || !templates.TryGetValue(templateId, out string template))
-            {
-                return string.Empty;
+                zh = alloyIngot.Zh.EndsWith("锭") ? alloyIngot.Zh.Substring(0, alloyIngot.Zh.Length - 1) : alloyIngot.Zh;
+                en = alloyIngot.En.EndsWith(" ingot") ? alloyIngot.En.Substring(0, alloyIngot.En.Length - 6) : alloyIngot.En;
+                tags = alloyIngot.Tags;
+                tier = alloyIngot.Tier;
+                return;
             }
-            return template
-                .Replace(MaterialSlot, material)
-                .Replace(FormSlot, form)
-                .Replace(VerbSlot, verb);
+            zh = null;
+            en = null;
+            tags = null;
+            tier = 0;
         }
 
-        private static void ExpandAlloys(Database db, string path)
+        // ---------------------------------------------------------------- family C
+
+        private static void EmitChemGraph(Database db, string path)
         {
             var table = CsvTable.Load(path);
             foreach (var row in table.Rows)
@@ -120,61 +192,11 @@ namespace Starsoil.RecipeGen
                 {
                     continue;
                 }
-                int tier = Loader.ParseInt(table.Get(row, "tier"), 1);
-                db.Items[id] = new ItemDef
-                {
-                    Id = id,
-                    Zh = table.Get(row, "zh"),
-                    En = table.Get(row, "en"),
-                    Category = "intermediate",
-                    Tier = tier,
-                    Tags = Loader.SplitMulti(table.Get(row, "tags"))
-                };
-                db.Verbs.TryGetValue("alloy", out var alloyVerb);
-                var recipe = new RecipeDef
-                {
-                    Id = "alloy_" + id,
-                    Verb = "alloy",
-                    Tier = tier,
-                    Family = "A",
-                    Inputs = Loader.ParseIngredients(table.Get(row, "components")),
-                    Seconds = alloyVerb != null ? alloyVerb.BaseSeconds : 1,
-                    Kw = alloyVerb != null ? alloyVerb.BaseKw : 0,
-                    RationaleZh = alloyVerb != null
-                        ? FillTemplate(db.TemplatesZh, alloyVerb.TemplateId, table.Get(row, "zh"), string.Empty, alloyVerb.Zh)
-                        : string.Empty,
-                    RationaleEn = alloyVerb != null
-                        ? FillTemplate(db.TemplatesEn, alloyVerb.TemplateId, table.Get(row, "en"), string.Empty, alloyVerb.En)
-                        : string.Empty
-                };
-                recipe.Outputs.Add(new Ingredient { ItemId = id, Count = 1 });
-                foreach (var input in recipe.Inputs)
-                {
-                    db.GetOrStubItem(input.ItemId);
-                }
-                db.Recipes.Add(recipe);
-            }
-        }
-
-        private static void TranslateGraph(Database db, string path, string family)
-        {
-            var table = CsvTable.Load(path);
-            foreach (var row in table.Rows)
-            {
-                string id = table.Get(row, "id");
-                if (id.Length == 0)
-                {
-                    continue;
-                }
-                var recipe = new RecipeDef
-                {
-                    Id = id,
-                    Verb = table.Get(row, "verb"),
-                    Tier = Loader.ParseInt(table.Get(row, "tier"), 2),
-                    Family = family,
-                    Inputs = Loader.ParseIngredients(table.Get(row, "inputs")),
-                    Outputs = Loader.ParseIngredients(table.Get(row, "outputs"))
-                };
+                string verbId = table.Get(row, "verb");
+                db.Verbs.TryGetValue(verbId, out var verb);
+                var recipe = NewRecipe(db, id, verb, Loader.ParseInt(table.Get(row, "tier"), 2), "C");
+                recipe.Inputs = Loader.ParseIngredients(table.Get(row, "inputs"));
+                recipe.Outputs = Loader.ParseIngredients(table.Get(row, "outputs"));
                 foreach (var ing in recipe.Inputs)
                 {
                     db.GetOrStubItem(ing.ItemId);
@@ -183,11 +205,20 @@ namespace Starsoil.RecipeGen
                 {
                     db.GetOrStubItem(ing.ItemId);
                 }
+                string primaryZh = recipe.Outputs.Count > 0 && db.Items.TryGetValue(recipe.Outputs[0].ItemId, out var outItem)
+                    ? outItem.Zh : id;
+                string primaryEn = recipe.Outputs.Count > 0 && db.Items.TryGetValue(recipe.Outputs[0].ItemId, out var outItem2)
+                    ? outItem2.En : id;
+                var outTags = recipe.Outputs.Count > 0 && db.Items.TryGetValue(recipe.Outputs[0].ItemId, out var outItem3)
+                    ? outItem3.Tags : new List<string>();
+                FillRationale(db, recipe, verb, primaryZh, primaryEn, string.Empty, string.Empty, outTags);
                 db.Recipes.Add(recipe);
             }
         }
 
-        private static void TranslateComponents(Database db, string path)
+        // ---------------------------------------------------------------- families D..H
+
+        private static void EmitComponents(Database db, string path)
         {
             var table = CsvTable.Load(path);
             foreach (var row in table.Rows)
@@ -198,33 +229,98 @@ namespace Starsoil.RecipeGen
                     continue;
                 }
                 string category = table.Get(row, "category");
-                db.Items[id] = new ItemDef
+                var outputs = Loader.ParseIngredients(table.Get(row, "outputs"));
+                // The produced item id: explicit outputs win; otherwise the row id.
+                string producedId = outputs.Count > 0 ? outputs[0].ItemId : id;
+                int tier = Loader.ParseInt(table.Get(row, "tier"), 1);
+                var item = new ItemDef
                 {
-                    Id = id,
+                    Id = producedId,
                     Zh = table.Get(row, "zh"),
                     En = table.Get(row, "en"),
                     Category = category.Length > 0 ? category : "component",
-                    Tier = Loader.ParseInt(table.Get(row, "tier"), 1)
+                    Tier = tier,
+                    Mass = 2
                 };
-                var recipe = new RecipeDef
+                // Do not overwrite richer definitions (e.g. items_extra water).
+                if (!db.Items.TryGetValue(producedId, out var existing) || existing.IsStub)
                 {
-                    Id = "make_" + id,
-                    Verb = table.Get(row, "verb"),
-                    Tier = Loader.ParseInt(table.Get(row, "tier"), 1),
-                    Family = FamilyForCategory(category),
-                    Inputs = Loader.ParseIngredients(table.Get(row, "inputs")),
-                    Outputs = Loader.ParseIngredients(table.Get(row, "outputs"))
-                };
-                if (recipe.Outputs.Count == 0)
-                {
-                    recipe.Outputs.Add(new Ingredient { ItemId = id, Count = 1 });
+                    db.Items[producedId] = item;
                 }
+
+                string verbId = table.Get(row, "verb");
+                db.Verbs.TryGetValue(verbId, out var verb);
+                var recipe = NewRecipe(db, "make_" + id, verb, tier, FamilyForCategory(category));
+                recipe.Inputs = Loader.ParseIngredients(table.Get(row, "inputs"));
+                recipe.Outputs = outputs.Count > 0 ? outputs : new List<Ingredient> { new Ingredient { ItemId = producedId, Count = 1 } };
+                recipe.FactionLocked = category == "faction";
                 foreach (var ing in recipe.Inputs)
                 {
                     db.GetOrStubItem(ing.ItemId);
                 }
+                FillRationale(db, recipe, verb, item.Zh, item.En, string.Empty, string.Empty, item.Tags);
                 db.Recipes.Add(recipe);
             }
+        }
+
+        private static void AssignTechNodes(Database db)
+        {
+            foreach (var recipe in db.Recipes)
+            {
+                if (db.RecipeToTechNode.TryGetValue(recipe.Id, out string node))
+                {
+                    recipe.TechNode = node;
+                }
+            }
+        }
+
+        // ---------------------------------------------------------------- helpers
+
+        private static RecipeDef NewRecipe(Database db, string id, VerbDef verb, int tier, string family)
+        {
+            return new RecipeDef
+            {
+                Id = id,
+                Verb = verb?.Id ?? string.Empty,
+                Tier = tier,
+                Family = family,
+                Seconds = verb?.BaseSeconds ?? 1,
+                Kw = verb?.BaseKw ?? 0,
+                WorkTicks = (int)((verb?.BaseSeconds ?? 1) * TicksPerSecond),
+                MachineStation = verb?.Machine ?? string.Empty,
+                HandStation = verb?.HandVersion ?? string.Empty
+            };
+        }
+
+        private static void FillRationale(Database db, RecipeDef recipe, VerbDef verb,
+            string materialZh, string materialEn, string formZh, string formEn, List<string> tags)
+        {
+            if (verb == null || !db.TemplatesZh.TryGetValue(verb.TemplateId, out string zhTemplate))
+            {
+                return;
+            }
+            db.TemplatesEn.TryGetValue(verb.TemplateId, out string enTemplate);
+            TagPhrase phrase = null;
+            if (tags != null)
+            {
+                foreach (string tag in tags)
+                {
+                    if (db.TagPhrases.TryGetValue(tag, out phrase))
+                    {
+                        break;
+                    }
+                }
+            }
+            recipe.RationaleZh = zhTemplate
+                .Replace("{material}", materialZh)
+                .Replace("{form}", formZh)
+                .Replace("{attr}", phrase?.ZhAttr ?? "工艺成熟")
+                .Replace("{use}", phrase?.ZhUse ?? "用于基地建设与生产");
+            recipe.RationaleEn = (enTemplate ?? string.Empty)
+                .Replace("{material}", materialEn)
+                .Replace("{form}", formEn)
+                .Replace("{attr}", phrase?.EnAttr ?? "the process is proven")
+                .Replace("{use}", phrase?.EnUse ?? "used across base building and production");
         }
 
         private static string FamilyForCategory(string category)
@@ -236,6 +332,7 @@ namespace Starsoil.RecipeGen
                 case "consumable":
                 case "food": return "E";
                 case "faction": return "H";
+                case "intermediate": return "D";
                 default: return "D";
             }
         }

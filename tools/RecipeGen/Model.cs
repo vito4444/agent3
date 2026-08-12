@@ -34,6 +34,11 @@ namespace Starsoil.RecipeGen
         public string Family;
         public double Seconds;
         public double Kw;
+        /// <summary>Ticks at machine speed (10 ticks per game-second).</summary>
+        public int WorkTicks;
+        /// <summary>Machine building id and optional hand station id (runtime bridge).</summary>
+        public string MachineStation = string.Empty;
+        public string HandStation = string.Empty;
         public string TechNode = string.Empty;
         public string RationaleZh = string.Empty;
         public string RationaleEn = string.Empty;
@@ -60,6 +65,25 @@ namespace Starsoil.RecipeGen
         public string Verb;
     }
 
+    public sealed class SmeltableDef
+    {
+        public string Id;
+        public string Zh;
+        public string En;
+        public int Tier;
+        public List<string> Tags = new List<string>();
+        public string SourceOre;
+        public int OrePerIngot;
+    }
+
+    public sealed class TagPhrase
+    {
+        public string ZhAttr;
+        public string ZhUse;
+        public string EnAttr;
+        public string EnUse;
+    }
+
     public sealed class TechNodeDef
     {
         public string Id;
@@ -67,6 +91,8 @@ namespace Starsoil.RecipeGen
         public string En;
         public string Domain;
         public List<string> Prereqs = new List<string>();
+        public List<string> Recipes = new List<string>();
+        public List<string> Buildings = new List<string>();
     }
 
     public sealed class Database
@@ -75,9 +101,13 @@ namespace Starsoil.RecipeGen
         public readonly List<RecipeDef> Recipes = new List<RecipeDef>();
         public readonly Dictionary<string, VerbDef> Verbs = new Dictionary<string, VerbDef>();
         public readonly Dictionary<string, FormDef> Forms = new Dictionary<string, FormDef>();
+        public readonly Dictionary<string, SmeltableDef> Smeltables = new Dictionary<string, SmeltableDef>();
+        public readonly Dictionary<string, TagPhrase> TagPhrases = new Dictionary<string, TagPhrase>();
         public readonly Dictionary<string, TechNodeDef> TechNodes = new Dictionary<string, TechNodeDef>();
         public readonly Dictionary<string, string> TemplatesZh = new Dictionary<string, string>();
         public readonly Dictionary<string, string> TemplatesEn = new Dictionary<string, string>();
+        /// <summary>node id per recipe id (from tech_nodes.csv recipes columns).</summary>
+        public readonly Dictionary<string, string> RecipeToTechNode = new Dictionary<string, string>();
 
         public ItemDef GetOrStubItem(string id)
         {

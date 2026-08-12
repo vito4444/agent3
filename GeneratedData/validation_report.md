@@ -1,41 +1,719 @@
 # RecipeGen validation report
 
-Generated at (UTC): 2026-08-12 16:37:46
+Generated at (UTC): 2026-08-12 16:52:44
 
 ## Counts by family (target table: docs/plan/04)
 
 | family | recipes |
 |---|---|
-| A | 0 |
-| B | 0 |
-| C | 0 |
-| D | 0 |
-| E | 0 |
-| F | 0 |
-| G | 0 |
-| H | 0 |
-| total | 0 |
+| A | 21 |
+| B | 87 |
+| C | 42 |
+| D | 57 |
+| E | 29 |
+| F | 79 |
+| G | 20 |
+| H | 25 |
+| total | 360 |
 
-Items: 0 · Verbs: 0 · Forms: 0 · Tech nodes: 22
+Items: 376 · Verbs: 14 · Forms: 14 · Tech nodes: 22
 
 ## Checks
 
-### 1 reachability (start planet + crash-pod inventory) — PASS
-_0/0 recipes reachable_
+### 1 reachability (start planet + crash-pod inventory) — FAIL
+_169/360 recipes reachable_
+- ERROR: unreachable recipe: smelt_nickel (tier 1, family A)
+- ERROR: unreachable recipe: smelt_rare_earth (tier 2, family A)
+- ERROR: unreachable recipe: alloy_bronze (tier 1, family A)
+- ERROR: unreachable recipe: alloy_invar (tier 2, family A)
+- ERROR: unreachable recipe: form_nickel_plate (tier 2, family B)
+- ERROR: unreachable recipe: form_nickel_rod (tier 2, family B)
+- ERROR: unreachable recipe: form_nickel_wire (tier 2, family B)
+- ERROR: unreachable recipe: form_nickel_mesh (tier 2, family B)
+- ERROR: unreachable recipe: form_nickel_powder (tier 2, family B)
+- ERROR: unreachable recipe: form_rare_earth_wire (tier 2, family B)
+- ERROR: unreachable recipe: form_rare_earth_powder (tier 2, family B)
+- ERROR: unreachable recipe: form_bronze_plate (tier 2, family B)
+- ERROR: unreachable recipe: form_bronze_rod (tier 2, family B)
+- ERROR: unreachable recipe: form_bronze_gear (tier 2, family B)
+- ERROR: unreachable recipe: form_bronze_pipe (tier 2, family B)
+- ERROR: unreachable recipe: form_invar_plate (tier 2, family B)
+- ERROR: unreachable recipe: form_invar_rod (tier 2, family B)
+- ERROR: unreachable recipe: form_invar_gear (tier 2, family B)
+- ERROR: unreachable recipe: form_invar_pipe (tier 2, family B)
+- ERROR: unreachable recipe: distill_spore (tier 2, family C)
+- ERROR: unreachable recipe: distill_ammonia_ice (tier 2, family C)
+- ERROR: unreachable recipe: distill_nitrogen_ice (tier 2, family C)
+- ERROR: unreachable recipe: distill_methane_ice (tier 2, family C)
+- ERROR: unreachable recipe: distill_resin (tier 2, family C)
+- ERROR: unreachable recipe: synth_sulfuric_acid (tier 2, family C)
+- ERROR: unreachable recipe: synth_fertilizer (tier 2, family C)
+- ERROR: unreachable recipe: synth_growth_medium (tier 2, family C)
+- ERROR: unreachable recipe: synth_protein_paste (tier 2, family C)
+- ERROR: unreachable recipe: make_pressure_sensor (tier 2, family D)
+- ERROR: unreachable recipe: make_thermal_sensor (tier 2, family D)
+- ERROR: unreachable recipe: make_small_nozzle (tier 2, family D)
+- ERROR: unreachable recipe: make_pump (tier 2, family D)
+- ERROR: unreachable recipe: make_valve (tier 2, family D)
+- ERROR: unreachable recipe: make_machined_parts (tier 2, family D)
+- ERROR: unreachable recipe: make_suit_liner (tier 2, family D)
+- ERROR: unreachable recipe: make_lead_lining (tier 2, family D)
+- ERROR: unreachable recipe: make_gear_assembly (tier 2, family D)
+- ERROR: unreachable recipe: make_hydroponic_greens (tier 2, family E)
+- ERROR: unreachable recipe: make_protein_meal (tier 2, family E)
+- ERROR: unreachable recipe: make_fungal_snack (tier 2, family E)
+- ERROR: unreachable recipe: make_med_kit (tier 2, family E)
+- ERROR: unreachable recipe: make_thermal_suit (tier 2, family E)
+- ERROR: unreachable recipe: make_oxygen_bottle (tier 2, family E)
+- ERROR: unreachable recipe: make_chemistry_data_core (tier 2, family E)
+- ERROR: unreachable recipe: make_seed_kit (tier 2, family E)
+- ERROR: unreachable recipe: make_colonist_supplies (tier 2, family E)
+- ERROR: unreachable recipe: make_firework (tier 1, family E)
+- ERROR: unreachable recipe: make_nutrient_gel (tier 2, family E)
+- ERROR: unreachable recipe: make_rocket_frame_1 (tier 3, family G)
+- ERROR: unreachable recipe: make_rocket_frame_2 (tier 3, family G)
+- ERROR: unreachable recipe: make_chem_engine (tier 3, family G)
+- ERROR: unreachable recipe: make_fuel_tank_module (tier 3, family G)
+- ERROR: unreachable recipe: make_fairing (tier 3, family G)
+- ERROR: unreachable recipe: make_nav_pod (tier 3, family G)
+- ERROR: unreachable recipe: make_cargo_pod (tier 3, family G)
+- ERROR: unreachable recipe: make_colonist_pod (tier 3, family G)
+- ERROR: unreachable recipe: make_satellite_pod (tier 3, family G)
+- ERROR: unreachable recipe: make_outpost_kit (tier 3, family G)
+- ERROR: unreachable recipe: make_builder_bot (tier 3, family G)
+- ERROR: unreachable recipe: make_combat_bot (tier 3, family G)
+- ERROR: unreachable recipe: make_b_machining_bench (tier 2, family F)
+- ERROR: unreachable recipe: make_b_distiller (tier 2, family F)
+- ERROR: unreachable recipe: make_b_chem_reactor (tier 2, family F)
+- ERROR: unreachable recipe: make_b_culture_vat (tier 1, family F)
+- ERROR: unreachable recipe: make_b_recycler (tier 2, family F)
+- ERROR: unreachable recipe: make_b_gas_collector (tier 2, family F)
+- ERROR: unreachable recipe: make_b_pump_station (tier 2, family F)
+- ERROR: unreachable recipe: make_b_tailings_crusher (tier 2, family F)
+- ERROR: unreachable recipe: make_b_fluid_tank (tier 2, family F)
+- ERROR: unreachable recipe: make_b_gas_turbine (tier 2, family F)
+- ERROR: unreachable recipe: make_b_protein_vat (tier 2, family F)
+- ERROR: unreachable recipe: make_b_med_bay (tier 2, family F)
+- ERROR: unreachable recipe: make_b_family_cabin (tier 2, family F)
+- ERROR: unreachable recipe: make_b_hatchery (tier 2, family F)
 
-### 2 no orphan items — PASS
+### 2 no orphan items — FAIL
+- ERROR: item never consumed and not terminal: liquid_nitrogen
+- ERROR: item never consumed and not terminal: rocket_fuel
+- ERROR: item never consumed and not terminal: iron_plate
+- ERROR: item never consumed and not terminal: iron_gear
+- ERROR: item never consumed and not terminal: iron_pipe
+- ERROR: item never consumed and not terminal: iron_mesh
+- ERROR: item never consumed and not terminal: iron_powder
+- ERROR: item never consumed and not terminal: copper_rod
+- ERROR: item never consumed and not terminal: copper_pipe
+- ERROR: item never consumed and not terminal: copper_mesh
+- ERROR: item never consumed and not terminal: copper_powder
+- ERROR: item never consumed and not terminal: aluminum_rod
+- ERROR: item never consumed and not terminal: aluminum_wire
+- ERROR: item never consumed and not terminal: aluminum_pipe
+- ERROR: item never consumed and not terminal: aluminum_mesh
+- ERROR: item never consumed and not terminal: titanium_plate
+- ERROR: item never consumed and not terminal: titanium_gear
+- ERROR: item never consumed and not terminal: titanium_pipe
+- ERROR: item never consumed and not terminal: titanium_powder
+- ERROR: item never consumed and not terminal: nickel_rod
+- ERROR: item never consumed and not terminal: nickel_wire
+- ERROR: item never consumed and not terminal: nickel_mesh
+- ERROR: item never consumed and not terminal: nickel_powder
+- ERROR: item never consumed and not terminal: silicon_plate
+- ERROR: item never consumed and not terminal: silicon_powder
+- ERROR: item never consumed and not terminal: silicon_brick
+- ERROR: item never consumed and not terminal: rare_earth_wire
+- ERROR: item never consumed and not terminal: platinum_plate
+- ERROR: item never consumed and not terminal: platinum_wire
+- ERROR: item never consumed and not terminal: platinum_mesh
+- ERROR: item never consumed and not terminal: aurite_plate
+- ERROR: item never consumed and not terminal: aurite_rod
+- ERROR: item never consumed and not terminal: aurite_pipe
+- ERROR: item never consumed and not terminal: aurite_powder
+- ERROR: item never consumed and not terminal: steel_mesh
+- ERROR: item never consumed and not terminal: steel_brick
+- ERROR: item never consumed and not terminal: bronze_plate
+- ERROR: item never consumed and not terminal: bronze_rod
+- ERROR: item never consumed and not terminal: bronze_gear
+- ERROR: item never consumed and not terminal: duralumin_wire
+- ERROR: item never consumed and not terminal: duralumin_gear
+- ERROR: item never consumed and not terminal: duralumin_pipe
+- ERROR: item never consumed and not terminal: duralumin_mesh
+- ERROR: item never consumed and not terminal: titanium_alloy_plate
+- ERROR: item never consumed and not terminal: titanium_alloy_rod
+- ERROR: item never consumed and not terminal: invar_rod
+- ERROR: item never consumed and not terminal: invar_gear
+- ERROR: item never consumed and not terminal: electrical_steel_plate
+- ERROR: item never consumed and not terminal: aurite_steel_rod
+- ERROR: item never consumed and not terminal: aurite_steel_gear
+- ERROR: item never consumed and not terminal: aurite_steel_pipe
+- ERROR: item never consumed and not terminal: superconductor_alloy_plate
+- ERROR: item never consumed and not terminal: platinum_mesh_alloy_plate
+- ERROR: item never consumed and not terminal: platinum_mesh_alloy_wire
+- ERROR: item never consumed and not terminal: uranium_core_alloy_plate
+- ERROR: item never consumed and not terminal: uranium_core_alloy_rod
+- ERROR: item never consumed and not terminal: bio_composite_plate
+- ERROR: item never consumed and not terminal: bio_composite_rod
+- ERROR: item never consumed and not terminal: bio_composite_pipe
+- ERROR: item never consumed and not terminal: bio_composite_mesh
+- ERROR: item never consumed and not terminal: phase_composite_plate
+- ERROR: item never consumed and not terminal: phase_composite_rod
+- ERROR: item never consumed and not terminal: phase_composite_mesh
+- ERROR: item never consumed and not terminal: bio_composite
+- ERROR: item never consumed and not terminal: platinum_mesh_alloy
+- ERROR: item never consumed and not terminal: small_nozzle
+- ERROR: item never consumed and not terminal: orbital_penetrator
 
-### 3 no dead-end recipes — PASS
+### 3 no dead-end recipes — FAIL
+- ERROR: dead-end recipe (no output is consumed or terminal): form_iron_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_iron_gear
+- ERROR: dead-end recipe (no output is consumed or terminal): form_iron_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_iron_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_iron_powder
+- ERROR: dead-end recipe (no output is consumed or terminal): form_copper_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_copper_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_copper_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_copper_powder
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aluminum_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aluminum_wire
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aluminum_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aluminum_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_titanium_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_titanium_gear
+- ERROR: dead-end recipe (no output is consumed or terminal): form_titanium_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_titanium_powder
+- ERROR: dead-end recipe (no output is consumed or terminal): form_nickel_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_nickel_wire
+- ERROR: dead-end recipe (no output is consumed or terminal): form_nickel_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_nickel_powder
+- ERROR: dead-end recipe (no output is consumed or terminal): form_silicon_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_silicon_powder
+- ERROR: dead-end recipe (no output is consumed or terminal): form_silicon_brick
+- ERROR: dead-end recipe (no output is consumed or terminal): form_rare_earth_wire
+- ERROR: dead-end recipe (no output is consumed or terminal): form_platinum_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_platinum_wire
+- ERROR: dead-end recipe (no output is consumed or terminal): form_platinum_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_powder
+- ERROR: dead-end recipe (no output is consumed or terminal): form_steel_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_steel_brick
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bronze_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bronze_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bronze_gear
+- ERROR: dead-end recipe (no output is consumed or terminal): form_duralumin_wire
+- ERROR: dead-end recipe (no output is consumed or terminal): form_duralumin_gear
+- ERROR: dead-end recipe (no output is consumed or terminal): form_duralumin_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_duralumin_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_titanium_alloy_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_titanium_alloy_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_invar_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_invar_gear
+- ERROR: dead-end recipe (no output is consumed or terminal): form_electrical_steel_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_steel_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_steel_gear
+- ERROR: dead-end recipe (no output is consumed or terminal): form_aurite_steel_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_superconductor_alloy_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_platinum_mesh_alloy_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_platinum_mesh_alloy_wire
+- ERROR: dead-end recipe (no output is consumed or terminal): form_uranium_core_alloy_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_uranium_core_alloy_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bio_composite_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bio_composite_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bio_composite_pipe
+- ERROR: dead-end recipe (no output is consumed or terminal): form_bio_composite_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): form_phase_composite_plate
+- ERROR: dead-end recipe (no output is consumed or terminal): form_phase_composite_rod
+- ERROR: dead-end recipe (no output is consumed or terminal): form_phase_composite_mesh
+- ERROR: dead-end recipe (no output is consumed or terminal): synth_rocket_fuel
+- ERROR: dead-end recipe (no output is consumed or terminal): synth_rocket_fuel_h2
+- ERROR: dead-end recipe (no output is consumed or terminal): polymerize_resin_plastic
+- ERROR: dead-end recipe (no output is consumed or terminal): polymerize_membrane
+- ERROR: dead-end recipe (no output is consumed or terminal): liquefy_nitrogen
+- ERROR: dead-end recipe (no output is consumed or terminal): make_small_nozzle
+- ERROR: dead-end recipe (no output is consumed or terminal): make_orbital_penetrator
 
 ### 4 energy monotonic (no free-energy loops) — PASS
 
 ### 5 mass conservation warning (>1.3x gain, non-gas) — PASS
 _warnings only; whitelist decisions happen in M3 review_
+- warning: mass gain form_iron_plate: 3 -> 4
+- warning: mass gain form_iron_rod: 3 -> 4
+- warning: mass gain form_iron_mesh: 3 -> 4
+- warning: mass gain form_iron_powder: 3 -> 4
+- warning: mass gain form_copper_plate: 3 -> 4
+- warning: mass gain form_copper_rod: 3 -> 4
+- warning: mass gain form_copper_wire: 3 -> 6
+- warning: mass gain form_copper_mesh: 3 -> 4
+- warning: mass gain form_copper_powder: 3 -> 4
+- warning: mass gain form_aluminum_plate: 3 -> 4
+- warning: mass gain form_aluminum_rod: 3 -> 4
+- warning: mass gain form_aluminum_wire: 3 -> 6
+- warning: mass gain form_aluminum_mesh: 3 -> 4
+- warning: mass gain form_aluminum_powder: 3 -> 4
+- warning: mass gain form_titanium_plate: 3 -> 4
+- warning: mass gain form_titanium_rod: 3 -> 4
+- warning: mass gain form_titanium_powder: 3 -> 4
+- warning: mass gain form_nickel_plate: 3 -> 4
+- warning: mass gain form_nickel_rod: 3 -> 4
+- warning: mass gain form_nickel_wire: 3 -> 6
+- warning: mass gain form_nickel_mesh: 3 -> 4
+- warning: mass gain form_nickel_powder: 3 -> 4
+- warning: mass gain form_silicon_plate: 3 -> 4
+- warning: mass gain form_silicon_powder: 3 -> 4
+- warning: mass gain form_silicon_brick: 3 -> 4
+- warning: mass gain form_rare_earth_wire: 3 -> 6
+- warning: mass gain form_rare_earth_powder: 3 -> 4
+- warning: mass gain form_platinum_plate: 3 -> 4
+- warning: mass gain form_platinum_wire: 3 -> 6
+- warning: mass gain form_platinum_mesh: 3 -> 4
+- warning: mass gain form_platinum_powder: 3 -> 4
+- warning: mass gain form_aurite_plate: 3 -> 4
+- warning: mass gain form_aurite_rod: 3 -> 4
+- warning: mass gain form_aurite_powder: 3 -> 4
+- warning: mass gain form_steel_plate: 3 -> 4
+- warning: mass gain form_steel_rod: 3 -> 4
+- warning: mass gain form_steel_mesh: 3 -> 4
+- warning: mass gain form_steel_brick: 3 -> 4
+- warning: mass gain form_bronze_plate: 3 -> 4
+- warning: mass gain form_bronze_rod: 3 -> 4
+- warning: mass gain form_duralumin_plate: 3 -> 4
+- warning: mass gain form_duralumin_rod: 3 -> 4
+- warning: mass gain form_duralumin_wire: 3 -> 6
+- warning: mass gain form_duralumin_mesh: 3 -> 4
+- warning: mass gain form_titanium_alloy_plate: 3 -> 4
+- warning: mass gain form_titanium_alloy_rod: 3 -> 4
+- warning: mass gain form_invar_plate: 3 -> 4
+- warning: mass gain form_invar_rod: 3 -> 4
+- warning: mass gain form_electrical_steel_plate: 3 -> 4
+- warning: mass gain form_electrical_steel_wire: 3 -> 6
+- warning: mass gain form_aurite_steel_plate: 3 -> 4
+- warning: mass gain form_aurite_steel_rod: 3 -> 4
+- warning: mass gain form_superconductor_alloy_plate: 3 -> 4
+- warning: mass gain form_superconductor_alloy_wire: 3 -> 6
+- warning: mass gain form_superconductor_alloy_mesh: 3 -> 4
+- warning: mass gain form_platinum_mesh_alloy_plate: 3 -> 4
+- warning: mass gain form_platinum_mesh_alloy_wire: 3 -> 6
+- warning: mass gain form_platinum_mesh_alloy_mesh: 3 -> 4
+- warning: mass gain form_uranium_core_alloy_plate: 3 -> 4
+- warning: mass gain form_uranium_core_alloy_rod: 3 -> 4
+- warning: mass gain form_bio_composite_plate: 3 -> 4
+- warning: mass gain form_bio_composite_rod: 3 -> 4
+- warning: mass gain form_bio_composite_mesh: 3 -> 4
+- warning: mass gain form_phase_composite_plate: 3 -> 4
+- warning: mass gain form_phase_composite_rod: 3 -> 4
+- warning: mass gain form_phase_composite_mesh: 3 -> 4
+- warning: mass gain make_fiber: 2 -> 4
+- warning: mass gain make_carbon_powder: 2 -> 4
+- warning: mass gain make_salt: 2 -> 4
+- warning: mass gain make_rivet_set: 2 -> 8
+- warning: mass gain make_kinetic_round: 4 -> 8
+- warning: mass gain make_hydroponic_greens: 3 -> 4
+- warning: mass gain make_stim_shot: 3 -> 4
+- warning: mass gain make_seed_kit: 3 -> 4
+- warning: mass gain make_firework: 4 -> 6
+- warning: mass gain make_water_bottle: 3 -> 4
+- warning: mass gain make_nutrient_gel: 3 -> 4
 
-### 6 unlock coverage (1 tech node per recipe, <=14 per node) — PASS
+### 6 unlock coverage (1 tech node per recipe, <=14 per node) — FAIL
+- ERROR: recipe without tech node: smelt_iron
+- ERROR: recipe without tech node: smelt_copper
+- ERROR: recipe without tech node: smelt_aluminum
+- ERROR: recipe without tech node: smelt_titanium
+- ERROR: recipe without tech node: smelt_nickel
+- ERROR: recipe without tech node: smelt_silicon
+- ERROR: recipe without tech node: smelt_rare_earth
+- ERROR: recipe without tech node: smelt_platinum
+- ERROR: recipe without tech node: smelt_aurite
+- ERROR: recipe without tech node: alloy_steel
+- ERROR: recipe without tech node: alloy_bronze
+- ERROR: recipe without tech node: alloy_duralumin
+- ERROR: recipe without tech node: alloy_titanium_alloy
+- ERROR: recipe without tech node: alloy_invar
+- ERROR: recipe without tech node: alloy_electrical_steel
+- ERROR: recipe without tech node: alloy_aurite_steel
+- ERROR: recipe without tech node: alloy_superconductor_alloy
+- ERROR: recipe without tech node: alloy_platinum_mesh_alloy
+- ERROR: recipe without tech node: alloy_uranium_core_alloy
+- ERROR: recipe without tech node: alloy_bio_composite
+- ERROR: recipe without tech node: alloy_phase_composite
+- ERROR: recipe without tech node: form_iron_plate
+- ERROR: recipe without tech node: form_iron_rod
+- ERROR: recipe without tech node: form_iron_gear
+- ERROR: recipe without tech node: form_iron_pipe
+- ERROR: recipe without tech node: form_iron_mesh
+- ERROR: recipe without tech node: form_iron_powder
+- ERROR: recipe without tech node: form_copper_plate
+- ERROR: recipe without tech node: form_copper_rod
+- ERROR: recipe without tech node: form_copper_wire
+- ERROR: recipe without tech node: form_copper_pipe
+- ERROR: recipe without tech node: form_copper_mesh
+- ERROR: recipe without tech node: form_copper_powder
+- ERROR: recipe without tech node: form_aluminum_plate
+- ERROR: recipe without tech node: form_aluminum_rod
+- ERROR: recipe without tech node: form_aluminum_wire
+- ERROR: recipe without tech node: form_aluminum_pipe
+- ERROR: recipe without tech node: form_aluminum_mesh
+- ERROR: recipe without tech node: form_aluminum_powder
+- ERROR: recipe without tech node: form_titanium_plate
+- ERROR: recipe without tech node: form_titanium_rod
+- ERROR: recipe without tech node: form_titanium_gear
+- ERROR: recipe without tech node: form_titanium_pipe
+- ERROR: recipe without tech node: form_titanium_powder
+- ERROR: recipe without tech node: form_nickel_plate
+- ERROR: recipe without tech node: form_nickel_rod
+- ERROR: recipe without tech node: form_nickel_wire
+- ERROR: recipe without tech node: form_nickel_mesh
+- ERROR: recipe without tech node: form_nickel_powder
+- ERROR: recipe without tech node: form_silicon_plate
+- ERROR: recipe without tech node: form_silicon_powder
+- ERROR: recipe without tech node: form_silicon_brick
+- ERROR: recipe without tech node: form_rare_earth_wire
+- ERROR: recipe without tech node: form_rare_earth_powder
+- ERROR: recipe without tech node: form_platinum_plate
+- ERROR: recipe without tech node: form_platinum_wire
+- ERROR: recipe without tech node: form_platinum_mesh
+- ERROR: recipe without tech node: form_platinum_powder
+- ERROR: recipe without tech node: form_aurite_plate
+- ERROR: recipe without tech node: form_aurite_rod
+- ERROR: recipe without tech node: form_aurite_pipe
+- ERROR: recipe without tech node: form_aurite_powder
+- ERROR: recipe without tech node: form_steel_plate
+- ERROR: recipe without tech node: form_steel_rod
+- ERROR: recipe without tech node: form_steel_gear
+- ERROR: recipe without tech node: form_steel_pipe
+- ERROR: recipe without tech node: form_steel_mesh
+- ERROR: recipe without tech node: form_steel_brick
+- ERROR: recipe without tech node: form_bronze_plate
+- ERROR: recipe without tech node: form_bronze_rod
+- ERROR: recipe without tech node: form_bronze_gear
+- ERROR: recipe without tech node: form_bronze_pipe
+- ERROR: recipe without tech node: form_duralumin_plate
+- ERROR: recipe without tech node: form_duralumin_rod
+- ERROR: recipe without tech node: form_duralumin_wire
+- ERROR: recipe without tech node: form_duralumin_gear
+- ERROR: recipe without tech node: form_duralumin_pipe
+- ERROR: recipe without tech node: form_duralumin_mesh
+- ERROR: recipe without tech node: form_titanium_alloy_plate
+- ERROR: recipe without tech node: form_titanium_alloy_rod
+- ERROR: recipe without tech node: form_titanium_alloy_gear
+- ERROR: recipe without tech node: form_titanium_alloy_pipe
+- ERROR: recipe without tech node: form_invar_plate
+- ERROR: recipe without tech node: form_invar_rod
+- ERROR: recipe without tech node: form_invar_gear
+- ERROR: recipe without tech node: form_invar_pipe
+- ERROR: recipe without tech node: form_electrical_steel_plate
+- ERROR: recipe without tech node: form_electrical_steel_wire
+- ERROR: recipe without tech node: form_electrical_steel_gear
+- ERROR: recipe without tech node: form_aurite_steel_plate
+- ERROR: recipe without tech node: form_aurite_steel_rod
+- ERROR: recipe without tech node: form_aurite_steel_gear
+- ERROR: recipe without tech node: form_aurite_steel_pipe
+- ERROR: recipe without tech node: form_superconductor_alloy_plate
+- ERROR: recipe without tech node: form_superconductor_alloy_wire
+- ERROR: recipe without tech node: form_superconductor_alloy_mesh
+- ERROR: recipe without tech node: form_platinum_mesh_alloy_plate
+- ERROR: recipe without tech node: form_platinum_mesh_alloy_wire
+- ERROR: recipe without tech node: form_platinum_mesh_alloy_mesh
+- ERROR: recipe without tech node: form_uranium_core_alloy_plate
+- ERROR: recipe without tech node: form_uranium_core_alloy_rod
+- ERROR: recipe without tech node: form_bio_composite_plate
+- ERROR: recipe without tech node: form_bio_composite_rod
+- ERROR: recipe without tech node: form_bio_composite_pipe
+- ERROR: recipe without tech node: form_bio_composite_mesh
+- ERROR: recipe without tech node: form_phase_composite_plate
+- ERROR: recipe without tech node: form_phase_composite_rod
+- ERROR: recipe without tech node: form_phase_composite_mesh
+- ERROR: recipe without tech node: electrolyze_water
+- ERROR: recipe without tech node: electrolyze_brine
+- ERROR: recipe without tech node: electrolyze_bauxite
+- ERROR: recipe without tech node: electrolyze_salt_sodium
+- ERROR: recipe without tech node: electrolyze_ammonia
+- ERROR: recipe without tech node: electrolyze_co2
+- ERROR: recipe without tech node: distill_brine
+- ERROR: recipe without tech node: distill_water_clean
+- ERROR: recipe without tech node: distill_spore
+- ERROR: recipe without tech node: distill_ammonia_ice
+- ERROR: recipe without tech node: distill_nitrogen_ice
+- ERROR: recipe without tech node: distill_methane_ice
+- ERROR: recipe without tech node: distill_co2_ice
+- ERROR: recipe without tech node: distill_resin
+- ERROR: recipe without tech node: synth_sulfuric_acid
+- ERROR: recipe without tech node: synth_nitric_acid
+- ERROR: recipe without tech node: synth_fertilizer
+- ERROR: recipe without tech node: synth_growth_medium
+- ERROR: recipe without tech node: synth_protein_paste
+- ERROR: recipe without tech node: synth_sabatier
+- ERROR: recipe without tech node: synth_glass
+- ERROR: recipe without tech node: synth_lubricant
+- ERROR: recipe without tech node: synth_ammonia_haber
+- ERROR: recipe without tech node: synth_uranium_enrich
+- ERROR: recipe without tech node: synth_rocket_fuel
+- ERROR: recipe without tech node: synth_rocket_fuel_h2
+- ERROR: recipe without tech node: synth_deuterium_fuel
+- ERROR: recipe without tech node: synth_spore_vaccine_base
+- ERROR: recipe without tech node: polymerize_basic
+- ERROR: recipe without tech node: polymerize_rubber
+- ERROR: recipe without tech node: polymerize_resin_plastic
+- ERROR: recipe without tech node: polymerize_insulation
+- ERROR: recipe without tech node: polymerize_membrane
+- ERROR: recipe without tech node: polymerize_gel_cure
+- ERROR: recipe without tech node: polymerize_foam
+- ERROR: recipe without tech node: polymerize_seal
+- ERROR: recipe without tech node: liquefy_oxygen
+- ERROR: recipe without tech node: liquefy_methane
+- ERROR: recipe without tech node: liquefy_hydrogen
+- ERROR: recipe without tech node: liquefy_nitrogen
+- ERROR: recipe without tech node: liquefy_helium3
+- ERROR: recipe without tech node: liquefy_air_split
+- ERROR: recipe without tech node: make_water_melt
+- ERROR: recipe without tech node: make_ration
+- ERROR: recipe without tech node: make_fiber
+- ERROR: recipe without tech node: make_iron_lump
+- ERROR: recipe without tech node: make_copper_lump
+- ERROR: recipe without tech node: make_crude_glass
+- ERROR: recipe without tech node: make_carbon_powder
+- ERROR: recipe without tech node: make_salt
+- ERROR: recipe without tech node: make_preserved_ration
+- ERROR: recipe without tech node: make_bandage
+- ERROR: recipe without tech node: make_insulation_wrap
+- ERROR: recipe without tech node: make_crude_tool
+- ERROR: recipe without tech node: make_repair_gel
+- ERROR: recipe without tech node: make_basic_circuit
+- ERROR: recipe without tech node: make_advanced_circuit
+- ERROR: recipe without tech node: make_quantum_circuit
+- ERROR: recipe without tech node: make_small_motor
+- ERROR: recipe without tech node: make_motor
+- ERROR: recipe without tech node: make_heavy_motor
+- ERROR: recipe without tech node: make_pressure_sensor
+- ERROR: recipe without tech node: make_thermal_sensor
+- ERROR: recipe without tech node: make_optical_sensor
+- ERROR: recipe without tech node: make_nav_sensor_suite
+- ERROR: recipe without tech node: make_lens
+- ERROR: recipe without tech node: make_mirror
+- ERROR: recipe without tech node: make_fiber_optic
+- ERROR: recipe without tech node: make_battery_cell
+- ERROR: recipe without tech node: make_battery_pack
+- ERROR: recipe without tech node: make_nuclear_cell
+- ERROR: recipe without tech node: make_seal_ring
+- ERROR: recipe without tech node: make_gasket_set
+- ERROR: recipe without tech node: make_light_frame
+- ERROR: recipe without tech node: make_heavy_frame
+- ERROR: recipe without tech node: make_truss_section
+- ERROR: recipe without tech node: make_habitat_frame
+- ERROR: recipe without tech node: make_small_nozzle
+- ERROR: recipe without tech node: make_engine_nozzle
+- ERROR: recipe without tech node: make_heavy_nozzle
+- ERROR: recipe without tech node: make_pump
+- ERROR: recipe without tech node: make_valve
+- ERROR: recipe without tech node: make_cryo_pump
+- ERROR: recipe without tech node: make_fuel_injector
+- ERROR: recipe without tech node: make_machined_parts
+- ERROR: recipe without tech node: make_structural_panel
+- ERROR: recipe without tech node: make_hull_panel
+- ERROR: recipe without tech node: make_rivet_set
+- ERROR: recipe without tech node: make_heat_shield_tile
+- ERROR: recipe without tech node: make_radiator_fin
+- ERROR: recipe without tech node: make_kinetic_round
+- ERROR: recipe without tech node: make_laser_cavity
+- ERROR: recipe without tech node: make_shield_emitter
+- ERROR: recipe without tech node: make_orbital_penetrator
+- ERROR: recipe without tech node: make_combat_frame
+- ERROR: recipe without tech node: make_drone_rotor
+- ERROR: recipe without tech node: make_antenna
+- ERROR: recipe without tech node: make_comms_array_module
+- ERROR: recipe without tech node: make_data_recorder
+- ERROR: recipe without tech node: make_suit_liner
+- ERROR: recipe without tech node: make_lead_lining
+- ERROR: recipe without tech node: make_filter_cartridge
+- ERROR: recipe without tech node: make_heating_rod
+- ERROR: recipe without tech node: make_gear_assembly
+- ERROR: recipe without tech node: make_control_console
+- ERROR: recipe without tech node: make_algae_paste
+- ERROR: recipe without tech node: make_hydroponic_greens
+- ERROR: recipe without tech node: make_protein_meal
+- ERROR: recipe without tech node: make_combo_meal
+- ERROR: recipe without tech node: make_fungal_snack
+- ERROR: recipe without tech node: make_med_kit
+- ERROR: recipe without tech node: make_stim_shot
+- ERROR: recipe without tech node: make_thermal_suit
+- ERROR: recipe without tech node: make_rad_suit
+- ERROR: recipe without tech node: make_oxygen_bottle
+- ERROR: recipe without tech node: make_survey_data_core
+- ERROR: recipe without tech node: make_engineering_data_core
+- ERROR: recipe without tech node: make_chemistry_data_core
+- ERROR: recipe without tech node: make_astro_data_core
+- ERROR: recipe without tech node: make_military_data_core
+- ERROR: recipe without tech node: make_seed_kit
+- ERROR: recipe without tech node: make_spore_vaccine
+- ERROR: recipe without tech node: make_emergency_beacon
+- ERROR: recipe without tech node: make_colonist_supplies
+- ERROR: recipe without tech node: make_firework
+- ERROR: recipe without tech node: make_grave_marker
+- ERROR: recipe without tech node: make_water_bottle
+- ERROR: recipe without tech node: make_nutrient_gel
+- ERROR: recipe without tech node: make_morale_treat
+- ERROR: recipe without tech node: make_air_freshener
+- ERROR: recipe without tech node: make_rocket_frame_1
+- ERROR: recipe without tech node: make_rocket_frame_2
+- ERROR: recipe without tech node: make_rocket_frame_3
+- ERROR: recipe without tech node: make_chem_engine
+- ERROR: recipe without tech node: make_heavy_engine
+- ERROR: recipe without tech node: make_fuel_tank_module
+- ERROR: recipe without tech node: make_fairing
+- ERROR: recipe without tech node: make_nav_pod
+- ERROR: recipe without tech node: make_nav_pod_deep
+- ERROR: recipe without tech node: make_cargo_pod
+- ERROR: recipe without tech node: make_colonist_pod
+- ERROR: recipe without tech node: make_assault_pod
+- ERROR: recipe without tech node: make_satellite_pod
+- ERROR: recipe without tech node: make_outpost_kit
+- ERROR: recipe without tech node: make_hauler_bot
+- ERROR: recipe without tech node: make_builder_bot
+- ERROR: recipe without tech node: make_miner_bot
+- ERROR: recipe without tech node: make_combat_bot
+- ERROR: recipe without tech node: make_courier_drone
+- ERROR: recipe without tech node: make_rover_kit
+- ERROR: recipe without tech node: make_phase_gel_refined
+- ERROR: recipe without tech node: make_phase_armor_plate
+- ERROR: recipe without tech node: make_armored_combat_bot
+- ERROR: recipe without tech node: make_myco_catalyst
+- ERROR: recipe without tech node: make_orbital_freighter
+- ERROR: recipe without tech node: make_nuclear_upper_stage
+- ERROR: recipe without tech node: make_suicide_bot
+- ERROR: recipe without tech node: make_jammer_drone
+- ERROR: recipe without tech node: make_compact_reactor_core
+- ERROR: recipe without tech node: make_isotope_rod
+- ERROR: recipe without tech node: make_b_crash_pod
+- ERROR: recipe without tech node: make_b_workbench
+- ERROR: recipe without tech node: make_b_campfire
+- ERROR: recipe without tech node: make_b_sleep_pod
+- ERROR: recipe without tech node: make_b_small_storage
+- ERROR: recipe without tech node: make_b_hand_crank
+- ERROR: recipe without tech node: make_b_road
+- ERROR: recipe without tech node: make_b_research_bench
+- ERROR: recipe without tech node: make_b_power_pylon
+- ERROR: recipe without tech node: make_b_solar_panel
+- ERROR: recipe without tech node: make_b_wind_turbine
+- ERROR: recipe without tech node: make_b_battery
+- ERROR: recipe without tech node: make_b_gas_pylon
+- ERROR: recipe without tech node: make_b_gas_tank
+- ERROR: recipe without tech node: make_b_electrolyzer
+- ERROR: recipe without tech node: make_b_air_charging_station
+- ERROR: recipe without tech node: make_b_miner
+- ERROR: recipe without tech node: make_b_ice_miner
+- ERROR: recipe without tech node: make_b_crusher
+- ERROR: recipe without tech node: make_b_furnace
+- ERROR: recipe without tech node: make_b_arc_furnace
+- ERROR: recipe without tech node: make_b_roll_mill
+- ERROR: recipe without tech node: make_b_wire_mill
+- ERROR: recipe without tech node: make_b_machining_bench
+- ERROR: recipe without tech node: make_b_press
+- ERROR: recipe without tech node: make_b_assembler
+- ERROR: recipe without tech node: make_b_chem_electrolyzer
+- ERROR: recipe without tech node: make_b_distiller
+- ERROR: recipe without tech node: make_b_chem_reactor
+- ERROR: recipe without tech node: make_b_polymer_reactor
+- ERROR: recipe without tech node: make_b_sabatier_reactor
+- ERROR: recipe without tech node: make_b_cryo_liquefier
+- ERROR: recipe without tech node: make_b_culture_vat
+- ERROR: recipe without tech node: make_b_refinery
+- ERROR: recipe without tech node: make_b_recycler
+- ERROR: recipe without tech node: make_b_deep_drill
+- ERROR: recipe without tech node: make_b_gas_collector
+- ERROR: recipe without tech node: make_b_pump_station
+- ERROR: recipe without tech node: make_b_timber_rack
+- ERROR: recipe without tech node: make_b_forage_station
+- ERROR: recipe without tech node: make_b_orbital_gas_platform
+- ERROR: recipe without tech node: make_b_tailings_crusher
+- ERROR: recipe without tech node: make_b_survey_radar
+- ERROR: recipe without tech node: make_b_large_storage
+- ERROR: recipe without tech node: make_b_fluid_tank
+- ERROR: recipe without tech node: make_b_bot_station
+- ERROR: recipe without tech node: make_b_drone_port
+- ERROR: recipe without tech node: make_b_charging_post
+- ERROR: recipe without tech node: make_b_spaceport_tower
+- ERROR: recipe without tech node: make_b_gas_turbine
+- ERROR: recipe without tech node: make_b_geothermal_well
+- ERROR: recipe without tech node: make_b_nuclear_reactor
+- ERROR: recipe without tech node: make_b_water_purifier
+- ERROR: recipe without tech node: make_b_greenhouse
+- ERROR: recipe without tech node: make_b_protein_vat
+- ERROR: recipe without tech node: make_b_canteen
+- ERROR: recipe without tech node: make_b_med_bay
+- ERROR: recipe without tech node: make_b_heater_tower
+- ERROR: recipe without tech node: make_b_dormitory
+- ERROR: recipe without tech node: make_b_family_cabin
+- ERROR: recipe without tech node: make_b_rec_room
+- ERROR: recipe without tech node: make_b_bar
+- ERROR: recipe without tech node: make_b_observatory
+- ERROR: recipe without tech node: make_b_monument
+- ERROR: recipe without tech node: make_b_hatchery
+- ERROR: recipe without tech node: make_b_wall
+- ERROR: recipe without tech node: make_b_sentry_gun
+- ERROR: recipe without tech node: make_b_laser_tower
+- ERROR: recipe without tech node: make_b_shield_dome
+- ERROR: recipe without tech node: make_b_combat_bot_works
+- ERROR: recipe without tech node: make_b_ammo_line
+- ERROR: recipe without tech node: make_b_launch_pad
+- ERROR: recipe without tech node: make_b_rocket_gantry
+- ERROR: recipe without tech node: make_b_fueling_station
+- ERROR: recipe without tech node: make_b_landing_beacon
+- ERROR: recipe without tech node: make_b_orbital_dock
+- ERROR: recipe without tech node: make_b_comms_array
+- ERROR: recipe without tech node: make_b_deep_space_telescope
+- ERROR: recipe without tech node: make_b_warp_beacon
+- ERROR: recipe without tech node: make_b_superconductor_pylon
+- ERROR: recipe without tech node: make_b_superconductor_battery
+- ERROR: recipe without tech node: make_b_magnetic_node
+- ERROR: recipe without tech node: make_b_heavy_wall
+- ERROR: recipe without tech node: make_b_heat_sink_shield
+- ERROR: recipe without tech node: make_b_myco_rack
+- ERROR: recipe without tech node: make_b_protein_tower
+- ERROR: recipe without tech node: make_b_eco_dome
+- ERROR: recipe without tech node: make_b_bonded_warehouse
+- ERROR: recipe without tech node: make_b_compact_reactor
+- ERROR: recipe without tech node: make_b_isotope_heater
+- ERROR: recipe without tech node: make_b_forward_nest
+- ERROR: recipe without tech node: make_b_shock_cannon
+- ERROR: tech node t0_survival references unknown recipe: melt_ice
+- ERROR: tech node t0_survival references unknown recipe: emergency_ration
+- ERROR: tech node t0_survival references unknown recipe: plant_fiber
+- ERROR: tech node t0_survival references unknown recipe: iron_lump
+- ERROR: tech node t0_survival references unknown recipe: copper_lump
+- ERROR: tech node t0_survival references unknown recipe: crude_glass
+- ERROR: tech node t0_survival references unknown recipe: carbon_powder
+- ERROR: tech node t0_survival references unknown recipe: salt_refine
+- ERROR: tech node t0_survival references unknown recipe: preserved_ration
+- ERROR: tech node t0_survival references unknown recipe: bandage
+- ERROR: tech node t0_survival references unknown recipe: insulation_wrap
+- ERROR: tech node t0_survival references unknown recipe: crude_tool
+- ERROR: tech node t0_survival references unknown recipe: survey_core
+- ERROR: tech node powered_processing references unknown recipe: m_smelt_iron
+- ERROR: tech node powered_processing references unknown recipe: m_smelt_copper
+- ERROR: tech node powered_processing references unknown recipe: m_glass
+- ERROR: tech node powered_processing references unknown recipe: m_crush_carbon
+- ERROR: tech node powered_processing references unknown recipe: m_refine_salt
+- ERROR: tech node powered_processing references unknown recipe: m_fiber
+- ERROR: tech node powered_processing references unknown recipe: m_ration
+- ERROR: tech node powered_processing references unknown recipe: m_preserved
+- ERROR: tech node powered_processing references unknown recipe: m_insulation
+- ERROR: tech node powered_processing references unknown recipe: m_plate
+- ERROR: tech node powered_processing references unknown recipe: engineering_core
+- ERROR: tech node powered_assembly references unknown recipe: m_tool
+- ERROR: tech node powered_assembly references unknown recipe: m_bandage
+- ERROR: tech node powered_assembly references unknown recipe: m_repair_gel
+- ERROR: tech node life_support_1 references unknown recipe: m_purify_ice
+- ERROR: tech node life_support_1 references unknown recipe: greenhouse_grow
 
 ### 7 icon spec parseable — PASS
 
-### 8 localization strings present (zh/en) — PASS
+### 8 localization strings present (zh/en) — FAIL
+- ERROR: item referenced but never defined: bio_composite
+- ERROR: item referenced but never defined: platinum_mesh_alloy
+- ERROR: item referenced but never defined: phase_composite
 
-TOTAL recipes: 0, errors: 0, warnings: 0
+TOTAL recipes: 360, errors: 601, warnings: 77
