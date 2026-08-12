@@ -130,6 +130,7 @@ namespace Starsoil.Core
         public List<TradeRoute> Routes { get; } = new List<TradeRoute>();
         public FactionSystem FactionsSandbox { get; } = new FactionSystem();
         public CombatSystem Combat { get; } = new CombatSystem();
+        public AchievementSystem Achievements { get; } = new AchievementSystem();
         /// <summary>Bodies taken from factions by occupation (count toward hegemony).</summary>
         public HashSet<string> OccupiedBodies { get; } = new HashSet<string>();
         /// <summary>Player credit balance (星币, docs/plan/06 trade).</summary>
@@ -234,12 +235,14 @@ namespace Starsoil.Core
                 RefreshFactionLayer();
                 FactionsSandbox.HourlyTick(this, PlayerBodies());
                 Combat.HourlyTick(this, ActiveWorld.Tick / GameConstants.TicksPerHour);
+                Achievements.HourlyCheck(this);
                 if (ActiveWorld.Tick % GameConstants.TicksPerDay == 0)
                 {
                     Combat.DailyTribute(this);
                 }
             }
             TickLaunches();
+            Achievements.ObserveEvents(this);
         }
 
         // ---------------------------------------------------------------- rockets
@@ -1041,6 +1044,9 @@ namespace Starsoil.Core
                 ["MerchantVassal"] = Combat.MerchantVassal,
                 ["VictoryPath"] = Combat.VictoryPath,
                 ["BombardReduction"] = JObject.FromObject(Combat.BombardReduction),
+                ["Achievements"] = JArray.FromObject(new List<string>(Achievements.Unlocked)),
+                ["AchTrades"] = Achievements.TradesCompleted,
+                ["AchRaids"] = Achievements.RaidsRepelled,
                 ["NextRouteId"] = _nextRouteId,
                 ["FactionLayerVisible"] = FactionLayerVisible,
                 ["Slots"] = SlotsJson()
@@ -1151,6 +1157,15 @@ namespace Starsoil.Core
                     universe.OccupiedBodies.Add(token.Value<string>());
                 }
             }
+            if (root["Achievements"] is JArray achievements)
+            {
+                foreach (var token in achievements)
+                {
+                    universe.Achievements.Unlocked.Add(token.Value<string>());
+                }
+            }
+            universe.Achievements.TradesCompleted = root.Value<int?>("AchTrades") ?? 0;
+            universe.Achievements.RaidsRepelled = root.Value<int?>("AchRaids") ?? 0;
             universe.Combat.MerchantVassal = root.Value<bool?>("MerchantVassal") ?? false;
             universe.Combat.VictoryPath = root.Value<string>("VictoryPath") ?? string.Empty;
             universe.Combat.VictoryReached = universe.Combat.VictoryPath.Length > 0;
