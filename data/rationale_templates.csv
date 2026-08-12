@@ -1,3 +1,17 @@
-# Rationale sentence templates per verb (docs/plan/04). Slots: {material} {form} {verb}.
-# Attribute/use phrases are composed from material tags at M3.
+# Rationale sentence templates per verb (docs/plan/04). Slots: {material} {form} {attr} {use}.
+# {attr}/{use} phrases come from tag_phrases.csv keyed by the material's first matching tag.
 template_id,zh,en
+tpl_crush,{material}经破碎机粉碎分选,得到便于后续处理的碎料。{attr},{use}。,"{material} is crushed and sorted into workable feedstock. {attr}, {use}."
+tpl_smelt,{material}入炉熔炼提纯,铸成标准锭料。{attr},{use}。,"{material} is smelted and cast into standard ingots. {attr}, {use}."
+tpl_alloy,按配比合炼成{material},冶金性能优于单一金属。{attr},{use}。,"Alloyed to spec into {material}; better metallurgy than any single metal. {attr}, {use}."
+tpl_cast_roll,{material}锭经铸轧成{form}。{attr},{use}。,"{material} ingots are cast and rolled into {form}. {attr}, {use}."
+tpl_draw_wire,{material}锭经拉丝机拉制成{form}。{attr},{use}。,"{material} ingots are drawn into {form}. {attr}, {use}."
+tpl_machining,{material}坯料车铣成型为{form},公差可控。{attr},{use}。,"{material} stock is machined into {form} to tolerance. {attr}, {use}."
+tpl_press,{material}经压制成{form},结构致密。{attr},{use}。,"{material} is pressed into dense {form}. {attr}, {use}."
+tpl_electrolyze,电解分离,得到高纯产物。{attr},{use}。,"Electrolysis splits the feed into pure products. {attr}, {use}."
+tpl_distill,蒸馏分离提纯,馏分各归其用。{attr},{use}。,"Distillation separates the fractions for their own uses. {attr}, {use}."
+tpl_synthesize,化工釜内受控反应,产物配比稳定。{attr},{use}。,"A controlled reaction in the chem reactor with stable yields. {attr}, {use}."
+tpl_polymerize,聚合反应链增长成材。{attr},{use}。,"Chain-growth polymerization builds the material. {attr}, {use}."
+tpl_liquefy,深冷压缩液化,便于储运与加注。{attr},{use}。,"Cryogenic liquefaction for storage, transport and fueling. {attr}, {use}."
+tpl_cultivate,培养槽内受控增殖。{attr},{use}。,"Controlled propagation in the culture vat. {attr}, {use}."
+tpl_assemble,零件对位装配并检验。{attr},{use}。,"Parts are fitted, fastened and checked. {attr}, {use}."

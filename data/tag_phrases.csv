@@ -1,0 +1,16 @@
+# Attribute/use phrases per material tag, consumed by rationale templates (docs/plan/04).
+tag,zh_attr,zh_use,en_attr,en_use
+conductive,导电性好,用于电网线材与电机绕组,it conducts well,used in grid wiring and motor windings
+light,轻质,用于机身与轻型结构,it is lightweight,used in airframes and light structures
+heat_resistant,耐高温,用于炉衬与发动机热端,it takes heat,used in furnace linings and engine hot sections
+corrosion_resistant,耐蚀,用于管路与化工容器,it resists corrosion,used in piping and chemical vessels
+insulating,绝缘隔热,用于电气隔离与保温层,it insulates,used for electrical isolation and thermal lining
+high_strength,强度高,用于承重结构与工具,it is strong,used in load-bearing structure and tooling
+catalytic,催化活性强,用于反应釜与精炼环节,it catalyzes readily,used in reactors and refining stages
+flammable,易燃,用作燃料与还原剂,it burns readily,used as fuel and reducing agent
+superconductive,零电阻,用于超导输电与磁约束,it superconducts,used in lossless power lines and magnetic confinement
+energy_storing,储能密度高,用于电芯与聚变燃料,it stores energy densely,used in cells and fusion fuel
+gas,气态便于管输,用于化工原料与充装,it pipes as gas,used as chemical feedstock and for charging
+fluid,液态易储运,用于化工与生保,it stores as liquid,used in chemistry and life support
+organic,有机质,用于食物链与生物材料,it is organic,used in food chains and bio-materials
+fissile,可裂变,用于反应堆燃料,it is fissile,used as reactor fuel
