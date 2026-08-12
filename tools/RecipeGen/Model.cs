@@ -106,6 +106,8 @@ namespace Starsoil.RecipeGen
         public readonly Dictionary<string, TechNodeDef> TechNodes = new Dictionary<string, TechNodeDef>();
         public readonly Dictionary<string, string> TemplatesZh = new Dictionary<string, string>();
         public readonly Dictionary<string, string> TemplatesEn = new Dictionary<string, string>();
+        public readonly Dictionary<string, string> TemplatesZhNf = new Dictionary<string, string>();
+        public readonly Dictionary<string, string> TemplatesEnNf = new Dictionary<string, string>();
         /// <summary>node id per recipe id (from tech_nodes.csv recipes columns).</summary>
         public readonly Dictionary<string, string> RecipeToTechNode = new Dictionary<string, string>();
 

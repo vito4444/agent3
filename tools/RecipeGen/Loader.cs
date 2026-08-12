@@ -240,6 +240,8 @@ namespace Starsoil.RecipeGen
                 }
                 db.TemplatesZh[id] = table.Get(row, "zh");
                 db.TemplatesEn[id] = table.Get(row, "en");
+                db.TemplatesZhNf[id] = table.Get(row, "zh_nf");
+                db.TemplatesEnNf[id] = table.Get(row, "en_nf");
             }
         }
     }

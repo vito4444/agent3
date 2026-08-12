@@ -295,11 +295,25 @@ namespace Starsoil.RecipeGen
         private static void FillRationale(Database db, RecipeDef recipe, VerbDef verb,
             string materialZh, string materialEn, string formZh, string formEn, List<string> tags)
         {
-            if (verb == null || !db.TemplatesZh.TryGetValue(verb.TemplateId, out string zhTemplate))
+            if (verb == null)
             {
                 return;
             }
-            db.TemplatesEn.TryGetValue(verb.TemplateId, out string enTemplate);
+            bool hasForm = !string.IsNullOrEmpty(formZh);
+            var zhTable = hasForm ? db.TemplatesZh : db.TemplatesZhNf;
+            var enTable = hasForm ? db.TemplatesEn : db.TemplatesEnNf;
+            if (!zhTable.TryGetValue(verb.TemplateId, out string zhTemplate) || zhTemplate.Length == 0)
+            {
+                db.TemplatesZh.TryGetValue(verb.TemplateId, out zhTemplate);
+            }
+            if (!enTable.TryGetValue(verb.TemplateId, out string enTemplate) || (enTemplate?.Length ?? 0) == 0)
+            {
+                db.TemplatesEn.TryGetValue(verb.TemplateId, out enTemplate);
+            }
+            if (zhTemplate == null)
+            {
+                return;
+            }
             TagPhrase phrase = null;
             if (tags != null)
             {
