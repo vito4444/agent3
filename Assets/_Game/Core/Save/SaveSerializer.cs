@@ -19,7 +19,11 @@ namespace Starsoil.Core
         {
             // v0 (M0 skeleton: terrain + buildings only) → v1 (M1 colony): new collections
             // default to empty; buildings gain durability/stock defaults.
-            { 0, MigrateV0ToV1 }
+            { 0, MigrateV0ToV1 },
+            // v1 (M1) → v2 (M2 networks/machines): new building fields (WantsPower,
+            // ProcessAccum, BatteryKwh) and gas components deserialize to their class
+            // defaults, so the migration only bumps the version.
+            { 1, _ => { } }
         };
 
         public static void UpgradeInPlace(JObject root)
@@ -106,6 +110,9 @@ namespace Starsoil.Core
                     Rotation = b.Rotation,
                     Durability = b.Durability,
                     StaffedRequested = b.StaffedRequested,
+                    WantsPower = b.WantsPower,
+                    ProcessAccum = b.ProcessAccum,
+                    BatteryKwh = b.BatteryKwh,
                     Stock = StacksOf(b.Stock)
                 };
                 data.Buildings.Add(saved);
@@ -236,6 +243,17 @@ namespace Starsoil.Core
                 data.RngStreams.Add(new SavedRngStream { Name = name, State = stream.State, Inc = stream.Inc });
             }
 
+            var gasComponents = new List<int>(world.Networks.GasStored.Keys);
+            gasComponents.Sort();
+            foreach (int component in gasComponents)
+            {
+                data.GasComponents.Add(new SavedGasComponent
+                {
+                    ComponentId = component,
+                    Stored = world.Networks.GasStored[component]
+                });
+            }
+
             return data;
         }
 
@@ -257,6 +275,7 @@ namespace Starsoil.Core
             world.Colonists.RestoreFrom(data.Colonists);
             world.Crafting.RestoreFrom(data.CraftOrders);
             world.Alerts.RestoreFrom(data.Alerts);
+            world.Networks.RestoreGas(data.GasComponents);
             world.RestoreMeta(data);
             return world;
         }

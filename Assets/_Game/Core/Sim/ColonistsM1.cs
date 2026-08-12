@@ -65,6 +65,8 @@ namespace Starsoil.Core
         public int BedBuildingId;
         public int StockTargetX = -1;
         public int StockTargetY = -1;
+        /// <summary>Charging station chosen for the current refill trip (0 = crash pod).</summary>
+        public int RefillBuildingId;
         /// <summary>Per-need retry cooldowns; a failed water search must not block eating.</summary>
         public int WaterSearchCooldown;
         public int FoodSearchCooldown;
@@ -178,10 +180,11 @@ namespace Starsoil.Core
             bool sleeping = colonist.Activity == ColonistActivity.Sleeping;
             bool groundSleeping = colonist.Activity == ColonistActivity.GroundSleeping;
 
-            // Oxygen.
+            // Oxygen: connected O2 network first, crash-pod tank as standby (M2-T2).
             if (indoor)
             {
-                if (world.Life.TryDrawTank(Balance.IndoorO2PerTick))
+                int buildingId = world.Buildings.GetBuildingAt(colonist.X, colonist.Y);
+                if (world.Networks.TryDrawO2ForIndoor(world, buildingId, Balance.IndoorO2PerTick))
                 {
                     colonist.O2 = Math.Min(Balance.NeedMax, colonist.O2 + Balance.O2NeedRecoverPerTick);
                 }
@@ -372,14 +375,19 @@ namespace Starsoil.Core
                 return;
             }
 
-            // 2: empty-ish bottle outdoors → return to the pod for a refill.
-            if (2 < current && !indoor && colonist.BottleO2 < Balance.BottleRefillThreshold &&
-                world.Life.TankO2 >= Balance.BottleCapacity)
+            // 2: empty-ish bottle outdoors → refill at a charging station or the pod.
+            if (2 < current && !indoor && colonist.BottleO2 < Balance.BottleRefillThreshold)
             {
-                AbandonCurrent(world, colonist);
-                colonist.Activity = ColonistActivity.GoingToRefill;
-                colonist.ClearPath();
-                return;
+                var station = world.Networks.FindChargingStation(world);
+                bool podHasAir = world.Life.TankO2 >= Balance.BottleCapacity;
+                if (station != null || podHasAir)
+                {
+                    AbandonCurrent(world, colonist);
+                    colonist.Activity = ColonistActivity.GoingToRefill;
+                    colonist.RefillBuildingId = station?.Id ?? 0;
+                    colonist.ClearPath();
+                    return;
+                }
             }
 
             // 3: freezing → warm up indoors.
@@ -480,14 +488,7 @@ namespace Starsoil.Core
                     break;
 
                 case ColonistActivity.GoingToRefill:
-                    if (MoveToward(world, colonist, world.PodInteriorX, world.PodInteriorY))
-                    {
-                        world.Life.RefillBottle(colonist);
-                        // Cold colonists stay and warm up; the pod solves both needs.
-                        colonist.Activity = colonist.Temp < Balance.StopWarmingThreshold
-                            ? ColonistActivity.Warming
-                            : ColonistActivity.Idle;
-                    }
+                    TickGoingToRefill(world, colonist);
                     break;
 
                 case ColonistActivity.GoingToWarm:
@@ -583,6 +584,44 @@ namespace Starsoil.Core
             colonist.StockTargetX = -1;
             colonist.StockTargetY = -1;
             colonist.Activity = ColonistActivity.Idle;
+        }
+
+        private void TickGoingToRefill(World world, Colonist colonist)
+        {
+            // Charging station route (M2): draw the bottle from the station's O2 network.
+            if (colonist.RefillBuildingId != 0)
+            {
+                if (!world.Buildings.TryGet(colonist.RefillBuildingId, out var station))
+                {
+                    colonist.RefillBuildingId = 0;
+                    return;
+                }
+                if (!MoveToward(world, colonist, station.X, station.Y))
+                {
+                    return;
+                }
+                float wanted = Balance.BottleCapacity - colonist.BottleO2;
+                if (wanted > 0f && world.Networks.TryDrawFromStationNetwork(world, station, wanted))
+                {
+                    colonist.BottleO2 = Balance.BottleCapacity;
+                }
+                else
+                {
+                    world.Life.RefillBottle(colonist);
+                }
+                colonist.RefillBuildingId = 0;
+                colonist.Activity = ColonistActivity.Idle;
+                return;
+            }
+
+            // Pod route (M1 behavior): refill and warm up in one trip.
+            if (MoveToward(world, colonist, world.PodInteriorX, world.PodInteriorY))
+            {
+                world.Life.RefillBottle(colonist);
+                colonist.Activity = colonist.Temp < Balance.StopWarmingThreshold
+                    ? ColonistActivity.Warming
+                    : ColonistActivity.Idle;
+            }
         }
 
         private void TickGoingToBed(World world, Colonist colonist)
@@ -747,6 +786,7 @@ namespace Starsoil.Core
                 return;
             }
             colonist.Activity = ColonistActivity.WorkingTask;
+            crank.CrankActive = true;
             world.Life.RegisterCrank();
         }
 

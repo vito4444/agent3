@@ -17,7 +17,16 @@ namespace Starsoil.Core
         public int Rotation;
         public float Durability = Balance.NeedMax;
         public bool StaffedRequested;
+        public bool WantsPower = true;
+        public float ProcessAccum;
+        public float BatteryKwh;
         public List<SavedStack> Stock;
+    }
+
+    public sealed class SavedGasComponent
+    {
+        public int ComponentId;
+        public float Stored;
     }
 
     public sealed class SavedPile
@@ -114,6 +123,7 @@ namespace Starsoil.Core
         public List<SavedCraftOrder> CraftOrders = new List<SavedCraftOrder>();
         public List<SavedAlert> Alerts = new List<SavedAlert>();
         public List<SavedRngStream> RngStreams = new List<SavedRngStream>();
+        public List<SavedGasComponent> GasComponents = new List<SavedGasComponent>();
 
         public int StartX;
         public int StartY;

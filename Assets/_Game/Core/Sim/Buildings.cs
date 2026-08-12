@@ -13,11 +13,35 @@ namespace Starsoil.Core
         Storage,
         HandCrank,
         Road,
-        TestBlock
+        TestBlock,
+        // M2 power.
+        SolarPanel,
+        WindTurbine,
+        Battery,
+        PowerPylon,
+        // M2 oxygen.
+        GasPylon,
+        GasTank,
+        Electrolyzer,
+        AirChargingStation,
+        // M2 machines (docs/plan/03 machine families).
+        Miner,
+        IceMiner,
+        Crusher,
+        Furnace,
+        RollMill,
+        Press,
+        Assembler,
+        WaterPurifier,
+        Greenhouse,
+        ForageStation,
+        BotStation,
+        ChargingPost,
+        ResearchBench
     }
 
-    /// <summary>Immutable building archetype. The T0 set is docs/plan/03; the full catalog
-    /// (88 buildings) arrives with the M3 data pipeline.</summary>
+    /// <summary>Immutable building archetype. The T0/T1 set covers docs/plan/03 categories
+    /// needed by M1-M2; the full 88-building catalog arrives with the M3 data pipeline.</summary>
     public sealed class BuildingDef
     {
         public string Id { get; }
@@ -30,16 +54,29 @@ namespace Starsoil.Core
         public bool Interior { get; }
         public int Beds { get; }
         public int StorageCapacity { get; }
-        /// <summary>Craft station verbs run here (workbench/campfire at T0).</summary>
+        /// <summary>Craft verbs run here (hand stations need a colonist; machines auto-work).</summary>
         public bool IsStation { get; }
+        /// <summary>Auto-working powered machine (docs/plan/03 generic machine model).</summary>
+        public bool IsMachine { get; }
+        public float PowerKw { get; }
+        public PowerPriority Priority { get; }
+        public bool IsPowerPylon { get; }
+        public bool IsGasPylon { get; }
+        /// <summary>Items this extraction machine pulls from nearby deposit nodes.</summary>
+        public IReadOnlyList<string> Extracts { get; }
         public IReadOnlyList<Ingredient> BuildCost { get; }
         public int BuildWorkTicks { get; }
         public bool Demolishable { get; }
+        /// <summary>Tech node gating construction (empty = always available).</summary>
+        public string TechNode { get; }
 
         public BuildingDef(string id, int width, int height, BuildingKind kind,
             bool walkable = false, bool interior = false, int beds = 0, int storageCapacity = 0,
-            bool isStation = false, IReadOnlyList<Ingredient> buildCost = null, int buildWorkTicks = 0,
-            bool demolishable = true)
+            bool isStation = false, bool isMachine = false, float powerKw = 0f,
+            PowerPriority priority = PowerPriority.Production,
+            bool isPowerPylon = false, bool isGasPylon = false, IReadOnlyList<string> extracts = null,
+            IReadOnlyList<Ingredient> buildCost = null, int buildWorkTicks = 0,
+            bool demolishable = true, string techNode = "")
         {
             Id = id;
             Width = width;
@@ -50,9 +87,16 @@ namespace Starsoil.Core
             Beds = beds;
             StorageCapacity = storageCapacity;
             IsStation = isStation;
+            IsMachine = isMachine;
+            PowerKw = powerKw;
+            Priority = priority;
+            IsPowerPylon = isPowerPylon;
+            IsGasPylon = isGasPylon;
+            Extracts = extracts ?? Array.Empty<string>();
             BuildCost = buildCost ?? Array.Empty<Ingredient>();
             BuildWorkTicks = buildWorkTicks;
             Demolishable = demolishable;
+            TechNode = techNode;
         }
     }
 
@@ -66,9 +110,31 @@ namespace Starsoil.Core
         public const string SmallStorageId = "small_storage";
         public const string HandCrankId = "hand_crank";
         public const string RoadId = "road";
+        public const string PowerPylonId = "power_pylon";
+        public const string SolarPanelId = "solar_panel";
+        public const string WindTurbineId = "wind_turbine";
+        public const string BatteryId = "battery";
+        public const string GasPylonId = "gas_pylon";
+        public const string GasTankId = "gas_tank";
+        public const string ElectrolyzerId = "electrolyzer";
+        public const string AirChargingStationId = "air_charging_station";
+        public const string MinerId = "miner";
+        public const string IceMinerId = "ice_miner";
+        public const string CrusherId = "crusher";
+        public const string FurnaceId = "furnace";
+        public const string RollMillId = "roll_mill";
+        public const string PressId = "press";
+        public const string AssemblerId = "assembler";
+        public const string WaterPurifierId = "water_purifier";
+        public const string GreenhouseId = "greenhouse";
+        public const string ForageStationId = "forage_station";
+        public const string BotStationId = "bot_station";
+        public const string ChargingPostId = "charging_post";
+        public const string ResearchBenchId = "research_bench";
 
         private const int QuickBuildTicks = 150;
         private const int NormalBuildTicks = 300;
+        private const int BigBuildTicks = 450;
         private const int SmallStorageStacks = 24;
 
         private static Ingredient Need(string itemId, int count) => new Ingredient { ItemId = itemId, Count = count };
@@ -112,6 +178,130 @@ namespace Starsoil.Core
                 buildCost: new[] { Need(ItemIds.QuartzSand, 1) },
                 buildWorkTicks: QuickBuildTicks / 3);
 
+        // ---------------------------------------------------------------- M2 power
+
+        public static readonly BuildingDef PowerPylon =
+            new BuildingDef(PowerPylonId, 1, 1, BuildingKind.PowerPylon, isPowerPylon: true,
+                buildCost: new[] { Need(ItemIds.IronLump, 1), Need(ItemIds.CopperLump, 1) },
+                buildWorkTicks: QuickBuildTicks, techNode: "power_basics");
+
+        public static readonly BuildingDef SolarPanel =
+            new BuildingDef(SolarPanelId, 2, 2, BuildingKind.SolarPanel,
+                buildCost: new[] { Need(ItemIds.CrudeGlass, 2), Need(ItemIds.CopperLump, 1), Need(ItemIds.IronLump, 1) },
+                buildWorkTicks: NormalBuildTicks, techNode: "power_basics");
+
+        public static readonly BuildingDef WindTurbine =
+            new BuildingDef(WindTurbineId, 1, 1, BuildingKind.WindTurbine,
+                buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.Fiber, 2) },
+                buildWorkTicks: NormalBuildTicks, techNode: "power_basics");
+
+        public static readonly BuildingDef Battery =
+            new BuildingDef(BatteryId, 1, 1, BuildingKind.Battery,
+                buildCost: new[] { Need(ItemIds.CopperLump, 2), Need(ItemIds.Salt, 2), Need(ItemIds.CrudeGlass, 1) },
+                buildWorkTicks: NormalBuildTicks, techNode: "power_storage");
+
+        // ---------------------------------------------------------------- M2 oxygen
+
+        public static readonly BuildingDef GasPylon =
+            new BuildingDef(GasPylonId, 1, 1, BuildingKind.GasPylon, isGasPylon: true,
+                buildCost: new[] { Need(ItemIds.IronLump, 1) },
+                buildWorkTicks: QuickBuildTicks, techNode: "oxygen_network");
+
+        public static readonly BuildingDef GasTank =
+            new BuildingDef(GasTankId, 2, 2, BuildingKind.GasTank,
+                buildCost: new[] { Need(ItemIds.IronLump, 3) },
+                buildWorkTicks: NormalBuildTicks, techNode: "oxygen_network");
+
+        public static readonly BuildingDef Electrolyzer =
+            new BuildingDef(ElectrolyzerId, 2, 2, BuildingKind.Electrolyzer,
+                powerKw: 40f, priority: PowerPriority.LifeSupport,
+                buildCost: new[] { Need(ItemIds.CopperLump, 2), Need(ItemIds.IronLump, 2), Need(ItemIds.CrudeGlass, 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "oxygen_network");
+
+        public static readonly BuildingDef AirChargingStation =
+            new BuildingDef(AirChargingStationId, 1, 1, BuildingKind.AirChargingStation,
+                powerKw: 5f, priority: PowerPriority.LifeSupport,
+                buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.Fiber, 1) },
+                buildWorkTicks: QuickBuildTicks, techNode: "oxygen_network");
+
+        // ---------------------------------------------------------------- M2 machines
+
+        public static readonly BuildingDef Miner =
+            new BuildingDef(MinerId, 2, 2, BuildingKind.Miner, isMachine: true,
+                powerKw: 20f, extracts: new[] { ItemIds.IronOre, ItemIds.CopperOre, ItemIds.QuartzSand, ItemIds.SaltOre, ItemIds.Carbon },
+                buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CopperLump, 1), Need(ItemIds.CrudeTool, 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "powered_extraction");
+
+        public static readonly BuildingDef IceMiner =
+            new BuildingDef(IceMinerId, 2, 2, BuildingKind.IceMiner, isMachine: true,
+                powerKw: 15f, priority: PowerPriority.LifeSupport, extracts: new[] { ItemIds.Ice },
+                buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CrudeTool, 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "powered_extraction");
+
+        public static readonly BuildingDef Crusher =
+            new BuildingDef(CrusherId, 2, 1, BuildingKind.Crusher, isStation: true, isMachine: true,
+                powerKw: 15f,
+                buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CrudeTool, 1) },
+                buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
+
+        public static readonly BuildingDef Furnace =
+            new BuildingDef(FurnaceId, 2, 2, BuildingKind.Furnace, isStation: true, isMachine: true,
+                powerKw: 35f,
+                buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CarbonPowder, 2) },
+                buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
+
+        public static readonly BuildingDef RollMill =
+            new BuildingDef(RollMillId, 2, 1, BuildingKind.RollMill, isStation: true, isMachine: true,
+                powerKw: 20f,
+                buildCost: new[] { Need(ItemIds.IronLump, 3) },
+                buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
+
+        public static readonly BuildingDef Press =
+            new BuildingDef(PressId, 2, 1, BuildingKind.Press, isStation: true, isMachine: true,
+                powerKw: 20f,
+                buildCost: new[] { Need(ItemIds.IronLump, 3) },
+                buildWorkTicks: NormalBuildTicks, techNode: "powered_processing");
+
+        public static readonly BuildingDef Assembler =
+            new BuildingDef(AssemblerId, 2, 2, BuildingKind.Assembler, isStation: true, isMachine: true,
+                powerKw: 25f,
+                buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CopperLump, 2), Need(ItemIds.CrudeTool, 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "powered_assembly");
+
+        public static readonly BuildingDef WaterPurifier =
+            new BuildingDef(WaterPurifierId, 1, 2, BuildingKind.WaterPurifier, isStation: true, isMachine: true,
+                powerKw: 10f, priority: PowerPriority.LifeSupport,
+                buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.CrudeGlass, 1) },
+                buildWorkTicks: NormalBuildTicks, techNode: "life_support_1");
+
+        public static readonly BuildingDef Greenhouse =
+            new BuildingDef(GreenhouseId, 3, 2, BuildingKind.Greenhouse, isStation: true, isMachine: true,
+                powerKw: 8f, priority: PowerPriority.LifeSupport,
+                buildCost: new[] { Need(ItemIds.CrudeGlass, 3), Need(ItemIds.Fiber, 2), Need(ItemIds.IronLump, 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "life_support_1");
+
+        public static readonly BuildingDef ForageStation =
+            new BuildingDef(ForageStationId, 1, 1, BuildingKind.ForageStation, isMachine: true,
+                powerKw: 5f, extracts: new[] { ItemIds.Biomass },
+                buildCost: new[] { Need(ItemIds.Fiber, 3), Need(ItemIds.IronLump, 1) },
+                buildWorkTicks: NormalBuildTicks, techNode: "powered_extraction");
+
+        public static readonly BuildingDef BotStation =
+            new BuildingDef(BotStationId, 2, 2, BuildingKind.BotStation,
+                buildCost: new[] { Need(ItemIds.IronLump, 3), Need(ItemIds.CopperLump, 2), Need(ItemIds.CrudeTool, 1) },
+                buildWorkTicks: BigBuildTicks, techNode: "hauler_bots");
+
+        public static readonly BuildingDef ChargingPost =
+            new BuildingDef(ChargingPostId, 1, 1, BuildingKind.ChargingPost,
+                powerKw: 10f, priority: PowerPriority.Logistics,
+                buildCost: new[] { Need(ItemIds.CopperLump, 2), Need(ItemIds.IronLump, 1) },
+                buildWorkTicks: QuickBuildTicks, techNode: "hauler_bots");
+
+        public static readonly BuildingDef ResearchBench =
+            new BuildingDef(ResearchBenchId, 2, 1, BuildingKind.ResearchBench, isStation: true,
+                buildCost: new[] { Need(ItemIds.IronLump, 2), Need(ItemIds.Fiber, 2), Need(ItemIds.CrudeGlass, 1) },
+                buildWorkTicks: NormalBuildTicks);
+
         private static readonly Dictionary<string, BuildingDef> ById = new Dictionary<string, BuildingDef>
         {
             { TestBlock.Id, TestBlock },
@@ -121,13 +311,45 @@ namespace Starsoil.Core
             { SleepPod.Id, SleepPod },
             { SmallStorage.Id, SmallStorage },
             { HandCrank.Id, HandCrank },
-            { Road.Id, Road }
+            { Road.Id, Road },
+            { PowerPylon.Id, PowerPylon },
+            { SolarPanel.Id, SolarPanel },
+            { WindTurbine.Id, WindTurbine },
+            { Battery.Id, Battery },
+            { GasPylon.Id, GasPylon },
+            { GasTank.Id, GasTank },
+            { Electrolyzer.Id, Electrolyzer },
+            { AirChargingStation.Id, AirChargingStation },
+            { Miner.Id, Miner },
+            { IceMiner.Id, IceMiner },
+            { Crusher.Id, Crusher },
+            { Furnace.Id, Furnace },
+            { RollMill.Id, RollMill },
+            { Press.Id, Press },
+            { Assembler.Id, Assembler },
+            { WaterPurifier.Id, WaterPurifier },
+            { Greenhouse.Id, Greenhouse },
+            { ForageStation.Id, ForageStation },
+            { BotStation.Id, BotStation },
+            { ChargingPost.Id, ChargingPost },
+            { ResearchBench.Id, ResearchBench }
         };
 
-        /// <summary>Buildable at T0 through the M1 build menu (crash pod is pre-placed).</summary>
+        /// <summary>T0 hand-tech buildings, always available (M1 build menu).</summary>
         public static readonly string[] BuildableT0 =
         {
             CampfireId, WorkbenchId, SleepPodId, SmallStorageId, HandCrankId, RoadId
+        };
+
+        /// <summary>Everything the build menu can offer once tech unlocks it (M2).</summary>
+        public static readonly string[] BuildableAll =
+        {
+            CampfireId, WorkbenchId, SleepPodId, SmallStorageId, HandCrankId, RoadId,
+            ResearchBenchId,
+            PowerPylonId, SolarPanelId, WindTurbineId, BatteryId,
+            GasPylonId, GasTankId, ElectrolyzerId, AirChargingStationId,
+            MinerId, IceMinerId, CrusherId, FurnaceId, RollMillId, PressId, AssemblerId,
+            WaterPurifierId, GreenhouseId, ForageStationId, BotStationId, ChargingPostId
         };
 
         public static bool TryGet(string id, out BuildingDef def) => ById.TryGetValue(id, out def);
@@ -139,7 +361,9 @@ namespace Starsoil.Core
         UnknownDef,
         OutOfBounds,
         NotFlat,
-        Occupied
+        Occupied,
+        Locked,
+        NeedsDeposit
     }
 
     public sealed class BuildingState
@@ -150,23 +374,34 @@ namespace Starsoil.Core
         public int Y;
         /// <summary>Quarter turns, 0..3.</summary>
         public int Rotation;
-        /// <summary>0-100; storms wear exposed stations down (docs/plan/02 hazards).</summary>
+        /// <summary>0-100; storms and machine work wear this down (docs/plan/02+03).</summary>
         public float Durability = Balance.NeedMax;
         /// <summary>Hand crank staffing toggle.</summary>
         public bool StaffedRequested;
+        /// <summary>True on ticks when a colonist is actually cranking (network supply).</summary>
+        public bool CrankActive;
+        /// <summary>Machine on/off toggle (also gates power demand).</summary>
+        public bool WantsPower = true;
         /// <summary>Station input/output buffer or storage contents.</summary>
         public Inventory Stock = new Inventory();
         /// <summary>Outbound reservations against Stock (this building as a haul source).</summary>
         public Inventory Reserved = new Inventory();
         /// <summary>Inbound in-flight deliveries (this station as a haul destination).</summary>
         public Inventory Inbound = new Inventory();
-        /// <summary>Colonist id currently occupying the bed (sleep pods / crash pod slots).</summary>
+        /// <summary>Colonist ids currently occupying beds here.</summary>
         public List<int> SleepersIds = new List<int>();
+        /// <summary>Machine work accumulator (recipe progress or extraction/electrolysis).</summary>
+        public float ProcessAccum;
+        /// <summary>Stored energy for battery buildings.</summary>
+        public float BatteryKwh;
+
+        public bool NeedsRepair => Durability < Balance.LowDurabilityThreshold;
     }
 
     /// <summary>
     /// Building placement/removal rules (docs/plan/03): footprints must be in bounds,
-    /// on flat same-height ground, and not overlap. Cells track the occupying building id.
+    /// on flat same-height ground, and not overlap. Extraction machines must cover a
+    /// matching deposit. Cells track the occupying building id.
     /// </summary>
     public sealed class BuildingSystem
     {
@@ -176,6 +411,9 @@ namespace Starsoil.Core
         private readonly Dictionary<int, BuildingState> _byId = new Dictionary<int, BuildingState>();
         private readonly int[] _occupancy;
         private int _nextId = 1;
+
+        /// <summary>Set by World so placement can validate deposits and notify networks.</summary>
+        internal World Owner;
 
         public BuildingSystem(TerrainGrid terrain)
         {
@@ -223,7 +461,49 @@ namespace Starsoil.Core
                     }
                 }
             }
+
+            if (def.Extracts.Count > 0 && def.Kind != BuildingKind.ForageStation && Owner != null &&
+                FindDepositFor(def, x, y) == 0)
+            {
+                return PlacementError.NeedsDeposit;
+            }
             return PlacementError.None;
+        }
+
+        /// <summary>Nearest matching deposit node id within extraction radius, or 0.</summary>
+        public int FindDepositFor(BuildingDef def, int x, int y)
+        {
+            if (Owner == null)
+            {
+                return 0;
+            }
+            int best = 0;
+            int bestDistance = int.MaxValue;
+            foreach (var pair in Owner.Nodes.All)
+            {
+                var node = pair.Value;
+                bool matches = false;
+                for (int i = 0; i < def.Extracts.Count; i++)
+                {
+                    if (def.Extracts[i] == node.ItemId)
+                    {
+                        matches = true;
+                        break;
+                    }
+                }
+                if (!matches)
+                {
+                    continue;
+                }
+                int distance = Math.Max(Math.Abs(node.X - x), Math.Abs(node.Y - y));
+                if (distance <= Balance.ExtractionMachineRadius + (def.Kind == BuildingKind.ForageStation ? Balance.GasPylonCoverRadius : 0) &&
+                    distance < bestDistance)
+                {
+                    best = pair.Key;
+                    bestDistance = distance;
+                }
+            }
+            return best;
         }
 
         /// <summary>Places a completed building; returns its id, or 0 with an error when invalid.</summary>
@@ -239,6 +519,7 @@ namespace Starsoil.Core
             _nextId++;
             _byId.Add(state.Id, state);
             Occupy(state, state.Id);
+            Owner?.Networks.MarkDirty();
             return state.Id;
         }
 
@@ -250,6 +531,7 @@ namespace Starsoil.Core
             }
             Occupy(state, 0);
             _byId.Remove(buildingId);
+            Owner?.Networks.MarkDirty();
             return true;
         }
 
@@ -331,7 +613,10 @@ namespace Starsoil.Core
                     Y = s.Y,
                     Rotation = s.Rotation,
                     Durability = s.Durability,
-                    StaffedRequested = s.StaffedRequested
+                    StaffedRequested = s.StaffedRequested,
+                    WantsPower = s.WantsPower,
+                    ProcessAccum = s.ProcessAccum,
+                    BatteryKwh = s.BatteryKwh
                 };
                 if (s.Stock != null)
                 {
@@ -347,6 +632,7 @@ namespace Starsoil.Core
                     _nextId = s.Id + 1;
                 }
             }
+            Owner?.Networks.MarkDirty();
         }
     }
 }
