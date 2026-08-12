@@ -55,7 +55,8 @@ namespace Starsoil.Core
         Wall,
         SentryGun,
         LaserTower,
-        ShieldDome
+        ShieldDome,
+        ShockCannon
     }
 
     /// <summary>Immutable building archetype. The T0/T1 set covers docs/plan/03 categories
@@ -426,6 +427,29 @@ namespace Starsoil.Core
                 buildCost: new[] { Need("shield_emitter", 1), Need("heavy_frame", 2), Need("battery_pack", 2) },
                 buildWorkTicks: BigBuildTicks, techNode: "shield_tech");
 
+        public const string ShockCannonId = "shock_cannon";
+        public const string ForwardNestId = "forward_nest";
+        private const float ShockCannonKw = 20f;
+
+        /// <summary>集群战术分支 (docs/plan/07): 范围击退炮塔. Cost mirrors make_b_shock_cannon.</summary>
+        public static readonly BuildingDef ShockCannon =
+            new BuildingDef(ShockCannonId, 2, 2, BuildingKind.ShockCannon,
+                powerKw: ShockCannonKw, priority: PowerPriority.Production,
+                buildCost: new[]
+                {
+                    Need("heavy_frame", 1), Need("shield_emitter", 1),
+                    Need("aurite_steel_rod", 1), Need("aurite_steel_gear", 1), Need("kinetic_round", 4)
+                },
+                buildWorkTicks: BigBuildTicks, techNode: "branch_swarm_tactics_5");
+
+        /// <summary>集群战术分支 (docs/plan/07): 敌方区域边缘可展开的战地工坊. In the sandbox
+        /// assault model its presence keeps siege pressure on a failed assault
+        /// (defense does not recover); cost mirrors make_b_forward_nest.</summary>
+        public static readonly BuildingDef ForwardNest =
+            new BuildingDef(ForwardNestId, 2, 2, BuildingKind.Generic,
+                buildCost: new[] { Need("combat_frame", 2), Need("structural_panel", 2) },
+                buildWorkTicks: NormalBuildTicks, techNode: "branch_swarm_tactics_4");
+
         /// <summary>Zero cargo loss on arrival when the destination has one (M5-T5).</summary>
         public static readonly BuildingDef LandingBeacon =
             new BuildingDef(LandingBeaconId, 1, 1, BuildingKind.Generic,
@@ -518,7 +542,9 @@ namespace Starsoil.Core
             { Wall.Id, Wall },
             { SentryGun.Id, SentryGun },
             { LaserTower.Id, LaserTower },
-            { ShieldDome.Id, ShieldDome }
+            { ShieldDome.Id, ShieldDome },
+            { ShockCannon.Id, ShockCannon },
+            { ForwardNest.Id, ForwardNest }
         };
 
         /// <summary>T0 hand-tech buildings, always available (M1 build menu).</summary>
@@ -539,7 +565,8 @@ namespace Starsoil.Core
             ArcFurnaceId, WireMillId, MachiningBenchId, ChemElectrolyzerId, DistillerId,
             ChemReactorId, PolymerReactorId, SabatierReactorId, CryoLiquefierId,
             CultureVatId, RefineryId, RecyclerId, LaunchPadId, LandingBeaconId, CommsArrayId,
-            WallId, SentryGunId, LaserTowerId, ShieldDomeId, WarpBeaconId
+            WallId, SentryGunId, LaserTowerId, ShieldDomeId, ShockCannonId, ForwardNestId,
+            WarpBeaconId
         };
 
         public static bool TryGet(string id, out BuildingDef def) => ById.TryGetValue(id, out def);

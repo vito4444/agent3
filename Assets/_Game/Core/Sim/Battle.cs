@@ -100,6 +100,11 @@ namespace Starsoil.Core
         private const int SentryRange = 8;
         private const float SentryDamage = 8f;
         private const int LaserRange = 10;
+        // 震荡炮 (docs/plan/07 集群战术): area knockback turret.
+        private const int ShockRange = 6;
+        private const int ShockKnockbackTiles = 3;
+        /// <summary>Cooldown counted in defense rounds (HitIntervalTicks each) = 5s.</summary>
+        private const int ShockCooldownRounds = 5;
         private const float LaserDamage = 12f;
         private const float BuildingDamagePerHit = 4f;
         private const int ShieldBarrierTicks = 500;
@@ -111,6 +116,8 @@ namespace Starsoil.Core
         private const float UnitSpeedFactor = 1.2f;
 
         private readonly Dictionary<int, CombatUnit> _units = new Dictionary<int, CombatUnit>();
+        /// <summary>Shock-cannon cooldowns (buildingId → rounds left); transient, not saved.</summary>
+        private readonly Dictionary<int, int> _shockCooldowns = new Dictionary<int, int>();
         private int _nextId = 1;
 
         public IReadOnlyDictionary<int, CombatUnit> Units => _units;
@@ -484,6 +491,52 @@ namespace Starsoil.Core
                         Damage(world, target, LaserDamage);
                     }
                 }
+                else if (building.DefId == BuildingDefs.ShockCannonId &&
+                         world.Networks.IsPowered(world, building))
+                {
+                    TickShockCannon(world, building);
+                }
+            }
+        }
+
+        /// <summary>震荡炮 (branch_swarm_tactics_5): every volley knocks all hostiles in
+        /// range away from the cannon and voids their paths; then a cooldown. Cooldown is
+        /// a transient (seconds-scale) and intentionally not persisted in saves.</summary>
+        private void TickShockCannon(World world, BuildingState building)
+        {
+            _shockCooldowns.TryGetValue(building.Id, out int cooldown);
+            if (cooldown > 0)
+            {
+                _shockCooldowns[building.Id] = cooldown - 1;
+                return;
+            }
+            bool fired = false;
+            foreach (var unit in UnitsSorted())
+            {
+                if (unit.Side != UnitSide.Hostile)
+                {
+                    continue;
+                }
+                int dx = unit.X - building.X;
+                int dy = unit.Y - building.Y;
+                if (Math.Abs(dx) > ShockRange || Math.Abs(dy) > ShockRange)
+                {
+                    continue;
+                }
+                int pushX = dx == 0 ? 0 : Math.Sign(dx) * ShockKnockbackTiles;
+                int pushY = dy == 0 ? 0 : Math.Sign(dy) * ShockKnockbackTiles;
+                if (pushX == 0 && pushY == 0)
+                {
+                    pushY = -ShockKnockbackTiles; // Unit standing on the cannon: push outward anyway.
+                }
+                unit.X = Math.Max(0, Math.Min(world.Terrain.Size - 1, unit.X + pushX));
+                unit.Y = Math.Max(0, Math.Min(world.Terrain.Size - 1, unit.Y + pushY));
+                unit.ClearPath();
+                fired = true;
+            }
+            if (fired)
+            {
+                _shockCooldowns[building.Id] = ShockCooldownRounds;
             }
         }
 

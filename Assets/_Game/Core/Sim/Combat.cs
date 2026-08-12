@@ -86,6 +86,11 @@ namespace Starsoil.Core
         private const float BombardReductionStep = 0.10f;
         private const float BombardFloor = 0.40f;
         private const float AssaultBotPower = 2.2f;
+        /// <summary>自爆蛛: one-shot charge, 3× a combat bot (branch_swarm_tactics_2).</summary>
+        private const float BreacherBotPower = 6.6f;
+        /// <summary>Half of a body's defense is turret-based; jammers cut that targeting by 50%.</summary>
+        private const float TurretShareOfDefense = 0.5f;
+        private const float JammerTargetingCut = 0.5f;
         private const float DefensePowerShare = 0.6f;
         private const int RecorderDropDivisor = 4;
         private const int HegemonyBodies = 8;
@@ -267,17 +272,27 @@ namespace Starsoil.Core
         }
 
         /// <summary>Assault landing (M7-T6): 24 combat bots vs the body's effective D.
-        /// targetShieldFirst models the vassal precondition on the merchant home.</summary>
+        /// targetShieldFirst models the vassal precondition on the merchant home.
+        /// 集群战术 units in the sandbox model (docs/plan/07 分支):
+        /// 自爆蛛 breacherBots — one-shot charges, each adds BreacherBotPower attack;
+        /// 干扰无人机 jammerDrones — any present halve the turret half of enemy defense
+        /// (net ×0.75, "索敌 -50%"); 前线装配巢 forwardNest — a failed assault keeps
+        /// siege pressure: enemy defense does not recover its 10%.</summary>
         public bool Assault(Universe universe, string factionId, string bodyId,
-            int combatBots, bool targetShieldFirst)
+            int combatBots, bool targetShieldFirst,
+            int breacherBots = 0, int jammerDrones = 0, bool forwardNest = false)
         {
             var faction = universe.FactionsSandbox.Get(factionId);
             if (faction == null || !faction.HeldBodies.Contains(bodyId))
             {
                 return false;
             }
-            float attack = combatBots * AssaultBotPower;
+            float attack = combatBots * AssaultBotPower + breacherBots * BreacherBotPower;
             float defense = EffectiveDefense(universe, faction, bodyId);
+            if (jammerDrones > 0)
+            {
+                defense *= 1f - TurretShareOfDefense * JammerTargetingCut;
+            }
             bool victory = attack > defense;
             universe.ActiveWorld.Events.Add(new AssaultResolvedEvent
             {
@@ -288,8 +303,11 @@ namespace Starsoil.Core
             if (!victory)
             {
                 // Failure: defense recovers 10%, attitude −20 (docs/plan/07 进攻战 3).
-                BombardReduction.TryGetValue(bodyId, out float reduction);
-                BombardReduction[bodyId] = Math.Max(0f, reduction - BombardReductionStep);
+                if (!forwardNest)
+                {
+                    BombardReduction.TryGetValue(bodyId, out float reduction);
+                    BombardReduction[bodyId] = Math.Max(0f, reduction - BombardReductionStep);
+                }
                 faction.AttitudeToPlayer -= AssaultFailAttitude;
                 return false;
             }
