@@ -815,6 +815,33 @@
       "FactionLocked": false
     },
     {
+      "Id": "form_aluminum_pipe",
+      "Inputs": [
+        {
+          "ItemId": "aluminum_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "aluminum_pipe",
+          "Count": 1
+        }
+      ],
+      "Verb": "machining",
+      "Tier": 2,
+      "Family": "B",
+      "Seconds": 4.0,
+      "Kw": 25.0,
+      "WorkTicks": 40,
+      "MachineStation": "machining_bench",
+      "HandStation": "workbench",
+      "TechNode": "powered_processing",
+      "RationaleZh": "铝坯料车铣成型为管,公差可控。轻质,用于机身与轻型结构。",
+      "RationaleEn": "aluminum stock is machined into pipe to tolerance. it is lightweight, used in airframes and light structures.",
+      "FactionLocked": false
+    },
+    {
       "Id": "form_aluminum_plate",
       "Inputs": [
         {
@@ -920,6 +947,33 @@
       "TechNode": "forming_advanced",
       "RationaleZh": "铝锭经拉丝机拉制成线。轻质,用于机身与轻型结构。",
       "RationaleEn": "aluminum ingots are drawn into wire. it is lightweight, used in airframes and light structures.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_aurite_steel_gear",
+      "Inputs": [
+        {
+          "ItemId": "aurite_steel_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "aurite_steel_gear",
+          "Count": 1
+        }
+      ],
+      "Verb": "machining",
+      "Tier": 4,
+      "Family": "B",
+      "Seconds": 4.0,
+      "Kw": 25.0,
+      "WorkTicks": 40,
+      "MachineStation": "machining_bench",
+      "HandStation": "workbench",
+      "TechNode": "forming_exotic",
+      "RationaleZh": "耐热曜金钢坯料车铣成型为齿轮,公差可控。耐高温,用于炉衬与发动机热端。",
+      "RationaleEn": "aurite steel stock is machined into gear to tolerance. it takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -1058,6 +1112,33 @@
       "FactionLocked": false
     },
     {
+      "Id": "form_bronze_plate",
+      "Inputs": [
+        {
+          "ItemId": "bronze_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "bronze_plate",
+          "Count": 2
+        }
+      ],
+      "Verb": "cast_roll",
+      "Tier": 3,
+      "Family": "B",
+      "Seconds": 5.0,
+      "Kw": 20.0,
+      "WorkTicks": 50,
+      "MachineStation": "roll_mill",
+      "HandStation": "",
+      "TechNode": "metallurgy_2",
+      "RationaleZh": "青铜锭经铸轧成板。耐蚀,用于管路与化工容器。",
+      "RationaleEn": "bronze ingots are cast and rolled into plate. it resists corrosion, used in piping and chemical vessels.",
+      "FactionLocked": false
+    },
+    {
       "Id": "form_bronze_rod",
       "Inputs": [
         {
@@ -1109,6 +1190,33 @@
       "TechNode": "forming_advanced",
       "RationaleZh": "铜坯料车铣成型为齿轮,公差可控。导电性好,用于电网线材与电机绕组。",
       "RationaleEn": "copper stock is machined into gear to tolerance. it conducts well, used in grid wiring and motor windings.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_copper_mesh",
+      "Inputs": [
+        {
+          "ItemId": "copper_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "copper_mesh",
+          "Count": 2
+        }
+      ],
+      "Verb": "press",
+      "Tier": 2,
+      "Family": "B",
+      "Seconds": 2.5,
+      "Kw": 20.0,
+      "WorkTicks": 25,
+      "MachineStation": "press",
+      "HandStation": "workbench",
+      "TechNode": "powered_processing",
+      "RationaleZh": "铜经压制成网,结构致密。导电性好,用于电网线材与电机绕组。",
+      "RationaleEn": "copper is pressed into dense mesh. it conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1409,6 +1517,33 @@
       "FactionLocked": false
     },
     {
+      "Id": "form_electrical_steel_plate",
+      "Inputs": [
+        {
+          "ItemId": "electrical_steel_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "electrical_steel_plate",
+          "Count": 2
+        }
+      ],
+      "Verb": "cast_roll",
+      "Tier": 2,
+      "Family": "B",
+      "Seconds": 5.0,
+      "Kw": 20.0,
+      "WorkTicks": 50,
+      "MachineStation": "roll_mill",
+      "HandStation": "",
+      "TechNode": "metallurgy_2",
+      "RationaleZh": "电工硅钢锭经铸轧成板。导电性好,用于电网线材与电机绕组。",
+      "RationaleEn": "electrical steel ingots are cast and rolled into plate. it conducts well, used in grid wiring and motor windings.",
+      "FactionLocked": false
+    },
+    {
       "Id": "form_electrical_steel_wire",
       "Inputs": [
         {
@@ -1460,6 +1595,33 @@
       "TechNode": "metallurgy_2",
       "RationaleZh": "殷钢坯料车铣成型为齿轮,公差可控。耐蚀,用于管路与化工容器。",
       "RationaleEn": "invar stock is machined into gear to tolerance. it resists corrosion, used in piping and chemical vessels.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_invar_mesh",
+      "Inputs": [
+        {
+          "ItemId": "invar_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "invar_mesh",
+          "Count": 2
+        }
+      ],
+      "Verb": "press",
+      "Tier": 3,
+      "Family": "B",
+      "Seconds": 2.5,
+      "Kw": 20.0,
+      "WorkTicks": 25,
+      "MachineStation": "press",
+      "HandStation": "workbench",
+      "TechNode": "machining_tech",
+      "RationaleZh": "殷钢经压制成网,结构致密。耐蚀,用于管路与化工容器。",
+      "RationaleEn": "invar is pressed into dense mesh. it resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1595,6 +1757,33 @@
       "TechNode": "forming_basic",
       "RationaleZh": "铁坯料车铣成型为齿轮,公差可控。强度高,用于承重结构与工具。",
       "RationaleEn": "iron stock is machined into gear to tolerance. it is strong, used in load-bearing structure and tooling.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_iron_mesh",
+      "Inputs": [
+        {
+          "ItemId": "iron_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "iron_mesh",
+          "Count": 2
+        }
+      ],
+      "Verb": "press",
+      "Tier": 1,
+      "Family": "B",
+      "Seconds": 2.5,
+      "Kw": 20.0,
+      "WorkTicks": 25,
+      "MachineStation": "press",
+      "HandStation": "workbench",
+      "TechNode": "forming_basic",
+      "RationaleZh": "铁经压制成网,结构致密。强度高,用于承重结构与工具。",
+      "RationaleEn": "iron is pressed into dense mesh. it is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1760,6 +1949,33 @@
       "FactionLocked": false
     },
     {
+      "Id": "form_nickel_wire",
+      "Inputs": [
+        {
+          "ItemId": "nickel_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "nickel_wire",
+          "Count": 3
+        }
+      ],
+      "Verb": "draw_wire",
+      "Tier": 3,
+      "Family": "B",
+      "Seconds": 5.0,
+      "Kw": 20.0,
+      "WorkTicks": 50,
+      "MachineStation": "wire_mill",
+      "HandStation": "",
+      "TechNode": "machining_tech",
+      "RationaleZh": "镍锭经拉丝机拉制成线。耐蚀,用于管路与化工容器。",
+      "RationaleEn": "nickel ingots are drawn into wire. it resists corrosion, used in piping and chemical vessels.",
+      "FactionLocked": false
+    },
+    {
       "Id": "form_platinum_mesh_alloy_mesh",
       "Inputs": [
         {
@@ -1811,6 +2027,33 @@
       "TechNode": "forming_exotic",
       "RationaleZh": "铂经破碎机粉碎分选,得到便于后续处理的碎料。催化活性强,用于反应釜与精炼环节。",
       "RationaleEn": "platinum is crushed and sorted into workable feedstock. it catalyzes readily, used in reactors and refining stages.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_platinum_wire",
+      "Inputs": [
+        {
+          "ItemId": "platinum_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "platinum_wire",
+          "Count": 3
+        }
+      ],
+      "Verb": "draw_wire",
+      "Tier": 3,
+      "Family": "B",
+      "Seconds": 5.0,
+      "Kw": 20.0,
+      "WorkTicks": 50,
+      "MachineStation": "wire_mill",
+      "HandStation": "",
+      "TechNode": "machining_tech",
+      "RationaleZh": "铂锭经拉丝机拉制成线。催化活性强,用于反应釜与精炼环节。",
+      "RationaleEn": "platinum ingots are drawn into wire. it catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -2219,6 +2462,33 @@
       "FactionLocked": false
     },
     {
+      "Id": "form_titanium_mesh",
+      "Inputs": [
+        {
+          "ItemId": "titanium_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "titanium_mesh",
+          "Count": 2
+        }
+      ],
+      "Verb": "press",
+      "Tier": 3,
+      "Family": "B",
+      "Seconds": 2.5,
+      "Kw": 20.0,
+      "WorkTicks": 25,
+      "MachineStation": "press",
+      "HandStation": "workbench",
+      "TechNode": "machining_tech",
+      "RationaleZh": "钛经压制成网,结构致密。耐高温,用于炉衬与发动机热端。",
+      "RationaleEn": "titanium is pressed into dense mesh. it takes heat, used in furnace linings and engine hot sections.",
+      "FactionLocked": false
+    },
+    {
       "Id": "form_titanium_pipe",
       "Inputs": [
         {
@@ -2324,6 +2594,33 @@
       "TechNode": "forming_advanced",
       "RationaleZh": "钛锭经铸轧成杆。耐高温,用于炉衬与发动机热端。",
       "RationaleEn": "titanium ingots are cast and rolled into rod. it takes heat, used in furnace linings and engine hot sections.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "form_titanium_wire",
+      "Inputs": [
+        {
+          "ItemId": "titanium_ingot",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "titanium_wire",
+          "Count": 3
+        }
+      ],
+      "Verb": "draw_wire",
+      "Tier": 3,
+      "Family": "B",
+      "Seconds": 5.0,
+      "Kw": 20.0,
+      "WorkTicks": 50,
+      "MachineStation": "wire_mill",
+      "HandStation": "",
+      "TechNode": "machining_tech",
+      "RationaleZh": "钛锭经拉丝机拉制成线。耐高温,用于炉衬与发动机热端。",
+      "RationaleEn": "titanium ingots are drawn into wire. it takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -3349,6 +3646,10 @@
         {
           "ItemId": "radiator_fin",
           "Count": 2
+        },
+        {
+          "ItemId": "invar_mesh",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -4274,6 +4575,10 @@
         {
           "ItemId": "steel_plate",
           "Count": 2
+        },
+        {
+          "ItemId": "nickel_wire",
+          "Count": 2
         }
       ],
       "Outputs": [
@@ -5028,6 +5333,10 @@
         {
           "ItemId": "filter_cartridge",
           "Count": 1
+        },
+        {
+          "ItemId": "iron_mesh",
+          "Count": 2
         }
       ],
       "Outputs": [
@@ -5071,6 +5380,10 @@
         {
           "ItemId": "pump",
           "Count": 2
+        },
+        {
+          "ItemId": "bronze_plate",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -5335,6 +5648,10 @@
         {
           "ItemId": "kinetic_round",
           "Count": 4
+        },
+        {
+          "ItemId": "aurite_steel_gear",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -6255,6 +6572,10 @@
         {
           "ItemId": "motor",
           "Count": 1
+        },
+        {
+          "ItemId": "titanium_wire",
+          "Count": 2
         }
       ],
       "Outputs": [
@@ -6316,6 +6637,10 @@
         },
         {
           "ItemId": "advanced_circuit",
+          "Count": 1
+        },
+        {
+          "ItemId": "copper_mesh",
           "Count": 1
         }
       ],
@@ -6922,6 +7247,10 @@
         {
           "ItemId": "cryo_pump",
           "Count": 1
+        },
+        {
+          "ItemId": "aluminum_pipe",
+          "Count": 2
         }
       ],
       "Outputs": [
@@ -7371,6 +7700,10 @@
         },
         {
           "ItemId": "seal_ring",
+          "Count": 1
+        },
+        {
+          "ItemId": "adhesive",
           "Count": 1
         }
       ],
@@ -7894,6 +8227,10 @@
         },
         {
           "ItemId": "steel_rod",
+          "Count": 1
+        },
+        {
+          "ItemId": "electrical_steel_plate",
           "Count": 1
         }
       ],
@@ -8586,6 +8923,10 @@
         {
           "ItemId": "aluminum_rod",
           "Count": 1
+        },
+        {
+          "ItemId": "coolant",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -8950,6 +9291,10 @@
         {
           "ItemId": "phase_composite_ingot",
           "Count": 1
+        },
+        {
+          "ItemId": "platinum_wire",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -9043,6 +9388,10 @@
         {
           "ItemId": "spore_extract",
           "Count": 2
+        },
+        {
+          "ItemId": "titanium_mesh",
+          "Count": 1
         }
       ],
       "Outputs": [
@@ -9399,6 +9748,37 @@
       "TechNode": "t0_survival",
       "RationaleZh": "炉内熔炼产出水(融冰)。工艺成熟,用于基地建设与生产。",
       "RationaleEn": "The furnace run yields Water (melted ice). the process is proven, used across base building and production.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "polymerize_adhesive",
+      "Inputs": [
+        {
+          "ItemId": "polymer",
+          "Count": 1
+        },
+        {
+          "ItemId": "carbon_powder",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "adhesive",
+          "Count": 2
+        }
+      ],
+      "Verb": "polymerize",
+      "Tier": 3,
+      "Family": "C",
+      "Seconds": 10.0,
+      "Kw": 35.0,
+      "WorkTicks": 100,
+      "MachineStation": "polymer_reactor",
+      "HandStation": "",
+      "TechNode": "synthesis_2",
+      "RationaleZh": "聚合反应制得粘合剂。有机质,用于食物链与生物材料。",
+      "RationaleEn": "Polymerization yields Adhesive. it is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -9859,6 +10239,37 @@
       "TechNode": "catalysis",
       "RationaleZh": "化工釜内受控反应制得肥料。有机质,用于食物链与生物材料。",
       "RationaleEn": "A controlled reaction yields Fertilizer. it is organic, used in food chains and bio-materials.",
+      "FactionLocked": false
+    },
+    {
+      "Id": "synth_coolant",
+      "Inputs": [
+        {
+          "ItemId": "water",
+          "Count": 2
+        },
+        {
+          "ItemId": "salt",
+          "Count": 1
+        }
+      ],
+      "Outputs": [
+        {
+          "ItemId": "coolant",
+          "Count": 2
+        }
+      ],
+      "Verb": "synthesize",
+      "Tier": 2,
+      "Family": "C",
+      "Seconds": 8.0,
+      "Kw": 30.0,
+      "WorkTicks": 80,
+      "MachineStation": "chem_reactor",
+      "HandStation": "",
+      "TechNode": "synthesis_2",
+      "RationaleZh": "化工釜内受控反应制得冷却液。液态易储运,用于化工与生保。",
+      "RationaleEn": "A controlled reaction yields Coolant. it stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {

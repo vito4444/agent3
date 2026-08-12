@@ -42,3 +42,5 @@ liquefy_helium3,helium3:2,deuterium_fuel:1,liquefy,4
 liquefy_air_split,co2_gas:1;nitrogen_gas:1,liquid_nitrogen:1;oxygen_gas:1,liquefy,3
 synth_crude_seal,sulfur:1;fiber:2,crude_seal:2,synthesize,2
 synth_bordeaux,copper_powder:1;sulfuric_acid:1,fertilizer:2,synthesize,2
+polymerize_adhesive,polymer:1;carbon_powder:1,adhesive:2,polymerize,3
+synth_coolant,water:2;salt:1,coolant:2,synthesize,2

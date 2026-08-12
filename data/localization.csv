@@ -131,3 +131,15 @@ ui_travel_hours,航程 {0} 时,{0}h travel
 ui_region_row,区域 {0} · {1} · 人口 {2},Region {0} · {1} · pop {2}
 ui_switch_region,切换,Switch
 building_launch_pad,发射台,Launch pad
+ui_trade_panel,贸易与外交 (G),Trade & diplomacy (G)
+ui_quote_board,当前报价单,Quote board
+ui_no_quotes,暂无报价 (需通讯阵列与商盟非敌对或自动报价单),No quotes (needs comms array and open merchant or auto-quotes)
+ui_quote_sell,商盟售,Merchant sells
+ui_quote_buy,商盟购,Merchant buys
+ui_accept,成交,Accept
+ui_upcoming_quotes,行情雷达: 未来 3 张报价单,Market radar: next 3 boards
+ui_board_at_hour,截止时,Board expiring hour
+ui_ultimatum,赤旗通牒,Red Banner ultimatum
+ui_ultimatum_demand,保护费,Protection fee
+ui_pay_ultimatum,支付,Pay
+ui_credits,星币,Credits
