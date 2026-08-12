@@ -111,6 +111,16 @@ namespace Starsoil.Core
         private const int ConquestCostPerHop = 400;
         private const int ExpansionCheckHours = 6;
         private const float StartPower = 300f;
+        // Personality parameter table (docs/plan/07 性格参数表).
+        private const float MerchantGrowth = 1.0f;
+        private const float MerchantTech = 1.0f;
+        private const float MerchantDefense = 1.0f;
+        private const float RedBannerGrowth = 1.3f;
+        private const float RedBannerTech = 0.8f;
+        private const float RedBannerDefense = 1.2f;
+        private const float SilentGrowth = 1.0f;
+        private const float SilentTech = 1.6f;
+        private const float SilentDefense = 2.5f;
         private const float UltimatumDemandFactor = 0.2f;
         private const int UltimatumIntervalDays = 3;
         private const int UltimatumsBeforeWar = 2;
@@ -168,7 +178,7 @@ namespace Starsoil.Core
             {
                 Id = MerchantId, Zh = "星贸商盟", En = "Star Trade Compact",
                 Personality = FactionPersonality.Merchant,
-                P = StartPower, GrowthMult = 1.0f, TechMult = 1.0f, DefenseMult = 1.0f,
+                P = StartPower, GrowthMult = MerchantGrowth, TechMult = MerchantTech, DefenseMult = MerchantDefense,
                 HeldBodies = { "warmmarsh" },
                 AttitudeToPlayer = 10
             });
@@ -176,7 +186,7 @@ namespace Starsoil.Core
             {
                 Id = RedBannerId, Zh = "赤旗军团", En = "Red Banner Legion",
                 Personality = FactionPersonality.Expansionist,
-                P = StartPower, GrowthMult = 1.3f, TechMult = 0.8f, DefenseMult = 1.2f,
+                P = StartPower, GrowthMult = RedBannerGrowth, TechMult = RedBannerTech, DefenseMult = RedBannerDefense,
                 HeldBodies = { "redridge" },
                 AttitudeToPlayer = -10
             });
@@ -184,7 +194,7 @@ namespace Starsoil.Core
             {
                 Id = SilentId, Zh = "静默会", En = "The Silent Accord",
                 Personality = FactionPersonality.Reclusive,
-                P = StartPower, GrowthMult = 1.0f, TechMult = 1.6f, DefenseMult = 2.5f,
+                P = StartPower, GrowthMult = SilentGrowth, TechMult = SilentTech, DefenseMult = SilentDefense,
                 HeldBodies = { "sleetfall" },
                 AttitudeToPlayer = 0
             });

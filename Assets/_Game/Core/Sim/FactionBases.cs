@@ -11,6 +11,8 @@ namespace Starsoil.Core
     /// </summary>
     public static class FactionBases
     {
+        private const int LayoutRowY = 10;
+
         /// <summary>Scale 1..3 from the faction's base tier (T growth).</summary>
         public static int ScaleFor(Faction faction)
         {
@@ -52,7 +54,7 @@ namespace Starsoil.Core
                     }
                     for (int i = 0; i < scale * 2; i++)
                     {
-                        world.Buildings.Place(BuildingDefs.HandCrankId, cx - 4 + i * 2, cy + 10, 0, out _);
+                        world.Buildings.Place(BuildingDefs.HandCrankId, cx - 4 + i * 2, cy + LayoutRowY, 0, out _);
                     }
                     break;
 
@@ -63,8 +65,8 @@ namespace Starsoil.Core
                         world.Buildings.Place(BuildingDefs.BatteryId,
                             cx - 3 + (i % 3) * 2, cy + 6 + (i / 3) * 2, 0, out _);
                     }
-                    world.Buildings.Place(BuildingDefs.PowerPylonId, cx, cy + 10, 0, out _);
-                    world.Buildings.Place(BuildingDefs.PowerPylonId, cx + 2, cy + 10, 0, out _);
+                    world.Buildings.Place(BuildingDefs.PowerPylonId, cx, cy + LayoutRowY, 0, out _);
+                    world.Buildings.Place(BuildingDefs.PowerPylonId, cx + 2, cy + LayoutRowY, 0, out _);
                     break;
             }
             _ = stream;
