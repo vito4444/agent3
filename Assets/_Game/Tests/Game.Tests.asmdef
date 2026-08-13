@@ -4,6 +4,10 @@
     "references": [
         "Game.Core",
         "Game.Data",
+        "Game.UI",
+        "Game.Bootstrap",
+        "Game.Presentation",
+        "Game.EditorTools",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

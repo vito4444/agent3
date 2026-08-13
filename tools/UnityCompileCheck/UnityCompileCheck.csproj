@@ -24,10 +24,12 @@
     <Compile Include="../../Assets/_Game/UI/**/*.cs" />
     <Compile Include="../../Assets/_Game/Bootstrap/**/*.cs" />
     <Compile Include="../../Assets/_Game/EditorTools/**/*.cs" />
+    <Compile Include="../../Assets/_Game/Tests/**/*.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
   </ItemGroup>
 
 </Project>

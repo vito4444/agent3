@@ -13,6 +13,7 @@ namespace UnityEngine
     {
         public string name { get; set; }
         public static void Destroy(Object obj) { }
+        public static void DestroyImmediate(Object obj) { }
         public static T FindFirstObjectByType<T>() where T : Object => null;
         public static implicit operator bool(Object o) => o != null;
     }
