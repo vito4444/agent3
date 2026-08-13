@@ -108,6 +108,20 @@ namespace Starsoil.UI
         private void Rebuild()
         {
             _list.Clear();
+            // Active research banner: whatever domain the target lives in, the player
+            // sees it first (visual QA round 2).
+            if (!string.IsNullOrEmpty(_world.Tech.ResearchTarget) &&
+                _world.Tech.Nodes.TryGetValue(_world.Tech.ResearchTarget, out var active))
+            {
+                var banner = new Label
+                {
+                    text = L10n.Tr("ui_current_research") + ": " +
+                           (L10n.Language == "en" ? active.En : active.Zh) + CostText(active)
+                };
+                banner.style.color = new Color(0.55f, 0.9f, 0.6f);
+                banner.style.marginBottom = 4;
+                _list.Add(banner);
+            }
             var byDomain = new Dictionary<string, List<TechNode>>();
             foreach (var pair in _world.Tech.Nodes)
             {
