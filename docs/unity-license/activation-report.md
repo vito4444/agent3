@@ -33,10 +33,19 @@
   2. 数据文件(`data/`、`GeneratedData/`)只存在于仓库,玩家构建的 `Application.dataPath/../data` 落空 → `HeadlessBuild` 构建成功后把两个数据目录拷贝到构建目录旁,与 `DataFiles` 的解析约定一致。
 - 第 2 轮:**冒烟通过**。决定性日志行:`[GameBootstrap] World ready: seed 42, region 192, colonists 4`。进程在 `-batchmode -nographics` 下持续运行至 25 秒超时截杀,无异常输出(FMOD 输出设备错误为无声卡环境的预期噪音)。
 
+## Windows 构建
+
+windows-mono 支持模块在 Linux 上没有原生 tar 包,按 Unity Hub 的做法从
+`MacEditorTargetInstaller/UnitySetup-Windows-Mono-Support-for-Editor-6000.3.21f1.pkg`
+下载(366MB),7z 解 xar 外层得 `Payload~`(cpio),再解出内容拷入
+`Editor/Data/PlaybackEngines/WindowsStandaloneSupport/`(974MB)。随后
+`scripts/unity_headless.sh build-win`:**Build Finished, Result: Success**,
+产物 96MB(`Builds/Win64/Starsoil.exe` + D3D12 + Mono 运行时),数据目录同样随包。
+
 ## 结论与遗留
 
-- 这台 VM 现在具备完整的 Unity 验证链:EditMode 全绿、Linux 玩家构建成功、构建产物可启动并完成世界生成。
+- 这台 VM 现在具备完整的 Unity 验证链:EditMode 全绿、Linux/Windows 双平台玩家构建成功、Linux 产物可启动并完成世界生成(`World ready`)。产物目录 `Builds/Win64`、`Builds/Linux64` 与 `steam/` depot 布局一致,Steam 凭据到位即可走门 3 上传。
 - 遗留:
-  - Windows 构建支持模块(windows-mono)需从 Mac pkg 解包安装(进行中/见后续提交);
   - CI 门 2 需要 GitHub Actions secrets(`UNITY_LICENSE` 或 `UNITY_EMAIL`+`UNITY_PASSWORD`)才能在 CI 侧复现同样的验证;
+  - Windows 产物未在真 Windows 环境冒烟(Linux 上无法执行 .exe;wine 未验证,留待播测或 CI);
   - 图形界面下的视觉验收(HUD 布局、面板交互)仍需有显示器的环境或后续 xvfb + 截图方案。
