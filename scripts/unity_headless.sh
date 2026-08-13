@@ -44,10 +44,10 @@ test)
     echo "Results: /tmp/unity_editmode_results.xml"
     ;;
 build-linux)
-    run_unity -projectPath "$PROJECT_DIR" -quit -executeMethod Game.EditorTools.HeadlessBuild.Linux64
+    run_unity -projectPath "$PROJECT_DIR" -quit -executeMethod Starsoil.EditorTools.HeadlessBuild.Linux64
     ;;
 build-win)
-    run_unity -projectPath "$PROJECT_DIR" -quit -executeMethod Game.EditorTools.HeadlessBuild.Win64
+    run_unity -projectPath "$PROJECT_DIR" -quit -executeMethod Starsoil.EditorTools.HeadlessBuild.Win64
     ;;
 *)
     echo "Usage: $0 {activate|test|build-linux|build-win}" >&2

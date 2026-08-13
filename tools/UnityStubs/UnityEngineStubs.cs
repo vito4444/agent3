@@ -195,6 +195,7 @@ namespace UnityEngine
     public class Material : Object
     {
         public Material(Shader shader) { }
+        public Material(Material source) { }
         public Color color { get; set; }
         public Texture mainTexture { get; set; }
     }
