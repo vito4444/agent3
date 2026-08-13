@@ -122,7 +122,7 @@ namespace Starsoil.UI
                 row.style.paddingTop = 4;
                 row.style.paddingBottom = 4;
 
-                string outputName = recipe.Outputs.Count > 0 ? L10n.Tr("item_" + recipe.Outputs[0].ItemId) : recipe.Id;
+                string outputName = recipe.Outputs.Count > 0 ? ItemCatalog.NameOf(recipe.Outputs[0].ItemId) : recipe.Id;
                 var name = new Label { text = outputName };
                 name.style.color = Color.white;
                 row.Add(name);

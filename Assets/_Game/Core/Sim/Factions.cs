@@ -160,6 +160,9 @@ namespace Starsoil.Core
         private int _nextQuoteId = 1;
 
         private const int QuoteRefreshHours = 12;
+        // Merchant branch ability nodes (docs/plan/07 星际物流网).
+        private const string AutoQuotesTech = "branch_orbital_logistics_2";
+        private const string MarketRadarTech = "branch_orbital_logistics_3";
         private const int DealSettleHours = 6;
         private const double SellMarkup = 1.3;
         private const double BuyMarkdown = 0.9;
@@ -210,6 +213,64 @@ namespace Starsoil.Core
             });
         }
 
+        /// <summary>Loads the personality table from data/faction_params.csv (M6-T2:
+        /// 参数全部来自数据表). Falls back to InitDefault when absent.</summary>
+        public void InitFromCsv(IEnumerable<string> lines)
+        {
+            var loaded = new List<Faction>();
+            string[] header = null;
+            foreach (string raw in lines)
+            {
+                string line = raw.TrimEnd('\r');
+                if (line.Length == 0 || line.TrimStart().StartsWith("#"))
+                {
+                    continue;
+                }
+                var cells = new List<string>(line.Split(','));
+                if (header == null)
+                {
+                    header = cells.ToArray();
+                    continue;
+                }
+                string Get(string column)
+                {
+                    for (int i = 0; i < header.Length && i < cells.Count; i++)
+                    {
+                        if (header[i].Trim() == column)
+                        {
+                            return cells[i].Trim();
+                        }
+                    }
+                    return string.Empty;
+                }
+                var personality = Get("personality") switch
+                {
+                    "merchant" => FactionPersonality.Merchant,
+                    "expansionist" => FactionPersonality.Expansionist,
+                    _ => FactionPersonality.Reclusive
+                };
+                var faction = new Faction
+                {
+                    Id = Get("id"),
+                    Zh = Get("zh"),
+                    En = Get("en"),
+                    Personality = personality,
+                    P = StartPower,
+                    GrowthMult = float.Parse(Get("growth_mult"), System.Globalization.CultureInfo.InvariantCulture),
+                    TechMult = float.Parse(Get("tech_mult"), System.Globalization.CultureInfo.InvariantCulture),
+                    DefenseMult = float.Parse(Get("defense_mult"), System.Globalization.CultureInfo.InvariantCulture),
+                    AttitudeToPlayer = int.Parse(Get("start_attitude"), System.Globalization.CultureInfo.InvariantCulture)
+                };
+                faction.HeldBodies.Add(Get("home_body"));
+                loaded.Add(faction);
+            }
+            if (loaded.Count > 0)
+            {
+                Factions.Clear();
+                Factions.AddRange(loaded);
+            }
+        }
+
         public Faction Get(string id)
         {
             foreach (var faction in Factions)
@@ -247,18 +308,50 @@ namespace Starsoil.Core
             TickRedBannerFriction(universe, playerBodies, hour);
             TickMerchantQuotes(universe, hour);
             SettleDeals(universe, hour);
+            TickMerchantColdShoulder(universe, hour);
+        }
+
+        private const int ColdShoulderDays = 5;
+        private long _lastTradeHour;
+
+        /// <summary>连续 5 游戏日无交易: attitude -1/日 (docs/plan/07 商盟行为 2).</summary>
+        private void TickMerchantColdShoulder(Universe universe, long hour)
+        {
+            var merchant = Get(MerchantId);
+            if (merchant == null || hour % GameConstants.HoursPerDay != 0)
+            {
+                return;
+            }
+            if (PendingDeals.Count > 0)
+            {
+                _lastTradeHour = hour;
+                return;
+            }
+            if (_lastTradeHour == 0)
+            {
+                _lastTradeHour = hour;
+                return;
+            }
+            if (hour - _lastTradeHour >= (long)ColdShoulderDays * GameConstants.HoursPerDay)
+            {
+                merchant.AttitudeToPlayer -= 1;
+            }
         }
 
         // ---------------------------------------------------------------- merchant trade
 
         /// <summary>Quote board (M6-T6): needs the player's comms array and non-negative
         /// attitude; refreshes every 12 game hours with 3 sell + 3 buy (myco spores always
-        /// on the sell side); attitude ≥60 adds a rare listing; embargo while attacked.</summary>
+        /// on the sell side); attitude ≥60 adds a rare listing; embargo while attacked.
+        /// 自动报价单 (branch_orbital_logistics_2): with the ability unlocked, neutral
+        /// bonded zones keep the board alive even when the merchant is embargoed, hostile
+        /// or reduced to a remnant — only the rare listing stays merchant-gated.</summary>
         private void TickMerchantQuotes(Universe universe, long hour)
         {
             var merchant = Get(MerchantId);
-            if (merchant == null || merchant.Embargoed || merchant.AttitudeToPlayer < 0 ||
-                !universe.FactionLayerVisible)
+            bool merchantOpen = merchant != null && !merchant.Embargoed && merchant.AttitudeToPlayer >= 0;
+            bool autoQuotes = universe.ActiveWorld.Tech.IsUnlocked(AutoQuotesTech);
+            if ((!merchantOpen && !autoQuotes) || !universe.FactionLayerVisible)
             {
                 return;
             }
@@ -267,38 +360,78 @@ namespace Starsoil.Core
                 return;
             }
             Quotes.Clear();
-            QuoteBoardExpiresHour = hour + QuoteRefreshHours;
-            ulong roll = Fnv1a64.HashString(universe.Seed + ":quotes:" + hour);
-
-            AddQuote(universe, "myco_gold_spore", merchantSells: true, roll);
-            AddQuote(universe, MerchantSellPool[(int)(roll % (ulong)MerchantSellPool.Length)], true, roll * QuoteMixA);
-            AddQuote(universe, MerchantSellPool[(int)((roll / QuoteDivA) % (ulong)MerchantSellPool.Length)], true, roll * QuoteMixB);
-            for (int i = 0; i < 3; i++)
-            {
-                AddQuote(universe, MerchantBuyPool[(int)((roll / (ulong)(QuoteDivBase + i * 3)) % (ulong)MerchantBuyPool.Length)],
-                    false, roll * (ulong)(QuoteDivBase + 6 + i));
-            }
-            if (merchant.AttitudeToPlayer >= RareAttitudeGate)
-            {
-                AddQuote(universe, MerchantRarePool[(int)(roll % (ulong)MerchantRarePool.Length)], true, roll * QuoteMixC);
-            }
+            // Seeds are aligned to the 12h refresh grid so future boards are
+            // deterministic and can be previewed (行情雷达, branch_orbital_logistics_3).
+            long gridHour = hour - hour % QuoteRefreshHours;
+            QuoteBoardExpiresHour = gridHour + QuoteRefreshHours;
+            bool rare = merchantOpen && merchant.AttitudeToPlayer >= RareAttitudeGate;
+            BuildBoard(universe, gridHour, rare, Quotes, assignIds: true);
             universe.ActiveWorld.Events.Add(new QuoteBoardRefreshedEvent { QuoteCount = Quotes.Count });
         }
 
-        private void AddQuote(Universe universe, string itemId, bool merchantSells, ulong roll)
+        /// <summary>行情雷达 (branch_orbital_logistics_3): deterministic preview of the next
+        /// <paramref name="boards"/> quote boards (default UI shows 3). Empty when the
+        /// ability is locked. Preview quotes carry Id 0 and each board's expiry hour.</summary>
+        public List<MerchantQuote> PeekUpcomingQuotes(Universe universe, int boards)
+        {
+            var preview = new List<MerchantQuote>();
+            if (!universe.ActiveWorld.Tech.IsUnlocked(MarketRadarTech))
+            {
+                return preview;
+            }
+            var merchant = Get(MerchantId);
+            bool rare = merchant != null && !merchant.Embargoed &&
+                        merchant.AttitudeToPlayer >= RareAttitudeGate;
+            long hour = universe.Tick / GameConstants.TicksPerHour;
+            long gridHour = hour - hour % QuoteRefreshHours;
+            for (int i = 1; i <= boards; i++)
+            {
+                BuildBoard(universe, gridHour + i * QuoteRefreshHours, rare, preview, assignIds: false);
+            }
+            return preview;
+        }
+
+        /// <summary>Generates one board's quotes from the grid-hour seed. With
+        /// <paramref name="assignIds"/> the quotes become the live board (ids consumed,
+        /// expiry = current board); otherwise they are a side-effect-free preview.</summary>
+        private void BuildBoard(Universe universe, long gridHour, bool includeRare,
+            List<MerchantQuote> into, bool assignIds)
+        {
+            ulong roll = Fnv1a64.HashString(universe.Seed + ":quotes:" + gridHour);
+            long expires = gridHour + QuoteRefreshHours;
+
+            AddQuote(universe, "myco_gold_spore", true, roll, into, assignIds, expires);
+            AddQuote(universe, MerchantSellPool[(int)(roll % (ulong)MerchantSellPool.Length)], true, roll * QuoteMixA, into, assignIds, expires);
+            AddQuote(universe, MerchantSellPool[(int)((roll / QuoteDivA) % (ulong)MerchantSellPool.Length)], true, roll * QuoteMixB, into, assignIds, expires);
+            for (int i = 0; i < 3; i++)
+            {
+                AddQuote(universe, MerchantBuyPool[(int)((roll / (ulong)(QuoteDivBase + i * 3)) % (ulong)MerchantBuyPool.Length)],
+                    false, roll * (ulong)(QuoteDivBase + 6 + i), into, assignIds, expires);
+            }
+            if (includeRare)
+            {
+                AddQuote(universe, MerchantRarePool[(int)(roll % (ulong)MerchantRarePool.Length)], true, roll * QuoteMixC, into, assignIds, expires);
+            }
+        }
+
+        private void AddQuote(Universe universe, string itemId, bool merchantSells, ulong roll,
+            List<MerchantQuote> into, bool assignIds, long expiresHour)
         {
             double basePrice = universe.PriceOf(itemId);
             var quote = new MerchantQuote
             {
-                Id = _nextQuoteId,
+                Id = assignIds ? _nextQuoteId : 0,
                 ItemId = itemId,
                 Count = 4 + (int)(roll % QuoteCountRange),
                 UnitPrice = System.Math.Round(basePrice * (merchantSells ? SellMarkup : BuyMarkdown), 2),
                 MerchantSells = merchantSells,
-                ExpiresHour = QuoteBoardExpiresHour
+                ExpiresHour = expiresHour
             };
-            _nextQuoteId++;
-            Quotes.Add(quote);
+            if (assignIds)
+            {
+                _nextQuoteId++;
+            }
+            into.Add(quote);
         }
 
         /// <summary>Accepts a quote; goods/credits settle after 6 game hours (M6-T6).</summary>
@@ -384,7 +517,10 @@ namespace Starsoil.Core
                 {
                     universe.PlayerCredits += deal.Total;
                 }
-                if (merchant != null)
+                _lastTradeHour = universe.Tick / GameConstants.TicksPerHour;
+                // Neutral bonded-zone deals (auto-quotes while the merchant is embargoed
+                // or a remnant) do not move the merchant's attitude or treasury.
+                if (merchant != null && !merchant.Embargoed)
                 {
                     merchant.AttitudeToPlayer += 2;
                     merchant.Treasury += deal.MerchantSells ? (float)deal.Total : -(float)deal.Total;
@@ -575,6 +711,39 @@ namespace Starsoil.Core
                     Count = redBanner.UltimatumsRejected + 1
                 });
             }
+        }
+
+        /// <summary>Current protection-fee demand for UI display (0 when no tension).</summary>
+        public int UltimatumDemand()
+        {
+            var redBanner = Get(RedBannerId);
+            if (redBanner == null || redBanner.Stance != FactionStance.Tense)
+            {
+                return 0;
+            }
+            return (int)(redBanner.P * UltimatumDemandFactor);
+        }
+
+        /// <summary>Pays the current ultimatum: credits drain, tension persists but the
+        /// clock and the rejection count reset (docs/plan/07 摩擦链的缓和路径).</summary>
+        public bool PayUltimatum(Universe universe)
+        {
+            var redBanner = Get(RedBannerId);
+            if (redBanner == null || redBanner.Stance != FactionStance.Tense)
+            {
+                return false;
+            }
+            int demand = (int)(redBanner.P * UltimatumDemandFactor);
+            if (universe.PlayerCredits < demand)
+            {
+                return false;
+            }
+            universe.PlayerCredits -= demand;
+            redBanner.Treasury += demand;
+            redBanner.UltimatumsRejected = 0;
+            redBanner.NextUltimatumHour = universe.Tick / GameConstants.TicksPerHour +
+                (long)UltimatumIntervalDays * GameConstants.HoursPerDay;
+            return true;
         }
 
         /// <summary>Player rejects the current ultimatum; the second rejection is war.</summary>

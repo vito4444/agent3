@@ -115,6 +115,31 @@ namespace Starsoil.Core
         public int Y;
     }
 
+    public sealed class SavedCombatUnit
+    {
+        public int Id;
+        public int Side;
+        public int X;
+        public int Y;
+        public float Hp;
+        public float MaxHp;
+        public float DamagePerHit;
+        public int Order;
+        public int HoldX;
+        public int HoldY;
+        public int PatrolAx;
+        public int PatrolAy;
+        public int PatrolBx;
+        public int PatrolBy;
+        public bool Armored;
+    }
+
+    public sealed class SavedWave
+    {
+        public long Tick;
+        public int Count;
+    }
+
     public sealed class SavedRngStream
     {
         public string Name;
@@ -146,6 +171,12 @@ namespace Starsoil.Core
         public List<SavedRngStream> RngStreams = new List<SavedRngStream>();
         public List<SavedGasComponent> GasComponents = new List<SavedGasComponent>();
         public List<SavedBot> Bots = new List<SavedBot>();
+        public List<SavedCombatUnit> CombatUnits = new List<SavedCombatUnit>();
+        public List<SavedWave> PendingWaves = new List<SavedWave>();
+        public int RallyX;
+        public int RallyY;
+        public int ShieldTicksRemaining;
+        public int ActiveRaidStrength;
         public List<string> TechUnlocked = new List<string>();
         public string ResearchTarget = string.Empty;
         public List<SavedStack> ResearchPaid = new List<SavedStack>();

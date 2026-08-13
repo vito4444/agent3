@@ -21,7 +21,7 @@ basic_circuit,基础电路,Basic circuit,silicon_ingot:1;copper_wire:2,,assemble
 advanced_circuit,高阶电路,Advanced circuit,basic_circuit:2;polymer:1;electrical_steel_wire:1,,assemble,3,component
 quantum_circuit,量子电路,Quantum circuit,advanced_circuit:2;superconductor_alloy_wire:1,,assemble,4,component
 small_motor,小型电机,Small motor,copper_wire:2;iron_rod:1,,assemble,1,component
-motor,电机,Motor,copper_wire:3;electrical_steel_gear:1;steel_rod:1,,assemble,2,component
+motor,电机,Motor,copper_wire:3;electrical_steel_gear:1;steel_rod:1;electrical_steel_plate:1,,assemble,2,component
 heavy_motor,重型电机,Heavy motor,motor:2;titanium_alloy_gear:1,,assemble,3,component
 pressure_sensor,压力传感器,Pressure sensor,basic_circuit:1;crude_seal:1,,assemble,2,component
 thermal_sensor,热传感器,Thermal sensor,basic_circuit:1;steel_plate:1,,assemble,2,component
@@ -48,18 +48,18 @@ cryo_pump,深冷泵,Cryogenic pump,pump:1;titanium_pipe:1;radiator_fin:1,,assemb
 fuel_injector,燃料喷注器,Fuel injector,valve:1;small_nozzle:1;machined_parts:1,,machining,3,component
 machined_parts,精密件,Machined parts,steel_rod:1,machined_parts:2,machining,2,component
 structural_panel,结构板件,Structural panel,steel_plate:2;rivet_set:1,,assemble,2,component
-hull_panel,壳体板件,Hull panel,duralumin_plate:2;seal_ring:1,,assemble,3,component
+hull_panel,壳体板件,Hull panel,duralumin_plate:2;seal_ring:1;adhesive:1,,assemble,3,component
 rivet_set,铆钉组,Rivet set,iron_rod:1,rivet_set:4,machining,1,component
 heat_shield_tile,隔热瓦,Heat-shield tile,titanium_alloy_plate:1;regolith:2,,press,3,component
-radiator_fin,散热鳍,Radiator fin,aluminum_plate:1;aluminum_rod:1,,machining,2,component
+radiator_fin,散热鳍,Radiator fin,aluminum_plate:1;aluminum_rod:1;coolant:1,,machining,2,component
 kinetic_round,动能弹药,Kinetic rounds,steel_rod:1;carbon_powder:1,kinetic_round:4,press,3,component
 laser_cavity,激光腔,Laser cavity,lens:2;rare_earth_wire:1;rare_earth_powder:1,,assemble,3,component
-shield_emitter,护盾发生器,Shield emitter,advanced_circuit:1;phase_composite_ingot:1,,assemble,4,component
+shield_emitter,护盾发生器,Shield emitter,advanced_circuit:1;phase_composite_ingot:1;platinum_wire:1,,assemble,4,component
 orbital_penetrator,轨道穿甲弹,Orbital penetrator,platinum_mesh_alloy_mesh:1;advanced_circuit:1;heavy_frame:1,,assemble,4,consumable
-combat_frame,战斗骨架,Combat chassis,heavy_frame:1;motor:1,,assemble,3,component
+combat_frame,战斗骨架,Combat chassis,heavy_frame:1;motor:1;titanium_wire:2,,assemble,3,component
 drone_rotor,无人机旋翼,Drone rotor,duralumin_rod:1;small_motor:1,,assemble,2,component
 antenna,天线,Antenna,copper_wire:3;light_frame:1,,assemble,2,component
-comms_array_module,通讯模组,Comms module,antenna:2;advanced_circuit:1,,assemble,3,component
+comms_array_module,通讯模组,Comms module,antenna:2;advanced_circuit:1;copper_mesh:1,,assemble,3,component
 data_recorder,战斗记录仪,Combat recorder,basic_circuit:1;glass:1,,assemble,3,component
 suit_liner,服装内衬,Suit liner,fiber:2;crude_seal:1,,press,2,component
 lead_lining,铅衬,Radiation lining,iron_plate:1;regolith:2,,press,2,component
@@ -84,7 +84,7 @@ chemistry_data_core,化学数据核,Chemistry data core,sulfuric_acid:1;glass:1,
 astro_data_core,航天数据核,Astronautics data core,machined_parts:1;liquid_oxygen:1,,assemble,3,consumable
 military_data_core,军情数据核,Military data core,data_recorder:1;advanced_circuit:1,,assemble,3,consumable
 seed_kit,藻种培育包,Seed culture kit,algae_seed:1;growth_medium:1,seed_kit:2,cultivate,2,consumable
-spore_vaccine,孢子疫苗,Spore vaccine,growth_medium:1;spore_extract:2,spore_vaccine:2,synthesize,3,faction
+spore_vaccine,孢子疫苗,Spore vaccine,growth_medium:1;spore_extract:2;titanium_mesh:1,spore_vaccine:2,synthesize,3,faction
 emergency_beacon,应急信标,Emergency beacon,antenna:1;battery_cell:1,,assemble,2,consumable
 colonist_supplies,殖民者随身物资,Colonist kit,ration:2;oxygen_bottle:1;thermal_suit:1,,assemble,2,consumable
 firework,信号焰火,Signal flare,sulfur:1;carbon_powder:1,firework:3,press,1,consumable
@@ -99,7 +99,7 @@ rocket_frame_2,箭体框架 II,Rocket frame II,rocket_frame_1:1;hull_panel:2,,as
 rocket_frame_3,箭体框架 III,Rocket frame III,rocket_frame_2:1;heavy_frame:2,,assemble,4,vehicle
 chem_engine,化学引擎,Chemical engine,engine_nozzle:1;pump:1;fuel_injector:1;basic_circuit:1,,assemble,3,vehicle
 heavy_engine,重型引擎,Heavy engine,chem_engine:1;heavy_nozzle:1;aurite_steel_pipe:1,,assemble,4,vehicle
-fuel_tank_module,贮箱,Fuel tank,hull_panel:2;gasket_set:1;cryo_pump:1,,assemble,3,vehicle
+fuel_tank_module,贮箱,Fuel tank,hull_panel:2;gasket_set:1;cryo_pump:1;aluminum_pipe:2,,assemble,3,vehicle
 fairing,整流罩,Fairing,duralumin_plate:2;heat_shield_tile:1,,assemble,3,vehicle
 nav_pod,导航舱,Navigation pod,nav_sensor_suite:1;advanced_circuit:1;control_console:1,,assemble,3,vehicle
 nav_pod_deep,深空导航舱,Deep-space nav pod,nav_pod:1;quantum_circuit:1,,assemble,4,vehicle
@@ -158,10 +158,10 @@ b_distiller,蒸馏塔,Distiller,steel_pipe:2;steel_plate:2;valve:1,distiller:1,a
 b_chem_reactor,化工釜,Chem reactor,steel_plate:2;steel_pipe:2;valve:2,chem_reactor:1,assemble,2,building
 b_polymer_reactor,聚合反应器,Polymer reactor,invar_plate:2;pump:1;heating_rod:1,polymer_reactor:1,assemble,3,building
 b_sabatier_reactor,Sabatier 反应器,Sabatier reactor,nickel_pipe:2;pump:1;platinum_powder:1,sabatier_reactor:1,assemble,3,building
-b_cryo_liquefier,制冷液化器,Cryo liquefier,invar_plate:2;invar_pipe:1;cryo_pump:1;radiator_fin:2,cryo_liquefier:1,assemble,3,building
+b_cryo_liquefier,制冷液化器,Cryo liquefier,invar_plate:2;invar_pipe:1;cryo_pump:1;radiator_fin:2;invar_mesh:1,cryo_liquefier:1,assemble,3,building
 b_culture_vat,培养槽,Culture vat,glass:2;steel_plate:1;pump:1,culture_vat:1,assemble,1,building
-b_refinery,精炼塔,Refinery,titanium_pipe:1;invar_plate:2;nickel_powder:2;invar_gear:1;pump:2,refinery:1,assemble,3,building
-b_recycler,回收机,Recycler,steel_plate:2;gear_assembly:1;filter_cartridge:1,recycler:1,assemble,2,building
+b_refinery,精炼塔,Refinery,titanium_pipe:1;invar_plate:2;nickel_powder:2;invar_gear:1;pump:2;bronze_plate:1,refinery:1,assemble,3,building
+b_recycler,回收机,Recycler,steel_plate:2;gear_assembly:1;filter_cartridge:1;iron_mesh:2,recycler:1,assemble,2,building
 b_deep_drill,深井钻机,Deep drill,heavy_frame:1;heavy_motor:1;titanium_rod:2,deep_drill:1,assemble,2,building
 b_gas_collector,集气塔,Gas collector,steel_pipe:2;pump:1;filter_cartridge:1,gas_collector:1,assemble,2,building
 b_pump_station,泵站,Pump station,pump:2;iron_pipe:2,pump_station:1,assemble,2,building
@@ -216,7 +216,7 @@ b_protein_tower,蛋白高塔,Protein tower,structural_panel:3;pump:2,protein_tow
 b_eco_dome,生态穹顶,Eco dome,glass:4;habitat_frame:2;duralumin_mesh:1;bio_composite_ingot:1,eco_dome:1,assemble,3,faction
 b_bonded_warehouse,保税仓,Bonded warehouse,structural_panel:3;control_console:1,bonded_warehouse:1,assemble,3,faction
 b_compact_reactor,紧凑快堆,Compact fast reactor,compact_reactor_core:1;lead_lining:2;control_console:1,compact_reactor:1,assemble,4,faction
-b_isotope_heater,同位素加热棒塔,Isotope heater,isotope_rod:2;steel_plate:2,isotope_heater:1,assemble,4,faction
+b_isotope_heater,同位素加热棒塔,Isotope heater,isotope_rod:2;steel_plate:2;nickel_wire:2,isotope_heater:1,assemble,4,faction
 b_forward_nest,前线装配巢,Forward assembly nest,combat_frame:2;structural_panel:2,forward_nest:1,assemble,4,faction
-b_shock_cannon,震荡炮,Shock cannon,heavy_frame:1;shield_emitter:1;aurite_steel_rod:1;kinetic_round:4,shock_cannon:1,assemble,4,faction
+b_shock_cannon,震荡炮,Shock cannon,heavy_frame:1;shield_emitter:1;aurite_steel_rod:1;kinetic_round:4;aurite_steel_gear:1,shock_cannon:1,assemble,4,faction
 grow_biomass,温室栽培,Greenhouse cycle,algae_seed:1;water:1,biomass:8;algae_seed:1,cultivate,1,intermediate

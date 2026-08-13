@@ -1,0 +1,5 @@
+# Faction personality parameter table (docs/plan/07 性格参数表; M6-T2 字面要求数据表).
+id,zh,en,personality,growth_mult,tech_mult,defense_mult,start_attitude,home_body
+merchant,星贸商盟,Star Trade Compact,merchant,1.0,1.0,1.0,10,warmmarsh
+redbanner,赤旗军团,Red Banner Legion,expansionist,1.3,0.8,1.2,-10,redridge
+silent,静默会,The Silent Accord,reclusive,1.0,1.6,2.5,0,sleetfall

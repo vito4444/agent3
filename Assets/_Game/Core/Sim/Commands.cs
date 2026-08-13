@@ -300,6 +300,58 @@ namespace Starsoil.Core
         }
     }
 
+    /// <summary>Deploys a combat bot from stock as a live unit (M7 战斗蛛).</summary>
+    public sealed class DeployCombatBotCommand : ICommand
+    {
+        public int X;
+        public int Y;
+        public bool Armored;
+
+        public void Execute(World world)
+        {
+            if (world.Battle.DeployPlayerBot(world, X, Y, Armored) == null)
+            {
+                world.Events.Add(new CommandRejectedEvent { Reason = "deploy:cap_or_stock" });
+            }
+        }
+    }
+
+    /// <summary>三指令: 驻守(点)、巡逻(两点)、集结(旗) (docs/plan/07).</summary>
+    public sealed class SetUnitOrderCommand : ICommand
+    {
+        public int UnitId;
+        public UnitOrder Order;
+        public int Ax;
+        public int Ay;
+        public int Bx;
+        public int By;
+
+        public void Execute(World world)
+        {
+            world.Battle.SetOrder(UnitId, Order, Ax, Ay, Bx, By);
+        }
+    }
+
+    public sealed class SetRallyFlagCommand : ICommand
+    {
+        public int X;
+        public int Y;
+
+        public void Execute(World world)
+        {
+            world.Battle.RallyX = X;
+            world.Battle.RallyY = Y;
+        }
+    }
+
+    public sealed class RetreatAllCommand : ICommand
+    {
+        public void Execute(World world)
+        {
+            world.Battle.RetreatAll(world);
+        }
+    }
+
     public sealed class SetTutorialSkippedCommand : ICommand
     {
         public bool Skipped;

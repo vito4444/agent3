@@ -62,8 +62,17 @@ namespace Starsoil.Data
             return true;
         }
 
+        private static bool _loadAttempted;
+
         public static string Tr(string key)
         {
+            // Lazy default load so editor tooling and EditMode tests resolve keys
+            // without an explicit bootstrap call (dev/editor path only).
+            if (!_loadAttempted && Zh.Count == 0)
+            {
+                _loadAttempted = true;
+                TryLoadDefault();
+            }
             var table = _language == "en" ? En : Zh;
             return table.TryGetValue(key, out string value) ? value : key;
         }

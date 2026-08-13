@@ -30,3 +30,5 @@ spore_extract,孢子提取液,Spore extract,intermediate,2,organic,1
 growth_medium,培养基,Growth medium,intermediate,2,organic,2
 protein_paste,蛋白浆,Protein paste,intermediate,2,organic,2
 crude_seal,粗密封圈,Crude seal,intermediate,2,corrosion_resistant,1
+adhesive,粘合剂,Adhesive,intermediate,3,organic,1
+coolant,冷却液,Coolant,intermediate,2,fluid,1

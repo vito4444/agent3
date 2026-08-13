@@ -3,19 +3,19 @@
 # consumes it (validation checks 2/3 enforce zero dead ends); widen it together with
 # new consumers, not ahead of them.
 material_id,plate,rod,wire,gear,pipe,mesh,powder,brick
-iron,1,1,,1,2,,,1
-copper,1,2,1,2,2,,2,
-aluminum,2,2,2,,,2,2,
-titanium,2,2,,2,3,,2,
-nickel,3,,,,3,,3,
+iron,1,1,,1,2,1,,1
+copper,1,2,1,2,2,2,2,
+aluminum,2,2,2,,2,2,2,
+titanium,2,2,3,2,3,3,2,
+nickel,3,,3,,3,,3,
 rare_earth,,,3,,,,3,
-platinum,,,,,,,3,
+platinum,,,3,,,,3,
 steel,1,1,,1,1,1,,2
-bronze,,3,,3,3,,,
+bronze,3,3,,3,3,,,
 duralumin,2,2,2,2,,3,,
 titanium_alloy,3,3,,3,3,,,
-invar,3,4,,3,3,,,
-electrical_steel,,,2,2,,,,
-aurite_steel,3,4,,,4,,,
+invar,3,4,,3,3,3,,
+electrical_steel,2,,2,2,,,,
+aurite_steel,3,4,,4,4,,,
 superconductor_alloy,,,4,,,4,,
 platinum_mesh_alloy,,,,,,3,,

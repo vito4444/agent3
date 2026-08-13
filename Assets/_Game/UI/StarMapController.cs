@@ -57,10 +57,19 @@ namespace Starsoil.UI
             _panel.Add(title);
 
             _list = new ScrollView();
+            _list.horizontalScrollerVisibility = ScrollerVisibility.Hidden;
             _list.style.maxHeight = 560;
             _panel.Add(_list);
             root.Add(_panel);
             _uiReady = true;
+        }
+
+        /// <summary>Programmatic open/close (demo driver, docs/plan/05 键位).</summary>
+        public void Toggle()
+        {
+            bool visible = _panel.style.display == DisplayStyle.Flex;
+            _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
+            _lastRefreshTick = -1;
         }
 
         private void Update()
@@ -71,9 +80,7 @@ namespace Starsoil.UI
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
-                bool visible = _panel.style.display == DisplayStyle.Flex;
-                _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
-                _lastRefreshTick = -1;
+                Toggle();
             }
             if (_panel.style.display == DisplayStyle.Flex && _universe.Tick != _lastRefreshTick &&
                 _universe.Tick % GameConstants.TicksPerHour == 0)

@@ -74,8 +74,8 @@ alert_storm_incoming,沙暴将至(约 1 日后),Sandstorm inbound (about 1 day)
 alert_storm_active,沙暴过境:舱外作业停止,Sandstorm: outdoor work suspended
 alert_colonist_critical,殖民者濒危!,Colonist critical!
 alert_defeat,殖民地覆灭,Colony lost
-tutorial_step_mine_ice,指派采集:点选水冰矿脉,采回 2 份水冰,Designate the ice deposit and mine 2 ice
-tutorial_step_melt_water,在篝火炉下达"融冰"订单,获得 2 份水,Order "melt ice" at the campfire for 2 water
+tutorial_step_mine_ice,"指派采集:点选水冰矿脉,采回 2 份水冰",Designate the ice deposit and mine 2 ice
+tutorial_step_melt_water,"在篝火炉下达「融冰」订单,获得 2 份水",Order the melt-ice job at the campfire for 2 water
 tutorial_step_gather_biomass,采集 2 份灌丛生物质,Gather 2 biomass from shrubs
 tutorial_step_craft_ration,在手工台制作 1 份应急口粮,Craft 1 emergency ration at the workbench
 tutorial_step_build_sleep_pod,建造 1 座睡舱,Build a sleep pod
@@ -131,3 +131,87 @@ ui_travel_hours,航程 {0} 时,{0}h travel
 ui_region_row,区域 {0} · {1} · 人口 {2},Region {0} · {1} · pop {2}
 ui_switch_region,切换,Switch
 building_launch_pad,发射台,Launch pad
+ui_trade_panel,贸易与外交 (G),Trade & diplomacy (G)
+ui_quote_board,当前报价单,Quote board
+ui_no_quotes,暂无报价 (需通讯阵列与商盟非敌对或自动报价单),No quotes (needs comms array and open merchant or auto-quotes)
+ui_quote_sell,商盟售,Merchant sells
+ui_quote_buy,商盟购,Merchant buys
+ui_accept,成交,Accept
+ui_upcoming_quotes,行情雷达: 未来 3 张报价单,Market radar: next 3 boards
+ui_board_at_hour,截止时,Board expiring hour
+ui_ultimatum,赤旗通牒,Red Banner ultimatum
+ui_ultimatum_demand,保护费,Protection fee
+ui_pay_ultimatum,支付,Pay
+ui_credits,星币,Credits
+domain_survival,生存,Survival
+domain_industry,工业,Industry
+domain_chemistry,化学,Chemistry
+domain_logistics,物流,Logistics
+domain_astronautics,航天,Astronautics
+domain_defense,防务,Defense
+domain_faction_merchant,商盟分支,Merchant branch
+domain_faction_redbanner,赤旗分支,Red Banner branch
+domain_faction_silent,静默会分支,Silent branch
+station_Workbench,工作台,Workbench
+station_Campfire,营火,Campfire
+station_Furnace,熔炉,Furnace
+station_Crusher,破碎机,Crusher
+station_RollMill,铸轧机,Roll mill
+station_Press,压制机,Press
+station_Assembler,装配台,Assembler
+station_ArcFurnace,电弧炉,Arc furnace
+station_WireMill,拉丝机,Wire mill
+station_MachiningBench,机加工台,Machining bench
+station_ChemElectrolyzer,化学电解槽,Chem electrolyzer
+station_Distiller,蒸馏塔,Distiller
+station_ChemReactor,化工釜,Chem reactor
+station_PolymerReactor,聚合反应器,Polymer reactor
+station_SabatierReactor,萨巴蒂尔反应器,Sabatier reactor
+station_CryoLiquefier,制冷液化器,Cryo liquefier
+station_CultureVat,培养槽,Culture vat
+station_Refinery,精炼塔,Refinery
+station_Recycler,回收机,Recycler
+station_WaterPurifier,净水器,Water purifier
+station_Greenhouse,温室,Greenhouse
+station_ForageStation,采集站,Forage station
+ui_current_research,当前研究,Researching
+achv_first_night_name,第一夜,First Night
+achv_first_night_desc,存活 1 游戏日,Survive 1 game day
+achv_powered_up_name,通电,Powered Up
+achv_powered_up_desc,首次电网供电,Bring the power grid online
+achv_hands_obsolete_name,手已无用,Hands Obsolete
+achv_hands_obsolete_desc,12 类手工工序全部机器化,All 12 hand crafts running on machines
+achv_steel_apprentice_name,冶金学徒,Steel Apprentice
+achv_steel_apprentice_desc,首次产出钢锭,Smelt your first steel ingot
+achv_first_electrolysis_name,化学起步,First Electrolysis
+achv_first_electrolysis_desc,首次电解水,Electrolyze water for the first time
+achv_recipe_hunter_name,配方猎人,Recipe Hunter
+achv_recipe_hunter_desc,解锁 100 条配方,Unlock 100 recipes
+achv_industrial_codex_name,工业大典,Industrial Codex
+achv_industrial_codex_desc,解锁 250 条配方,Unlock 250 recipes
+achv_liftoff_name,升空,Liftoff
+achv_liftoff_desc,首次发射火箭,Launch your first rocket
+achv_two_worlds_name,双星生活,Two Worlds
+achv_two_worlds_desc,在第二个星体建立前哨,Establish an outpost on a second body
+achv_spaceport_era_name,星港时代,Spaceport Era
+achv_spaceport_era_desc,首条自动航线运行 5 游戏日,Keep an automated route running 5 days
+achv_first_contact_name,初次接触,First Contact
+achv_first_contact_desc,通讯阵列点亮三势力,Light up all three factions with the comms array
+achv_mutual_gain_name,互利互惠,Mutual Gain
+achv_mutual_gain_desc,与商盟成交 50 笔,Complete 50 merchant trades
+achv_most_favored_name,最惠国,Most Favored
+achv_most_favored_desc,商盟态度 ≥60,Merchant attitude at 60 or higher
+achv_not_one_step_name,寸土不让,Not One Step
+achv_not_one_step_desc,击退赤旗袭击 10 次,Repel 10 Red Banner raids
+achv_tear_the_ultimatum_name,拆掉通牒,Tear the Ultimatum
+achv_tear_the_ultimatum_desc,战争中攻占赤旗任一星体,Take a Red Banner body in war
+achv_behind_high_walls_name,高墙之后,Behind High Walls
+achv_behind_high_walls_desc,解码静默会谜语,Decode the Silent riddle
+achv_double_harvest_name,双收,Double Harvest
+achv_double_harvest_desc,占领眠霜,Occupy Sleetfall
+achv_lord_protector_name,护国公,Lord Protector
+achv_lord_protector_desc,与商盟缔结护国条约,Sign the protectorate treaty with the merchants
+achv_hegemon_name,星系霸主,Hegemon
+achv_hegemon_desc,达成霸权胜利,Achieve the hegemony victory
+achv_warp_ignition_name,跃迁点火,Warp Ignition
+achv_warp_ignition_desc,达成灯塔胜利,Achieve the beacon victory

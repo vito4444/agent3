@@ -60,6 +60,8 @@ namespace Starsoil.BalanceSim
                 prices[pair.Key] = pair.Value.ToObject<double>();
             }
             universe.SetPrices(prices);
+            universe.FactionsSandbox.InitFromCsv(
+                File.ReadAllLines(Path.Combine(FindDataDir(), "faction_params.csv")));
             return universe;
         }
 

@@ -1,27 +1,27 @@
 # RecipeGen validation report
 
-Generated at (UTC): 2026-08-12 18:41:32
+Generated at (UTC): 2026-08-13 09:16:06
 
 ## Counts by family (target table: docs/plan/04)
 
 | family | recipes |
 |---|---|
 | A | 21 |
-| B | 57 |
-| C | 41 |
+| B | 68 |
+| C | 43 |
 | D | 57 |
 | E | 30 |
 | F | 79 |
 | G | 20 |
 | H | 25 |
-| total | 330 |
+| total | 343 |
 
-Items: 344 · Verbs: 14 · Forms: 14 · Tech nodes: 120
+Items: 357 · Verbs: 14 · Forms: 14 · Tech nodes: 120
 
 ## Checks
 
 ### 1 reachability (start planet + crash-pod inventory) — PASS
-_236/330 recipes reachable_
+_244/343 recipes reachable_
 
 ### 2 no orphan items — PASS
 
@@ -33,10 +33,12 @@ _236/330 recipes reachable_
 _warnings only; whitelist decisions happen in M3 review_
 - warning: mass gain form_iron_plate: 3 -> 4
 - warning: mass gain form_iron_rod: 3 -> 4
+- warning: mass gain form_iron_mesh: 3 -> 4
 - warning: mass gain form_iron_brick: 3 -> 4
 - warning: mass gain form_copper_plate: 3 -> 4
 - warning: mass gain form_copper_rod: 3 -> 4
 - warning: mass gain form_copper_wire: 3 -> 6
+- warning: mass gain form_copper_mesh: 3 -> 4
 - warning: mass gain form_copper_powder: 3 -> 4
 - warning: mass gain form_aluminum_plate: 3 -> 4
 - warning: mass gain form_aluminum_rod: 3 -> 4
@@ -45,16 +47,21 @@ _warnings only; whitelist decisions happen in M3 review_
 - warning: mass gain form_aluminum_powder: 3 -> 4
 - warning: mass gain form_titanium_plate: 3 -> 4
 - warning: mass gain form_titanium_rod: 3 -> 4
+- warning: mass gain form_titanium_wire: 3 -> 6
+- warning: mass gain form_titanium_mesh: 3 -> 4
 - warning: mass gain form_titanium_powder: 3 -> 4
 - warning: mass gain form_nickel_plate: 3 -> 4
+- warning: mass gain form_nickel_wire: 3 -> 6
 - warning: mass gain form_nickel_powder: 3 -> 4
 - warning: mass gain form_rare_earth_wire: 3 -> 6
 - warning: mass gain form_rare_earth_powder: 3 -> 4
+- warning: mass gain form_platinum_wire: 3 -> 6
 - warning: mass gain form_platinum_powder: 3 -> 4
 - warning: mass gain form_steel_plate: 3 -> 4
 - warning: mass gain form_steel_rod: 3 -> 4
 - warning: mass gain form_steel_mesh: 3 -> 4
 - warning: mass gain form_steel_brick: 3 -> 4
+- warning: mass gain form_bronze_plate: 3 -> 4
 - warning: mass gain form_bronze_rod: 3 -> 4
 - warning: mass gain form_duralumin_plate: 3 -> 4
 - warning: mass gain form_duralumin_rod: 3 -> 4
@@ -64,6 +71,8 @@ _warnings only; whitelist decisions happen in M3 review_
 - warning: mass gain form_titanium_alloy_rod: 3 -> 4
 - warning: mass gain form_invar_plate: 3 -> 4
 - warning: mass gain form_invar_rod: 3 -> 4
+- warning: mass gain form_invar_mesh: 3 -> 4
+- warning: mass gain form_electrical_steel_plate: 3 -> 4
 - warning: mass gain form_electrical_steel_wire: 3 -> 6
 - warning: mass gain form_aurite_steel_plate: 3 -> 4
 - warning: mass gain form_aurite_steel_rod: 3 -> 4
@@ -90,4 +99,4 @@ _warnings only; whitelist decisions happen in M3 review_
 
 ### 8 localization strings present (zh/en) — PASS
 
-TOTAL recipes: 330, errors: 0, warnings: 52
+TOTAL recipes: 343, errors: 0, warnings: 61

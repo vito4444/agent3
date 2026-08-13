@@ -22,6 +22,9 @@ namespace Starsoil.UI
         private Label _topBar;
         private Label _banner;
         private VisualElement _alertsBox;
+        /// <summary>Below this window width the key-hint segment overflows; hide it.</summary>
+        private const int WideTopBarMinWidth = 1150;
+
         private VisualElement _tutorialBox;
         private Label _tutorialLabel;
         private VisualElement _defeatOverlay;
@@ -87,15 +90,24 @@ namespace Starsoil.UI
             _alertsBox.style.left = 8;
             root.Add(_alertsBox);
 
+            // Slim full-width strip right under the top bar: every panel opens at
+            // top>=60, so the tutorial never overlaps them (visual QA round 1).
             _tutorialBox = new VisualElement();
             _tutorialBox.style.position = Position.Absolute;
-            _tutorialBox.style.top = 40;
-            _tutorialBox.style.right = 8;
-            _tutorialBox.style.width = 340;
+            _tutorialBox.style.top = 30;
+            _tutorialBox.style.left = Length.Percent(22f);
+            _tutorialBox.style.right = Length.Percent(22f);
+            _tutorialBox.style.flexDirection = FlexDirection.Row;
+            _tutorialBox.style.alignItems = Align.Center;
+            _tutorialBox.style.justifyContent = Justify.SpaceBetween;
             Style(_tutorialBox, new Color(0.1f, 0.14f, 0.1f, 0.9f), Color.white);
+            _tutorialBox.style.paddingTop = 2;
+            _tutorialBox.style.paddingBottom = 2;
+            _tutorialBox.style.maxHeight = 28;
             _tutorialLabel = new Label { text = string.Empty };
             _tutorialLabel.style.whiteSpace = WhiteSpace.Normal;
             _tutorialLabel.style.color = Color.white;
+            _tutorialLabel.style.flexGrow = 1f;
             _tutorialBox.Add(_tutorialLabel);
             var skip = new Button(() => _skipTutorial?.Invoke()) { text = L10n.Tr("ui_skip_tutorial") };
             _tutorialBox.Add(skip);
@@ -178,7 +190,7 @@ namespace Starsoil.UI
                 L10n.Tr("hud_credits") + " 0 · " +
                 L10n.Tr("hud_population") + " " + _world.Colonists.AliveCount + " (" + _world.Bots.All.Count + "🤖) · " +
                 L10n.TrF("hud_day", _world.Day) + " " + L10n.TrF("hud_hour", _world.HourOfDay) + " · " + speed +
-                "  |  " + L10n.Tr("ui_speed_hint");
+                (Screen.width >= WideTopBarMinWidth ? "  |  " + L10n.Tr("ui_speed_hint") : string.Empty);
         }
 
         private void RefreshBanner()

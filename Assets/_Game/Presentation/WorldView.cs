@@ -127,12 +127,9 @@ namespace Starsoil.Presentation
 
         private static Material MakeMaterial(Color color)
         {
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null)
-            {
-                shader = Shader.Find("Standard");
-            }
-            return new Material(shader) { color = color };
+            var material = MaterialLib.NewLit();
+            material.color = color;
+            return material;
         }
     }
 }

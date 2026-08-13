@@ -2,6 +2,20 @@
   "schemaVersion": 0,
   "items": [
     {
+      "Id": "adhesive",
+      "Zh": "粘合剂",
+      "En": "Adhesive",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "organic"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
       "Id": "advanced_circuit",
       "Zh": "高阶电路",
       "En": "Advanced circuit",
@@ -94,6 +108,21 @@
       "SourceBodies": [],
       "Mass": 2.0,
       "IconSpec": "aluminum:mesh:press",
+      "IsStub": false
+    },
+    {
+      "Id": "aluminum_pipe",
+      "Zh": "铝管",
+      "En": "aluminum pipe",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "light",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aluminum:pipe:machining",
       "IsStub": false
     },
     {
@@ -286,6 +315,21 @@
       "SourceBodies": [],
       "Mass": 3.0,
       "IconSpec": "aurite:ingot:smelt",
+      "IsStub": false
+    },
+    {
+      "Id": "aurite_steel_gear",
+      "Zh": "耐热曜金钢齿轮",
+      "En": "aurite steel gear",
+      "Category": "intermediate",
+      "Tier": 4,
+      "Tags": [
+        "heat_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "aurite_steel:gear:machining",
       "IsStub": false
     },
     {
@@ -565,6 +609,20 @@
       "SourceBodies": [],
       "Mass": 2.0,
       "IconSpec": "bronze:pipe:machining",
+      "IsStub": false
+    },
+    {
+      "Id": "bronze_plate",
+      "Zh": "青铜板",
+      "En": "bronze plate",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "bronze:plate:cast_roll",
       "IsStub": false
     },
     {
@@ -899,6 +957,20 @@
       "IsStub": false
     },
     {
+      "Id": "coolant",
+      "Zh": "冷却液",
+      "En": "Coolant",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "fluid"
+      ],
+      "SourceBodies": [],
+      "Mass": 1.0,
+      "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
       "Id": "copper_gear",
       "Zh": "铜齿轮",
       "En": "copper gear",
@@ -936,6 +1008,20 @@
       "SourceBodies": [],
       "Mass": 2.0,
       "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "copper_mesh",
+      "Zh": "铜网",
+      "En": "copper mesh",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "copper:mesh:press",
       "IsStub": false
     },
     {
@@ -1394,6 +1480,20 @@
       "SourceBodies": [],
       "Mass": 3.0,
       "IconSpec": "electrical_steel:ingot:alloy",
+      "IsStub": false
+    },
+    {
+      "Id": "electrical_steel_plate",
+      "Zh": "电工硅钢板",
+      "En": "electrical steel plate",
+      "Category": "intermediate",
+      "Tier": 2,
+      "Tags": [
+        "conductive"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "electrical_steel:plate:cast_roll",
       "IsStub": false
     },
     {
@@ -2094,6 +2194,21 @@
       "IsStub": false
     },
     {
+      "Id": "invar_mesh",
+      "Zh": "殷钢网",
+      "En": "invar mesh",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant",
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "invar:mesh:press",
+      "IsStub": false
+    },
+    {
       "Id": "invar_pipe",
       "Zh": "殷钢管",
       "En": "invar pipe",
@@ -2190,6 +2305,20 @@
       "SourceBodies": [],
       "Mass": 2.0,
       "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "iron_mesh",
+      "Zh": "铁网",
+      "En": "iron mesh",
+      "Category": "intermediate",
+      "Tier": 1,
+      "Tags": [
+        "high_strength"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "iron:mesh:press",
       "IsStub": false
     },
     {
@@ -2800,6 +2929,20 @@
       "IsStub": false
     },
     {
+      "Id": "nickel_wire",
+      "Zh": "镍线",
+      "En": "nickel wire",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "nickel:wire:draw_wire",
+      "IsStub": false
+    },
+    {
       "Id": "nitric_acid",
       "Zh": "硝酸",
       "En": "Nitric acid",
@@ -3151,6 +3294,21 @@
       ],
       "Mass": 5.0,
       "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "platinum_wire",
+      "Zh": "铂线",
+      "En": "platinum wire",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "catalytic",
+        "corrosion_resistant"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "platinum:wire:draw_wire",
       "IsStub": false
     },
     {
@@ -4348,6 +4506,22 @@
       "IsStub": false
     },
     {
+      "Id": "titanium_mesh",
+      "Zh": "钛网",
+      "En": "titanium mesh",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:mesh:press",
+      "IsStub": false
+    },
+    {
       "Id": "titanium_pipe",
       "Zh": "钛管",
       "En": "titanium pipe",
@@ -4427,6 +4601,22 @@
       ],
       "Mass": 3.0,
       "IconSpec": "auto",
+      "IsStub": false
+    },
+    {
+      "Id": "titanium_wire",
+      "Zh": "钛线",
+      "En": "titanium wire",
+      "Category": "intermediate",
+      "Tier": 3,
+      "Tags": [
+        "heat_resistant",
+        "high_strength",
+        "light"
+      ],
+      "SourceBodies": [],
+      "Mass": 2.0,
+      "IconSpec": "titanium:wire:draw_wire",
       "IsStub": false
     },
     {

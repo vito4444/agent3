@@ -61,6 +61,11 @@ namespace Starsoil.Data
     {
         public static bool ApplyTo(Universe universe)
         {
+            string factionPath = DataFiles.RepoDataPath("faction_params.csv");
+            if (factionPath != null)
+            {
+                universe.FactionsSandbox.InitFromCsv(File.ReadAllLines(factionPath));
+            }
             string recipesPath = DataFiles.RepoGeneratedPath("recipes.json");
             string techPath = DataFiles.RepoDataPath("tech_nodes.csv");
             if (recipesPath == null || techPath == null)
