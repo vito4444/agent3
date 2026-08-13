@@ -64,6 +64,14 @@ namespace Starsoil.UI
             _uiReady = true;
         }
 
+        /// <summary>Programmatic open/close (demo driver, docs/plan/05 键位).</summary>
+        public void Toggle()
+        {
+            bool visible = _panel.style.display == DisplayStyle.Flex;
+            _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
+            _lastRefreshTick = -1;
+        }
+
         private void Update()
         {
             if (!_uiReady || _universe == null)
@@ -72,9 +80,7 @@ namespace Starsoil.UI
             }
             if (Input.GetKeyDown(KeyCode.G))
             {
-                bool visible = _panel.style.display == DisplayStyle.Flex;
-                _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
-                _lastRefreshTick = -1;
+                Toggle();
             }
             if (_panel.style.display != DisplayStyle.Flex)
             {

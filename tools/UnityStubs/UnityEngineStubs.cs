@@ -277,6 +277,7 @@ namespace UnityEngine
     {
         public static string dataPath => "";
         public static string persistentDataPath => "";
+        public static void Quit() { }
     }
 
     public static class Time
@@ -330,6 +331,11 @@ namespace UnityEngine
     {
         public static int width => 1920;
         public static int height => 1080;
+    }
+
+    public static class ScreenCapture
+    {
+        public static void CaptureScreenshot(string filename) { }
     }
 
     public enum TextAnchor { UpperLeft, UpperCenter, UpperRight, MiddleLeft, MiddleCenter, MiddleRight, LowerLeft, LowerCenter, LowerRight }

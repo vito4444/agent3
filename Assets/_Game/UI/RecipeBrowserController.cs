@@ -101,6 +101,17 @@ namespace Starsoil.UI
             parent.Add(button);
         }
 
+        /// <summary>Programmatic open/close (demo driver, docs/plan/05 键位).</summary>
+        public void Toggle()
+        {
+            bool visible = _panel.style.display == DisplayStyle.Flex;
+            _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
+            if (!visible)
+            {
+                Rebuild();
+            }
+        }
+
         private void Update()
         {
             if (!_uiReady || _world == null)
@@ -109,12 +120,7 @@ namespace Starsoil.UI
             }
             if (Input.GetKeyDown(KeyCode.F4))
             {
-                bool visible = _panel.style.display == DisplayStyle.Flex;
-                _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
-                if (!visible)
-                {
-                    Rebuild();
-                }
+                Toggle();
             }
         }
 

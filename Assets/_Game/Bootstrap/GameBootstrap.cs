@@ -130,6 +130,8 @@ namespace Starsoil.Bootstrap
             hud.Init(world, rig, worldView, () => driver.Speed);
             hudUi.Init(world, () => driver.Speed, driver.JumpCameraTo, driver.NewGame, driver.SkipTutorial);
 
+            DemoScreenshotDriver.InstallIfRequested(root);
+
             Debug.Log("[GameBootstrap] World ready: seed " + world.Seed + ", region " + world.Terrain.Size +
                       ", colonists " + world.Colonists.AliveCount);
         }
