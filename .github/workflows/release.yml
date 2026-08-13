@@ -1,0 +1,138 @@
+# CI gate 3 (docs/plan/10 构建与上传管线): manual trigger only.
+# Unity batchmode builds win64 + linux64, versioned major.minor.patch+sha,
+# then steamcmd uploads per steam/app_build.vdf to the chosen branch.
+# Missing secrets fail their job EXPLICITLY ("阻塞待用户") — never a silent skip.
+name: Release (gate 3)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Semantic version (major.minor.patch), e.g. 0.9.0"
+        required: true
+      live_branch:
+        description: "Steam branch to set live"
+        required: true
+        default: internal
+        type: choice
+        options: [internal, beta]
+      upload:
+        description: "Upload to Steam after building"
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  build:
+    name: "Build ${{ matrix.targetPlatform }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - targetPlatform: StandaloneWindows64
+            outputDir: Win64
+          - targetPlatform: StandaloneLinux64
+            outputDir: Linux64
+    steps:
+      - name: License precheck (阻塞待用户 when missing)
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          if [ -z "$UNITY_LICENSE" ] && { [ -z "$UNITY_EMAIL" ] || [ -z "$UNITY_PASSWORD" ]; }; then
+            echo "::error::阻塞待用户: 缺少 UNITY_LICENSE (或 UNITY_EMAIL+UNITY_PASSWORD) secret,无法构建。见 docs/unity-license/README.md"
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-release-${{ matrix.targetPlatform }}-${{ hashFiles('Packages/manifest.json') }}
+
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 6000.3.21f1
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: Starsoil
+          buildsPath: Builds
+          buildVersion: ${{ inputs.version }}+${{ github.sha }}
+
+      - name: Normalize output directory
+        run: |
+          sudo mkdir -p "Builds/${{ matrix.outputDir }}"
+          sudo cp -r "Builds/${{ matrix.targetPlatform }}/." "Builds/${{ matrix.outputDir }}/"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: starsoil-${{ matrix.outputDir }}-${{ inputs.version }}
+          path: Builds/${{ matrix.outputDir }}
+
+  upload:
+    name: "Steam upload (${{ inputs.live_branch }})"
+    needs: build
+    if: ${{ inputs.upload }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Steam credentials precheck (阻塞待用户 when missing)
+        env:
+          STEAM_APP_ID: ${{ secrets.STEAM_APP_ID }}
+          STEAM_BUILD_USER: ${{ secrets.STEAM_BUILD_USER }}
+          STEAM_CONFIG_VDF: ${{ secrets.STEAM_CONFIG_VDF }}
+        run: |
+          missing=""
+          [ -z "$STEAM_APP_ID" ] && missing="$missing STEAM_APP_ID"
+          [ -z "$STEAM_BUILD_USER" ] && missing="$missing STEAM_BUILD_USER"
+          [ -z "$STEAM_CONFIG_VDF" ] && missing="$missing STEAM_CONFIG_VDF"
+          if [ -n "$missing" ]; then
+            echo "::error::阻塞待用户: 缺少 Steam secrets:$missing。构建产物已留存为 artifact,见 steam/README.md"
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: starsoil-Win64-${{ inputs.version }}
+          path: Builds/Win64
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: starsoil-Linux64-${{ inputs.version }}
+          path: Builds/Linux64
+
+      - name: Install steamcmd
+        run: |
+          sudo add-apt-repository -y multiverse
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          echo steamcmd steam/question select "I AGREE" | sudo debconf-set-selections
+          echo steamcmd steam/license note '' | sudo debconf-set-selections
+          sudo apt-get install -y steamcmd
+
+      - name: Prepare vdf and login state
+        env:
+          STEAM_APP_ID: ${{ secrets.STEAM_APP_ID }}
+          STEAM_CONFIG_VDF: ${{ secrets.STEAM_CONFIG_VDF }}
+        run: |
+          depot_win=$((STEAM_APP_ID + 1))
+          depot_linux=$((STEAM_APP_ID + 2))
+          desc="${{ inputs.version }}+$(echo ${{ github.sha }} | cut -c1-8)"
+          sed -i "s/__APP_ID__/$STEAM_APP_ID/; s/__BUILD_DESC__/$desc/; s/__LIVE_BRANCH__/${{ inputs.live_branch }}/; s/__DEPOT_WINDOWS__/$depot_win/g; s/__DEPOT_LINUX__/$depot_linux/g" steam/app_build.vdf
+          sed -i "s/__DEPOT_WINDOWS__/$depot_win/" steam/depot_windows.vdf
+          sed -i "s/__DEPOT_LINUX__/$depot_linux/" steam/depot_linux.vdf
+          mkdir -p ~/Steam/config
+          echo "$STEAM_CONFIG_VDF" | base64 -d > ~/Steam/config/config.vdf
+
+      - name: Upload via steamcmd
+        env:
+          STEAM_BUILD_USER: ${{ secrets.STEAM_BUILD_USER }}
+        run: |
+          steamcmd +login "$STEAM_BUILD_USER" +run_app_build "$(pwd)/steam/app_build.vdf" +quit

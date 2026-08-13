@@ -1,0 +1,14 @@
+"AppBuild"
+{
+	"AppID" "__APP_ID__"
+	"Desc" "__BUILD_DESC__"
+	"SetLive" "__LIVE_BRANCH__"
+	"ContentRoot" "../Builds"
+	"BuildOutput" "../BuildLogs"
+
+	"Depots"
+	{
+		"__DEPOT_WINDOWS__" "depot_windows.vdf"
+		"__DEPOT_LINUX__" "depot_linux.vdf"
+	}
+}
