@@ -32,11 +32,16 @@ namespace Starsoil.EditorTools
                 AssetDatabase.CreateFolder(SettingsFolderParent, SettingsFolderName);
             }
 
-            var rendererData = ScriptableObject.CreateInstance<UniversalRendererData>();
-            AssetDatabase.CreateAsset(rendererData, RendererAssetPath);
-
-            var pipeline = UniversalRenderPipelineAsset.Create(rendererData);
-            AssetDatabase.CreateAsset(pipeline, PipelineAssetPath);
+            // Idempotent: recreating the pipeline asset would orphan the renderer
+            // reference of the old one and log a "Default Renderer is missing" error.
+            var pipeline = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(PipelineAssetPath);
+            if (pipeline == null)
+            {
+                var rendererData = ScriptableObject.CreateInstance<UniversalRendererData>();
+                AssetDatabase.CreateAsset(rendererData, RendererAssetPath);
+                pipeline = UniversalRenderPipelineAsset.Create(rendererData);
+                AssetDatabase.CreateAsset(pipeline, PipelineAssetPath);
+            }
 
             GraphicsSettings.defaultRenderPipeline = pipeline;
             QualitySettings.renderPipeline = pipeline;
@@ -48,8 +53,16 @@ namespace Starsoil.EditorTools
             {
                 AssetDatabase.CreateFolder(SettingsFolderParent, "Resources");
             }
-            var panelSettings = ScriptableObject.CreateInstance<PanelSettings>();
-            AssetDatabase.CreateAsset(panelSettings, PanelSettingsPath);
+            if (AssetDatabase.LoadAssetAtPath<PanelSettings>(PanelSettingsPath) == null)
+            {
+                var panelSettings = ScriptableObject.CreateInstance<PanelSettings>();
+                AssetDatabase.CreateAsset(panelSettings, PanelSettingsPath);
+            }
+
+            // Base materials under Resources carry the URP shaders into player builds
+            // (Shader.Find alone returns null in builds; see MaterialLib).
+            CreateBaseMaterial("Assets/Resources/StarsoilLitBase.mat", "Universal Render Pipeline/Lit");
+            CreateBaseMaterial("Assets/Resources/StarsoilUnlitBase.mat", "Universal Render Pipeline/Unlit");
 
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             EditorSceneManager.SaveScene(scene, ScenePath);
@@ -57,6 +70,21 @@ namespace Starsoil.EditorTools
 
             AssetDatabase.SaveAssets();
             Debug.Log("[Starsoil] Setup complete: URP assigned, Linear color space, product name set, Main scene registered.");
+        }
+
+        private static void CreateBaseMaterial(string assetPath, string shaderName)
+        {
+            if (AssetDatabase.LoadAssetAtPath<Material>(assetPath) != null)
+            {
+                return;
+            }
+            var shader = Shader.Find(shaderName);
+            if (shader == null)
+            {
+                Debug.LogError("[Starsoil] shader missing in editor: " + shaderName);
+                return;
+            }
+            AssetDatabase.CreateAsset(new Material(shader), assetPath);
         }
     }
 }

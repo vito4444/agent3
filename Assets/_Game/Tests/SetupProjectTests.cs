@@ -11,7 +11,7 @@ namespace Starsoil.Tests
     /// </summary>
     public sealed class SetupProjectTests
     {
-        private const string PanelSettingsPath = "Assets/_Game/Resources/StarsoilPanelSettings.asset";
+        private const string PanelSettingsPath = "Assets/Resources/StarsoilPanelSettings.asset";
 
         [Test]
         public void Run_Twice_IsIdempotent_AndCreatesPanelSettings()

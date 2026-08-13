@@ -262,22 +262,16 @@ namespace Starsoil.Presentation
     {
         public static Material Solid(Color color)
         {
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null)
-            {
-                shader = Shader.Find("Standard");
-            }
-            return new Material(shader) { color = color };
+            var material = MaterialLib.NewLit();
+            material.color = color;
+            return material;
         }
 
         public static Material Unlit(Color color)
         {
-            var shader = Shader.Find("Universal Render Pipeline/Unlit");
-            if (shader == null)
-            {
-                shader = Shader.Find("Unlit/Color");
-            }
-            return new Material(shader) { color = color };
+            var material = MaterialLib.NewUnlit();
+            material.color = color;
+            return material;
         }
     }
 }
