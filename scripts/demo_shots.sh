@@ -18,7 +18,7 @@ rm -rf "$OUT"
 mkdir -p "$OUT"
 for panel in $PANELS; do
     echo "--- capturing $panel"
-    STARSOIL_DEMO_SHOTS="$OUT" STARSOIL_DEMO_PANEL="$panel" \
+    STARSOIL_DEMO_SHOTS="$OUT" STARSOIL_DEMO_PANEL="$panel" STARSOIL_DEMO_LANG="${LANG_OVERRIDE:-}" \
         timeout 240 xvfb-run -a -s '-screen 0 960x540x24' \
         "$BIN" -screen-width 960 -screen-height 540 -screen-fullscreen 0 -force-glcore \
         -logFile "$OUT/$panel.log" > /dev/null 2>&1 || echo "  ($panel run exited nonzero)"

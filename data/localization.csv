@@ -74,8 +74,8 @@ alert_storm_incoming,沙暴将至(约 1 日后),Sandstorm inbound (about 1 day)
 alert_storm_active,沙暴过境:舱外作业停止,Sandstorm: outdoor work suspended
 alert_colonist_critical,殖民者濒危!,Colonist critical!
 alert_defeat,殖民地覆灭,Colony lost
-tutorial_step_mine_ice,指派采集:点选水冰矿脉,采回 2 份水冰,Designate the ice deposit and mine 2 ice
-tutorial_step_melt_water,在篝火炉下达"融冰"订单,获得 2 份水,Order "melt ice" at the campfire for 2 water
+tutorial_step_mine_ice,"指派采集:点选水冰矿脉,采回 2 份水冰",Designate the ice deposit and mine 2 ice
+tutorial_step_melt_water,"在篝火炉下达「融冰」订单,获得 2 份水",Order the melt-ice job at the campfire for 2 water
 tutorial_step_gather_biomass,采集 2 份灌丛生物质,Gather 2 biomass from shrubs
 tutorial_step_craft_ration,在手工台制作 1 份应急口粮,Craft 1 emergency ration at the workbench
 tutorial_step_build_sleep_pod,建造 1 座睡舱,Build a sleep pod

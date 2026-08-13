@@ -30,7 +30,10 @@ namespace Starsoil.Bootstrap
             var settings = GameSettings.Load();
             L10n.TryLoadDefault();
             ItemCatalog.TryLoadDefault();
-            L10n.SetLanguage(settings.Language);
+            // Demo/QA language override must land before any UI is built — panel
+            // titles and buttons capture their text at BuildUi time.
+            string demoLanguage = System.Environment.GetEnvironmentVariable("STARSOIL_DEMO_LANG");
+            L10n.SetLanguage(string.IsNullOrEmpty(demoLanguage) ? settings.Language : demoLanguage);
 
             var universe = Universe.NewGame(DefaultWorldSeed, GameConstants.DefaultRegionSize);
             BodiesData.LoadInto(universe);
