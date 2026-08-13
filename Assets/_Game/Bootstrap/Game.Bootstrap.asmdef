@@ -5,7 +5,8 @@
         "Game.Core",
         "Game.Data",
         "Game.Presentation",
-        "Game.UI"
+        "Game.UI",
+        "Unity.RenderPipelines.Universal.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

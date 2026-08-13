@@ -29,11 +29,6 @@ namespace UnityEditor
         public static string productName { get; set; }
     }
 
-    public static class QualitySettings
-    {
-        public static RenderPipelineAsset renderPipeline { get; set; }
-    }
-
     public class EditorBuildSettingsScene
     {
         public EditorBuildSettingsScene(string path, bool enabled) { }

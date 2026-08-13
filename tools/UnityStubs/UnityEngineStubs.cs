@@ -277,6 +277,7 @@ namespace UnityEngine
     {
         public static string dataPath => "";
         public static string persistentDataPath => "";
+        public static bool runInBackground { get; set; }
         public static void Quit() { }
     }
 
@@ -338,6 +339,15 @@ namespace UnityEngine
         public static void CaptureScreenshot(string filename) { }
     }
 
+    public enum ShadowQuality { Disable, HardOnly, All }
+
+    public static class QualitySettings
+    {
+        public static int vSyncCount { get; set; }
+        public static ShadowQuality shadows { get; set; }
+        public static Rendering.RenderPipelineAsset renderPipeline { get; set; }
+    }
+
     public enum TextAnchor { UpperLeft, UpperCenter, UpperRight, MiddleLeft, MiddleCenter, MiddleRight, LowerLeft, LowerCenter, LowerRight }
 }
 
@@ -352,6 +362,7 @@ namespace UnityEngine.Rendering
     public static class GraphicsSettings
     {
         public static RenderPipelineAsset defaultRenderPipeline { get; set; }
+        public static RenderPipelineAsset currentRenderPipeline => defaultRenderPipeline;
     }
 }
 
@@ -371,5 +382,6 @@ namespace UnityEngine.Rendering.Universal
         public bool supportsHDR { get; set; }
         public int shadowCascadeCount { get; set; }
         public float shadowDistance { get; set; }
+        public float renderScale { get; set; }
     }
 }

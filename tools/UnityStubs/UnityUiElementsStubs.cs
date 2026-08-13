@@ -68,6 +68,7 @@ namespace UnityEngine.UIElements
         public StyleLength paddingLeft { get; set; }
         public StyleLength paddingRight { get; set; }
         public StyleFloat flexGrow { get; set; }
+        public StyleFloat flexShrink { get; set; }
         public StyleFloat fontSize { get; set; }
         public StyleColor backgroundColor { get; set; }
         public StyleColor color { get; set; }

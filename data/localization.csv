@@ -143,3 +143,34 @@ ui_ultimatum,赤旗通牒,Red Banner ultimatum
 ui_ultimatum_demand,保护费,Protection fee
 ui_pay_ultimatum,支付,Pay
 ui_credits,星币,Credits
+domain_survival,生存,Survival
+domain_industry,工业,Industry
+domain_chemistry,化学,Chemistry
+domain_logistics,物流,Logistics
+domain_astronautics,航天,Astronautics
+domain_defense,防务,Defense
+domain_faction_merchant,商盟分支,Merchant branch
+domain_faction_redbanner,赤旗分支,Red Banner branch
+domain_faction_silent,静默会分支,Silent branch
+station_Workbench,工作台,Workbench
+station_Campfire,营火,Campfire
+station_Furnace,熔炉,Furnace
+station_Crusher,破碎机,Crusher
+station_RollMill,铸轧机,Roll mill
+station_Press,压制机,Press
+station_Assembler,装配台,Assembler
+station_ArcFurnace,电弧炉,Arc furnace
+station_WireMill,拉丝机,Wire mill
+station_MachiningBench,机加工台,Machining bench
+station_ChemElectrolyzer,化学电解槽,Chem electrolyzer
+station_Distiller,蒸馏塔,Distiller
+station_ChemReactor,化工釜,Chem reactor
+station_PolymerReactor,聚合反应器,Polymer reactor
+station_SabatierReactor,萨巴蒂尔反应器,Sabatier reactor
+station_CryoLiquefier,制冷液化器,Cryo liquefier
+station_CultureVat,培养槽,Culture vat
+station_Refinery,精炼塔,Refinery
+station_Recycler,回收机,Recycler
+station_WaterPurifier,净水器,Water purifier
+station_Greenhouse,温室,Greenhouse
+station_ForageStation,采集站,Forage station

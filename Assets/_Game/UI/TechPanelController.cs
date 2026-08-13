@@ -73,6 +73,8 @@ namespace Starsoil.UI
         public void Toggle()
         {
             bool visible = _panel.style.display == DisplayStyle.Flex;
+            Debug.Log("[TechPanel] toggle wasVisible=" + visible +
+                      " raw=" + _panel.style.display.value + " -> " + (visible ? "None" : "Flex"));
             _panel.style.display = visible ? DisplayStyle.None : DisplayStyle.Flex;
             _lastRefreshTick = -1;
         }
@@ -95,10 +97,18 @@ namespace Starsoil.UI
             }
         }
 
+        /// <summary>Progression order (docs/plan/04 六域), not alphabetical: the first
+        /// screen a player sees must be researchable early-game tech.</summary>
+        private static readonly string[] DomainOrder =
+        {
+            "survival", "industry", "chemistry", "logistics", "astronautics", "defense",
+            "faction_merchant", "faction_redbanner", "faction_silent"
+        };
+
         private void Rebuild()
         {
             _list.Clear();
-            var byDomain = new SortedDictionary<string, List<TechNode>>();
+            var byDomain = new Dictionary<string, List<TechNode>>();
             foreach (var pair in _world.Tech.Nodes)
             {
                 if (!byDomain.TryGetValue(pair.Value.Domain, out var list))
@@ -108,14 +118,26 @@ namespace Starsoil.UI
                 }
                 list.Add(pair.Value);
             }
-            foreach (var domain in byDomain)
+            var domains = new List<string>(DomainOrder);
+            foreach (string domain in byDomain.Keys)
             {
-                var header = new Label { text = domain.Key };
+                if (!domains.Contains(domain))
+                {
+                    domains.Add(domain);
+                }
+            }
+            foreach (string domain in domains)
+            {
+                if (!byDomain.TryGetValue(domain, out var nodes))
+                {
+                    continue;
+                }
+                var header = new Label { text = L10n.Tr("domain_" + domain) };
                 header.style.color = new Color(0.7f, 0.8f, 0.95f);
                 header.style.marginTop = 6;
                 _list.Add(header);
-                domain.Value.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
-                foreach (var node in domain.Value)
+                nodes.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+                foreach (var node in nodes)
                 {
                     _list.Add(BuildRow(node));
                 }
@@ -167,7 +189,7 @@ namespace Starsoil.UI
             foreach (var cost in node.Cost)
             {
                 int paid = _world.Tech.ResearchTarget == node.Id ? _world.Tech.PaidCores.Get(cost.ItemId) : 0;
-                parts.Add(L10n.Tr("item_" + cost.ItemId) + " " + paid + "/" + cost.Count);
+                parts.Add(ItemCatalog.NameOf(cost.ItemId) + " " + paid + "/" + cost.Count);
             }
             return "  [" + string.Join(", ", parts) + "]";
         }

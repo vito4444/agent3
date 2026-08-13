@@ -69,6 +69,8 @@ namespace Starsoil.UI
             var filters = new VisualElement();
             filters.style.flexDirection = FlexDirection.Row;
             filters.style.flexWrap = Wrap.Wrap;
+            filters.style.flexShrink = 0f;
+            filters.style.marginBottom = 4;
             AddFilter(filters, string.Empty, L10n.Tr("ui_filter_all"));
             foreach (var kind in new[]
                      {
@@ -78,16 +80,23 @@ namespace Starsoil.UI
                          BuildingKind.CryoLiquefier, BuildingKind.CultureVat
                      })
             {
-                AddFilter(filters, kind.ToString(), kind.ToString());
+                AddFilter(filters, kind.ToString(), StationName(kind.ToString()));
             }
             _panel.Add(filters);
 
             _list = new ScrollView();
+            _list.style.flexGrow = 1f;
             _list.style.maxHeight = 540;
             _panel.Add(_list);
 
             root.Add(_panel);
             _uiReady = true;
+        }
+
+        /// <summary>Localized station label (station_&lt;BuildingKind&gt; keys).</summary>
+        private static string StationName(string kind)
+        {
+            return L10n.Tr("station_" + kind);
         }
 
         private void AddFilter(VisualElement parent, string kind, string label)
@@ -180,7 +189,7 @@ namespace Starsoil.UI
 
             string outputs = Join(recipe.Outputs);
             string header = outputs + "  ←  " + Join(recipe.Inputs) +
-                            "   [" + recipe.Station + (recipe.HasHandStation ? "/" + recipe.HandStation : "") + "]";
+                            "   [" + StationName(recipe.Station.ToString()) + (recipe.HasHandStation ? "/" + StationName(recipe.HandStation.ToString()) : "") + "]";
             var head = new Label { text = (unlocked ? "" : "🔒 ") + header };
             head.style.color = unlocked ? Color.white : new Color(0.6f, 0.6f, 0.65f);
             head.style.whiteSpace = WhiteSpace.Normal;
