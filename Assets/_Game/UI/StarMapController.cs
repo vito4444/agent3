@@ -57,6 +57,7 @@ namespace Starsoil.UI
             _panel.Add(title);
 
             _list = new ScrollView();
+            _list.horizontalScrollerVisibility = ScrollerVisibility.Hidden;
             _list.style.maxHeight = 560;
             _panel.Add(_list);
             root.Add(_panel);

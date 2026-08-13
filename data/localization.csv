@@ -175,3 +175,43 @@ station_WaterPurifier,净水器,Water purifier
 station_Greenhouse,温室,Greenhouse
 station_ForageStation,采集站,Forage station
 ui_current_research,当前研究,Researching
+achv_first_night_name,第一夜,First Night
+achv_first_night_desc,存活 1 游戏日,Survive 1 game day
+achv_powered_up_name,通电,Powered Up
+achv_powered_up_desc,首次电网供电,Bring the power grid online
+achv_hands_obsolete_name,手已无用,Hands Obsolete
+achv_hands_obsolete_desc,12 类手工工序全部机器化,All 12 hand crafts running on machines
+achv_steel_apprentice_name,冶金学徒,Steel Apprentice
+achv_steel_apprentice_desc,首次产出钢锭,Smelt your first steel ingot
+achv_first_electrolysis_name,化学起步,First Electrolysis
+achv_first_electrolysis_desc,首次电解水,Electrolyze water for the first time
+achv_recipe_hunter_name,配方猎人,Recipe Hunter
+achv_recipe_hunter_desc,解锁 100 条配方,Unlock 100 recipes
+achv_industrial_codex_name,工业大典,Industrial Codex
+achv_industrial_codex_desc,解锁 250 条配方,Unlock 250 recipes
+achv_liftoff_name,升空,Liftoff
+achv_liftoff_desc,首次发射火箭,Launch your first rocket
+achv_two_worlds_name,双星生活,Two Worlds
+achv_two_worlds_desc,在第二个星体建立前哨,Establish an outpost on a second body
+achv_spaceport_era_name,星港时代,Spaceport Era
+achv_spaceport_era_desc,首条自动航线运行 5 游戏日,Keep an automated route running 5 days
+achv_first_contact_name,初次接触,First Contact
+achv_first_contact_desc,通讯阵列点亮三势力,Light up all three factions with the comms array
+achv_mutual_gain_name,互利互惠,Mutual Gain
+achv_mutual_gain_desc,与商盟成交 50 笔,Complete 50 merchant trades
+achv_most_favored_name,最惠国,Most Favored
+achv_most_favored_desc,商盟态度 ≥60,Merchant attitude at 60 or higher
+achv_not_one_step_name,寸土不让,Not One Step
+achv_not_one_step_desc,击退赤旗袭击 10 次,Repel 10 Red Banner raids
+achv_tear_the_ultimatum_name,拆掉通牒,Tear the Ultimatum
+achv_tear_the_ultimatum_desc,战争中攻占赤旗任一星体,Take a Red Banner body in war
+achv_behind_high_walls_name,高墙之后,Behind High Walls
+achv_behind_high_walls_desc,解码静默会谜语,Decode the Silent riddle
+achv_double_harvest_name,双收,Double Harvest
+achv_double_harvest_desc,占领眠霜,Occupy Sleetfall
+achv_lord_protector_name,护国公,Lord Protector
+achv_lord_protector_desc,与商盟缔结护国条约,Sign the protectorate treaty with the merchants
+achv_hegemon_name,星系霸主,Hegemon
+achv_hegemon_desc,达成霸权胜利,Achieve the hegemony victory
+achv_warp_ignition_name,跃迁点火,Warp Ignition
+achv_warp_ignition_desc,达成灯塔胜利,Achieve the beacon victory

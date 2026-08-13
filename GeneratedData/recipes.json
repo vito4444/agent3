@@ -29,7 +29,7 @@
       "HandStation": "",
       "TechNode": "alloys_exotic",
       "RationaleZh": "按配比合炼成耐热曜金钢。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "Alloyed to spec into aurite steel. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Alloyed to spec into aurite steel. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -60,7 +60,7 @@
       "HandStation": "",
       "TechNode": "branch_bio_refining",
       "RationaleZh": "按配比合炼成生物复合材。有机质,用于食物链与生物材料。",
-      "RationaleEn": "Alloyed to spec into bio-composite. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "Alloyed to spec into bio-composite. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -91,7 +91,7 @@
       "HandStation": "",
       "TechNode": "metallurgy_2",
       "RationaleZh": "按配比合炼成青铜。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "Alloyed to spec into bronze. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Alloyed to spec into bronze. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -122,7 +122,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "按配比合炼成硬铝。轻质,用于机身与轻型结构。",
-      "RationaleEn": "Alloyed to spec into duralumin. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Alloyed to spec into duralumin. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -153,7 +153,7 @@
       "HandStation": "",
       "TechNode": "alloys_basic",
       "RationaleZh": "按配比合炼成电工硅钢。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "Alloyed to spec into electrical steel. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Alloyed to spec into electrical steel. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -184,7 +184,7 @@
       "HandStation": "",
       "TechNode": "metallurgy_2",
       "RationaleZh": "按配比合炼成殷钢。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "Alloyed to spec into invar. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Alloyed to spec into invar. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -215,7 +215,7 @@
       "HandStation": "",
       "TechNode": "branch_phase_armor",
       "RationaleZh": "按配比合炼成相变复合材。储能密度高,用于电芯与聚变燃料。",
-      "RationaleEn": "Alloyed to spec into phase-change composite. it stores energy densely, used in cells and fusion fuel.",
+      "RationaleEn": "Alloyed to spec into phase-change composite. It stores energy densely, used in cells and fusion fuel.",
       "FactionLocked": false
     },
     {
@@ -246,7 +246,7 @@
       "HandStation": "",
       "TechNode": "alloys_exotic",
       "RationaleZh": "按配比合炼成铂催化网材。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "Alloyed to spec into platinum catalyst alloy. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "Alloyed to spec into platinum catalyst alloy. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -277,7 +277,7 @@
       "HandStation": "",
       "TechNode": "alloys_basic",
       "RationaleZh": "按配比合炼成钢。强度高,用于承重结构与工具。",
-      "RationaleEn": "Alloyed to spec into steel. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Alloyed to spec into steel. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -308,7 +308,7 @@
       "HandStation": "",
       "TechNode": "branch_superconductor_grid",
       "RationaleZh": "按配比合炼成超导合金。零电阻,用于超导输电与磁约束。",
-      "RationaleEn": "Alloyed to spec into superconductor alloy. it superconducts, used in lossless power lines and magnetic confinement.",
+      "RationaleEn": "Alloyed to spec into superconductor alloy. It superconducts, used in lossless power lines and magnetic confinement.",
       "FactionLocked": false
     },
     {
@@ -339,7 +339,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "按配比合炼成钛合金。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "Alloyed to spec into titanium alloy. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Alloyed to spec into titanium alloy. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -370,7 +370,7 @@
       "HandStation": "",
       "TechNode": "branch_fast_reactor",
       "RationaleZh": "按配比合炼成铀燃料芯。可裂变,用于反应堆燃料。",
-      "RationaleEn": "Alloyed to spec into uranium fuel core. it is fissile, used as reactor fuel.",
+      "RationaleEn": "Alloyed to spec into uranium fuel core. It is fissile, used as reactor fuel.",
       "FactionLocked": false
     },
     {
@@ -397,7 +397,7 @@
       "HandStation": "",
       "TechNode": "distillation",
       "RationaleZh": "蒸馏提纯得到氨。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Distillation yields Ammonia. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Distillation yields Ammonia. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -428,7 +428,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "蒸馏提纯得到卤水。液态易储运,用于化工与生保。",
-      "RationaleEn": "Distillation yields Brine. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Distillation yields Brine. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -455,7 +455,7 @@
       "HandStation": "",
       "TechNode": "distillation",
       "RationaleZh": "蒸馏提纯得到二氧化碳。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Distillation yields Carbon dioxide. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Distillation yields Carbon dioxide. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -482,7 +482,7 @@
       "HandStation": "",
       "TechNode": "distillation",
       "RationaleZh": "蒸馏提纯得到甲烷。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Distillation yields Methane. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Distillation yields Methane. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -509,7 +509,7 @@
       "HandStation": "",
       "TechNode": "distillation",
       "RationaleZh": "蒸馏提纯得到氮气。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Distillation yields Nitrogen. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Distillation yields Nitrogen. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -536,7 +536,7 @@
       "HandStation": "",
       "TechNode": "distillation",
       "RationaleZh": "蒸馏提纯得到树脂。有机质,用于食物链与生物材料。",
-      "RationaleEn": "Distillation yields Resin. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "Distillation yields Resin. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -563,7 +563,7 @@
       "HandStation": "",
       "TechNode": "food_protein",
       "RationaleZh": "蒸馏提纯得到孢子提取液。有机质,用于食物链与生物材料。",
-      "RationaleEn": "Distillation yields Spore extract. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "Distillation yields Spore extract. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -590,7 +590,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "蒸馏提纯得到水。液态易储运,用于化工与生保。",
-      "RationaleEn": "Distillation yields Water. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Distillation yields Water. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -621,7 +621,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "电解制得氮气。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Electrolysis yields Nitrogen. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Electrolysis yields Nitrogen. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -656,7 +656,7 @@
       "HandStation": "",
       "TechNode": "metallurgy_2",
       "RationaleZh": "电解制得铝锭。轻质,用于机身与轻型结构。",
-      "RationaleEn": "Electrolysis yields aluminum ingot. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Electrolysis yields aluminum ingot. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -691,7 +691,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "电解制得氯气。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Electrolysis yields Chlorine. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Electrolysis yields Chlorine. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -722,7 +722,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "电解制得氧气瓶装。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Electrolysis yields Bottled oxygen. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Electrolysis yields Bottled oxygen. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -753,7 +753,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "电解制得钠。易燃,用作燃料与还原剂。",
-      "RationaleEn": "Electrolysis yields Sodium. it burns readily, used as fuel and reducing agent.",
+      "RationaleEn": "Electrolysis yields Sodium. It burns readily, used as fuel and reducing agent.",
       "FactionLocked": false
     },
     {
@@ -784,7 +784,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "电解制得氧气瓶装。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "Electrolysis yields Bottled oxygen. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "Electrolysis yields Bottled oxygen. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -811,7 +811,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "铝经压制成网,结构致密。轻质,用于机身与轻型结构。",
-      "RationaleEn": "aluminum is pressed into dense mesh. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Aluminum is pressed into dense mesh. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -838,7 +838,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "铝坯料车铣成型为管,公差可控。轻质,用于机身与轻型结构。",
-      "RationaleEn": "aluminum stock is machined into pipe to tolerance. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Aluminum stock is machined into pipe to tolerance. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -865,7 +865,7 @@
       "HandStation": "",
       "TechNode": "forming_advanced",
       "RationaleZh": "铝锭经铸轧成板。轻质,用于机身与轻型结构。",
-      "RationaleEn": "aluminum ingots are cast and rolled into plate. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Aluminum ingots are cast and rolled into plate. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -892,7 +892,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "铝经破碎机粉碎分选,得到便于后续处理的碎料。轻质,用于机身与轻型结构。",
-      "RationaleEn": "aluminum is crushed and sorted into workable feedstock. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Aluminum is crushed and sorted into workable feedstock. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -919,7 +919,7 @@
       "HandStation": "",
       "TechNode": "forming_advanced",
       "RationaleZh": "铝锭经铸轧成杆。轻质,用于机身与轻型结构。",
-      "RationaleEn": "aluminum ingots are cast and rolled into rod. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Aluminum ingots are cast and rolled into rod. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -946,7 +946,7 @@
       "HandStation": "",
       "TechNode": "forming_advanced",
       "RationaleZh": "铝锭经拉丝机拉制成线。轻质,用于机身与轻型结构。",
-      "RationaleEn": "aluminum ingots are drawn into wire. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Aluminum ingots are drawn into wire. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -973,7 +973,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "耐热曜金钢坯料车铣成型为齿轮,公差可控。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "aurite steel stock is machined into gear to tolerance. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Aurite steel stock is machined into gear to tolerance. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -1000,7 +1000,7 @@
       "HandStation": "workbench",
       "TechNode": "alloys_exotic",
       "RationaleZh": "耐热曜金钢坯料车铣成型为管,公差可控。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "aurite steel stock is machined into pipe to tolerance. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Aurite steel stock is machined into pipe to tolerance. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -1027,7 +1027,7 @@
       "HandStation": "",
       "TechNode": "alloys_exotic",
       "RationaleZh": "耐热曜金钢锭经铸轧成板。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "aurite steel ingots are cast and rolled into plate. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Aurite steel ingots are cast and rolled into plate. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -1054,7 +1054,7 @@
       "HandStation": "",
       "TechNode": "alloys_exotic",
       "RationaleZh": "耐热曜金钢锭经铸轧成杆。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "aurite steel ingots are cast and rolled into rod. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Aurite steel ingots are cast and rolled into rod. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -1081,7 +1081,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "青铜坯料车铣成型为齿轮,公差可控。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "bronze stock is machined into gear to tolerance. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Bronze stock is machined into gear to tolerance. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1108,7 +1108,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "青铜坯料车铣成型为管,公差可控。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "bronze stock is machined into pipe to tolerance. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Bronze stock is machined into pipe to tolerance. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1135,7 +1135,7 @@
       "HandStation": "",
       "TechNode": "metallurgy_2",
       "RationaleZh": "青铜锭经铸轧成板。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "bronze ingots are cast and rolled into plate. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Bronze ingots are cast and rolled into plate. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1162,7 +1162,7 @@
       "HandStation": "",
       "TechNode": "forming_exotic",
       "RationaleZh": "青铜锭经铸轧成杆。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "bronze ingots are cast and rolled into rod. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Bronze ingots are cast and rolled into rod. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1189,7 +1189,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "铜坯料车铣成型为齿轮,公差可控。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper stock is machined into gear to tolerance. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper stock is machined into gear to tolerance. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1216,7 +1216,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "铜经压制成网,结构致密。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper is pressed into dense mesh. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper is pressed into dense mesh. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1243,7 +1243,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "铜坯料车铣成型为管,公差可控。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper stock is machined into pipe to tolerance. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper stock is machined into pipe to tolerance. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1270,7 +1270,7 @@
       "HandStation": "",
       "TechNode": "forming_basic",
       "RationaleZh": "铜锭经铸轧成板。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper ingots are cast and rolled into plate. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper ingots are cast and rolled into plate. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1297,7 +1297,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "铜经破碎机粉碎分选,得到便于后续处理的碎料。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper is crushed and sorted into workable feedstock. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper is crushed and sorted into workable feedstock. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1324,7 +1324,7 @@
       "HandStation": "",
       "TechNode": "forming_advanced",
       "RationaleZh": "铜锭经铸轧成杆。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper ingots are cast and rolled into rod. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper ingots are cast and rolled into rod. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1351,7 +1351,7 @@
       "HandStation": "",
       "TechNode": "forming_basic",
       "RationaleZh": "铜锭经拉丝机拉制成线。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "copper ingots are drawn into wire. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Copper ingots are drawn into wire. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1378,7 +1378,7 @@
       "HandStation": "workbench",
       "TechNode": "alloys_light",
       "RationaleZh": "硬铝坯料车铣成型为齿轮,公差可控。轻质,用于机身与轻型结构。",
-      "RationaleEn": "duralumin stock is machined into gear to tolerance. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Duralumin stock is machined into gear to tolerance. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -1405,7 +1405,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "硬铝经压制成网,结构致密。轻质,用于机身与轻型结构。",
-      "RationaleEn": "duralumin is pressed into dense mesh. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Duralumin is pressed into dense mesh. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -1432,7 +1432,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "硬铝锭经铸轧成板。轻质,用于机身与轻型结构。",
-      "RationaleEn": "duralumin ingots are cast and rolled into plate. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Duralumin ingots are cast and rolled into plate. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -1459,7 +1459,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "硬铝锭经铸轧成杆。轻质,用于机身与轻型结构。",
-      "RationaleEn": "duralumin ingots are cast and rolled into rod. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Duralumin ingots are cast and rolled into rod. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -1486,7 +1486,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "硬铝锭经拉丝机拉制成线。轻质,用于机身与轻型结构。",
-      "RationaleEn": "duralumin ingots are drawn into wire. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Duralumin ingots are drawn into wire. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -1513,7 +1513,7 @@
       "HandStation": "workbench",
       "TechNode": "alloys_basic",
       "RationaleZh": "电工硅钢坯料车铣成型为齿轮,公差可控。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "electrical steel stock is machined into gear to tolerance. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Electrical steel stock is machined into gear to tolerance. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1540,7 +1540,7 @@
       "HandStation": "",
       "TechNode": "metallurgy_2",
       "RationaleZh": "电工硅钢锭经铸轧成板。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "electrical steel ingots are cast and rolled into plate. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Electrical steel ingots are cast and rolled into plate. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1567,7 +1567,7 @@
       "HandStation": "",
       "TechNode": "alloys_basic",
       "RationaleZh": "电工硅钢锭经拉丝机拉制成线。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "electrical steel ingots are drawn into wire. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "Electrical steel ingots are drawn into wire. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -1594,7 +1594,7 @@
       "HandStation": "workbench",
       "TechNode": "metallurgy_2",
       "RationaleZh": "殷钢坯料车铣成型为齿轮,公差可控。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "invar stock is machined into gear to tolerance. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Invar stock is machined into gear to tolerance. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1621,7 +1621,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "殷钢经压制成网,结构致密。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "invar is pressed into dense mesh. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Invar is pressed into dense mesh. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1648,7 +1648,7 @@
       "HandStation": "workbench",
       "TechNode": "metallurgy_2",
       "RationaleZh": "殷钢坯料车铣成型为管,公差可控。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "invar stock is machined into pipe to tolerance. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Invar stock is machined into pipe to tolerance. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1675,7 +1675,7 @@
       "HandStation": "",
       "TechNode": "metallurgy_2",
       "RationaleZh": "殷钢锭经铸轧成板。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "invar ingots are cast and rolled into plate. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Invar ingots are cast and rolled into plate. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1702,7 +1702,7 @@
       "HandStation": "",
       "TechNode": "forming_exotic",
       "RationaleZh": "殷钢锭经铸轧成杆。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "invar ingots are cast and rolled into rod. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Invar ingots are cast and rolled into rod. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1729,7 +1729,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "铁经压制成砖,结构致密。强度高,用于承重结构与工具。",
-      "RationaleEn": "iron is pressed into dense brick. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Iron is pressed into dense brick. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1756,7 +1756,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "铁坯料车铣成型为齿轮,公差可控。强度高,用于承重结构与工具。",
-      "RationaleEn": "iron stock is machined into gear to tolerance. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Iron stock is machined into gear to tolerance. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1783,7 +1783,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "铁经压制成网,结构致密。强度高,用于承重结构与工具。",
-      "RationaleEn": "iron is pressed into dense mesh. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Iron is pressed into dense mesh. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1810,7 +1810,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "铁坯料车铣成型为管,公差可控。强度高,用于承重结构与工具。",
-      "RationaleEn": "iron stock is machined into pipe to tolerance. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Iron stock is machined into pipe to tolerance. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1837,7 +1837,7 @@
       "HandStation": "",
       "TechNode": "forming_basic",
       "RationaleZh": "铁锭经铸轧成板。强度高,用于承重结构与工具。",
-      "RationaleEn": "iron ingots are cast and rolled into plate. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Iron ingots are cast and rolled into plate. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1864,7 +1864,7 @@
       "HandStation": "",
       "TechNode": "forming_basic",
       "RationaleZh": "铁锭经铸轧成杆。强度高,用于承重结构与工具。",
-      "RationaleEn": "iron ingots are cast and rolled into rod. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Iron ingots are cast and rolled into rod. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -1891,7 +1891,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "镍坯料车铣成型为管,公差可控。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "nickel stock is machined into pipe to tolerance. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Nickel stock is machined into pipe to tolerance. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1918,7 +1918,7 @@
       "HandStation": "",
       "TechNode": "forming_exotic",
       "RationaleZh": "镍锭经铸轧成板。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "nickel ingots are cast and rolled into plate. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Nickel ingots are cast and rolled into plate. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1945,7 +1945,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "镍经破碎机粉碎分选,得到便于后续处理的碎料。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "nickel is crushed and sorted into workable feedstock. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Nickel is crushed and sorted into workable feedstock. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1972,7 +1972,7 @@
       "HandStation": "",
       "TechNode": "machining_tech",
       "RationaleZh": "镍锭经拉丝机拉制成线。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "nickel ingots are drawn into wire. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "Nickel ingots are drawn into wire. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -1999,7 +1999,7 @@
       "HandStation": "workbench",
       "TechNode": "alloys_exotic",
       "RationaleZh": "铂催化网材经压制成网,结构致密。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "platinum catalyst alloy is pressed into dense mesh. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "Platinum catalyst alloy is pressed into dense mesh. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -2026,7 +2026,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "铂经破碎机粉碎分选,得到便于后续处理的碎料。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "platinum is crushed and sorted into workable feedstock. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "Platinum is crushed and sorted into workable feedstock. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -2053,7 +2053,7 @@
       "HandStation": "",
       "TechNode": "machining_tech",
       "RationaleZh": "铂锭经拉丝机拉制成线。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "platinum ingots are drawn into wire. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "Platinum ingots are drawn into wire. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -2080,7 +2080,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "稀土经破碎机粉碎分选,得到便于后续处理的碎料。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "rare-earth metal is crushed and sorted into workable feedstock. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "Rare-earth metal is crushed and sorted into workable feedstock. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -2107,7 +2107,7 @@
       "HandStation": "",
       "TechNode": "forming_exotic",
       "RationaleZh": "稀土锭经拉丝机拉制成线。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "rare-earth metal ingots are drawn into wire. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "Rare-earth metal ingots are drawn into wire. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -2134,7 +2134,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "钢经压制成砖,结构致密。强度高,用于承重结构与工具。",
-      "RationaleEn": "steel is pressed into dense brick. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Steel is pressed into dense brick. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -2161,7 +2161,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "钢坯料车铣成型为齿轮,公差可控。强度高,用于承重结构与工具。",
-      "RationaleEn": "steel stock is machined into gear to tolerance. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Steel stock is machined into gear to tolerance. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -2188,7 +2188,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "钢经压制成网,结构致密。强度高,用于承重结构与工具。",
-      "RationaleEn": "steel is pressed into dense mesh. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Steel is pressed into dense mesh. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -2215,7 +2215,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "钢坯料车铣成型为管,公差可控。强度高,用于承重结构与工具。",
-      "RationaleEn": "steel stock is machined into pipe to tolerance. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Steel stock is machined into pipe to tolerance. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -2242,7 +2242,7 @@
       "HandStation": "",
       "TechNode": "forming_basic",
       "RationaleZh": "钢锭经铸轧成板。强度高,用于承重结构与工具。",
-      "RationaleEn": "steel ingots are cast and rolled into plate. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Steel ingots are cast and rolled into plate. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -2269,7 +2269,7 @@
       "HandStation": "",
       "TechNode": "forming_basic",
       "RationaleZh": "钢锭经铸轧成杆。强度高,用于承重结构与工具。",
-      "RationaleEn": "steel ingots are cast and rolled into rod. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "Steel ingots are cast and rolled into rod. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -2296,7 +2296,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_superconductor_grid",
       "RationaleZh": "超导合金经压制成网,结构致密。零电阻,用于超导输电与磁约束。",
-      "RationaleEn": "superconductor alloy is pressed into dense mesh. it superconducts, used in lossless power lines and magnetic confinement.",
+      "RationaleEn": "Superconductor alloy is pressed into dense mesh. It superconducts, used in lossless power lines and magnetic confinement.",
       "FactionLocked": false
     },
     {
@@ -2323,7 +2323,7 @@
       "HandStation": "",
       "TechNode": "branch_superconductor_grid",
       "RationaleZh": "超导合金锭经拉丝机拉制成线。零电阻,用于超导输电与磁约束。",
-      "RationaleEn": "superconductor alloy ingots are drawn into wire. it superconducts, used in lossless power lines and magnetic confinement.",
+      "RationaleEn": "Superconductor alloy ingots are drawn into wire. It superconducts, used in lossless power lines and magnetic confinement.",
       "FactionLocked": false
     },
     {
@@ -2350,7 +2350,7 @@
       "HandStation": "workbench",
       "TechNode": "alloys_light",
       "RationaleZh": "钛合金坯料车铣成型为齿轮,公差可控。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium alloy stock is machined into gear to tolerance. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium alloy stock is machined into gear to tolerance. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2377,7 +2377,7 @@
       "HandStation": "workbench",
       "TechNode": "alloys_light",
       "RationaleZh": "钛合金坯料车铣成型为管,公差可控。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium alloy stock is machined into pipe to tolerance. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium alloy stock is machined into pipe to tolerance. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2404,7 +2404,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "钛合金锭经铸轧成板。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium alloy ingots are cast and rolled into plate. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium alloy ingots are cast and rolled into plate. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2431,7 +2431,7 @@
       "HandStation": "",
       "TechNode": "alloys_light",
       "RationaleZh": "钛合金锭经铸轧成杆。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium alloy ingots are cast and rolled into rod. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium alloy ingots are cast and rolled into rod. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2458,7 +2458,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "钛坯料车铣成型为齿轮,公差可控。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium stock is machined into gear to tolerance. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium stock is machined into gear to tolerance. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2485,7 +2485,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "钛经压制成网,结构致密。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium is pressed into dense mesh. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium is pressed into dense mesh. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2512,7 +2512,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_exotic",
       "RationaleZh": "钛坯料车铣成型为管,公差可控。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium stock is machined into pipe to tolerance. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium stock is machined into pipe to tolerance. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2539,7 +2539,7 @@
       "HandStation": "",
       "TechNode": "forming_advanced",
       "RationaleZh": "钛锭经铸轧成板。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium ingots are cast and rolled into plate. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium ingots are cast and rolled into plate. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2566,7 +2566,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_advanced",
       "RationaleZh": "钛经破碎机粉碎分选,得到便于后续处理的碎料。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium is crushed and sorted into workable feedstock. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium is crushed and sorted into workable feedstock. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2593,7 +2593,7 @@
       "HandStation": "",
       "TechNode": "forming_advanced",
       "RationaleZh": "钛锭经铸轧成杆。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium ingots are cast and rolled into rod. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium ingots are cast and rolled into rod. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2620,7 +2620,7 @@
       "HandStation": "",
       "TechNode": "machining_tech",
       "RationaleZh": "钛锭经拉丝机拉制成线。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "titanium ingots are drawn into wire. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "Titanium ingots are drawn into wire. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -2655,7 +2655,7 @@
       "HandStation": "",
       "TechNode": "cryogenics",
       "RationaleZh": "深冷液化制得液氮。液态易储运,用于化工与生保。",
-      "RationaleEn": "Cryogenic liquefaction yields Liquid nitrogen. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Cryogenic liquefaction yields Liquid nitrogen. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -2682,7 +2682,7 @@
       "HandStation": "",
       "TechNode": "fuels",
       "RationaleZh": "深冷液化制得重氢燃料。储能密度高,用于电芯与聚变燃料。",
-      "RationaleEn": "Cryogenic liquefaction yields Deuterium fuel. it stores energy densely, used in cells and fusion fuel.",
+      "RationaleEn": "Cryogenic liquefaction yields Deuterium fuel. It stores energy densely, used in cells and fusion fuel.",
       "FactionLocked": false
     },
     {
@@ -2709,7 +2709,7 @@
       "HandStation": "",
       "TechNode": "cryogenics",
       "RationaleZh": "深冷液化制得液氢。液态易储运,用于化工与生保。",
-      "RationaleEn": "Cryogenic liquefaction yields Liquid hydrogen. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Cryogenic liquefaction yields Liquid hydrogen. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -2736,7 +2736,7 @@
       "HandStation": "",
       "TechNode": "cryogenics",
       "RationaleZh": "深冷液化制得液化甲烷。液态易储运,用于化工与生保。",
-      "RationaleEn": "Cryogenic liquefaction yields Liquid methane. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Cryogenic liquefaction yields Liquid methane. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -2763,7 +2763,7 @@
       "HandStation": "",
       "TechNode": "cryogenics",
       "RationaleZh": "深冷液化制得液氮。液态易储运,用于化工与生保。",
-      "RationaleEn": "Cryogenic liquefaction yields Liquid nitrogen. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Cryogenic liquefaction yields Liquid nitrogen. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -2790,7 +2790,7 @@
       "HandStation": "",
       "TechNode": "cryogenics",
       "RationaleZh": "深冷液化制得液氧。液态易储运,用于化工与生保。",
-      "RationaleEn": "Cryogenic liquefaction yields Liquid oxygen. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Cryogenic liquefaction yields Liquid oxygen. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -2825,7 +2825,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_2",
       "RationaleZh": "装配线完成高阶电路的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Advanced circuit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Advanced circuit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -2856,7 +2856,7 @@
       "HandStation": "workbench",
       "TechNode": "food_gourmet",
       "RationaleZh": "装配线完成舱内清新剂的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Cabin freshener. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Cabin freshener. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -2887,7 +2887,7 @@
       "HandStation": "workbench",
       "TechNode": "food_hydroponics",
       "RationaleZh": "压制成型得到藻膏,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Algae paste. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Algae paste. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -2918,7 +2918,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_1",
       "RationaleZh": "装配线完成天线的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Antenna. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Antenna. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -2949,7 +2949,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_phase_armor_4",
       "RationaleZh": "装配线完成装甲战斗蛛的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Armored combat bot. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Armored combat bot. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -2988,7 +2988,7 @@
       "HandStation": "workbench",
       "TechNode": "assault_ops",
       "RationaleZh": "装配线完成强袭舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Assault pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Assault pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3019,7 +3019,7 @@
       "HandStation": "workbench",
       "TechNode": "astro_sensors",
       "RationaleZh": "装配线完成航天数据核的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Astronautics data core. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Astronautics data core. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3050,7 +3050,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成空气充装站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Air charging station. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Air charging station. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3085,7 +3085,7 @@
       "HandStation": "workbench",
       "TechNode": "ammo_tech",
       "RationaleZh": "装配线完成弹药装配线的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Ammo line. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Ammo line. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3120,7 +3120,7 @@
       "HandStation": "workbench",
       "TechNode": "arc_smelting",
       "RationaleZh": "装配线完成电弧炉的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Arc furnace. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Arc furnace. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3155,7 +3155,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_assembly",
       "RationaleZh": "装配线完成装配机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Assembler. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Assembler. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3194,7 +3194,7 @@
       "HandStation": "workbench",
       "TechNode": "morale_venues",
       "RationaleZh": "装配线完成酒吧的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Bar. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Bar. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3229,7 +3229,7 @@
       "HandStation": "workbench",
       "TechNode": "power_storage",
       "RationaleZh": "装配线完成电池组的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Battery bank. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Battery bank. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3260,7 +3260,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_orbital_logistics_4",
       "RationaleZh": "装配线完成保税仓的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Bonded warehouse. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Bonded warehouse. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -3295,7 +3295,7 @@
       "HandStation": "workbench",
       "TechNode": "hauler_bots",
       "RationaleZh": "装配线完成搬运蛛站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Hauler bot station. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Hauler bot station. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3322,7 +3322,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成篝火炉的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Campfire. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Campfire. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3357,7 +3357,7 @@
       "HandStation": "workbench",
       "TechNode": "food_hydroponics",
       "RationaleZh": "装配线完成食堂的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Canteen. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Canteen. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3388,7 +3388,7 @@
       "HandStation": "workbench",
       "TechNode": "charging_infra",
       "RationaleZh": "装配线完成回充桩的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Charging post. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Charging post. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3423,7 +3423,7 @@
       "HandStation": "workbench",
       "TechNode": "chem_basics",
       "RationaleZh": "装配线完成电解槽的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Chemical electrolyzer. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Chemical electrolyzer. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3458,7 +3458,7 @@
       "HandStation": "workbench",
       "TechNode": "chem_basics",
       "RationaleZh": "装配线完成化工釜的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Chem reactor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Chem reactor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3493,7 +3493,7 @@
       "HandStation": "workbench",
       "TechNode": "bot_works",
       "RationaleZh": "装配线完成战斗蛛工坊的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Combat bot works. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Combat bot works. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3528,7 +3528,7 @@
       "HandStation": "workbench",
       "TechNode": "comms_arrays",
       "RationaleZh": "装配线完成通讯阵列的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Comms array. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Comms array. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3563,7 +3563,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_fast_reactor_2",
       "RationaleZh": "装配线完成紧凑快堆的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Compact fast reactor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Compact fast reactor. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -3594,7 +3594,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成指挥核心(坠毁舱)的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Command core. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Command core. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3625,7 +3625,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "装配线完成破碎机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Crusher. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Crusher. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3668,7 +3668,7 @@
       "HandStation": "workbench",
       "TechNode": "cryogenics",
       "RationaleZh": "装配线完成制冷液化器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Cryo liquefier. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Cryo liquefier. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3703,7 +3703,7 @@
       "HandStation": "workbench",
       "TechNode": "food_hydroponics",
       "RationaleZh": "装配线完成培养槽的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Culture vat. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Culture vat. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3738,7 +3738,7 @@
       "HandStation": "workbench",
       "TechNode": "deep_drilling",
       "RationaleZh": "装配线完成深井钻机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Deep drill. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Deep drill. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3777,7 +3777,7 @@
       "HandStation": "workbench",
       "TechNode": "deep_space_telescope",
       "RationaleZh": "装配线完成深空望远镜的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Deep-space telescope. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Deep-space telescope. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3812,7 +3812,7 @@
       "HandStation": "workbench",
       "TechNode": "distillation",
       "RationaleZh": "装配线完成蒸馏塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Distiller. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Distiller. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3847,7 +3847,7 @@
       "HandStation": "workbench",
       "TechNode": "comfort_habitats",
       "RationaleZh": "装配线完成宿舍的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Dormitory. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Dormitory. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3886,7 +3886,7 @@
       "HandStation": "workbench",
       "TechNode": "drone_ports",
       "RationaleZh": "装配线完成无人机港的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Drone port. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Drone port. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3925,7 +3925,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_bio_refining_4",
       "RationaleZh": "装配线完成生态穹顶的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Eco dome. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Eco dome. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -3960,7 +3960,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成制氧电解站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Oxygen electrolyzer. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Oxygen electrolyzer. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -3995,7 +3995,7 @@
       "HandStation": "workbench",
       "TechNode": "comfort_habitats",
       "RationaleZh": "装配线完成家庭舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Family cabin. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Family cabin. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4030,7 +4030,7 @@
       "HandStation": "workbench",
       "TechNode": "fluid_handling",
       "RationaleZh": "装配线完成液罐的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Fluid tank. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Fluid tank. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4061,7 +4061,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_extraction",
       "RationaleZh": "装配线完成蜂巢采集站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Forage station. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Forage station. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4092,7 +4092,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_swarm_tactics_4",
       "RationaleZh": "装配线完成前线装配巢的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Forward assembly nest. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Forward assembly nest. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -4131,7 +4131,7 @@
       "HandStation": "workbench",
       "TechNode": "launch_infra",
       "RationaleZh": "装配线完成加注泵站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Fueling station. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Fueling station. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4162,7 +4162,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "装配线完成熔炉的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Electric furnace. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Electric furnace. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4197,7 +4197,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_extraction",
       "RationaleZh": "装配线完成集气塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Gas collector. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Gas collector. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4224,7 +4224,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成气管桩的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Gas pylon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Gas pylon. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4255,7 +4255,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成气罐的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Gas tank. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Gas tank. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4290,7 +4290,7 @@
       "HandStation": "workbench",
       "TechNode": "expedition_gear",
       "RationaleZh": "装配线完成燃气轮机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Gas turbine. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Gas turbine. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4329,7 +4329,7 @@
       "HandStation": "workbench",
       "TechNode": "geothermal",
       "RationaleZh": "装配线完成地热井的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Geothermal well. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Geothermal well. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4364,7 +4364,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成温室的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Greenhouse. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Greenhouse. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4399,7 +4399,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成手摇发电机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Hand-crank generator. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Hand-crank generator. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4434,7 +4434,7 @@
       "HandStation": "workbench",
       "TechNode": "hatchery_tech",
       "RationaleZh": "装配线完成孵化舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Hatchery. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Hatchery. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4469,7 +4469,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_phase_armor_5",
       "RationaleZh": "装配线完成热汲护盾的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heat-sink shield. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heat-sink shield. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -4500,7 +4500,7 @@
       "HandStation": "workbench",
       "TechNode": "medical_basics",
       "RationaleZh": "装配线完成加热塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heater tower. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heater tower. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4531,7 +4531,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_phase_armor_3",
       "RationaleZh": "装配线完成重型城墙的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heavy wall. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heavy wall. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -4562,7 +4562,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_extraction",
       "RationaleZh": "装配线完成采冰机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Ice extractor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Ice extractor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4597,7 +4597,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_fast_reactor_4",
       "RationaleZh": "装配线完成同位素加热棒塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Isotope heater. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Isotope heater. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -4632,7 +4632,7 @@
       "HandStation": "workbench",
       "TechNode": "beacon_nav",
       "RationaleZh": "装配线完成着陆信标的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Landing beacon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Landing beacon. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4663,7 +4663,7 @@
       "HandStation": "workbench",
       "TechNode": "bulk_storage",
       "RationaleZh": "装配线完成大仓库的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Large storage. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Large storage. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4698,7 +4698,7 @@
       "HandStation": "workbench",
       "TechNode": "laser_defense",
       "RationaleZh": "装配线完成激光塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Laser tower. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Laser tower. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4733,7 +4733,7 @@
       "HandStation": "workbench",
       "TechNode": "launch_infra",
       "RationaleZh": "装配线完成发射台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Launch pad. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Launch pad. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4768,7 +4768,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_assembly",
       "RationaleZh": "装配线完成机加工台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Machining bench. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Machining bench. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4799,7 +4799,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_superconductor_grid_4",
       "RationaleZh": "装配线完成磁约束节点的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Magnetic confinement node. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Magnetic confinement node. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -4838,7 +4838,7 @@
       "HandStation": "workbench",
       "TechNode": "medical_basics",
       "RationaleZh": "装配线完成医疗舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Med bay. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Med bay. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4873,7 +4873,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_extraction",
       "RationaleZh": "装配线完成采矿机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Mining rig. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Mining rig. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4904,7 +4904,7 @@
       "HandStation": "workbench",
       "TechNode": "morale_venues",
       "RationaleZh": "装配线完成纪念碑的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Monument. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Monument. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -4935,7 +4935,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_bio_refining_2",
       "RationaleZh": "装配线完成菌木速生架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Myco growth rack. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Myco growth rack. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -4974,7 +4974,7 @@
       "HandStation": "workbench",
       "TechNode": "nuclear_power",
       "RationaleZh": "装配线完成核反应堆的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Nuclear reactor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Nuclear reactor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5013,7 +5013,7 @@
       "HandStation": "workbench",
       "TechNode": "morale_venues",
       "RationaleZh": "装配线完成观星台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Observatory. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Observatory. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5052,7 +5052,7 @@
       "HandStation": "workbench",
       "TechNode": "orbital_docking",
       "RationaleZh": "装配线完成轨道货运站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Orbital dock. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Orbital dock. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5091,7 +5091,7 @@
       "HandStation": "workbench",
       "TechNode": "gas_platform",
       "RationaleZh": "装配线完成轨道气矿平台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Orbital gas platform. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Orbital gas platform. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5126,7 +5126,7 @@
       "HandStation": "workbench",
       "TechNode": "polymers",
       "RationaleZh": "装配线完成聚合反应器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Polymer reactor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Polymer reactor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5157,7 +5157,7 @@
       "HandStation": "workbench",
       "TechNode": "power_basics",
       "RationaleZh": "装配线完成输电塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Power pylon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Power pylon. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5184,7 +5184,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "装配线完成压制机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Press. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Press. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5215,7 +5215,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_bio_refining_3",
       "RationaleZh": "装配线完成蛋白高塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Protein tower. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Protein tower. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -5250,7 +5250,7 @@
       "HandStation": "workbench",
       "TechNode": "food_protein",
       "RationaleZh": "装配线完成蛋白釜的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Protein vat. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Protein vat. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5281,7 +5281,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_extraction",
       "RationaleZh": "装配线完成泵站的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Pump station. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Pump station. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5316,7 +5316,7 @@
       "HandStation": "workbench",
       "TechNode": "morale_venues",
       "RationaleZh": "装配线完成娱乐舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Rec room. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Rec room. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5355,7 +5355,7 @@
       "HandStation": "workbench",
       "TechNode": "recycling",
       "RationaleZh": "装配线完成回收机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Recycler. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Recycler. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5402,7 +5402,7 @@
       "HandStation": "workbench",
       "TechNode": "cryogenics",
       "RationaleZh": "装配线完成精炼塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Refinery. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Refinery. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5437,7 +5437,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成研究台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Research bench. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Research bench. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5464,7 +5464,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成砂石路的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Gravel road. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Gravel road. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5495,7 +5495,7 @@
       "HandStation": "workbench",
       "TechNode": "launch_infra",
       "RationaleZh": "装配线完成火箭装配架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Rocket gantry. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Rocket gantry. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5522,7 +5522,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "装配线完成铸轧机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Roll mill. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Roll mill. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5557,7 +5557,7 @@
       "HandStation": "workbench",
       "TechNode": "sabatier_tech",
       "RationaleZh": "装配线完成Sabatier 反应器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Sabatier reactor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Sabatier reactor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5592,7 +5592,7 @@
       "HandStation": "workbench",
       "TechNode": "sentry_guns",
       "RationaleZh": "装配线完成哨戒炮的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Sentry gun. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Sentry gun. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5627,7 +5627,7 @@
       "HandStation": "workbench",
       "TechNode": "shield_tech",
       "RationaleZh": "装配线完成护盾穹顶的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Shield dome. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Shield dome. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5670,7 +5670,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_swarm_tactics_5",
       "RationaleZh": "装配线完成震荡炮的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Shock cannon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Shock cannon. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -5705,7 +5705,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成睡舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Sleep pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Sleep pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5736,7 +5736,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成小仓库的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Small storage. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Small storage. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5771,7 +5771,7 @@
       "HandStation": "workbench",
       "TechNode": "power_basics",
       "RationaleZh": "装配线完成太阳板的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Solar panel. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Solar panel. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5806,7 +5806,7 @@
       "HandStation": "workbench",
       "TechNode": "spaceport_ops",
       "RationaleZh": "装配线完成星港调度塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Spaceport control tower. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Spaceport control tower. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5837,7 +5837,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_superconductor_grid_3",
       "RationaleZh": "装配线完成超导电池阵的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Superconducting bank. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Superconducting bank. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -5868,7 +5868,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_superconductor_grid_2",
       "RationaleZh": "装配线完成超导电网塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Superconducting pylon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Superconducting pylon. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -5903,7 +5903,7 @@
       "HandStation": "workbench",
       "TechNode": "cartography",
       "RationaleZh": "装配线完成勘探雷达的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Survey radar. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Survey radar. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5934,7 +5934,7 @@
       "HandStation": "workbench",
       "TechNode": "deep_drilling",
       "RationaleZh": "装配线完成尾矿粉碎机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Tailings crusher. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Tailings crusher. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5965,7 +5965,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_extraction",
       "RationaleZh": "装配线完成菌木伐木架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Timber rack. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Timber rack. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -5996,7 +5996,7 @@
       "HandStation": "workbench",
       "TechNode": "fortification",
       "RationaleZh": "装配线完成围墙的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Wall. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Wall. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6039,7 +6039,7 @@
       "HandStation": "workbench",
       "TechNode": "warp_beacon_1",
       "RationaleZh": "装配线完成跃迁灯塔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Warp beacon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Warp beacon. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6070,7 +6070,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成水净化器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Water purifier. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Water purifier. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6101,7 +6101,7 @@
       "HandStation": "workbench",
       "TechNode": "power_basics",
       "RationaleZh": "装配线完成风机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Wind turbine. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Wind turbine. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6136,7 +6136,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "装配线完成拉丝机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Wire mill. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Wire mill. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6167,7 +6167,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_construction",
       "RationaleZh": "装配线完成手工台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Workbench. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Workbench. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6194,7 +6194,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "装配线完成绷带的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Bandage. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Bandage. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6225,7 +6225,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_1",
       "RationaleZh": "装配线完成基础电路的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Basic circuit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Basic circuit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6260,7 +6260,7 @@
       "HandStation": "workbench",
       "TechNode": "battery_chem",
       "RationaleZh": "装配线完成电芯的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Battery cell. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Battery cell. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6291,7 +6291,7 @@
       "HandStation": "workbench",
       "TechNode": "battery_chem",
       "RationaleZh": "装配线完成电池组件的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Battery pack. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Battery pack. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6326,7 +6326,7 @@
       "HandStation": "workbench",
       "TechNode": "logistics_planning",
       "RationaleZh": "装配线完成工程蛛的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Builder bot. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Builder bot. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6353,7 +6353,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "破碎分选出碳粉。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Crushing and sorting yields Carbon powder. the process is proven, used across base building and production.",
+      "RationaleEn": "Crushing and sorting yields Carbon powder. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6384,7 +6384,7 @@
       "HandStation": "workbench",
       "TechNode": "payload_cargo",
       "RationaleZh": "装配线完成货舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Cargo pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Cargo pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6423,7 +6423,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_1",
       "RationaleZh": "装配线完成化学引擎的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Chemical engine. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Chemical engine. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6454,7 +6454,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "化工釜内受控反应制得化学数据核。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "A controlled reaction yields Chemistry data core. the process is proven, used across base building and production.",
+      "RationaleEn": "A controlled reaction yields Chemistry data core. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6489,7 +6489,7 @@
       "HandStation": "workbench",
       "TechNode": "payload_colonist",
       "RationaleZh": "装配线完成殖民舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Colonist pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Colonist pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6524,7 +6524,7 @@
       "HandStation": "workbench",
       "TechNode": "field_kits",
       "RationaleZh": "装配线完成殖民者随身物资的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Colonist kit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Colonist kit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6559,7 +6559,7 @@
       "HandStation": "workbench",
       "TechNode": "combat_bots",
       "RationaleZh": "装配线完成战斗蛛的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Combat bot. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Combat bot. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6594,7 +6594,7 @@
       "HandStation": "workbench",
       "TechNode": "armor_materials",
       "RationaleZh": "装配线完成战斗骨架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Combat chassis. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Combat chassis. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6625,7 +6625,7 @@
       "HandStation": "workbench",
       "TechNode": "food_gourmet",
       "RationaleZh": "装配线完成营养套餐的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Combo meal. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Combo meal. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6660,7 +6660,7 @@
       "HandStation": "workbench",
       "TechNode": "radio_basics",
       "RationaleZh": "装配线完成通讯模组的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Comms module. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Comms module. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6691,7 +6691,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_fast_reactor",
       "RationaleZh": "装配线完成快堆堆芯的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Fast reactor core. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Fast reactor core. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -6730,7 +6730,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "装配线完成控制台的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Control console. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Control console. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6757,7 +6757,7 @@
       "HandStation": "campfire",
       "TechNode": "t0_survival",
       "RationaleZh": "炉内熔炼产出粗铜块。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The furnace run yields Copper lump. the process is proven, used across base building and production.",
+      "RationaleEn": "The furnace run yields Copper lump. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6796,7 +6796,7 @@
       "HandStation": "workbench",
       "TechNode": "drone_ports",
       "RationaleZh": "装配线完成快递无人机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Courier drone. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Courier drone. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6823,7 +6823,7 @@
       "HandStation": "campfire",
       "TechNode": "t0_survival",
       "RationaleZh": "炉内熔炼产出粗玻璃。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The furnace run yields Crude glass. the process is proven, used across base building and production.",
+      "RationaleEn": "The furnace run yields Crude glass. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6854,7 +6854,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "装配线完成简易工具的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Crude tool. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Crude tool. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6889,7 +6889,7 @@
       "HandStation": "workbench",
       "TechNode": "cryogenics",
       "RationaleZh": "装配线完成深冷泵的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Cryogenic pump. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Cryogenic pump. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6920,7 +6920,7 @@
       "HandStation": "workbench",
       "TechNode": "military_intel",
       "RationaleZh": "装配线完成战斗记录仪的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Combat recorder. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Combat recorder. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6951,7 +6951,7 @@
       "HandStation": "workbench",
       "TechNode": "drone_ports",
       "RationaleZh": "装配线完成无人机旋翼的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Drone rotor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Drone rotor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -6982,7 +6982,7 @@
       "HandStation": "workbench",
       "TechNode": "signals",
       "RationaleZh": "装配线完成应急信标的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Emergency beacon. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Emergency beacon. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7013,7 +7013,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_1",
       "RationaleZh": "机加工完成发动机喷管,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Engine nozzle is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Engine nozzle is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7044,7 +7044,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_assembly",
       "RationaleZh": "装配线完成工程数据核的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Engineering data core. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Engineering data core. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7075,7 +7075,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_1",
       "RationaleZh": "装配线完成整流罩的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Fairing. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Fairing. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7102,7 +7102,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "破碎分选出植物纤维。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Crushing and sorting yields Plant fiber. the process is proven, used across base building and production.",
+      "RationaleEn": "Crushing and sorting yields Plant fiber. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7133,7 +7133,7 @@
       "HandStation": "",
       "TechNode": "sealing_tech",
       "RationaleZh": "拉丝产线产出光纤。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The wire mill yields Optical fiber. the process is proven, used across base building and production.",
+      "RationaleEn": "The wire mill yields Optical fiber. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7164,7 +7164,7 @@
       "HandStation": "workbench",
       "TechNode": "recycling",
       "RationaleZh": "压制成型得到滤芯,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Filter cartridge. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Filter cartridge. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7195,7 +7195,7 @@
       "HandStation": "workbench",
       "TechNode": "signals",
       "RationaleZh": "压制成型得到信号焰火,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Signal flare. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Signal flare. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7230,7 +7230,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_1",
       "RationaleZh": "机加工完成燃料喷注器,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Fuel injector is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Fuel injector is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7269,7 +7269,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_1",
       "RationaleZh": "装配线完成贮箱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Fuel tank. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Fuel tank. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7300,7 +7300,7 @@
       "HandStation": "workbench",
       "TechNode": "food_gourmet",
       "RationaleZh": "压制成型得到菌木脆片,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Fungal chips. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Fungal chips. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7331,7 +7331,7 @@
       "HandStation": "workbench",
       "TechNode": "polymers",
       "RationaleZh": "压制成型得到密封件组,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Gasket set. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Gasket set. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7362,7 +7362,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "装配线完成齿轮组的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Gear assembly. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Gear assembly. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7389,7 +7389,7 @@
       "HandStation": "workbench",
       "TechNode": "burial_rites",
       "RationaleZh": "压制成型得到墓碑,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Grave marker. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Grave marker. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7424,7 +7424,7 @@
       "HandStation": "",
       "TechNode": "life_support_1",
       "RationaleZh": "培养槽内受控增殖产出温室栽培。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Controlled propagation yields Greenhouse cycle. the process is proven, used across base building and production.",
+      "RationaleEn": "Controlled propagation yields Greenhouse cycle. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7455,7 +7455,7 @@
       "HandStation": "workbench",
       "TechNode": "comfort_habitats",
       "RationaleZh": "装配线完成居住舱框架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Habitat frame. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Habitat frame. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7490,7 +7490,7 @@
       "HandStation": "workbench",
       "TechNode": "hauler_bots",
       "RationaleZh": "装配线完成搬运蛛的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Hauler bot. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Hauler bot. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7521,7 +7521,7 @@
       "HandStation": "workbench",
       "TechNode": "heat_shielding",
       "RationaleZh": "压制成型得到隔热瓦,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Heat-shield tile. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Heat-shield tile. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7552,7 +7552,7 @@
       "HandStation": "workbench",
       "TechNode": "arc_smelting",
       "RationaleZh": "装配线完成加热棒的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heating rod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heating rod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7587,7 +7587,7 @@
       "HandStation": "workbench",
       "TechNode": "spacefaring_ops",
       "RationaleZh": "装配线完成重型引擎的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heavy engine. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heavy engine. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7618,7 +7618,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_2",
       "RationaleZh": "装配线完成重型框架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heavy frame. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heavy frame. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7649,7 +7649,7 @@
       "HandStation": "workbench",
       "TechNode": "expedition_gear",
       "RationaleZh": "装配线完成重型电机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Heavy motor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Heavy motor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7688,7 +7688,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_3",
       "RationaleZh": "机加工完成重型喷管,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Heavy nozzle is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Heavy nozzle is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7723,7 +7723,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_3",
       "RationaleZh": "装配线完成壳体板件的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Hull panel. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Hull panel. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7754,7 +7754,7 @@
       "HandStation": "",
       "TechNode": "food_hydroponics",
       "RationaleZh": "培养槽内受控增殖产出水培蔬菜。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Controlled propagation yields Hydroponic greens. the process is proven, used across base building and production.",
+      "RationaleEn": "Controlled propagation yields Hydroponic greens. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7781,7 +7781,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "压制成型得到保温衬垫,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Insulation wrap. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Insulation wrap. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7808,7 +7808,7 @@
       "HandStation": "campfire",
       "TechNode": "t0_survival",
       "RationaleZh": "炉内熔炼产出粗铁块。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The furnace run yields Iron lump. the process is proven, used across base building and production.",
+      "RationaleEn": "The furnace run yields Iron lump. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7839,7 +7839,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_fast_reactor_4",
       "RationaleZh": "装配线完成同位素加热棒的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Isotope heating rod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Isotope heating rod. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -7874,7 +7874,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_swarm_tactics_3",
       "RationaleZh": "装配线完成干扰无人机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Jammer drone. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Jammer drone. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -7905,7 +7905,7 @@
       "HandStation": "workbench",
       "TechNode": "defense_basics",
       "RationaleZh": "压制成型得到动能弹药,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Kinetic rounds. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Kinetic rounds. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7940,7 +7940,7 @@
       "HandStation": "workbench",
       "TechNode": "laser_defense",
       "RationaleZh": "装配线完成激光腔的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Laser cavity. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Laser cavity. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7971,7 +7971,7 @@
       "HandStation": "workbench",
       "TechNode": "rad_protection",
       "RationaleZh": "压制成型得到铅衬,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Radiation lining. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Radiation lining. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -7998,7 +7998,7 @@
       "HandStation": "workbench",
       "TechNode": "glassworks",
       "RationaleZh": "机加工完成镜片,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Lens is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Lens is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8029,7 +8029,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_2",
       "RationaleZh": "装配线完成轻型框架的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Light frame. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Light frame. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8056,7 +8056,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "机加工完成精密件,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Machined parts is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Machined parts is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8087,7 +8087,7 @@
       "HandStation": "workbench",
       "TechNode": "medical_basics",
       "RationaleZh": "装配线完成医疗包的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Med kit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Med kit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8118,7 +8118,7 @@
       "HandStation": "workbench",
       "TechNode": "military_intel",
       "RationaleZh": "装配线完成军情数据核的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Military data core. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Military data core. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8149,7 +8149,7 @@
       "HandStation": "workbench",
       "TechNode": "logistics_planning",
       "RationaleZh": "装配线完成采矿蛛的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Miner bot. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Miner bot. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8180,7 +8180,7 @@
       "HandStation": "workbench",
       "TechNode": "glassworks",
       "RationaleZh": "机加工完成反射镜,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Mirror is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Mirror is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8211,7 +8211,7 @@
       "HandStation": "workbench",
       "TechNode": "food_gourmet",
       "RationaleZh": "压制成型得到庆功甜点,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Celebration treat. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Celebration treat. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8250,7 +8250,7 @@
       "HandStation": "workbench",
       "TechNode": "expedition_gear",
       "RationaleZh": "装配线完成电机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Motor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Motor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8281,7 +8281,7 @@
       "HandStation": "",
       "TechNode": "branch_bio_refining",
       "RationaleZh": "化工釜内受控反应制得菌金催化剂。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "A controlled reaction yields Myco-gold catalyst. the process is proven, used across base building and production.",
+      "RationaleEn": "A controlled reaction yields Myco-gold catalyst. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -8316,7 +8316,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_2",
       "RationaleZh": "装配线完成导航舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Navigation pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Navigation pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8347,7 +8347,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_3",
       "RationaleZh": "装配线完成深空导航舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Deep-space nav pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Deep-space nav pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8382,7 +8382,7 @@
       "HandStation": "workbench",
       "TechNode": "astro_sensors",
       "RationaleZh": "装配线完成导航传感组的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Navigation sensor suite. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Navigation sensor suite. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8413,7 +8413,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_fast_reactor_3",
       "RationaleZh": "装配线完成核电池芯的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Nuclear cell. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Nuclear cell. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -8448,7 +8448,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_fast_reactor_5",
       "RationaleZh": "装配线完成核动力上面级的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Nuclear upper stage. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Nuclear upper stage. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -8479,7 +8479,7 @@
       "HandStation": "",
       "TechNode": "food_protein",
       "RationaleZh": "化工釜内受控反应制得营养凝胶。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "A controlled reaction yields Nutrient gel. the process is proven, used across base building and production.",
+      "RationaleEn": "A controlled reaction yields Nutrient gel. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8510,7 +8510,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_2",
       "RationaleZh": "装配线完成光学传感器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Optical sensor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Optical sensor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8549,7 +8549,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_orbital_logistics",
       "RationaleZh": "装配线完成轨道货轮的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Orbital freighter. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Orbital freighter. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -8584,7 +8584,7 @@
       "HandStation": "workbench",
       "TechNode": "orbital_strike",
       "RationaleZh": "装配线完成轨道穿甲弹的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Orbital penetrator. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Orbital penetrator. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8623,7 +8623,7 @@
       "HandStation": "workbench",
       "TechNode": "outpost_kits",
       "RationaleZh": "装配线完成前哨包的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Outpost kit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Outpost kit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8654,7 +8654,7 @@
       "HandStation": "workbench",
       "TechNode": "life_support_1",
       "RationaleZh": "装配线完成备用气瓶的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Spare oxygen bottle. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Spare oxygen bottle. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8685,7 +8685,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_phase_armor_2",
       "RationaleZh": "压制成型得到相变装甲板,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Phase armor plate. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Phase armor plate. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -8716,7 +8716,7 @@
       "HandStation": "",
       "TechNode": "branch_phase_armor",
       "RationaleZh": "化工釜内受控反应制得相变凝胶。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "A controlled reaction yields Refined phase gel. the process is proven, used across base building and production.",
+      "RationaleEn": "A controlled reaction yields Refined phase gel. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -8747,7 +8747,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "压制成型得到腌制口粮,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Preserved ration. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Preserved ration. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8778,7 +8778,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_2",
       "RationaleZh": "装配线完成压力传感器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Pressure sensor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Pressure sensor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8809,7 +8809,7 @@
       "HandStation": "workbench",
       "TechNode": "food_protein",
       "RationaleZh": "压制成型得到蛋白餐,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Protein meal. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Protein meal. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8844,7 +8844,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "装配线完成泵的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Pump. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Pump. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8875,7 +8875,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_3",
       "RationaleZh": "装配线完成量子电路的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Quantum circuit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Quantum circuit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8910,7 +8910,7 @@
       "HandStation": "workbench",
       "TechNode": "rad_protection",
       "RationaleZh": "装配线完成铅衬服的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Radiation suit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Radiation suit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8945,7 +8945,7 @@
       "HandStation": "workbench",
       "TechNode": "heat_shielding",
       "RationaleZh": "机加工完成散热鳍,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Radiator fin is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Radiator fin is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -8972,7 +8972,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "压制成型得到应急口粮,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Emergency ration. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Emergency ration. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9003,7 +9003,7 @@
       "HandStation": "workbench",
       "TechNode": "powered_processing",
       "RationaleZh": "装配线完成维修凝胶的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Repair gel. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Repair gel. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9030,7 +9030,7 @@
       "HandStation": "workbench",
       "TechNode": "forming_basic",
       "RationaleZh": "机加工完成铆钉组,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Rivet set is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Rivet set is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9061,7 +9061,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_1",
       "RationaleZh": "装配线完成箭体框架 I的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Rocket frame I. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Rocket frame I. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9092,7 +9092,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_2",
       "RationaleZh": "装配线完成箭体框架 II的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Rocket frame II. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Rocket frame II. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9123,7 +9123,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_3",
       "RationaleZh": "装配线完成箭体框架 III的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Rocket frame III. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Rocket frame III. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9158,7 +9158,7 @@
       "HandStation": "workbench",
       "TechNode": "expedition_gear",
       "RationaleZh": "装配线完成拓荒车组件的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Rover kit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Rover kit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9185,7 +9185,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "破碎分选出盐。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Crushing and sorting yields Salt. the process is proven, used across base building and production.",
+      "RationaleEn": "Crushing and sorting yields Salt. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9220,7 +9220,7 @@
       "HandStation": "workbench",
       "TechNode": "payload_satellite",
       "RationaleZh": "装配线完成卫星舱的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Satellite pod. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Satellite pod. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9247,7 +9247,7 @@
       "HandStation": "workbench",
       "TechNode": "polymers",
       "RationaleZh": "机加工完成密封环,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Seal ring is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Seal ring is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9278,7 +9278,7 @@
       "HandStation": "",
       "TechNode": "food_hydroponics",
       "RationaleZh": "培养槽内受控增殖产出藻种培育包。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Controlled propagation yields Seed culture kit. the process is proven, used across base building and production.",
+      "RationaleEn": "Controlled propagation yields Seed culture kit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9313,7 +9313,7 @@
       "HandStation": "workbench",
       "TechNode": "shield_tech",
       "RationaleZh": "装配线完成护盾发生器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Shield emitter. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Shield emitter. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9344,7 +9344,7 @@
       "HandStation": "workbench",
       "TechNode": "expedition_gear",
       "RationaleZh": "装配线完成小型电机的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Small motor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Small motor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9375,7 +9375,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "机加工完成小型喷管,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Small nozzle is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Small nozzle is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9410,7 +9410,7 @@
       "HandStation": "",
       "TechNode": "branch_bio_refining_5",
       "RationaleZh": "化工釜内受控反应制得孢子疫苗。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "A controlled reaction yields Spore vaccine. the process is proven, used across base building and production.",
+      "RationaleEn": "A controlled reaction yields Spore vaccine. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -9441,7 +9441,7 @@
       "HandStation": "",
       "TechNode": "medical_basics",
       "RationaleZh": "化工釜内受控反应制得强心针。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "A controlled reaction yields Stim shot. the process is proven, used across base building and production.",
+      "RationaleEn": "A controlled reaction yields Stim shot. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9472,7 +9472,7 @@
       "HandStation": "workbench",
       "TechNode": "bulk_storage",
       "RationaleZh": "装配线完成结构板件的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Structural panel. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Structural panel. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9507,7 +9507,7 @@
       "HandStation": "workbench",
       "TechNode": "branch_swarm_tactics_2",
       "RationaleZh": "装配线完成自爆蛛的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Breacher bot. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Breacher bot. The process is proven, used across base building and production.",
       "FactionLocked": true
     },
     {
@@ -9538,7 +9538,7 @@
       "HandStation": "workbench",
       "TechNode": "insulation_suits",
       "RationaleZh": "压制成型得到服装内衬,结构致密。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Pressing yields dense Suit liner. the process is proven, used across base building and production.",
+      "RationaleEn": "Pressing yields dense Suit liner. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9569,7 +9569,7 @@
       "HandStation": "workbench",
       "TechNode": "t0_survival",
       "RationaleZh": "装配线完成勘探数据核的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Survey data core. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Survey data core. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9600,7 +9600,7 @@
       "HandStation": "workbench",
       "TechNode": "electronics_2",
       "RationaleZh": "装配线完成热传感器的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Thermal sensor. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Thermal sensor. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9631,7 +9631,7 @@
       "HandStation": "workbench",
       "TechNode": "insulation_suits",
       "RationaleZh": "装配线完成保温服的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Insulated suit. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Insulated suit. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9658,7 +9658,7 @@
       "HandStation": "workbench",
       "TechNode": "rocketry_2",
       "RationaleZh": "装配线完成桁架段的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Truss section. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Truss section. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9689,7 +9689,7 @@
       "HandStation": "workbench",
       "TechNode": "machining_tech",
       "RationaleZh": "机加工完成阀门,公差可控。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Valve is machined to tolerance. the process is proven, used across base building and production.",
+      "RationaleEn": "Valve is machined to tolerance. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9720,7 +9720,7 @@
       "HandStation": "workbench",
       "TechNode": "food_gourmet",
       "RationaleZh": "装配线完成净水瓶装的组装与检验。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The line assembles and checks Bottled water. the process is proven, used across base building and production.",
+      "RationaleEn": "The line assembles and checks Bottled water. The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9747,7 +9747,7 @@
       "HandStation": "campfire",
       "TechNode": "t0_survival",
       "RationaleZh": "炉内熔炼产出水(融冰)。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "The furnace run yields Water (melted ice). the process is proven, used across base building and production.",
+      "RationaleEn": "The furnace run yields Water (melted ice). The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9778,7 +9778,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "聚合反应制得粘合剂。有机质,用于食物链与生物材料。",
-      "RationaleEn": "Polymerization yields Adhesive. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "Polymerization yields Adhesive. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -9809,7 +9809,7 @@
       "HandStation": "",
       "TechNode": "polymers",
       "RationaleZh": "聚合反应制得聚合物。轻质,用于机身与轻型结构。",
-      "RationaleEn": "Polymerization yields Polymer. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "Polymerization yields Polymer. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -9840,7 +9840,7 @@
       "HandStation": "",
       "TechNode": "polymers",
       "RationaleZh": "聚合反应制得。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Polymerization yields . the process is proven, used across base building and production.",
+      "RationaleEn": "Polymerization yields . The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9871,7 +9871,7 @@
       "HandStation": "",
       "TechNode": "polymers",
       "RationaleZh": "聚合反应制得。工艺成熟,用于基地建设与生产。",
-      "RationaleEn": "Polymerization yields . the process is proven, used across base building and production.",
+      "RationaleEn": "Polymerization yields . The process is proven, used across base building and production.",
       "FactionLocked": false
     },
     {
@@ -9902,7 +9902,7 @@
       "HandStation": "",
       "TechNode": "polymers",
       "RationaleZh": "聚合反应制得合成橡胶。绝缘隔热,用于电气隔离与保温层。",
-      "RationaleEn": "Polymerization yields Synthetic rubber. it insulates, used for electrical isolation and thermal lining.",
+      "RationaleEn": "Polymerization yields Synthetic rubber. It insulates, used for electrical isolation and thermal lining.",
       "FactionLocked": false
     },
     {
@@ -9933,7 +9933,7 @@
       "HandStation": "",
       "TechNode": "polymers",
       "RationaleZh": "聚合反应制得润滑剂。液态易储运,用于化工与生保。",
-      "RationaleEn": "Polymerization yields Lubricant. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "Polymerization yields Lubricant. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -9960,7 +9960,7 @@
       "HandStation": "campfire",
       "TechNode": "deep_drilling",
       "RationaleZh": "炉内熔炼产出铝。轻质,用于机身与轻型结构。",
-      "RationaleEn": "The furnace run yields aluminum. it is lightweight, used in airframes and light structures.",
+      "RationaleEn": "The furnace run yields aluminum. It is lightweight, used in airframes and light structures.",
       "FactionLocked": false
     },
     {
@@ -9987,7 +9987,7 @@
       "HandStation": "campfire",
       "TechNode": "alloys_exotic",
       "RationaleZh": "炉内熔炼产出曜金。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "The furnace run yields aurite. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "The furnace run yields aurite. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -10014,7 +10014,7 @@
       "HandStation": "campfire",
       "TechNode": "powered_processing",
       "RationaleZh": "炉内熔炼产出铜。导电性好,用于电网线材与电机绕组。",
-      "RationaleEn": "The furnace run yields copper. it conducts well, used in grid wiring and motor windings.",
+      "RationaleEn": "The furnace run yields copper. It conducts well, used in grid wiring and motor windings.",
       "FactionLocked": false
     },
     {
@@ -10041,7 +10041,7 @@
       "HandStation": "campfire",
       "TechNode": "powered_processing",
       "RationaleZh": "炉内熔炼产出铁。强度高,用于承重结构与工具。",
-      "RationaleEn": "The furnace run yields iron. it is strong, used in load-bearing structure and tooling.",
+      "RationaleEn": "The furnace run yields iron. It is strong, used in load-bearing structure and tooling.",
       "FactionLocked": false
     },
     {
@@ -10068,7 +10068,7 @@
       "HandStation": "campfire",
       "TechNode": "metallurgy_2",
       "RationaleZh": "炉内熔炼产出镍。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "The furnace run yields nickel. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "The furnace run yields nickel. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -10095,7 +10095,7 @@
       "HandStation": "campfire",
       "TechNode": "alloys_exotic",
       "RationaleZh": "炉内熔炼产出铂。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "The furnace run yields platinum. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "The furnace run yields platinum. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -10122,7 +10122,7 @@
       "HandStation": "campfire",
       "TechNode": "metallurgy_2",
       "RationaleZh": "炉内熔炼产出稀土。催化活性强,用于反应釜与精炼环节。",
-      "RationaleEn": "The furnace run yields rare-earth metal. it catalyzes readily, used in reactors and refining stages.",
+      "RationaleEn": "The furnace run yields rare-earth metal. It catalyzes readily, used in reactors and refining stages.",
       "FactionLocked": false
     },
     {
@@ -10149,7 +10149,7 @@
       "HandStation": "campfire",
       "TechNode": "powered_processing",
       "RationaleZh": "炉内熔炼产出硅。绝缘隔热,用于电气隔离与保温层。",
-      "RationaleEn": "The furnace run yields silicon. it insulates, used for electrical isolation and thermal lining.",
+      "RationaleEn": "The furnace run yields silicon. It insulates, used for electrical isolation and thermal lining.",
       "FactionLocked": false
     },
     {
@@ -10176,7 +10176,7 @@
       "HandStation": "campfire",
       "TechNode": "deep_drilling",
       "RationaleZh": "炉内熔炼产出钛。耐高温,用于炉衬与发动机热端。",
-      "RationaleEn": "The furnace run yields titanium. it takes heat, used in furnace linings and engine hot sections.",
+      "RationaleEn": "The furnace run yields titanium. It takes heat, used in furnace linings and engine hot sections.",
       "FactionLocked": false
     },
     {
@@ -10207,7 +10207,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "化工釜内受控反应制得氨。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "A controlled reaction yields Ammonia. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "A controlled reaction yields Ammonia. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -10238,7 +10238,7 @@
       "HandStation": "",
       "TechNode": "catalysis",
       "RationaleZh": "化工釜内受控反应制得肥料。有机质,用于食物链与生物材料。",
-      "RationaleEn": "A controlled reaction yields Fertilizer. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "A controlled reaction yields Fertilizer. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -10269,7 +10269,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "化工釜内受控反应制得冷却液。液态易储运,用于化工与生保。",
-      "RationaleEn": "A controlled reaction yields Coolant. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "A controlled reaction yields Coolant. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -10300,7 +10300,7 @@
       "HandStation": "",
       "TechNode": "synthesis_1",
       "RationaleZh": "化工釜内受控反应制得粗密封圈。耐蚀,用于管路与化工容器。",
-      "RationaleEn": "A controlled reaction yields Crude seal. it resists corrosion, used in piping and chemical vessels.",
+      "RationaleEn": "A controlled reaction yields Crude seal. It resists corrosion, used in piping and chemical vessels.",
       "FactionLocked": false
     },
     {
@@ -10331,7 +10331,7 @@
       "HandStation": "",
       "TechNode": "fuels",
       "RationaleZh": "化工釜内受控反应制得重氢燃料。储能密度高,用于电芯与聚变燃料。",
-      "RationaleEn": "A controlled reaction yields Deuterium fuel. it stores energy densely, used in cells and fusion fuel.",
+      "RationaleEn": "A controlled reaction yields Deuterium fuel. It stores energy densely, used in cells and fusion fuel.",
       "FactionLocked": false
     },
     {
@@ -10362,7 +10362,7 @@
       "HandStation": "",
       "TechNode": "synthesis_1",
       "RationaleZh": "化工釜内受控反应制得肥料。有机质,用于食物链与生物材料。",
-      "RationaleEn": "A controlled reaction yields Fertilizer. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "A controlled reaction yields Fertilizer. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -10389,7 +10389,7 @@
       "HandStation": "campfire",
       "TechNode": "synthesis_1",
       "RationaleZh": "炉内熔炼产出玻璃。绝缘隔热,用于电气隔离与保温层。",
-      "RationaleEn": "The furnace run yields Glass. it insulates, used for electrical isolation and thermal lining.",
+      "RationaleEn": "The furnace run yields Glass. It insulates, used for electrical isolation and thermal lining.",
       "FactionLocked": false
     },
     {
@@ -10424,7 +10424,7 @@
       "HandStation": "",
       "TechNode": "food_hydroponics",
       "RationaleZh": "化工釜内受控反应制得培养基。有机质,用于食物链与生物材料。",
-      "RationaleEn": "A controlled reaction yields Growth medium. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "A controlled reaction yields Growth medium. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -10455,7 +10455,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "化工釜内受控反应制得润滑剂。液态易储运,用于化工与生保。",
-      "RationaleEn": "A controlled reaction yields Lubricant. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "A controlled reaction yields Lubricant. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -10486,7 +10486,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "化工釜内受控反应制得硝酸。液态易储运,用于化工与生保。",
-      "RationaleEn": "A controlled reaction yields Nitric acid. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "A controlled reaction yields Nitric acid. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -10517,7 +10517,7 @@
       "HandStation": "",
       "TechNode": "food_protein",
       "RationaleZh": "化工釜内受控反应制得蛋白浆。有机质,用于食物链与生物材料。",
-      "RationaleEn": "A controlled reaction yields Protein paste. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "A controlled reaction yields Protein paste. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -10548,7 +10548,7 @@
       "HandStation": "",
       "TechNode": "fuels",
       "RationaleZh": "化工釜内受控反应制得火箭燃料组。易燃,用作燃料与还原剂。",
-      "RationaleEn": "A controlled reaction yields Rocket fuel load. it burns readily, used as fuel and reducing agent.",
+      "RationaleEn": "A controlled reaction yields Rocket fuel load. It burns readily, used as fuel and reducing agent.",
       "FactionLocked": false
     },
     {
@@ -10579,7 +10579,7 @@
       "HandStation": "",
       "TechNode": "fuels",
       "RationaleZh": "化工釜内受控反应制得火箭燃料组。易燃,用作燃料与还原剂。",
-      "RationaleEn": "A controlled reaction yields Rocket fuel load. it burns readily, used as fuel and reducing agent.",
+      "RationaleEn": "A controlled reaction yields Rocket fuel load. It burns readily, used as fuel and reducing agent.",
       "FactionLocked": false
     },
     {
@@ -10614,7 +10614,7 @@
       "HandStation": "",
       "TechNode": "sabatier_tech",
       "RationaleZh": "化工釜内受控反应制得甲烷。气态便于管输,用于化工原料与充装。",
-      "RationaleEn": "A controlled reaction yields Methane. it pipes as gas, used as chemical feedstock and for charging.",
+      "RationaleEn": "A controlled reaction yields Methane. It pipes as gas, used as chemical feedstock and for charging.",
       "FactionLocked": false
     },
     {
@@ -10645,7 +10645,7 @@
       "HandStation": "",
       "TechNode": "synthesis_2",
       "RationaleZh": "化工釜内受控反应制得培养基。有机质,用于食物链与生物材料。",
-      "RationaleEn": "A controlled reaction yields Growth medium. it is organic, used in food chains and bio-materials.",
+      "RationaleEn": "A controlled reaction yields Growth medium. It is organic, used in food chains and bio-materials.",
       "FactionLocked": false
     },
     {
@@ -10676,7 +10676,7 @@
       "HandStation": "",
       "TechNode": "chem_basics",
       "RationaleZh": "化工釜内受控反应制得硫酸。液态易储运,用于化工与生保。",
-      "RationaleEn": "A controlled reaction yields Sulfuric acid. it stores as liquid, used in chemistry and life support.",
+      "RationaleEn": "A controlled reaction yields Sulfuric acid. It stores as liquid, used in chemistry and life support.",
       "FactionLocked": false
     },
     {
@@ -10707,7 +10707,7 @@
       "HandStation": "",
       "TechNode": "enrichment",
       "RationaleZh": "化工釜内受控反应制得浓缩铀棒。可裂变,用于反应堆燃料。",
-      "RationaleEn": "A controlled reaction yields Enriched uranium rod. it is fissile, used as reactor fuel.",
+      "RationaleEn": "A controlled reaction yields Enriched uranium rod. It is fissile, used as reactor fuel.",
       "FactionLocked": false
     }
   ]

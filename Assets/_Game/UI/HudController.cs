@@ -22,6 +22,9 @@ namespace Starsoil.UI
         private Label _topBar;
         private Label _banner;
         private VisualElement _alertsBox;
+        /// <summary>Below this window width the key-hint segment overflows; hide it.</summary>
+        private const int WideTopBarMinWidth = 1150;
+
         private VisualElement _tutorialBox;
         private Label _tutorialLabel;
         private VisualElement _defeatOverlay;
@@ -187,7 +190,7 @@ namespace Starsoil.UI
                 L10n.Tr("hud_credits") + " 0 · " +
                 L10n.Tr("hud_population") + " " + _world.Colonists.AliveCount + " (" + _world.Bots.All.Count + "🤖) · " +
                 L10n.TrF("hud_day", _world.Day) + " " + L10n.TrF("hud_hour", _world.HourOfDay) + " · " + speed +
-                "  |  " + L10n.Tr("ui_speed_hint");
+                (Screen.width >= WideTopBarMinWidth ? "  |  " + L10n.Tr("ui_speed_hint") : string.Empty);
         }
 
         private void RefreshBanner()

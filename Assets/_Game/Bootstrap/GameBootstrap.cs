@@ -30,10 +30,23 @@ namespace Starsoil.Bootstrap
             var settings = GameSettings.Load();
             L10n.TryLoadDefault();
             ItemCatalog.TryLoadDefault();
-            // Demo/QA language override must land before any UI is built — panel
-            // titles and buttons capture their text at BuildUi time.
+
+            // Steam boots before any UI so the interface language can follow the
+            // Steam client (docs/plan/10 M8-T1). Harmless without the STEAM define.
+            var steamGo = new GameObject("SteamBridge");
+            var steam = steamGo.AddComponent<SteamBridge>();
+            steam.InitApi();
+
+            // Language priority: QA override > explicit user setting > Steam client
+            // language > default zh. Titles/buttons capture text at BuildUi time.
             string demoLanguage = System.Environment.GetEnvironmentVariable("STARSOIL_DEMO_LANG");
-            L10n.SetLanguage(string.IsNullOrEmpty(demoLanguage) ? settings.Language : demoLanguage);
+            string language = settings.Language;
+            if ((string.IsNullOrEmpty(language) || language == "auto") &&
+                steam.TryGetLanguage(out string steamLanguage))
+            {
+                language = steamLanguage;
+            }
+            L10n.SetLanguage(string.IsNullOrEmpty(demoLanguage) ? language : demoLanguage);
 
             var universe = Universe.NewGame(DefaultWorldSeed, GameConstants.DefaultRegionSize);
             BodiesData.LoadInto(universe);
@@ -119,6 +132,8 @@ namespace Starsoil.Bootstrap
             driver.RegisterPanels(techPanel, jobsPanel);
             driver.RegisterBrowser(browser);
             driver.AttachUniverse(universe);
+            steam.AttachUniverse(universe);
+            steamGo.transform.SetParent(root.transform, false);
 
             var starMapGo = new GameObject("StarMap");
             starMapGo.transform.SetParent(root.transform, false);

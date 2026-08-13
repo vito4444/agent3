@@ -1,0 +1,23 @@
+# Steamworks 后台成就导入表(docs/plan/10 成就 20 项,与 Core AchievementSystem id 一一对应)。
+# API Name 规则:ACH_ + Core id 大写(SteamBridge.MirrorAchievement 同规则)。
+api_name,name_zh,name_en,desc_zh,desc_en
+ACH_FIRST_NIGHT,第一夜,First Night,存活 1 游戏日,Survive 1 game day
+ACH_POWERED_UP,通电,Powered Up,首次电网供电,Bring the power grid online
+ACH_HANDS_OBSOLETE,手已无用,Hands Obsolete,12 类手工工序全部机器化,All 12 hand crafts running on machines
+ACH_STEEL_APPRENTICE,冶金学徒,Steel Apprentice,首次产出钢锭,Smelt your first steel ingot
+ACH_FIRST_ELECTROLYSIS,化学起步,First Electrolysis,首次电解水,Electrolyze water for the first time
+ACH_RECIPE_HUNTER,配方猎人,Recipe Hunter,解锁 100 条配方,Unlock 100 recipes
+ACH_INDUSTRIAL_CODEX,工业大典,Industrial Codex,解锁 250 条配方,Unlock 250 recipes
+ACH_LIFTOFF,升空,Liftoff,首次发射火箭,Launch your first rocket
+ACH_TWO_WORLDS,双星生活,Two Worlds,在第二个星体建立前哨,Establish an outpost on a second body
+ACH_SPACEPORT_ERA,星港时代,Spaceport Era,首条自动航线运行 5 游戏日,Keep an automated route running 5 days
+ACH_FIRST_CONTACT,初次接触,First Contact,通讯阵列点亮三势力,Light up all three factions with the comms array
+ACH_MUTUAL_GAIN,互利互惠,Mutual Gain,与商盟成交 50 笔,Complete 50 merchant trades
+ACH_MOST_FAVORED,最惠国,Most Favored,商盟态度 ≥60,Merchant attitude at 60 or higher
+ACH_NOT_ONE_STEP,寸土不让,Not One Step,击退赤旗袭击 10 次,Repel 10 Red Banner raids
+ACH_TEAR_THE_ULTIMATUM,拆掉通牒,Tear the Ultimatum,战争中攻占赤旗任一星体,Take a Red Banner body in war
+ACH_BEHIND_HIGH_WALLS,高墙之后,Behind High Walls,解码静默会谜语,Decode the Silent riddle
+ACH_DOUBLE_HARVEST,双收,Double Harvest,占领眠霜,Occupy Sleetfall
+ACH_LORD_PROTECTOR,护国公,Lord Protector,与商盟缔结护国条约,Sign the protectorate treaty with the merchants
+ACH_HEGEMON,星系霸主,Hegemon,达成霸权胜利,Achieve the hegemony victory
+ACH_WARP_IGNITION,跃迁点火,Warp Ignition,达成灯塔胜利,Achieve the beacon victory

@@ -330,11 +330,35 @@ namespace Starsoil.RecipeGen
                 .Replace("{form}", formZh)
                 .Replace("{attr}", phrase?.ZhAttr ?? "工艺成熟")
                 .Replace("{use}", phrase?.ZhUse ?? "用于基地建设与生产");
-            recipe.RationaleEn = (enTemplate ?? string.Empty)
+            recipe.RationaleEn = CapitalizeSentences((enTemplate ?? string.Empty)
                 .Replace("{material}", materialEn)
                 .Replace("{form}", formEn)
                 .Replace("{attr}", phrase?.EnAttr ?? "the process is proven")
-                .Replace("{use}", phrase?.EnUse ?? "used across base building and production");
+                .Replace("{use}", phrase?.EnUse ?? "used across base building and production"));
+        }
+
+        /// <summary>Templates splice lowercase attr/use phrases after periods; fix casing.</summary>
+        private static string CapitalizeSentences(string text)
+        {
+            var chars = text.ToCharArray();
+            bool sentenceStart = true;
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (sentenceStart && char.IsLetter(chars[i]))
+                {
+                    chars[i] = char.ToUpperInvariant(chars[i]);
+                    sentenceStart = false;
+                }
+                else if (chars[i] == '.' || chars[i] == '!' || chars[i] == '?')
+                {
+                    sentenceStart = true;
+                }
+                else if (!char.IsWhiteSpace(chars[i]))
+                {
+                    sentenceStart = false;
+                }
+            }
+            return new string(chars);
         }
 
         private static string FamilyForCategory(string category)

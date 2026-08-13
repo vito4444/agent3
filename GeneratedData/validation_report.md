@@ -1,6 +1,6 @@
 # RecipeGen validation report
 
-Generated at (UTC): 2026-08-12 19:41:09
+Generated at (UTC): 2026-08-13 09:16:06
 
 ## Counts by family (target table: docs/plan/04)
 

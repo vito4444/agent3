@@ -108,8 +108,12 @@ namespace UnityEngine.UIElements
         public event Action clicked { add { } remove { } }
     }
 
+    public enum ScrollerVisibility { Auto, AlwaysVisible, Hidden }
+
     public class ScrollView : VisualElement
     {
+        public ScrollerVisibility horizontalScrollerVisibility { get; set; }
+        public ScrollerVisibility verticalScrollerVisibility { get; set; }
     }
 
     public class ChangeEvent<T>

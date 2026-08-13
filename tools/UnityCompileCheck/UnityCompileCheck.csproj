@@ -14,6 +14,9 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <WarningLevel>0</WarningLevel>
     <NoWarn>CS0649;CS0067;CS0414;CS0660;CS0661</NoWarn>
+    <!-- STEAM branches of SteamBridge are type-checked against tools/UnityStubs
+         SteamworksStubs.cs; the shipped define set stays per-configuration. -->
+    <DefineConstants>$(DefineConstants);STEAM</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
